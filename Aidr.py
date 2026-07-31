@@ -930,16 +930,12 @@ def toggle_pin(cat_key: str, item: Dict):
         return True
 
 def friendly_intro(category: str, query: str, zip_filter: str, lang_filter: str, service_filter: str = "All", day_filter: str = "All", detected_zip: str = None, detected_service: str = None, detected_day: str = None) -> str:
-    # Pip's short, friendly voice
-    q = (query or "").strip() or "that"
-    bits = []
+    """Pip intro in the active UI language."""
+    _cl = st.session_state.get("ui_lang_code", "en")
+    q = (query or "").strip() or "…"
     z = detected_zip or (zip_filter if zip_filter != "All" else None)
-    if z:
-        bits.append(f"near **{z}**")
-    if detected_service or (service_filter != "All"):
-        bits.append(f"for **{detected_service or service_filter}**")
-    where = (" " + " ".join(bits)) if bits else ""
-    return f"Here are a few **{category}** options for **{q}**{where}. Tap a site or map when you’re ready."
+    svc = detected_service or (service_filter if service_filter != "All" else None)
+    return i18n.results_intro(category, q, _cl, zip_code=z, service=svc)
 
 
 def _specialty_tags(item: Dict, cat_key: str) -> List[str]:
@@ -1014,18 +1010,19 @@ def render_card(idx: int, item: Dict, cat_key: str, user_need: str = "", key_suf
     addr = normalize_address(item.get("address") or "")
     uid = f"{cat_key}_{item['id']}_{idx}{key_suffix}"
     name = item.get("name") or "Unknown"
-    tags = _specialty_tags(item, cat_key)
+    tags = [i18n.localize_term(t, _cl) for t in _specialty_tags(item, cat_key)]
 
     langs = item.get("languages")
     if isinstance(langs, list):
-        lang_str = ", ".join(langs)
+        lang_str = i18n.localize_language_list(langs, _cl)
     else:
-        lang_str = str(langs or "")
+        lang_str = i18n.localize_language_list(str(langs or ""), _cl)
 
     hours_display = item.get("hours_text") or item.get("hours")
     hours_str = ""
     if hours_display and not isinstance(hours_display, dict):
         hours_str = re.sub(r"^(?:⏰\s*)?Hours?:\s*", "", str(hours_display), flags=re.I).strip()
+        hours_str = i18n.localize_hours(hours_str, _cl)
 
     def html_escape(s: str) -> str:
         return (
@@ -1037,7 +1034,7 @@ def render_card(idx: int, item: Dict, cat_key: str, user_need: str = "", key_suf
         )
 
     open_chip = (
-        '<span class="yelp-chip yelp-open">Open now</span>'
+        f'<span class="yelp-chip yelp-open">{html_escape(i18n.t("open_now_chip", _cl))}</span>'
         if is_open
         else ""
     )
@@ -1210,13 +1207,18 @@ def render_card(idx: int, item: Dict, cat_key: str, user_need: str = "", key_suf
         with c_map:
             if addr:
                 map_utils.maps_action_button(
-                    "Map",
+                    i18n.t("map_short", _cl),
                     addr,
                     key=f"map_{uid}",
                     place_name=name,
                 )
             else:
-                st.button("Map", key=f"map_disabled_{uid}", disabled=True, use_container_width=True)
+                st.button(
+                    i18n.t("map_short", _cl),
+                    key=f"map_disabled_{uid}",
+                    disabled=True,
+                    use_container_width=True,
+                )
 
         with c_comments:
             st.button(
@@ -1284,7 +1286,7 @@ with st.sidebar:
             st.caption(i18n.t("ollama_hint", ui_lang))
         st.caption(i18n.t("whatsapp_hint", ui_lang))
 
-    # Voice — always-visible on/off in sidebar
+    # Voice — Pip speaks replies (free browser TTS)
     import core.voice as voice
 
     st.markdown('<hr class="aidr-side-rule"/>', unsafe_allow_html=True)
@@ -1294,8 +1296,6 @@ with st.sidebar:
         key="aidr_smart_llm",
         help="Uses local Ollama for understanding — slower. Off = fast search.",
     )
-    with st.expander("Mic (optional)", expanded=False):
-        voice.render_voice_mic(ui_lang)
     st.markdown('<hr class="aidr-side-rule"/>', unsafe_allow_html=True)
 
     # Forms
@@ -1719,9 +1719,12 @@ def respond_to_query(user_text: str, category: str):
                 user_text, to_show, category,
                 context.get_context_messages()
             )
-            if user_language and user_language.lower() not in ["english", "en"]:
+            # Prefer sidebar UI language for Pip's spoken/written intro
+            _ui = st.session_state.get("ui_lang_code", "en")
+            target = i18n.CODE_TO_NAME.get(_ui) or user_language or "English"
+            if target and str(target).lower() not in ("english", "en"):
                 intro = llm_service.translate_response_if_needed(
-                    intro, user_language, include_english=False
+                    intro, target, include_english=False
                 )
             context.add_assistant_message(intro)
         else:
@@ -1749,7 +1752,7 @@ def respond_to_query(user_text: str, category: str):
         try:
             import core.voice as voice
             st.session_state["last_answer"] = intro
-            voice.speak_pip(intro)
+            voice.speak_pip(intro, lang=st.session_state.get("ui_lang_code", "en"))
         except Exception:
             pass
 
@@ -1917,7 +1920,7 @@ if suggestion_key in st.session_state:
     prompt = st.session_state.pop(suggestion_key)
     # Will be processed below
 
-# Mic → Whisper pending prompt (VERA-style voice entry)
+# Mic / dictate → pending prompt (speech-to-text into chat bar)
 if not prompt and st.session_state.get("voice_prompt_pending"):
     prompt = st.session_state.pop("voice_prompt_pending")
 

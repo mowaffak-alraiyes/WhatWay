@@ -4,6 +4,7 @@ Static UI translations — Aidr site-wide labels (no LLM).
 
 from __future__ import annotations
 
+import re
 from typing import Dict, List
 
 LANGUAGES: Dict[str, str] = {
@@ -106,6 +107,12 @@ _EN = {
     "status_section": "Status",
     "nav_section": "Navigate",
     "recent": "Recent",
+    "map_short": "Map",
+    "open_now_chip": "Open now",
+    "results_intro": "Here are a few **{category}** options for **{q}**{where}. Tap a site or map when you’re ready.",
+    "results_near": " near **{z}**",
+    "results_for_svc": " for **{svc}**",
+    "voice_fallback_note": "No voice for this language on your device yet — Pip will speak in English for now.",
 }
 
 ASK_PHRASES: Dict[str, List[str]] = {
@@ -631,3 +638,345 @@ def category_display(category: str, lang: str = "en") -> str:
         "Resettlement / Legal / Shelter": "resettlement",
     }
     return t(mapping.get(category, "healthcare"), lang)
+
+
+# --- Dynamic card / Pip localization (all UI languages) ---
+
+_SPEECH_INTRO = {
+    "es": "Aquí tienes algunas opciones de **{category}** para **{q}**{where}. Toca un sitio o el mapa cuando quieras.",
+    "ar": "إليك بعض خيارات **{category}** لـ **{q}**{where}. اضغط على موقع أو الخريطة عندما تكون جاهزًا.",
+    "fr": "Voici quelques options **{category}** pour **{q}**{where}. Touchez un lieu ou la carte quand vous voulez.",
+    "pl": "Oto kilka opcji **{category}** dla **{q}**{where}. Dotknij miejsca lub mapy, gdy będziesz gotowy.",
+    "zh": "这里有一些 **{category}** 选项，关于 **{q}**{where}。准备好后点选地点或地图。",
+    "ur": "یہ رہیں چند **{category}** اختیارات **{q}** کے لیے{where}۔ تیار ہوں تو جگہ یا نقشہ تھپتھپائیں۔",
+    "hi": "**{q}** के लिए कुछ **{category}** विकल्प यहाँ हैं{where}। तैयार हों तो स्थान या मानचित्र टैप करें।",
+    "uk": "Ось кілька варіантів **{category}** для **{q}**{where}. Торкніться місця або карти, коли будете готові.",
+    "sw": "Hapa kuna chaguo chache za **{category}** kwa **{q}**{where}. Gusa mahali au ramani ukiwa tayari.",
+}
+_NEAR = {
+    "es": " cerca de **{z}**",
+    "ar": " قرب **{z}**",
+    "fr": " près de **{z}**",
+    "pl": " w pobliżu **{z}**",
+    "zh": "，靠近 **{z}**",
+    "ur": " **{z}** کے قریب",
+    "hi": " **{z}** के पास",
+    "uk": " біля **{z}**",
+    "sw": " karibu na **{z}**",
+}
+_FOR_SVC = {
+    "es": " de **{svc}**",
+    "ar": " لـ **{svc}**",
+    "fr": " — **{svc}**",
+    "pl": " — **{svc}**",
+    "zh": "（**{svc}**）",
+    "ur": " — **{svc}**",
+    "hi": " — **{svc}**",
+    "uk": " — **{svc}**",
+    "sw": " — **{svc}**",
+}
+_MAP = {
+    "es": "Mapa",
+    "ar": "الخريطة",
+    "fr": "Carte",
+    "pl": "Mapa",
+    "zh": "地图",
+    "ur": "نقشہ",
+    "hi": "मानचित्र",
+    "uk": "Карта",
+    "sw": "Ramani",
+}
+_OPEN_NOW = {
+    "es": "Abierto ahora",
+    "ar": "مفتوح الآن",
+    "fr": "Ouvert maintenant",
+    "pl": "Otwarte teraz",
+    "zh": "营业中",
+    "ur": "ابھی کھلا",
+    "hi": "अभी खुला",
+    "uk": "Зараз відкрито",
+    "sw": "Wazi sasa",
+}
+
+_VOICE_FALLBACK = {
+    "es": "Aún no hay voz en este idioma en tu dispositivo — Pip hablará en inglés por ahora.",
+    "ar": "لا يتوفر صوت لهذه اللغة على جهازك بعد — سيتحدث بيب بالإنجليزية مؤقتًا.",
+    "fr": "Pas encore de voix pour cette langue sur votre appareil — Pip parlera en anglais pour l’instant.",
+    "pl": "Brak głosu w tym języku na Twoim urządzeniu — Pip na razie mówi po angielsku.",
+    "zh": "此设备暂无该语言的语音 — Pip 暂时用英语朗读。",
+    "ur": "آپ کے آلے پر ابھی اس زبان کی آواز نہیں — پپ فی الحال انگریزی میں بات کرے گا۔",
+    "hi": "इस भाषा की आवाज़ आपके डिवाइस पर अभी नहीं है — Pip अभी अंग्रेज़ी में बोलेगा।",
+    "uk": "Голосу цією мовою на пристрої ще немає — Pip поки говоритиме англійською.",
+    "sw": "Sauti ya lugha hii haipo kwenye kifaa chako bado — Pip atasema Kiingereza kwa sasa.",
+}
+
+for _code in STRINGS:
+    if _code == "en":
+        continue
+    if _code in _SPEECH_INTRO:
+        STRINGS[_code]["results_intro"] = _SPEECH_INTRO[_code]
+    if _code in _NEAR:
+        STRINGS[_code]["results_near"] = _NEAR[_code]
+    if _code in _FOR_SVC:
+        STRINGS[_code]["results_for_svc"] = _FOR_SVC[_code]
+    if _code in _MAP:
+        STRINGS[_code]["map_short"] = _MAP[_code]
+    if _code in _OPEN_NOW:
+        STRINGS[_code]["open_now_chip"] = _OPEN_NOW[_code]
+    if _code in _VOICE_FALLBACK:
+        STRINGS[_code]["voice_fallback_note"] = _VOICE_FALLBACK[_code]
+
+# Specialty / service chips (English canonical → per-language)
+_GLOSSARY = {
+    "healthcare": {
+        "es": "Salud", "ar": "الرعاية الصحية", "fr": "Santé", "pl": "Opieka zdrowotna",
+        "zh": "医疗", "ur": "صحت", "hi": "स्वास्थ्य", "uk": "Охорона здоров'я", "sw": "Afya",
+    },
+    "education": {
+        "es": "Educación", "ar": "التعليم", "fr": "Éducation", "pl": "Edukacja",
+        "zh": "教育", "ur": "تعلیم", "hi": "शिक्षा", "uk": "Освіта", "sw": "Elimu",
+    },
+    "legal & shelter": {
+        "es": "Legal y refugio", "ar": "قانوني ومأوى", "fr": "Juridique et abri", "pl": "Prawo i schronienie",
+        "zh": "法律与收容", "ur": "قانونی و پناہ", "hi": "कानूनी और आश्रय", "uk": "Право і притулок", "sw": "Sheria na hifadhi",
+    },
+    "primary care": {
+        "es": "Atención primaria", "ar": "الرعاية الأولية", "fr": "Soins primaires", "pl": "Podstawowa opieka",
+        "zh": "初级保健", "ur": "بنیادی نگہداشت", "hi": "प्राथमिक देखभाल", "uk": "Первинна допомога", "sw": "Huduma ya msingi",
+    },
+    "adult primary care": {
+        "es": "Atención primaria adultos", "ar": "رعاية أولية للبالغين", "fr": "Soins primaires adultes",
+        "pl": "Opieka podstawowa (dorośli)", "zh": "成人初级保健", "ur": "بالغوں کی بنیادی نگہداشت",
+        "hi": "वयस्क प्राथमिक देखभाल", "uk": "Первинна допомога (дорослі)", "sw": "Huduma ya msingi (watu wazima)",
+    },
+    "women's health": {
+        "es": "Salud de la mujer", "ar": "صحة المرأة", "fr": "Santé des femmes", "pl": "Zdrowie kobiet",
+        "zh": "女性健康", "ur": "خواتین کی صحت", "hi": "महिला स्वास्थ्य", "uk": "Жіноче здоров'я", "sw": "Afya ya wanawake",
+    },
+    "dental": {
+        "es": "Dental", "ar": "أسنان", "fr": "Dentaire", "pl": "Dentystyka",
+        "zh": "牙科", "ur": "دانت", "hi": "दंत", "uk": "Стоматологія", "sw": "Meno",
+    },
+    "mental health": {
+        "es": "Salud mental", "ar": "الصحة النفسية", "fr": "Santé mentale", "pl": "Zdrowie psychiczne",
+        "zh": "心理健康", "ur": "ذہنی صحت", "hi": "मानसिक स्वास्थ्य", "uk": "Психічне здоров'я", "sw": "Afya ya akili",
+    },
+    "pediatrics": {
+        "es": "Pediatría", "ar": "طب الأطفال", "fr": "Pédiatrie", "pl": "Pediatria",
+        "zh": "儿科", "ur": "اطفال", "hi": "बाल रोग", "uk": "Педіатрія", "sw": "Watoto",
+    },
+    "cardiology": {
+        "es": "Cardiología", "ar": "قلب", "fr": "Cardiologie", "pl": "Kardiologia",
+        "zh": "心脏病", "ur": "دل", "hi": "हृदय रोग", "uk": "Кардіологія", "sw": "Moyo",
+    },
+    "obstetrics/gynecology": {
+        "es": "Obstetricia/Ginecología", "ar": "نساء وتوليد", "fr": "Obstétrique/Gynécologie",
+        "pl": "Położnictwo/Ginekologia", "zh": "妇产科", "ur": "نسائی امراض", "hi": "प्रसूति/स्त्री रोग",
+        "uk": "Акушерство/гінекологія", "sw": "Uzazi",
+    },
+    "endocrinology": {
+        "es": "Endocrinología", "ar": "غدد صماء", "fr": "Endocrinologie", "pl": "Endokrynologia",
+        "zh": "内分泌", "ur": "ہارمونز", "hi": "अंतःस्रावी", "uk": "Ендокринологія", "sw": "Homoni",
+    },
+    "pulmonology": {
+        "es": "Neumología", "ar": "رئة", "fr": "Pneumologie", "pl": "Pulmonologia",
+        "zh": "肺科", "ur": "پھیپھڑے", "hi": "फेफड़े", "uk": "Пульмонологія", "sw": "Mapafu",
+    },
+    "free": {
+        "es": "Gratis", "ar": "مجاني", "fr": "Gratuit", "pl": "Bezpłatne",
+        "zh": "免费", "ur": "مفت", "hi": "मुफ़्त", "uk": "Безкоштовно", "sw": "Bure",
+    },
+    "nutrition": {
+        "es": "Nutrición", "ar": "تغذية", "fr": "Nutrition", "pl": "Żywienie",
+        "zh": "营养", "ur": "غذائیت", "hi": "पोषण", "uk": "Харчування", "sw": "Lishe",
+    },
+    "behavioral health": {
+        "es": "Salud conductual", "ar": "الصحة السلوكية", "fr": "Santé comportementale",
+        "pl": "Zdrowie behawioralne", "zh": "行为健康", "ur": "رویے کی صحت", "hi": "व्यवहार स्वास्थ्य",
+        "uk": "Поведінкове здоров'я", "sw": "Afya ya tabia",
+    },
+    "midwifery": {
+        "es": "Partería", "ar": "قابلة", "fr": "Sage-femme", "pl": "Położnictwo",
+        "zh": "助产", "ur": "دایہ", "hi": "दाईगीरी", "uk": "Акушерство", "sw": "Ukunga",
+    },
+    "ryan white hiv/aids program": {
+        "es": "Programa Ryan White VIH/SIDA", "ar": "برنامج رايان وايت لفيروس نقص المناعة",
+        "fr": "Programme Ryan White VIH/sida", "pl": "Program Ryan White HIV/AIDS",
+        "zh": "Ryan White 艾滋病项目", "ur": "رائن وائٹ ایچ آئی وی پروگرام",
+        "hi": "रायन व्हाइट एचआईवी कार्यक्रम", "uk": "Програма Ryan White ВІЛ/СНІД",
+        "sw": "Programu ya Ryan White VVU",
+    },
+}
+
+# Spoken-language labels on cards
+_LANG_NAMES = {
+    "english": {
+        "es": "inglés", "ar": "الإنجليزية", "fr": "anglais", "pl": "angielski",
+        "zh": "英语", "ur": "انگریزی", "hi": "अंग्रेज़ी", "uk": "англійська", "sw": "Kiingereza",
+    },
+    "spanish": {
+        "es": "español", "ar": "الإسبانية", "fr": "espagnol", "pl": "hiszpański",
+        "zh": "西班牙语", "ur": "ہسپانوی", "hi": "स्पेनिश", "uk": "іспанська", "sw": "Kihispania",
+    },
+    "arabic": {
+        "es": "árabe", "ar": "العربية", "fr": "arabe", "pl": "arabski",
+        "zh": "阿拉伯语", "ur": "عربی", "hi": "अरबी", "uk": "арабська", "sw": "Kiarabu",
+    },
+    "urdu": {
+        "es": "urdu", "ar": "الأردية", "fr": "ourdou", "pl": "urdu",
+        "zh": "乌尔都语", "ur": "اردو", "hi": "उर्दू", "uk": "урду", "sw": "Kiurdu",
+    },
+    "mandarin": {
+        "es": "mandarín", "ar": "الماندرين", "fr": "mandarin", "pl": "mandaryński",
+        "zh": "普通话", "ur": "مینڈرین", "hi": "मैंडरिन", "uk": "мандаринська", "sw": "Kimandarin",
+    },
+    "chinese": {
+        "es": "chino", "ar": "الصينية", "fr": "chinois", "pl": "chiński",
+        "zh": "中文", "ur": "چینی", "hi": "चीनी", "uk": "китайська", "sw": "Kichina",
+    },
+    "french": {
+        "es": "francés", "ar": "الفرنسية", "fr": "français", "pl": "francuski",
+        "zh": "法语", "ur": "فرانسیسی", "hi": "फ़्रेंच", "uk": "французька", "sw": "Kifaransa",
+    },
+    "polish": {
+        "es": "polaco", "ar": "البولندية", "fr": "polonais", "pl": "polski",
+        "zh": "波兰语", "ur": "پولش", "hi": "पोलिश", "uk": "польська", "sw": "Kipolandi",
+    },
+    "hindi": {
+        "es": "hindi", "ar": "الهندية", "fr": "hindi", "pl": "hindi",
+        "zh": "印地语", "ur": "ہندی", "hi": "हिन्दी", "uk": "гінді", "sw": "Kihindi",
+    },
+    "ukrainian": {
+        "es": "ucraniano", "ar": "الأوكرانية", "fr": "ukrainien", "pl": "ukraiński",
+        "zh": "乌克兰语", "ur": "یوکرینی", "hi": "यूक्रेनी", "uk": "українська", "sw": "Kiukreni",
+    },
+    "swahili": {
+        "es": "suajili", "ar": "السواحيلية", "fr": "swahili", "pl": "suahili",
+        "zh": "斯瓦希里语", "ur": "سواحلی", "hi": "स्वाहिली", "uk": "суахілі", "sw": "Kiswahili",
+    },
+    "yoruba": {
+        "es": "yoruba", "ar": "اليوروبا", "fr": "yoruba", "pl": "joruba",
+        "zh": "约鲁巴语", "ur": "یوروبا", "hi": "योरूबा", "uk": "йоруба", "sw": "Kiyoruba",
+    },
+    "kannada": {
+        "es": "canarés", "ar": "الكانادا", "fr": "kannada", "pl": "kannada",
+        "zh": "卡纳达语", "ur": "کنڑ", "hi": "कन्नड़", "uk": "каннада", "sw": "Kikannada",
+    },
+    "tamil": {
+        "es": "tamil", "ar": "التاميلية", "fr": "tamoul", "pl": "tamilski",
+        "zh": "泰米尔语", "ur": "تامل", "hi": "तमिल", "uk": "тамільська", "sw": "Kitamil",
+    },
+}
+
+_DAYS = {
+    "monday": {"es": "lunes", "ar": "الاثنين", "fr": "lundi", "pl": "poniedziałek", "zh": "周一", "ur": "پیر", "hi": "सोमवार", "uk": "понеділок", "sw": "Jumatatu"},
+    "tuesday": {"es": "martes", "ar": "الثلاثاء", "fr": "mardi", "pl": "wtorek", "zh": "周二", "ur": "منگل", "hi": "मंगलवार", "uk": "вівторок", "sw": "Jumanne"},
+    "wednesday": {"es": "miércoles", "ar": "الأربعاء", "fr": "mercredi", "pl": "środa", "zh": "周三", "ur": "بدھ", "hi": "बुधवार", "uk": "середа", "sw": "Jumatano"},
+    "thursday": {"es": "jueves", "ar": "الخميس", "fr": "jeudi", "pl": "czwartek", "zh": "周四", "ur": "جمعرات", "hi": "गुरुवार", "uk": "четвер", "sw": "Alhamisi"},
+    "friday": {"es": "viernes", "ar": "الجمعة", "fr": "vendredi", "pl": "piątek", "zh": "周五", "ur": "جمعہ", "hi": "शुक्रवार", "uk": "п'ятниця", "sw": "Ijumaa"},
+    "saturday": {"es": "sábado", "ar": "السبت", "fr": "samedi", "pl": "sobota", "zh": "周六", "ur": "ہفتہ", "hi": "शनिवार", "uk": "субота", "sw": "Jumamosi"},
+    "sunday": {"es": "domingo", "ar": "الأحد", "fr": "dimanche", "pl": "niedziela", "zh": "周日", "ur": "اتوار", "hi": "रविवार", "uk": "неділя", "sw": "Jumapili"},
+    "mon": {"es": "lun", "ar": "الإثنين", "fr": "lun", "pl": "pon", "zh": "周一", "ur": "پیر", "hi": "सोम", "uk": "пн", "sw": "Jtatu"},
+    "tue": {"es": "mar", "ar": "الثلاثاء", "fr": "mar", "pl": "wt", "zh": "周二", "ur": "منگل", "hi": "मंगल", "uk": "вт", "sw": "Jnne"},
+    "wed": {"es": "mié", "ar": "الأربعاء", "fr": "mer", "pl": "śr", "zh": "周三", "ur": "بدھ", "hi": "बुध", "uk": "ср", "sw": "Jtano"},
+    "thu": {"es": "jue", "ar": "الخميس", "fr": "jeu", "pl": "czw", "zh": "周四", "ur": "جمعرات", "hi": "गुरु", "uk": "чт", "sw": "Alh"},
+    "fri": {"es": "vie", "ar": "الجمعة", "fr": "ven", "pl": "pt", "zh": "周五", "ur": "جمعہ", "hi": "शुक्र", "uk": "пт", "sw": "Ijm"},
+    "sat": {"es": "sáb", "ar": "السبت", "fr": "sam", "pl": "sob", "zh": "周六", "ur": "ہفتہ", "hi": "शनि", "uk": "сб", "sw": "Jmosi"},
+    "sun": {"es": "dom", "ar": "الأحد", "fr": "dim", "pl": "ndz", "zh": "周日", "ur": "اتوار", "hi": "रवि", "uk": "нд", "sw": "Jpili"},
+}
+
+_HOURS_PHRASES = {
+    "open": {"es": "Abierto", "ar": "مفتوح", "fr": "Ouvert", "pl": "Otwarte", "zh": "开放", "ur": "کھلا", "hi": "खुला", "uk": "Відкрито", "sw": "Wazi"},
+    "closed": {"es": "Cerrado", "ar": "مغلق", "fr": "Fermé", "pl": "Zamknięte", "zh": "关闭", "ur": "بند", "hi": "बंद", "uk": "Закрито", "sw": "Imefungwa"},
+    "days/month": {"es": "días/mes", "ar": "أيام/شهر", "fr": "jours/mois", "pl": "dni/miesiąc", "zh": "天/月", "ur": "دن/مہینہ", "hi": "दिन/माह", "uk": "днів/місяць", "sw": "siku/mwezi"},
+    "of the month": {"es": "del mes", "ar": "من الشهر", "fr": "du mois", "pl": "miesiąca", "zh": "每月", "ur": "مہینے کا", "hi": "महीने का", "uk": "місяця", "sw": "ya mwezi"},
+    "hours": {"es": "Horario", "ar": "الساعات", "fr": "Horaires", "pl": "Godziny", "zh": "时间", "ur": "اوقات", "hi": "समय", "uk": "Години", "sw": "Saa"},
+}
+
+
+def localize_term(term: str, lang: str = "en") -> str:
+    """Translate a specialty chip / short label when we know it; else keep original."""
+    lang = normalize_lang(lang)
+    raw = (term or "").strip()
+    if not raw or lang == "en":
+        return raw
+    key = re.sub(r"\s+", " ", raw.lower())
+    entry = _GLOSSARY.get(key)
+    if entry and lang in entry:
+        return entry[lang]
+    # Try each semicolon-separated bit
+    if ";" in raw or "/" in raw and key not in _GLOSSARY:
+        parts = re.split(r"\s*[;/]\s*", raw)
+        if len(parts) > 1:
+            return "/".join(localize_term(p, lang) for p in parts if p.strip())
+    return raw
+
+
+def localize_language_list(langs, lang: str = "en") -> str:
+    """Localize 'english, arabic, urdu' style lists for the UI language."""
+    lang = normalize_lang(lang)
+    if isinstance(langs, list):
+        items = [str(x).strip() for x in langs if str(x).strip()]
+    else:
+        items = [p.strip() for p in re.split(r"[,;/|]+", str(langs or "")) if p.strip()]
+    if not items:
+        return ""
+    if lang == "en":
+        return ", ".join(items)
+    out = []
+    for item in items:
+        key = item.lower()
+        entry = _LANG_NAMES.get(key)
+        out.append(entry[lang] if entry and lang in entry else item)
+    return ", ".join(out)
+
+
+def localize_hours(hours: str, lang: str = "en") -> str:
+    """Localize day names and common hour phrases; leave times as-is."""
+    lang = normalize_lang(lang)
+    text = (hours or "").strip()
+    if not text or lang == "en":
+        return text
+
+    def repl_day(m):
+        word = m.group(0)
+        key = word.lower()
+        entry = _DAYS.get(key)
+        if entry and lang in entry:
+            loc = entry[lang]
+            # Preserve simple Title Case for long day names when source was titled
+            if word[0].isupper() and len(word) > 3 and lang in ("es", "fr", "pl", "uk", "sw"):
+                return loc[:1].upper() + loc[1:]
+            return loc
+        return word
+
+    text = re.sub(
+        r"\b(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday|Mon|Tue|Wed|Thu|Fri|Sat|Sun)\b",
+        repl_day,
+        text,
+        flags=re.I,
+    )
+    for en, table in _HOURS_PHRASES.items():
+        if lang in table:
+            text = re.sub(re.escape(en), table[lang], text, flags=re.I)
+    return text
+
+
+def results_intro(
+    category: str,
+    query: str,
+    lang: str = "en",
+    *,
+    zip_code: str | None = None,
+    service: str | None = None,
+) -> str:
+    """Pip search intro in the active UI language."""
+    lang = normalize_lang(lang)
+    cat = category_display(category, lang)
+    q = (query or "").strip() or "…"
+    where = ""
+    if zip_code:
+        where += t("results_near", lang, z=zip_code)
+    if service:
+        where += t("results_for_svc", lang, svc=service)
+    return t("results_intro", lang, category=cat, q=q, where=where)
