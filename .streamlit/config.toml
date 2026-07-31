@@ -1,0 +1,18 @@
+[server]
+headless = true
+port = 8501
+
+[browser]
+gatherUsageStats = false
+
+# Hide multipage nav (Admin / Clinic detail live as _prefixed pages)
+[client]
+showSidebarNavigation = false
+
+[theme]
+# HappyAir-inspired muted emerald
+primaryColor = "#4EB086"
+backgroundColor = "#F4F7F5"
+secondaryBackgroundColor = "#FFFFFF"
+textColor = "#1A2E28"
+font = "sans serif"

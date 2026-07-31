@@ -1,0 +1,16 @@
+streamlit>=1.28.0
+pandas
+openpyxl
+numpy
+ollama
+qrcode[pil]
+psycopg[binary,pool]==3.2.10
+rapidfuzz
+requests
+pytz
+openai>=1.0.0
+fastapi>=0.110.0
+uvicorn[standard]>=0.27.0
+python-dotenv>=1.0.0
+python-multipart>=0.0.9
+httpx>=0.27.0

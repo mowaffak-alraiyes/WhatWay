@@ -1,0 +1,1315 @@
+[
+  {
+    "id": "1",
+    "name": "RefugeeOne",
+    "address": "4753 N Broadway St Suite 401, Chicago, IL 60640",
+    "phone": "📞 (773) 989-5647",
+    "phone_digits": "",
+    "website": "",
+    "zip_code": "60640",
+    "services": [
+      "youth_tutoring",
+      "employment_assistance",
+      "refugee_resettlement",
+      "workforce"
+    ],
+    "services_text": "🏥 Services: Refugee resettlement, case management, employment assistance, youth programs",
+    "subcategories": [
+      "Refugee Resettlement",
+      "Employment Assistance"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "french",
+      "arabic"
+    ],
+    "hours": {
+      "monday": [
+        [
+          [
+            9,
+            0
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ],
+      "friday": [
+        [
+          [
+            9,
+            0
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ]
+    },
+    "hours_text": "Mon–Fri 9:00 AM–5:00 PM",
+    "search_blob": "refugeeone 4753 n broadway st suite 401, chicago, il 60640 🏥 services: refugee resettlement, case management, employment assistance, youth programs youth_tutoring employment_assistance refugee_resettlement workforce refugee resettlement employment assistance french arabic ⏰ hours: mon–fri 9:00 am–5:00 pm"
+  },
+  {
+    "id": "2",
+    "name": "Catholic Charities (Refugee Resettlement)",
+    "address": "721 N LaSalle St, Chicago, IL 60654",
+    "phone": "📞 (312) 655-7700",
+    "phone_digits": "",
+    "website": "",
+    "zip_code": "60654",
+    "services": [
+      "legal",
+      "shelter",
+      "refugee_resettlement"
+    ],
+    "services_text": "🏥 Services: Refugee resettlement, immigration legal assistance, housing, and case management",
+    "subcategories": [
+      "Emergency Shelter/Housing",
+      "Refugee Resettlement",
+      "Legal Services"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "spanish",
+      "arabic",
+      "polish"
+    ],
+    "hours": {
+      "monday": [
+        [
+          [
+            8,
+            30
+          ],
+          [
+            16,
+            30
+          ]
+        ]
+      ],
+      "friday": [
+        [
+          [
+            8,
+            30
+          ],
+          [
+            16,
+            30
+          ]
+        ]
+      ]
+    },
+    "hours_text": "Mon–Fri 8:30 AM–4:30 PM",
+    "search_blob": "catholic charities (refugee resettlement) 721 n lasalle st, chicago, il 60654 🏥 services: refugee resettlement, immigration legal assistance, housing, and case management legal shelter refugee_resettlement emergency shelter/housing refugee resettlement legal services spanish arabic polish ⏰ hours: mon–fri 8:30 am–4:30 pm"
+  },
+  {
+    "id": "3",
+    "name": "Heartland Alliance (Refugee & Immigrant Community Services)",
+    "address": "4411 N Ravenswood Ave, Chicago, IL 60640",
+    "phone": "📞 (312) 660-1300",
+    "phone_digits": "",
+    "website": "",
+    "zip_code": "60640",
+    "services": [
+      "esl",
+      "youth_tutoring",
+      "employment_assistance",
+      "workforce",
+      "refugee_resettlement"
+    ],
+    "services_text": "🏥 Services: Refugee resettlement, employment training, ESL classes, youth services",
+    "subcategories": [
+      "Refugee Resettlement",
+      "Employment Assistance"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "spanish",
+      "arabic"
+    ],
+    "hours": {
+      "monday": [
+        [
+          [
+            9,
+            0
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ],
+      "friday": [
+        [
+          [
+            9,
+            0
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ]
+    },
+    "hours_text": "Mon–Fri 9:00 AM–5:00 PM",
+    "search_blob": "heartland alliance (refugee & immigrant community services) 4411 n ravenswood ave, chicago, il 60640 🏥 services: refugee resettlement, employment training, esl classes, youth services esl youth_tutoring employment_assistance workforce refugee_resettlement refugee resettlement employment assistance spanish arabic ⏰ hours: mon–fri 9:00 am–5:00 pm"
+  },
+  {
+    "id": "4",
+    "name": "National Immigrant Justice Center (NIJC)",
+    "address": "224 S Michigan Ave Suite 600, Chicago, IL 60604",
+    "phone": "📞 (312) 660-1370",
+    "phone_digits": "",
+    "website": "",
+    "zip_code": "60604",
+    "services": [
+      "legal",
+      "primary_care"
+    ],
+    "services_text": "🏥 Services: Free immigration legal services (asylum, DACA, family reunification, etc.)",
+    "subcategories": [
+      "Legal Services"
+    ],
+    "availability_badges": [
+      "Free"
+    ],
+    "languages": [
+      "spanish"
+    ],
+    "hours": {
+      "monday": [
+        [
+          [
+            9,
+            0
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ],
+      "friday": [
+        [
+          [
+            9,
+            0
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ]
+    },
+    "hours_text": "Mon–Fri 9:00 AM–5:00 PM",
+    "search_blob": "national immigrant justice center (nijc) 224 s michigan ave suite 600, chicago, il 60604 🏥 services: free immigration legal services (asylum, daca, family reunification, etc.) legal primary_care legal services spanish ⏰ hours: mon–fri 9:00 am–5:00 pm"
+  },
+  {
+    "id": "5",
+    "name": "Iraqi Mutual Aid Society",
+    "address": "2607 W Devon Ave Suite 2E, Chicago, IL 60659",
+    "phone": "📞 (773) 409-4597",
+    "phone_digits": "",
+    "website": "",
+    "zip_code": "60659",
+    "services": [
+      "legal",
+      "employment_assistance",
+      "workforce",
+      "citizenship",
+      "refugee_resettlement"
+    ],
+    "services_text": "🏥 Services: Case management, employment assistance, citizenship classes, immigration support",
+    "subcategories": [
+      "Refugee Resettlement",
+      "Legal Services",
+      "Employment Assistance"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "arabic"
+    ],
+    "hours": {
+      "monday": [
+        [
+          [
+            9,
+            0
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ],
+      "friday": [
+        [
+          [
+            9,
+            0
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ]
+    },
+    "hours_text": "Mon–Fri 9:00 AM–5:00 PM",
+    "search_blob": "iraqi mutual aid society 2607 w devon ave suite 2e, chicago, il 60659 🏥 services: case management, employment assistance, citizenship classes, immigration support legal employment_assistance workforce citizenship refugee_resettlement refugee resettlement legal services employment assistance arabic ⏰ hours: mon–fri 9:00 am–5:00 pm"
+  },
+  {
+    "id": "6",
+    "name": "Latinos Progresando",
+    "address": "3047 W Cermak Rd, Chicago, IL 60623",
+    "phone": "📞 (773) 542-7077",
+    "phone_digits": "",
+    "website": "",
+    "zip_code": "60623",
+    "services": [
+      "legal"
+    ],
+    "services_text": "🏥 Services: Low-cost/free immigration legal services, community education, DACA assistance",
+    "subcategories": [
+      "Legal Services"
+    ],
+    "availability_badges": [
+      "Free",
+      "Low Cost"
+    ],
+    "languages": [
+      "spanish"
+    ],
+    "hours": {
+      "monday": [
+        [
+          [
+            9,
+            0
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ],
+      "friday": [
+        [
+          [
+            9,
+            0
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ]
+    },
+    "hours_text": "Mon–Fri 9:00 AM–5:00 PM",
+    "search_blob": "latinos progresando 3047 w cermak rd, chicago, il 60623 🏥 services: low-cost/free immigration legal services, community education, daca assistance legal legal services spanish ⏰ hours: mon–fri 9:00 am–5:00 pm"
+  },
+  {
+    "id": "7",
+    "name": "Apna Ghar (Our Home)",
+    "address": "4350 N Broadway St, Chicago, IL 60613",
+    "phone": "📞 (773) 334-4663 (24/7 hotline)",
+    "phone_digits": "",
+    "website": "",
+    "zip_code": "60613",
+    "services": [
+      "mental_health",
+      "legal",
+      "shelter",
+      "crisis"
+    ],
+    "services_text": "🏥 Services: Domestic violence shelter, counseling, legal advocacy, 24-hour crisis line",
+    "subcategories": [
+      "Emergency Shelter/Housing",
+      "Crisis Services",
+      "Legal Services"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "hindi",
+      "urdu"
+    ],
+    "hours": {
+      "monday": [
+        [
+          [
+            9,
+            0
+          ],
+          [
+            17,
+            0
+          ]
+        ],
+        [
+          [
+            24,
+            0
+          ],
+          [
+            19,
+            0
+          ]
+        ]
+      ],
+      "friday": [
+        [
+          [
+            9,
+            0
+          ],
+          [
+            17,
+            0
+          ]
+        ],
+        [
+          [
+            24,
+            0
+          ],
+          [
+            19,
+            0
+          ]
+        ]
+      ]
+    },
+    "hours_text": "Office: Mon–Fri 9:00 AM–5:00 PM (Crisis line 24/7)",
+    "search_blob": "apna ghar (our home) 4350 n broadway st, chicago, il 60613 🏥 services: domestic violence shelter, counseling, legal advocacy, 24-hour crisis line mental_health legal shelter crisis emergency shelter/housing crisis services legal services hindi urdu ⏰ hours: office: mon–fri 9:00 am–5:00 pm (crisis line 24/7)"
+  },
+  {
+    "id": "8",
+    "name": "Chicago 311 City Services Hotline",
+    "address": "Chicago, IL (citywide hotline)",
+    "phone": "📞 311",
+    "phone_digits": "",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "food",
+      "crisis"
+    ],
+    "services_text": "🏥 Services: Information and referral for shelters, food, crisis services, and city assistance programs",
+    "subcategories": [
+      "Food Assistance",
+      "Crisis Services"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "spanish"
+    ],
+    "hours": {},
+    "hours_text": "24/7 hotline",
+    "search_blob": "chicago 311 city services hotline chicago, il (citywide hotline) 🏥 services: information and referral for shelters, food, crisis services, and city assistance programs food crisis food assistance crisis services spanish ⏰ hours: 24/7 hotline"
+  },
+  {
+    "id": "9",
+    "name": "Greater Chicago Food Depository (Benefits Outreach)",
+    "address": "4100 W Ann Lurie Pl, Chicago, IL 60632",
+    "phone": "📞 (773) 247-3663",
+    "phone_digits": "",
+    "website": "",
+    "zip_code": "60632",
+    "services": [
+      "benefits",
+      "food",
+      "mobile_screening"
+    ],
+    "services_text": "🏥 Services: Free food pantry referrals, SNAP (food stamps) application assistance, mobile food distributions",
+    "subcategories": [
+      "Food Assistance",
+      "Public Benefits"
+    ],
+    "availability_badges": [
+      "Free"
+    ],
+    "languages": [
+      "spanish"
+    ],
+    "hours": {
+      "monday": [
+        [
+          [
+            8,
+            30
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ],
+      "friday": [
+        [
+          [
+            8,
+            30
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ]
+    },
+    "hours_text": "Mon–Fri 8:30 AM–5:00 PM",
+    "search_blob": "greater chicago food depository (benefits outreach) 4100 w ann lurie pl, chicago, il 60632 🏥 services: free food pantry referrals, snap (food stamps) application assistance, mobile food distributions benefits food mobile_screening food assistance public benefits spanish ⏰ hours: mon–fri 8:30 am–5:00 pm"
+  },
+  {
+    "id": "10",
+    "name": "Pacific Garden Mission",
+    "address": "1458 S Canal St, Chicago, IL 60607",
+    "phone": "📞 (312) 492-9410",
+    "phone_digits": "",
+    "website": "",
+    "zip_code": "60607",
+    "services": [
+      "employment_assistance",
+      "food",
+      "workforce",
+      "shelter",
+      "crisis",
+      "urgent_care"
+    ],
+    "services_text": "🏥 Services: Emergency homeless shelter (men, women), free meals, addiction recovery programs, job training",
+    "subcategories": [
+      "Emergency Shelter/Housing",
+      "Food Assistance",
+      "Employment Assistance"
+    ],
+    "availability_badges": [
+      "Free",
+      "24/7 Available"
+    ],
+    "languages": [
+      "spanish"
+    ],
+    "hours": {},
+    "hours_text": "Intake 24/7 (overnight shelter daily)",
+    "search_blob": "pacific garden mission 1458 s canal st, chicago, il 60607 🏥 services: emergency homeless shelter (men, women), free meals, addiction recovery programs, job training employment_assistance food workforce shelter crisis urgent_care emergency shelter/housing food assistance employment assistance spanish ⏰ hours: intake 24/7 (overnight shelter daily)"
+  },
+  {
+    "id": "11",
+    "name": "Legal Aid Chicago",
+    "address": "120 S LaSalle St Suite 900, Chicago, IL 60603",
+    "phone": "📞 (312) 341-1070",
+    "phone_digits": "",
+    "website": "",
+    "zip_code": "60603",
+    "services": [
+      "legal",
+      "primary_care",
+      "employment_assistance",
+      "workforce",
+      "benefits",
+      "shelter"
+    ],
+    "services_text": "🏥 Services: Free civil legal services (housing, public benefits, family, employment issues) for low-income residents",
+    "subcategories": [
+      "Emergency Shelter/Housing",
+      "Legal Services",
+      "Employment Assistance",
+      "Public Benefits"
+    ],
+    "availability_badges": [
+      "Free"
+    ],
+    "languages": [
+      "spanish"
+    ],
+    "hours": {
+      "monday": [
+        [
+          [
+            8,
+            30
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ],
+      "friday": [
+        [
+          [
+            8,
+            30
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ]
+    },
+    "hours_text": "Mon–Fri 8:30 AM–5:00 PM",
+    "search_blob": "legal aid chicago 120 s lasalle st suite 900, chicago, il 60603 🏥 services: free civil legal services (housing, public benefits, family, employment issues) for low-income residents legal primary_care employment_assistance workforce benefits shelter emergency shelter/housing legal services employment assistance public benefits spanish ⏰ hours: mon–fri 8:30 am–5:00 pm"
+  },
+  {
+    "id": "12",
+    "name": "Salvation Army – Shield of Hope Shelter",
+    "address": "924 N Christiana Ave, Chicago, IL 60651",
+    "phone": "📞 311 (24/7 intake)",
+    "phone_digits": "",
+    "website": "",
+    "zip_code": "60651",
+    "services": [
+      "urgent_care",
+      "shelter",
+      "crisis",
+      "primary_care"
+    ],
+    "services_text": "🏥 Services: Emergency family shelter and support services (short-term housing for homeless families)",
+    "subcategories": [
+      "Emergency Shelter/Housing"
+    ],
+    "availability_badges": [
+      "24/7 Available"
+    ],
+    "languages": [
+      "spanish"
+    ],
+    "hours": {},
+    "hours_text": "Open 24/7 (via 311 referral)",
+    "search_blob": "salvation army – shield of hope shelter 924 n christiana ave, chicago, il 60651 🏥 services: emergency family shelter and support services (short-term housing for homeless families) urgent_care shelter crisis primary_care emergency shelter/housing spanish ⏰ hours: open 24/7 (via 311 referral)"
+  },
+  {
+    "id": "13",
+    "name": "IDHS Family Community Resource Center (Uptown)",
+    "address": "5050 N Broadway St, Chicago, IL 60640",
+    "phone": "📞 (800) 843-6154",
+    "phone_digits": "",
+    "website": "",
+    "zip_code": "60640",
+    "services": [
+      "benefits"
+    ],
+    "services_text": "🏥 Services: Public benefits enrollment (SNAP, Medicaid, cash assistance), case assistance",
+    "subcategories": [
+      "Public Benefits"
+    ],
+    "availability_badges": [
+      "Accepts Medicaid"
+    ],
+    "languages": [
+      "spanish"
+    ],
+    "hours": {
+      "monday": [
+        [
+          [
+            8,
+            30
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ],
+      "friday": [
+        [
+          [
+            8,
+            30
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ]
+    },
+    "hours_text": "Mon–Fri 8:30 AM–5:00 PM",
+    "search_blob": "idhs family community resource center (uptown) 5050 n broadway st, chicago, il 60640 🏥 services: public benefits enrollment (snap, medicaid, cash assistance), case assistance benefits public benefits spanish ⏰ hours: mon–fri 8:30 am–5:00 pm"
+  },
+  {
+    "id": "14",
+    "name": "World Relief Chicago",
+    "address": "3507 W Lawrence Ave, Chicago, IL 60625",
+    "phone": "📞 (773) 583-9191",
+    "phone_digits": "",
+    "website": "",
+    "zip_code": "60625",
+    "services": [
+      "youth_tutoring",
+      "legal",
+      "refugee_resettlement"
+    ],
+    "services_text": "🏥 Services: Refugee resettlement, case management, immigrant youth programs, legal services",
+    "subcategories": [
+      "Refugee Resettlement",
+      "Legal Services"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "spanish",
+      "arabic"
+    ],
+    "hours": {
+      "monday": [
+        [
+          [
+            9,
+            0
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ],
+      "friday": [
+        [
+          [
+            9,
+            0
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ]
+    },
+    "hours_text": "Mon–Fri 9:00 AM–5:00 PM",
+    "search_blob": "world relief chicago 3507 w lawrence ave, chicago, il 60625 🏥 services: refugee resettlement, case management, immigrant youth programs, legal services youth_tutoring legal refugee_resettlement refugee resettlement legal services spanish arabic ⏰ hours: mon–fri 9:00 am–5:00 pm"
+  },
+  {
+    "id": "15",
+    "name": "Ethiopian Community Association of Chicago",
+    "address": "5800 N Lincoln Ave, Chicago, IL 60659",
+    "phone": "📞 (773) 728-0303",
+    "phone_digits": "",
+    "website": "",
+    "zip_code": "60659",
+    "services": [
+      "youth_tutoring",
+      "employment_assistance",
+      "refugee_resettlement",
+      "workforce"
+    ],
+    "services_text": "🏥 Services: Refugee resettlement, job placement, youth mentoring, community support",
+    "subcategories": [
+      "Refugee Resettlement",
+      "Employment Assistance"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "arabic"
+    ],
+    "hours": {
+      "monday": [
+        [
+          [
+            9,
+            0
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ],
+      "friday": [
+        [
+          [
+            9,
+            0
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ]
+    },
+    "hours_text": "Mon–Fri 9:00 AM–5:00 PM",
+    "search_blob": "ethiopian community association of chicago 5800 n lincoln ave, chicago, il 60659 🏥 services: refugee resettlement, job placement, youth mentoring, community support youth_tutoring employment_assistance refugee_resettlement workforce refugee resettlement employment assistance arabic ⏰ hours: mon–fri 9:00 am–5:00 pm"
+  },
+  {
+    "id": "16",
+    "name": "Chinese Mutual Aid Association",
+    "address": "1016 W Argyle St, Chicago, IL 60640",
+    "phone": "📞 (773) 784-2900",
+    "phone_digits": "",
+    "website": "",
+    "zip_code": "60640",
+    "services": [
+      "youth_tutoring",
+      "refugee_resettlement",
+      "citizenship"
+    ],
+    "services_text": "🏥 Services: Refugee resettlement, citizenship assistance, youth programs, senior services",
+    "subcategories": [
+      "Refugee Resettlement"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "arabic",
+      "mandarin"
+    ],
+    "hours": {
+      "monday": [
+        [
+          [
+            9,
+            0
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ],
+      "friday": [
+        [
+          [
+            9,
+            0
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ]
+    },
+    "hours_text": "Mon–Fri 9:00 AM–5:00 PM",
+    "search_blob": "chinese mutual aid association 1016 w argyle st, chicago, il 60640 🏥 services: refugee resettlement, citizenship assistance, youth programs, senior services youth_tutoring refugee_resettlement citizenship refugee resettlement arabic mandarin ⏰ hours: mon–fri 9:00 am–5:00 pm"
+  },
+  {
+    "id": "17",
+    "name": "Indo-American Center",
+    "address": "6328 N California Ave, Chicago, IL 60659",
+    "phone": "📞 (773) 973-4444",
+    "phone_digits": "",
+    "website": "",
+    "zip_code": "60659",
+    "services": [
+      "benefits",
+      "esl",
+      "citizenship"
+    ],
+    "services_text": "🏥 Services: Immigrant support services, citizenship & benefits assistance, ESL classes, senior programs",
+    "subcategories": [
+      "Public Benefits"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "hindi",
+      "urdu"
+    ],
+    "hours": {
+      "monday": [
+        [
+          [
+            9,
+            0
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ],
+      "friday": [
+        [
+          [
+            9,
+            0
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ]
+    },
+    "hours_text": "Mon–Fri 9:00 AM–5:00 PM",
+    "search_blob": "indo-american center 6328 n california ave, chicago, il 60659 🏥 services: immigrant support services, citizenship & benefits assistance, esl classes, senior programs benefits esl citizenship public benefits hindi urdu ⏰ hours: mon–fri 9:00 am–5:00 pm"
+  },
+  {
+    "id": "18",
+    "name": "Pan-African Association",
+    "address": "6163 N Broadway, Chicago, IL 60660",
+    "phone": "📞 (773) 381-9723",
+    "phone_digits": "",
+    "website": "",
+    "zip_code": "60660",
+    "services": [
+      "youth_tutoring",
+      "esl",
+      "employment_assistance",
+      "workforce"
+    ],
+    "services_text": "🏥 Services: Mentoring for refugees, cultural orientation, job readiness, ESL tutoring",
+    "subcategories": [
+      "Employment Assistance"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "french"
+    ],
+    "hours": {
+      "monday": [
+        [
+          [
+            9,
+            0
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ],
+      "friday": [
+        [
+          [
+            9,
+            0
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ]
+    },
+    "hours_text": "Mon–Fri 9:00 AM–5:00 PM",
+    "search_blob": "pan-african association 6163 n broadway, chicago, il 60660 🏥 services: mentoring for refugees, cultural orientation, job readiness, esl tutoring youth_tutoring esl employment_assistance workforce employment assistance french ⏰ hours: mon–fri 9:00 am–5:00 pm"
+  },
+  {
+    "id": "19",
+    "name": "Polish American Association",
+    "address": "3834 N Cicero Ave, Chicago, IL 60641",
+    "phone": "📞 (773) 282-8206",
+    "phone_digits": "",
+    "website": "",
+    "zip_code": "60641",
+    "services": [
+      "esl",
+      "mental_health",
+      "employment_assistance",
+      "workforce",
+      "crisis"
+    ],
+    "services_text": "🏥 Services: Immigrant integration services, employment counseling, ESL classes, substance abuse counseling",
+    "subcategories": [
+      "Crisis Services",
+      "Employment Assistance"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "polish"
+    ],
+    "hours": {
+      "monday": [
+        [
+          [
+            9,
+            0
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ],
+      "friday": [
+        [
+          [
+            9,
+            0
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ]
+    },
+    "hours_text": "Mon–Fri 9:00 AM–5:00 PM",
+    "search_blob": "polish american association 3834 n cicero ave, chicago, il 60641 🏥 services: immigrant integration services, employment counseling, esl classes, substance abuse counseling esl mental_health employment_assistance workforce crisis crisis services employment assistance polish ⏰ hours: mon–fri 9:00 am–5:00 pm"
+  },
+  {
+    "id": "20",
+    "name": "Community Activism Law Alliance (CALA)",
+    "address": "3300 W Armitage Ave, Chicago, IL 60647",
+    "phone": "📞 (312) 999-0056",
+    "phone_digits": "",
+    "website": "",
+    "zip_code": "60647",
+    "services": [
+      "legal",
+      "shelter",
+      "primary_care"
+    ],
+    "services_text": "🏥 Services: Free legal clinics and advocacy (housing, workers’ rights, family immigration law)",
+    "subcategories": [
+      "Emergency Shelter/Housing",
+      "Legal Services"
+    ],
+    "availability_badges": [
+      "Free"
+    ],
+    "languages": [
+      "spanish"
+    ],
+    "hours": {},
+    "hours_text": "Call for clinic schedules (varies by location)",
+    "search_blob": "community activism law alliance (cala) 3300 w armitage ave, chicago, il 60647 🏥 services: free legal clinics and advocacy (housing, workers’ rights, family immigration law) legal shelter primary_care emergency shelter/housing legal services spanish ⏰ hours: call for clinic schedules (varies by location)"
+  },
+  {
+    "id": "21",
+    "name": "Chicago Volunteer Legal Services (CVLS)",
+    "address": "33 N Dearborn St, Suite 400, Chicago, IL 60602",
+    "phone": "📞 (312) 332-1624",
+    "phone_digits": "",
+    "website": "",
+    "zip_code": "60602",
+    "services": [
+      "legal",
+      "shelter",
+      "primary_care"
+    ],
+    "services_text": "🏥 Services: Pro bono civil legal services for low-income individuals (immigration, family law, housing, etc.)",
+    "subcategories": [
+      "Emergency Shelter/Housing",
+      "Legal Services"
+    ],
+    "availability_badges": [
+      "Free"
+    ],
+    "languages": [
+      "spanish"
+    ],
+    "hours": {
+      "monday": [
+        [
+          [
+            9,
+            0
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ],
+      "friday": [
+        [
+          [
+            9,
+            0
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ]
+    },
+    "hours_text": "Mon–Fri 9:00 AM–5:00 PM (office hours)",
+    "search_blob": "chicago volunteer legal services (cvls) 33 n dearborn st, suite 400, chicago, il 60602 🏥 services: pro bono civil legal services for low-income individuals (immigration, family law, housing, etc.) legal shelter primary_care emergency shelter/housing legal services spanish ⏰ hours: mon–fri 9:00 am–5:00 pm (office hours)"
+  },
+  {
+    "id": "22",
+    "name": "Illinois Coalition for Immigrant and Refugee Rights (ICIRR)",
+    "address": "228 S Wabash Ave, 10th Floor, Chicago, IL 60604",
+    "phone": "📞 (312) 332-7360",
+    "phone_digits": "",
+    "website": "",
+    "zip_code": "60604",
+    "services": [
+      "legal",
+      "citizenship"
+    ],
+    "services_text": "🏥 Services: Statewide coalition providing immigrant advocacy, citizenship assistance, and community support programs",
+    "subcategories": [],
+    "availability_badges": [],
+    "languages": [
+      "spanish"
+    ],
+    "hours": {
+      "monday": [
+        [
+          [
+            9,
+            0
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ],
+      "friday": [
+        [
+          [
+            9,
+            0
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ]
+    },
+    "hours_text": "Mon–Fri 9:00 AM–5:00 PM",
+    "search_blob": "illinois coalition for immigrant and refugee rights (icirr) 228 s wabash ave, 10th floor, chicago, il 60604 🏥 services: statewide coalition providing immigrant advocacy, citizenship assistance, and community support programs legal citizenship spanish ⏰ hours: mon–fri 9:00 am–5:00 pm"
+  },
+  {
+    "id": "23",
+    "name": "Chicago Legal Clinic",
+    "address": "2938 E 91st St, Chicago, IL 60617",
+    "phone": "📞 (773) 731-1762",
+    "phone_digits": "",
+    "website": "",
+    "zip_code": "60617",
+    "services": [
+      "legal",
+      "primary_care"
+    ],
+    "services_text": "🏥 Services: Low-cost legal services (immigration forms, DACA, deportation defense, family law)",
+    "subcategories": [
+      "Legal Services"
+    ],
+    "availability_badges": [
+      "Low Cost"
+    ],
+    "languages": [
+      "spanish"
+    ],
+    "hours": {
+      "monday": [
+        [
+          [
+            9,
+            0
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ],
+      "friday": [
+        [
+          [
+            9,
+            0
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ]
+    },
+    "hours_text": "Mon–Fri 9:00 AM–5:00 PM (appointment recommended)",
+    "search_blob": "chicago legal clinic 2938 e 91st st, chicago, il 60617 🏥 services: low-cost legal services (immigration forms, daca, deportation defense, family law) legal primary_care legal services spanish ⏰ hours: mon–fri 9:00 am–5:00 pm (appointment recommended)"
+  },
+  {
+    "id": "24",
+    "name": "Coordinated Advice & Referral Program for Legal Services (CARPLS)",
+    "address": "17 N State St, Suite 1850, Chicago, IL 60602",
+    "phone": "📞 (312) 738-9200 (legal aid hotline)",
+    "phone_digits": "",
+    "website": "",
+    "zip_code": "60602",
+    "services": [
+      "legal",
+      "crisis"
+    ],
+    "services_text": "🏥 Services: Free legal hotline offering advice on civil matters and referrals to pro bono services",
+    "subcategories": [
+      "Legal Services"
+    ],
+    "availability_badges": [
+      "Free"
+    ],
+    "languages": [
+      "spanish"
+    ],
+    "hours": {
+      "monday": [
+        [
+          [
+            9,
+            0
+          ],
+          [
+            19,
+            30
+          ]
+        ],
+        [
+          [
+            9,
+            0
+          ],
+          [
+            16,
+            30
+          ]
+        ]
+      ],
+      "thursday": [
+        [
+          [
+            9,
+            0
+          ],
+          [
+            19,
+            30
+          ]
+        ],
+        [
+          [
+            9,
+            0
+          ],
+          [
+            16,
+            30
+          ]
+        ]
+      ],
+      "friday": [
+        [
+          [
+            9,
+            0
+          ],
+          [
+            16,
+            30
+          ]
+        ]
+      ]
+    },
+    "hours_text": "Mon–Thu 9:00 AM–7:30 PM; Fri 9:00 AM–4:30 PM",
+    "search_blob": "coordinated advice & referral program for legal services (carpls) 17 n state st, suite 1850, chicago, il 60602 🏥 services: free legal hotline offering advice on civil matters and referrals to pro bono services legal crisis legal services spanish ⏰ hours: mon–thu 9:00 am–7:30 pm; fri 9:00 am–4:30 pm"
+  },
+  {
+    "id": "25",
+    "name": "Cabrini Green Legal Aid (CGLA)",
+    "address": "6 S Clark St, Suite 200, Chicago, IL 60603",
+    "phone": "📞 (312) 738-2452",
+    "phone_digits": "",
+    "website": "",
+    "zip_code": "60603",
+    "services": [
+      "legal",
+      "primary_care"
+    ],
+    "services_text": "🏥 Services: Free legal services focusing on criminal records relief, criminal defense, and family law for those affected by incarceration",
+    "subcategories": [
+      "Legal Services"
+    ],
+    "availability_badges": [
+      "Free"
+    ],
+    "languages": [
+      "spanish"
+    ],
+    "hours": {
+      "monday": [
+        [
+          [
+            9,
+            0
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ],
+      "friday": [
+        [
+          [
+            9,
+            0
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ]
+    },
+    "hours_text": "Mon–Fri 9:00 AM–5:00 PM",
+    "search_blob": "cabrini green legal aid (cgla) 6 s clark st, suite 200, chicago, il 60603 🏥 services: free legal services focusing on criminal records relief, criminal defense, and family law for those affected by incarceration legal primary_care legal services spanish ⏰ hours: mon–fri 9:00 am–5:00 pm"
+  },
+  {
+    "id": "26",
+    "name": "Illinois Department of Human Services (Illinois Welcome Center)",
+    "address": "3001 W 59th St, Chicago, IL 60629",
+    "phone": "📞 (773) 884-1000",
+    "phone_digits": "",
+    "website": "",
+    "zip_code": "60629",
+    "services": [
+      "benefits",
+      "legal",
+      "refugee_resettlement"
+    ],
+    "services_text": "🏥 Services: State-run Welcoming Center assisting immigrants and refugees with resettlement services, legal aid referrals, public benefits access",
+    "subcategories": [
+      "Refugee Resettlement",
+      "Legal Services",
+      "Public Benefits"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "spanish"
+    ],
+    "hours": {
+      "monday": [
+        [
+          [
+            8,
+            30
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ],
+      "friday": [
+        [
+          [
+            8,
+            30
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ]
+    },
+    "hours_text": "Mon–Fri 8:30 AM–5:00 PM",
+    "search_blob": "illinois department of human services (illinois welcome center) 3001 w 59th st, chicago, il 60629 🏥 services: state-run welcoming center assisting immigrants and refugees with resettlement services, legal aid referrals, public benefits access benefits legal refugee_resettlement refugee resettlement legal services public benefits spanish ⏰ hours: mon–fri 8:30 am–5:00 pm"
+  }
+]
