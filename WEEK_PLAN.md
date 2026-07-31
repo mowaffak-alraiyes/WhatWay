@@ -25,7 +25,7 @@ Clinic agent ── Google Forms CSV ──► data/proposed_clinics.json
 
 1. **Today** — Secrets + AI online + smoke test `dental 60629` + WhatsApp simulate endpoint
 2. **Day 2** — Twilio sandbox OR Meta test number wired via ngrok → same reply path
-3. **Day 3** — Language toggle polish (static i18n + LLM reply translate) — Eric's part, done
+3. **Day 3** — Language toggle polish (static i18n + LLM reply translate)
 4. **Day 4** — Clinic discovery: publish Forms/Sheets CSV → `python -m agents.clinic_discovery --fetch`
 5. **Day 5** — UI pass, deploy Streamlit Cloud + Railway API, dry-run David demo script
 6. **Buffer** — Bugfix, Refugee One recruitment notes, push repo
