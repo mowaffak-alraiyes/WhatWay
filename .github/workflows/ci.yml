@@ -15,7 +15,8 @@ jobs:
         run: pip install pip-audit bandit
       - name: Dependency audit
         # Report-only — known transitive CVEs shouldn't block deploys
-        run: pip-audit -r requirements.txt --exit-zero
+        # (--exit-zero was removed from newer pip-audit; avoid --strict)
+        run: pip-audit -r requirements.txt
       - name: Static analysis (medium+)
         run: bandit -r api core agents auth.py database.py comments.py -ll -q
 
