@@ -13,6 +13,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
+import requests
 
 # Load .env from project root when running locally
 load_dotenv(Path(__file__).resolve().parent.parent / ".env")
@@ -74,10 +75,8 @@ def root():
 def health():
     ollama_ok = False
     try:
-        import urllib.request
-
-        with urllib.request.urlopen("http://localhost:11434/api/tags", timeout=1.5) as r:
-            ollama_ok = r.status == 200
+        r = requests.get("http://localhost:11434/api/tags", timeout=1.5)
+        ollama_ok = r.status_code == 200
     except Exception:
         pass
     return {

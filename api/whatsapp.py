@@ -148,10 +148,8 @@ def _send_meta(to: str, body: str) -> None:
 def whatsapp_health():
     ollama_ok = False
     try:
-        import urllib.request
-
-        with urllib.request.urlopen("http://localhost:11434/api/tags", timeout=1.5) as r:
-            ollama_ok = r.status == 200
+        r = requests.get("http://localhost:11434/api/tags", timeout=1.5)
+        ollama_ok = r.status_code == 200
     except Exception:
         pass
     return {

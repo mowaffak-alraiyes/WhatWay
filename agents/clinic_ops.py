@@ -24,7 +24,6 @@ import json
 import os
 import re
 import secrets
-import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional
@@ -143,21 +142,17 @@ def ollama_summarize(item: Dict[str, Any]) -> str:
     )
     try:
         native = base.replace("/v1", "") + "/api/chat"
-        body = json.dumps(
-            {
-                "model": model,
-                "stream": False,
-                "messages": [
-                    {"role": "system", "content": "You help approve clinic directory edits. Be brief."},
-                    {"role": "user", "content": prompt},
-                ],
-            }
-        ).encode()
-        req = urllib.request.Request(
-            native, data=body, headers={"Content-Type": "application/json"}, method="POST"
-        )
-        with urllib.request.urlopen(req, timeout=20) as resp:
-            data = json.loads(resp.read().decode())
+        body = {
+            "model": model,
+            "stream": False,
+            "messages": [
+                {"role": "system", "content": "You help approve clinic directory edits. Be brief."},
+                {"role": "user", "content": prompt},
+            ],
+        }
+        r = requests.post(native, json=body, timeout=20)
+        r.raise_for_status()
+        data = r.json()
         return (data.get("message") or {}).get("content") or ""
     except Exception:
         return ""

@@ -34,7 +34,6 @@ import os
 import re
 import secrets
 import time
-import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
@@ -425,25 +424,21 @@ def ollama_verify_match(
     )
     try:
         native = base.replace("/v1", "") + "/api/chat"
-        body = json.dumps(
-            {
-                "model": model,
-                "stream": False,
-                "format": "json",
-                "messages": [
-                    {
-                        "role": "system",
-                        "content": "You are a careful data verifier for a free clinic directory. Never invent contacts.",
-                    },
-                    {"role": "user", "content": prompt},
-                ],
-            }
-        ).encode()
-        req = urllib.request.Request(
-            native, data=body, headers={"Content-Type": "application/json"}, method="POST"
-        )
-        with urllib.request.urlopen(req, timeout=45) as resp:
-            data = json.loads(resp.read().decode())
+        body = {
+            "model": model,
+            "stream": False,
+            "format": "json",
+            "messages": [
+                {
+                    "role": "system",
+                    "content": "You are a careful data verifier for a free clinic directory. Never invent contacts.",
+                },
+                {"role": "user", "content": prompt},
+            ],
+        }
+        r = requests.post(native, json=body, timeout=45)
+        r.raise_for_status()
+        data = r.json()
         content = (data.get("message") or {}).get("content") or "{}"
         parsed = json.loads(content) if isinstance(content, str) else content
         return {
