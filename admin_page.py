@@ -13,10 +13,24 @@ st.set_page_config(page_title="Admin - Data Management", layout="wide")
 
 st.title("🔧 Admin - Data Management")
 
-# Password protection (simple - for production use proper auth)
+# Password protection — require ADMIN_PASSWORD in secrets or env (no default).
+import os
+
+_expected = ""
+try:
+    _expected = (st.secrets.get("ADMIN_PASSWORD") or "").strip()
+except Exception:
+    _expected = ""
+if not _expected:
+    _expected = (os.environ.get("ADMIN_PASSWORD") or "").strip()
+
+if not _expected:
+    st.error("Admin is locked: set ADMIN_PASSWORD in .streamlit/secrets.toml or .env")
+    st.stop()
+
 if "admin_authenticated" not in st.session_state:
     admin_password = st.text_input("Enter admin password:", type="password")
-    if admin_password == st.secrets.get("ADMIN_PASSWORD", "admin123"):
+    if admin_password and admin_password == _expected:
         st.session_state["admin_authenticated"] = True
         st.rerun()
     elif admin_password:

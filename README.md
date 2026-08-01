@@ -14,9 +14,23 @@ cp .env.example .env
 
 Open http://localhost:8501 — try **Healthcare → dental 60629**.
 
+## Setup and security checklist
+
+1. Put secrets only in `.env` / `.streamlit/secrets.toml` — never commit them (both are gitignored).
+2. Set `ADMIN_PASSWORD` before using the Streamlit admin page (no default password).
+3. Set `TELEGRAM_ALLOWED_CHAT_IDS` for clinic ops; an empty allowlist rejects all Telegram commands.
+4. WhatsApp dry-run logs mask phone numbers; conversation sessions key on hashed IDs.
+5. SQL uses parameterized queries (`%s` + tuple). Do not interpolate user input into SQL.
+6. FastAPI CORS defaults to localhost Streamlit; set `AIDR_CORS_ORIGINS` for deploy.
+7. `/webhooks/whatsapp/simulate` is off unless `AIDR_ENABLE_SIMULATE=1`.
+8. When `TWILIO_AUTH_TOKEN` is set, Twilio webhooks require a valid `X-Twilio-Signature`.
+
+**Privacy:** We do not intend to store raw phone numbers or IPs in logs. Prefer hashed identifiers. Resource data is public clinic listings, not patient records.
+
 ## WhatsApp API (spike)
 
 ```bash
+export AIDR_ENABLE_SIMULATE=1   # local smoke test only
 uvicorn api.main:app --reload --port 8000
 curl -X POST localhost:8000/webhooks/whatsapp/simulate \
   -H 'content-type: application/json' \
@@ -32,6 +46,8 @@ python agents/make_sample_form.py
 python -m agents.clinic_discovery --fetch --url data/sample_clinic_form.csv
 # or set GOOGLE_FORMS_CSV_URL to a published Sheets/Forms CSV
 ```
+
+Telegram approval flow: see [agents/README.md](agents/README.md).
 
 ## Deploy (demo week)
 

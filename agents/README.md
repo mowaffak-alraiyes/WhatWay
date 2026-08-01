@@ -124,5 +124,6 @@ python -m agents.clinic_ops --apply-all              # push all approved
 
 - LLM never pushes. Only `approve` + `apply` (you) do.
 - Only chats in `TELEGRAM_ALLOWED_CHAT_IDS` can command the bot.
+- Empty allowlist = **fail closed** (no chat can approve/apply).
 - Drafts omit map-pin emoji so Maps geocoding stays clean.
 - Enrichment sources: org site, HRSA-style CSV, your sheet — not paid Places.

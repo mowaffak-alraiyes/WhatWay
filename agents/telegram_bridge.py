@@ -131,7 +131,8 @@ def set_status(op_id: str, status: str) -> Tuple[bool, str, Optional[Dict]]:
 def handle_command(text: str, chat_id: str) -> str:
     """Parse approve/reject/list from Telegram text."""
     allowed = _allowed_chats()
-    if allowed and str(chat_id) not in allowed:
+    # Fail closed: empty allowlist means nobody can command (misconfigured .env).
+    if not allowed or str(chat_id) not in allowed:
         return "Unauthorized chat."
 
     t = (text or "").strip()

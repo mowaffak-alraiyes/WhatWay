@@ -11,14 +11,16 @@ import os
 from pathlib import Path
 
 from dotenv import load_dotenv
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 
 # Load .env from project root when running locally
 load_dotenv(Path(__file__).resolve().parent.parent / ".env")
 
+from api.rate_limit import allow as rate_allow, per_minute_limit
 from api.whatsapp import router as whatsapp_router
 from core.pipeline import search_resources
+from core.privacy import hash_identifier, truncate_user_text
 
 app = FastAPI(
     title="Aidr API",
@@ -26,11 +28,29 @@ app = FastAPI(
     version="0.1.0",
 )
 
+
+def _cors_origins() -> list:
+    raw = (os.environ.get("AIDR_CORS_ORIGINS") or "").strip()
+    if not raw:
+        # Safe local defaults (Streamlit). Override via AIDR_CORS_ORIGINS for deploy.
+        return [
+            "http://localhost:8501",
+            "http://127.0.0.1:8501",
+            "http://localhost:3000",
+            "http://127.0.0.1:3000",
+        ]
+    if raw == "*":
+        return ["*"]
+    return [o.strip() for o in raw.split(",") if o.strip()]
+
+
+_origins = _cors_origins()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_methods=["*"],
+    allow_origins=_origins,
+    allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["*"],
+    allow_credentials=False,
 )
 
 app.include_router(whatsapp_router)
@@ -68,12 +88,27 @@ def health():
 
 
 @app.post("/search")
-def search(payload: dict):
+def search(payload: dict, request: Request):
     """Same path as chat/WhatsApp — useful for demos and future Vercel frontend."""
+    client = request.client.host if request.client else "unknown"
+    ok, retry = rate_allow(
+        hash_identifier(client),
+        per_minute=per_minute_limit("AIDR_RATE_LIMIT_SEARCH_PER_MIN", 30),
+        scope="search",
+    )
+    if not ok:
+        raise HTTPException(status_code=429, detail=f"Rate limit exceeded. Retry in {retry}s.")
+
+    query = truncate_user_text(str(payload.get("query", "")), 2000)
+    try:
+        limit = int(payload.get("limit", 3))
+    except (TypeError, ValueError):
+        raise HTTPException(status_code=400, detail="limit must be an integer")
+    limit = max(1, min(limit, 10))
     return search_resources(
-        query=payload.get("query", ""),
+        query=query,
         category=payload.get("category"),
-        language=payload.get("language", "en"),
-        limit=int(payload.get("limit", 3)),
+        language=str(payload.get("language", "en"))[:16],
+        limit=limit,
         use_llm=bool(payload.get("use_llm", True)),
     )

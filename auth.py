@@ -122,7 +122,7 @@ def create_user(username: str, email: str, password: str, display_name: str = No
             
     except Exception as e:
         logger.error(f"Error creating user: {e}")
-        return False, f"Error creating account: {str(e)}", None
+        return False, "Error creating account. Please try again.", None
 
 def authenticate_user(username: str, password: str) -> tuple:
     """
@@ -171,7 +171,7 @@ def authenticate_user(username: str, password: str) -> tuple:
             
     except Exception as e:
         logger.error(f"Error authenticating user: {e}")
-        return False, f"Authentication error: {str(e)}", None
+        return False, "Authentication error. Please try again.", None
 
 def get_user_by_id(user_id: int) -> Optional[Dict[str, Any]]:
     """Get user data by ID."""

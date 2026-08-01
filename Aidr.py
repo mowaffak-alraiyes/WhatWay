@@ -223,6 +223,16 @@ div.st-key-aidr_cat_bar {{
 div[data-testid="stHorizontalBlock"] .stButton > button {{
   white-space: nowrap !important;
 }}
+/* Room for ChatGPT-style prompt rail on the right */
+.main .block-container {{
+  padding-right: 3.25rem !important;
+}}
+.aidr-prompt-anchor {{
+  height: 0;
+  width: 0;
+  overflow: hidden;
+  scroll-margin-top: 96px;
+}}
 </style>
 <div class="bc-hero">
   <p class="bc-brand">{i18n.t("brand", _ui_lang0)}</p>
@@ -901,6 +911,151 @@ def rank_items(
 
 def is_pinned(cat_key: str, item_id: str) -> bool:
     return any(p["cat"] == cat_key and p["id"] == item_id for p in st.session_state["pinned"])
+
+
+def _prompt_preview(text: str, n: int = 48) -> str:
+    t = re.sub(r"\s+", " ", (text or "").strip())
+    if len(t) <= n:
+        return t
+    return t[: n - 1] + "…"
+
+
+def render_prompt_rail(prompts: List[Tuple[int, str]]) -> None:
+    """
+    ChatGPT-style vertical tick rail on the RIGHT.
+    One mark per user prompt; click jumps back to that turn.
+    Active mark uses brand green (#4EB086).
+    """
+    if len(prompts) < 2:
+        return
+
+    import json
+    import streamlit.components.v1 as components
+
+    items = [
+        {"id": f"aidr-prompt-{idx}", "title": _prompt_preview(txt), "n": i + 1}
+        for i, (idx, txt) in enumerate(prompts)
+    ]
+    payload = json.dumps(items)
+
+    components.html(
+        f"""
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"/></head><body>
+<script>
+(function () {{
+  const items = {payload};
+  const doc = window.parent.document;
+
+  doc.querySelectorAll(".aidr-prompt-rail").forEach((el) => el.remove());
+
+  let style = doc.getElementById("aidr-prompt-rail-css");
+  if (!style) {{
+    style = doc.createElement("style");
+    style.id = "aidr-prompt-rail-css";
+    doc.head.appendChild(style);
+  }}
+  style.textContent = `
+      .aidr-prompt-rail {{
+        position: fixed;
+        right: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 8px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.82);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 4px 18px rgba(26, 46, 40, 0.08);
+        border: 1px solid rgba(78, 176, 134, 0.28);
+      }}
+      .aidr-prompt-rail button.aidr-tick {{
+        width: 20px;
+        height: 3.5px;
+        border: none;
+        border-radius: 999px;
+        padding: 0;
+        margin: 0;
+        cursor: pointer;
+        background: rgba(90, 115, 104, 0.35);
+        transition: background 0.15s ease, width 0.15s ease, box-shadow 0.15s ease;
+      }}
+      .aidr-prompt-rail button.aidr-tick:hover {{
+        background: rgba(78, 176, 134, 0.55);
+        width: 24px;
+      }}
+      .aidr-prompt-rail button.aidr-tick.active {{
+        background: #4EB086;
+        width: 26px;
+        box-shadow: 0 0 0 3px rgba(78, 176, 134, 0.22);
+      }}
+      @media (max-width: 768px) {{
+        .aidr-prompt-rail {{ right: 6px; padding: 10px 6px; gap: 8px; }}
+        .aidr-prompt-rail button.aidr-tick {{ width: 14px; }}
+        .aidr-prompt-rail button.aidr-tick.active {{ width: 20px; }}
+      }}
+    `;
+
+  const rail = doc.createElement("nav");
+  rail.className = "aidr-prompt-rail";
+  rail.setAttribute("aria-label", "Jump to earlier prompts");
+
+  function setActive(id) {{
+    rail.querySelectorAll("button.aidr-tick").forEach((btn) => {{
+      btn.classList.toggle("active", btn.dataset.target === id);
+    }});
+  }}
+
+  items.forEach((item, i) => {{
+    const btn = doc.createElement("button");
+    btn.type = "button";
+    btn.className = "aidr-tick" + (i === items.length - 1 ? " active" : "");
+    btn.dataset.target = item.id;
+    btn.title = "Prompt " + item.n + ": " + item.title;
+    btn.setAttribute("aria-label", btn.title);
+    btn.addEventListener("click", () => {{
+      const target = doc.getElementById(item.id);
+      if (target) {{
+        target.scrollIntoView({{ behavior: "smooth", block: "start" }});
+        setActive(item.id);
+      }}
+    }});
+    rail.appendChild(btn);
+  }});
+
+  doc.body.appendChild(rail);
+
+  // Highlight the tick for whichever prompt is nearest the viewport
+  const anchors = items
+    .map((it) => doc.getElementById(it.id))
+    .filter(Boolean);
+  if (anchors.length && "IntersectionObserver" in window.parent) {{
+    const io = new window.parent.IntersectionObserver(
+      (entries) => {{
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible[0] && visible[0].target && visible[0].target.id) {{
+          setActive(visible[0].target.id);
+        }}
+      }},
+      {{ root: null, rootMargin: "-20% 0px -55% 0px", threshold: [0, 0.25, 0.6] }}
+    );
+    anchors.forEach((a) => io.observe(a));
+  }}
+}})();
+</script>
+</body></html>
+        """,
+        height=0,
+        width=0,
+    )
+
 
 def toggle_pin(cat_key: str, item: Dict):
     """Toggle pin state for an item. Returns True if pinned, False if unpinned."""
@@ -1860,6 +2015,7 @@ prompt = st.chat_input(placeholder_text)
 # ===========================
 # Re-render previous chat
 # ===========================
+_user_prompts: List[Tuple[int, str]] = []
 for mi, msg in enumerate(st.session_state["messages"]):
     is_cards = msg["role"] == "assistant" and msg.get("render") == "cards"
     if is_cards:
@@ -1871,6 +2027,12 @@ for mi, msg in enumerate(st.session_state["messages"]):
             block_id=f"hist{mi}",
         )
     else:
+        if msg["role"] == "user":
+            _user_prompts.append((mi, msg.get("text") or ""))
+            st.markdown(
+                f'<div id="aidr-prompt-{mi}" class="aidr-prompt-anchor"></div>',
+                unsafe_allow_html=True,
+            )
         avatar = mascot.PIP_AVATAR if msg["role"] == "assistant" else None
         with st.chat_message(msg["role"], avatar=avatar):
             st.markdown(msg.get("text", ""))
@@ -1936,6 +2098,11 @@ if prompt and not st.session_state.get("pending_spell_check"):
         st.rerun()
     else:
         st.session_state.pop("_spell_bypass", None)
+        _new_mi = len(st.session_state["messages"])
+        st.markdown(
+            f'<div id="aidr-prompt-{_new_mi}" class="aidr-prompt-anchor"></div>',
+            unsafe_allow_html=True,
+        )
         with st.chat_message("user"):
             st.markdown(prompt)
 
@@ -1948,6 +2115,15 @@ if prompt and not st.session_state.get("pending_spell_check"):
             user_label=None,
         )
         respond_to_query(prompt, st.session_state["category"])
+
+# Right-side ChatGPT-style prompt rail (2+ user turns)
+# Rebuild from session so the newest prompt is included this run.
+_rail_prompts: List[Tuple[int, str]] = [
+    (i, m.get("text") or "")
+    for i, m in enumerate(st.session_state.get("messages") or [])
+    if m.get("role") == "user"
+]
+render_prompt_rail(_rail_prompts)
 
 # Place a bottom anchor for the "Scroll to Latest" link
 st.markdown('<div id="bottom" style="height:1px;"></div>', unsafe_allow_html=True)

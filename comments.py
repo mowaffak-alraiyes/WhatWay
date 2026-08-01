@@ -55,7 +55,7 @@ def create_comment(resource_id: str, resource_category: str, user_id: int,
             
     except Exception as e:
         logger.error(f"Error creating comment: {e}")
-        return False, f"Error posting comment: {str(e)}", None
+        return False, "Error posting comment. Please try again.", None
 
 def get_comments_for_resource(resource_id: str, resource_category: str) -> List[Dict[str, Any]]:
     """
@@ -164,7 +164,7 @@ def vote_comment(comment_id: int, user_id: int, vote_type: int) -> tuple:
             
     except Exception as e:
         logger.error(f"Error voting on comment: {e}")
-        return False, f"Error: {str(e)}"
+        return False, "Something went wrong. Please try again."
 
 def get_user_vote(comment_id: int, user_id: int) -> int:
     """Get the current user's vote on a comment. Returns 1, -1, or 0."""
@@ -221,7 +221,7 @@ def delete_comment(comment_id: int, user_id: int) -> tuple:
             
     except Exception as e:
         logger.error(f"Error deleting comment: {e}")
-        return False, f"Error: {str(e)}"
+        return False, "Something went wrong. Please try again."
 
 def get_comment_count(resource_id: str, resource_category: str) -> int:
     """Get the total number of comments for a resource."""
