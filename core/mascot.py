@@ -14,8 +14,11 @@ import streamlit.components.v1 as components
 
 _ROOT = Path(__file__).resolve().parent.parent
 _PIP_PNG = _ROOT / "assets" / "pip_avatar.png"
+_USER_PNG = _ROOT / "assets" / "user_dots.png"
 # Prefer real Pip face for chat avatar; emoji fallback
 PIP_AVATAR = str(_PIP_PNG) if _PIP_PNG.exists() else "🟩"
+# User messages: teal ⋯ (message / conversation), not Streamlit’s red person or a map pin
+USER_AVATAR = str(_USER_PNG) if _USER_PNG.exists() else "⋯"
 
 # Pixel square face (32×32), Aidr teal
 PIP_BALL_SVG = """

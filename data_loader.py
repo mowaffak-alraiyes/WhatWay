@@ -15,24 +15,29 @@ import streamlit as st
 # Constants
 # ===========================
 
-# Data sources configuration
-DATA_SOURCES = {
-    "Healthcare": [
-        "https://raw.githubusercontent.com/mowaffak-alraiyes/refugee-resources/main/resources/healthcare.txt",
-        "resources/healthcare.txt"
-    ],
-    "Education": [
-        "https://raw.githubusercontent.com/mowaffak-alraiyes/refugee-resources/main/resources/education.txt", 
-        "resources/education.txt"
-    ],
-    "Resettlement / Legal / Shelter": [
-        "https://raw.githubusercontent.com/mowaffak-alraiyes/refugee-resources/main/resources/ResettlementLegalShelterBasicNeeds.txt",
-        "resources/ResettlementLegalShelterBasicNeeds.txt"
-    ]
-}
+# Data sources configuration (per-state paths via RESOURCES_STATE, default IL)
+try:
+    from agents.geo_scope import data_sources as _geo_data_sources, US_ZIP as ZIP_PATTERN
+
+    DATA_SOURCES = _geo_data_sources()
+except Exception:
+    DATA_SOURCES = {
+        "Healthcare": [
+            "https://raw.githubusercontent.com/mowaffak-alraiyes/refugee-resources/main/resources/IL/healthcare.txt",
+            "resources/IL/healthcare.txt",
+        ],
+        "Education": [
+            "https://raw.githubusercontent.com/mowaffak-alraiyes/refugee-resources/main/resources/IL/education.txt",
+            "resources/IL/education.txt",
+        ],
+        "Resettlement / Legal / Shelter": [
+            "https://raw.githubusercontent.com/mowaffak-alraiyes/refugee-resources/main/resources/IL/ResettlementLegalShelterBasicNeeds.txt",
+            "resources/IL/ResettlementLegalShelterBasicNeeds.txt",
+        ],
+    }
+    ZIP_PATTERN = re.compile(r"\b(\d{5})(?:-\d{4})?\b")
 
 # Compile regex patterns once for performance
-ZIP_PATTERN = re.compile(r'\b(60\d{3})\b')
 PHONE_PATTERN = re.compile(r'(\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4})')
 EMAIL_PATTERN = re.compile(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b')
 WEBSITE_PATTERN = re.compile(r'https?://[^\s<>"\']+')
@@ -43,7 +48,11 @@ SERVICE_PATTERNS = {
     "dental": re.compile(r'\b(dental|dentist|oral|teeth|tooth|dental care|exams|cleanings|x.?rays|extractions)\b', re.I),
     "pediatric": re.compile(r'\b(pediatric|pediatrician|child|children|kids|baby|infant|adolescent|adolescent medicine|youth.?focused)\b', re.I),
     "mental_health": re.compile(r'\b(mental|therapy|therapist|counseling|counselor|psychology|psychiatric|psychiatry|behavioral health|behavioral)\b', re.I),
-    "primary_care": re.compile(r'\b(primary care|family medicine|family|general|internal medicine|internal|adult|physician|doctor)\b', re.I),
+    # Avoid bare family/adult/general/internal — they false-positive ESL, legal, etc.
+    "primary_care": re.compile(
+        r'\b(primary care|family medicine|general medicine|internal medicine|primary medical|physician|doctor)\b',
+        re.I,
+    ),
     "womens_health": re.compile(r'\b(women\'?s health|obstetrics|gynecology|ob/gyn|ob-gyn|ob gyn|prenatal|midwifery|prenatal/ob)\b', re.I),
     "urgent_care": re.compile(r'\b(urgent|emergency|walk.?in|same.?day|24/7|24 hours)\b', re.I),
     "hiv_sti": re.compile(r'\b(hiv|sti|std|sexually transmitted|hiv/st?i)\b', re.I),
@@ -560,28 +569,44 @@ def parse_blocks(text: str, category: str = "") -> List[Dict[str, Any]]:
 # ===========================
 
 @st.cache_data(ttl=600, show_spinner=False)
-def load_category_data(category: str, force_refresh: bool = False) -> List[Dict[str, Any]]:
+def load_category_data(
+    category: str,
+    force_refresh: bool = False,
+    state: Optional[str] = None,
+) -> List[Dict[str, Any]]:
     """
-    Load category data. Prefer local JSON for speed; refresh from GitHub when forced
-    or when no local cache exists.
+    Load category data for a USPS state (default RESOURCES_STATE / IL).
+    Prefer local JSON for speed; refresh from GitHub when forced or missing.
     """
     data_dir = Path("data")
     data_dir.mkdir(exist_ok=True)
 
+    try:
+        from agents.geo_scope import data_sources as _ds, resources_state as _rs
+    except Exception:
+        _ds = None
+        _rs = None
+
+    st_code = (state or (_rs() if _rs else None) or "IL").strip().upper() or "IL"
     category_key = category.lower().replace(" / ", "_").replace(" ", "_")
-    json_path = data_dir / f"{category_key}.json"
+    json_path = data_dir / f"{category_key}_{st_code}.json"
+    # Legacy single-state cache (older Aidr installs wrote healthcare.json for IL)
+    legacy_path = data_dir / f"{category_key}.json"
 
-    # Fast path: local JSON (search stays quick between refreshes)
-    if json_path.exists() and not force_refresh:
-        try:
-            with open(json_path, "r", encoding="utf-8") as f:
-                data = json.load(f)
-            if isinstance(data, list) and data:
-                return data
-        except Exception as e:
-            print(f"Error loading cached JSON: {e}")
+    if not force_refresh:
+        for path in (json_path, legacy_path if st_code == "IL" else None):
+            if path is None or not path.exists():
+                continue
+            try:
+                with open(path, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+                if isinstance(data, list) and data:
+                    return data
+            except Exception as e:
+                print(f"Error loading cached JSON ({path}): {e}")
 
-    sources = DATA_SOURCES.get(category, [])
+    sources_map = _ds(st_code) if _ds else DATA_SOURCES
+    sources = sources_map.get(category, [])
     github_urls = [s for s in sources if s.startswith("http")]
     local_files = [s for s in sources if not s.startswith("http")]
 
@@ -598,6 +623,9 @@ def load_category_data(category: str, force_refresh: bool = False) -> List[Dict[
         return []
 
     items = parse_blocks(raw_text, category)
+    for it in items:
+        if isinstance(it, dict) and not it.get("state"):
+            it["state"] = st_code
     try:
         with open(json_path, "w", encoding="utf-8") as f:
             json.dump(items, f, ensure_ascii=False, indent=2)
@@ -624,21 +652,27 @@ def get_compiled_patterns():
 # Public API
 # ===========================
 
-def get_dataset(category: str) -> tuple[List[Dict[str, Any]], str]:
-    """Get dataset for a category. Returns (items, raw_text stub)."""
-    items = load_category_data(category)
-    # Avoid a second GitHub fetch — search_blob already lives on each item
+def get_dataset(category: str, state: Optional[str] = None) -> tuple:
+    """Get dataset for a category (+ optional USPS state). Returns (items, raw_text stub)."""
+    items = load_category_data(category, state=state)
     return items, ""
 
-def refresh_category_cache(category: str) -> None:
+
+def refresh_category_cache(category: str, state: Optional[str] = None) -> None:
     """Force refresh of category cache from GitHub .txt → local JSON."""
+    try:
+        from agents.geo_scope import resources_state as _rs
+        st_code = (state or _rs() or "IL").strip().upper()
+    except Exception:
+        st_code = (state or "IL").strip().upper() or "IL"
     category_key = category.lower().replace(" / ", "_").replace(" ", "_")
-    json_path = Path("data") / f"{category_key}.json"
+    json_path = Path("data") / f"{category_key}_{st_code}.json"
+    legacy_path = Path("data") / f"{category_key}.json"
 
-    if json_path.exists():
-        json_path.unlink()
+    for path in (json_path, legacy_path if st_code == "IL" else None):
+        if path and path.exists():
+            path.unlink()
 
-    # Clear Streamlit cache only when the function is actually cached
     clear_fn = getattr(load_category_data, "clear", None)
     if callable(clear_fn):
         try:
@@ -646,6 +680,6 @@ def refresh_category_cache(category: str) -> None:
         except Exception:
             pass
 
-    load_category_data(category, force_refresh=True)
+    load_category_data(category, force_refresh=True, state=st_code)
 
 

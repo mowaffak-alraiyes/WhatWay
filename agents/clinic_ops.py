@@ -45,11 +45,15 @@ except Exception:
     pass
 
 PENDING_PATH = DATA / "pending_ops.json"
-GITHUB_FILES = {
-    "healthcare": "https://raw.githubusercontent.com/mowaffak-alraiyes/refugee-resources/main/resources/healthcare.txt",
-    "education": "https://raw.githubusercontent.com/mowaffak-alraiyes/refugee-resources/main/resources/education.txt",
-    "resettlement": "https://raw.githubusercontent.com/mowaffak-alraiyes/refugee-resources/main/resources/ResettlementLegalShelterBasicNeeds.txt",
-}
+
+
+def _github_files() -> Dict[str, str]:
+    from agents.geo_scope import category_files_for_state, raw_github_url
+
+    return {k: raw_github_url(v) for k, v in category_files_for_state().items()}
+
+
+GITHUB_FILES = _github_files()
 
 CITY_SCOPE = os.environ.get("CITY_SCOPE", "chicago").lower()  # chicago | national
 CHICAGO_ZIP = re.compile(r"\b60\d{3}\b")
@@ -224,19 +228,24 @@ def verify_proposal(item: Dict[str, Any], github_index: Dict[str, Dict[str, str]
             checks.append({"ok": False, "code": "website", "detail": "Bad URL"})
 
     hard_fail = status == "rejected_auto"
+    from agents.geo_scope import infer_state
+
     out = {
         **item,
         "field_updates": field_updates or None,
         "verification": {"passed": not hard_fail, "checks": checks, "verified_at": _now()},
         "status": status,
         "region": CITY_SCOPE,
+        "state": infer_state(address, zip_code=zip_code, explicit=str(item.get("state") or "")),
     }
     return out
 
 
 def format_github_block(item: Dict[str, Any], next_id: int = 999) -> str:
+    from core.labels import humanize_services
+
     services = item.get("services") or []
-    services_s = ", ".join(services) if isinstance(services, list) else str(services)
+    services_s = humanize_services(services)
     langs = item.get("languages") or []
     langs_s = ", ".join(langs) if isinstance(langs, list) else str(langs)
     return ops_tools.draft_github_block(
@@ -357,6 +366,17 @@ def approve(op_or_name: str) -> Dict[str, Any]:
 def main():
     parser = argparse.ArgumentParser(description="Clinic Ops + Telegram approval (Aidr)")
     parser.add_argument("--run", action="store_true", help="Fetch CSV, verify, stage pending")
+    parser.add_argument(
+        "--discover-new",
+        action="store_true",
+        help="Stage NEW education/resettlement orgs (Ollama verify) for Telegram approve",
+    )
+    parser.add_argument(
+        "--category",
+        action="append",
+        choices=["healthcare", "education", "resettlement"],
+        help="With --discover-new: limit categories (repeatable)",
+    )
     parser.add_argument("--url", default=None, help="CSV URL or local path")
     parser.add_argument("--list", action="store_true", help="List open proposals")
     parser.add_argument("--approve", metavar="OP_OR_NAME", help="Approve by op_id or name")
@@ -371,13 +391,22 @@ def main():
     )
     parser.add_argument("--dry-run", action="store_true", help="With --apply/--apply-all: preview only")
     parser.add_argument("--scope", default=None, help="chicago | national")
+    parser.add_argument("--limit", type=int, default=20, help="With --discover-new: max new orgs to stage")
     args = parser.parse_args()
 
     global CITY_SCOPE
     if args.scope:
         CITY_SCOPE = args.scope.lower()
 
-    if args.run:
+    if args.discover_new:
+        from agents import discover_new
+
+        result = discover_new.scan(
+            args.category or ["education", "resettlement"],
+            limit=args.limit,
+        )
+        print(json.dumps(result, indent=2, ensure_ascii=False))
+    elif args.run:
         result = run_ops(args.url)
         print(json.dumps(result, indent=2, ensure_ascii=False))
         if not result.get("ok"):

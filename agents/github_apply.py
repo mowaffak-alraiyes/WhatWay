@@ -21,11 +21,19 @@ DATA = ROOT / "data"
 PENDING_PATH = DATA / "pending_ops.json"
 
 REPO = os.environ.get("RESOURCES_GITHUB_REPO", "mowaffak-alraiyes/refugee-resources")
-CATEGORY_FILES = {
-    "healthcare": "resources/healthcare.txt",
-    "education": "resources/education.txt",
-    "resettlement": "resources/ResettlementLegalShelterBasicNeeds.txt",
-}
+
+
+def _category_files(state: Optional[str] = None) -> Dict[str, str]:
+    from agents.geo_scope import category_files_for_state
+
+    return category_files_for_state(state)
+
+
+# Lazy snapshot for callers that still import CATEGORY_FILES
+def __getattr__(name: str):
+    if name == "CATEGORY_FILES":
+        return _category_files()
+    raise AttributeError(name)
 
 
 def _pending() -> Dict[str, Any]:
@@ -56,13 +64,95 @@ def _github_token() -> Optional[str]:
     return None
 
 
+def redact_secrets(text: str) -> str:
+    """Strip PATs / embedded clone credentials from error strings (never send to Telegram)."""
+    s = str(text or "")
+    s = re.sub(r"https://x-access-token:[^@\s]+@", "https://x-access-token:***@", s)
+    s = re.sub(r"\bgho_[A-Za-z0-9]{20,}\b", "gho_***", s)
+    s = re.sub(r"\bghp_[A-Za-z0-9]{20,}\b", "ghp_***", s)
+    s = re.sub(r"\bgithub_pat_[A-Za-z0-9_]+\b", "github_pat_***", s)
+    s = re.sub(r"\bghr_[A-Za-z0-9]{20,}\b", "ghr_***", s)
+    return s
+
+
+def _git_clone_repo(dest: Path, token: str) -> None:
+    """
+    Shallow-clone RESOURCES repo without embedding the token in argv.
+    (Embedding leaks into CalledProcessError → Telegram.)
+    Auth via GIT_ASKPASS + username x-access-token.
+    """
+    askpass = tempfile.NamedTemporaryFile("w", prefix="aidr-askpass-", suffix=".sh", delete=False)
+    try:
+        askpass.write('#!/bin/sh\ncase "$1" in *Username*) echo x-access-token;; *) echo "$AIDR_GIT_PASSWORD";; esac\n')
+        askpass.close()
+        os.chmod(askpass.name, 0o700)
+        env = {
+            **os.environ,
+            "GIT_ASKPASS": askpass.name,
+            "SSH_ASKPASS": askpass.name,
+            "GIT_TERMINAL_PROMPT": "0",
+            "AIDR_GIT_PASSWORD": token,
+        }
+        # No token in URL / argv
+        url = f"https://github.com/{REPO}.git"
+        proc = subprocess.run(
+            ["git", "clone", "--depth", "1", url, str(dest)],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.PIPE,
+            env=env,
+            check=False,
+        )
+        if proc.returncode != 0:
+            err = (proc.stderr or b"").decode("utf-8", "replace").strip()
+            raise RuntimeError(
+                f"git clone failed (exit {proc.returncode})"
+                + (f": {redact_secrets(err[:400])}" if err else "")
+            )
+    finally:
+        try:
+            os.unlink(askpass.name)
+        except Exception:
+            pass
+
+
+def _git_push(repo_dir: Path, token: str) -> None:
+    askpass = tempfile.NamedTemporaryFile("w", prefix="aidr-askpass-", suffix=".sh", delete=False)
+    try:
+        askpass.write('#!/bin/sh\ncase "$1" in *Username*) echo x-access-token;; *) echo "$AIDR_GIT_PASSWORD";; esac\n')
+        askpass.close()
+        os.chmod(askpass.name, 0o700)
+        env = {
+            **os.environ,
+            "GIT_ASKPASS": askpass.name,
+            "SSH_ASKPASS": askpass.name,
+            "GIT_TERMINAL_PROMPT": "0",
+            "AIDR_GIT_PASSWORD": token,
+        }
+        proc = subprocess.run(
+            ["git", "push", "origin", "HEAD"],
+            cwd=repo_dir,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.PIPE,
+            env=env,
+            check=False,
+        )
+        if proc.returncode != 0:
+            err = (proc.stderr or b"").decode("utf-8", "replace").strip()
+            raise RuntimeError(
+                f"git push failed (exit {proc.returncode})"
+                + (f": {redact_secrets(err[:400])}" if err else "")
+            )
+    finally:
+        try:
+            os.unlink(askpass.name)
+        except Exception:
+            pass
+
+
 def _category_file(item: Dict[str, Any]) -> str:
-    cat = (item.get("category") or "healthcare").lower()
-    if "educ" in cat:
-        return CATEGORY_FILES["education"]
-    if "legal" in cat or "shelter" in cat or "resettle" in cat:
-        return CATEGORY_FILES["resettlement"]
-    return CATEGORY_FILES["healthcare"]
+    from agents.geo_scope import category_rel, state_of
+
+    return category_rel(item.get("category") or "healthcare", state_of(item))
 
 
 def _next_id(text: str) -> int:
@@ -187,11 +277,17 @@ def _apply_update_block(text: str, name: str, updates: Dict[str, str], address_h
                 new_lines.append(f"⏰ Hours: {updates['hours']}")
                 replaced.add("hours")
             elif "services" in updates and (stripped.startswith("🏥") or low.startswith("services")):
-                svc = updates["services"]
-                if not svc.lower().startswith("services"):
-                    svc = f"Services: {svc}"
-                new_lines.append(f"🏥 {svc}" if not svc.startswith("🏥") else svc)
+                from core.labels import humanize_services
+
+                svc = humanize_services(updates["services"])
+                new_lines.append(f"🏥 Services: {svc}")
                 replaced.add("services")
+            elif "languages" in updates and (stripped.startswith("🗣") or low.startswith("language")):
+                lang = updates["languages"]
+                if not lang.lower().startswith("language"):
+                    lang = f"Languages: {lang}"
+                new_lines.append(f"🗣 {lang}" if not lang.startswith("🗣") else lang)
+                replaced.add("languages")
             else:
                 new_lines.append(line)
         for k, v in updates.items():
@@ -215,8 +311,13 @@ def _apply_update_block(text: str, name: str, updates: Dict[str, str], address_h
             elif k == "address" and len(new_lines) >= 1:
                 new_lines.insert(1, v)
             elif k == "services":
-                svc = v if v.lower().startswith("services") else f"Services: {v}"
-                new_lines.append(f"🏥 {svc}" if not svc.startswith("🏥") else svc)
+                from core.labels import humanize_services
+
+                svc = humanize_services(v)
+                new_lines.append(f"🏥 Services: {svc}")
+            elif k == "languages":
+                lang = v if v.lower().startswith("language") else f"Languages: {v}"
+                new_lines.append(f"🗣 {lang}" if not lang.startswith("🗣") else lang)
         out.append("\n".join(new_lines))
         if not part.endswith("\n"):
             out[-1] = out[-1]
@@ -277,57 +378,61 @@ def apply_approved(op_id: str, dry_run: bool = False) -> Dict[str, Any]:
         }
 
     # Clone = source of truth (avoids stale raw.githubusercontent.com)
-    with tempfile.TemporaryDirectory(prefix="aidr-resources-") as tmp:
-        repo_dir = Path(tmp) / "repo"
-        clone_url = f"https://x-access-token:{token}@github.com/{REPO}.git"
-        subprocess.check_call(
-            ["git", "clone", "--depth", "1", clone_url, str(repo_dir)],
-            stdout=subprocess.DEVNULL,
-            stderr=subprocess.DEVNULL,
-        )
-        target = repo_dir / rel
-        text = target.read_text(encoding="utf-8")
-        try:
-            new_text, commit_msg = _build(text)
-        except ValueError as e:
-            return {"ok": False, "error": str(e)}
-
-        if new_text == text:
-            item["status"] = "applied"
-            item["applied_at"] = __import__("datetime").datetime.utcnow().isoformat() + "Z"
-            item["applied_file"] = rel
-            item["apply_note"] = "no_github_diff"
-            _save(pending)
-            refresh_info: Dict[str, Any] = {"refreshed": False}
+    try:
+        with tempfile.TemporaryDirectory(prefix="aidr-resources-") as tmp:
+            repo_dir = Path(tmp) / "repo"
+            _git_clone_repo(repo_dir, token or "")
+            target = repo_dir / rel
+            target.parent.mkdir(parents=True, exist_ok=True)
+            if not target.exists():
+                target.write_text(
+                    f"# {(item.get('state') or 'IL')} — placeholder\n\n",
+                    encoding="utf-8",
+                )
+            text = target.read_text(encoding="utf-8")
             try:
-                refresh_info = refresh_local_json(item.get("category") or rel)
-            except Exception as e:
-                refresh_info = {"refreshed": False, "error": str(e)}
-            return {
-                "ok": True,
-                "op_id": op_id,
-                "file": rel,
-                "commit_msg": commit_msg,
-                "skipped_commit": True,
-                "reason": "GitHub already had this content (or no matching block change)",
-                "repo": REPO,
-                "local_json": refresh_info,
-            }
+                new_text, commit_msg = _build(text)
+            except ValueError as e:
+                return {"ok": False, "error": str(e)}
 
-        target.write_text(new_text, encoding="utf-8")
-        subprocess.check_call(["git", "add", rel], cwd=repo_dir)
-        subprocess.check_call(
-            ["git", "commit", "-m", commit_msg],
-            cwd=repo_dir,
-            env={
-                **os.environ,
-                "GIT_AUTHOR_NAME": "Aidr Clinic Ops",
-                "GIT_AUTHOR_EMAIL": "aidr-ops@local",
-                "GIT_COMMITTER_NAME": "Aidr Clinic Ops",
-                "GIT_COMMITTER_EMAIL": "aidr-ops@local",
-            },
-        )
-        subprocess.check_call(["git", "push", "origin", "HEAD"], cwd=repo_dir)
+            if new_text == text:
+                item["status"] = "applied"
+                item["applied_at"] = __import__("datetime").datetime.utcnow().isoformat() + "Z"
+                item["applied_file"] = rel
+                item["apply_note"] = "no_github_diff"
+                _save(pending)
+                refresh_info: Dict[str, Any] = {"refreshed": False}
+                try:
+                    refresh_info = refresh_local_json(item.get("category") or rel)
+                except Exception as e:
+                    refresh_info = {"refreshed": False, "error": redact_secrets(str(e))}
+                return {
+                    "ok": True,
+                    "op_id": op_id,
+                    "file": rel,
+                    "commit_msg": commit_msg,
+                    "skipped_commit": True,
+                    "reason": "GitHub already had this content (or no matching block change)",
+                    "repo": REPO,
+                    "local_json": refresh_info,
+                }
+
+            target.write_text(new_text, encoding="utf-8")
+            subprocess.check_call(["git", "add", rel], cwd=repo_dir)
+            subprocess.check_call(
+                ["git", "commit", "-m", commit_msg],
+                cwd=repo_dir,
+                env={
+                    **os.environ,
+                    "GIT_AUTHOR_NAME": "Aidr Clinic Ops",
+                    "GIT_AUTHOR_EMAIL": "aidr-ops@local",
+                    "GIT_COMMITTER_NAME": "Aidr Clinic Ops",
+                    "GIT_COMMITTER_EMAIL": "aidr-ops@local",
+                },
+            )
+            _git_push(repo_dir, token or "")
+    except Exception as e:
+        return {"ok": False, "error": redact_secrets(str(e)), "op_id": op_id}
 
     item["status"] = "applied"
     item["applied_at"] = __import__("datetime").datetime.utcnow().isoformat() + "Z"
@@ -338,7 +443,7 @@ def apply_approved(op_id: str, dry_run: bool = False) -> Dict[str, Any]:
     try:
         refresh_info = refresh_local_json(item.get("category") or rel)
     except Exception as e:
-        refresh_info = {"refreshed": False, "error": str(e)}
+        refresh_info = {"refreshed": False, "error": redact_secrets(str(e))}
 
     return {
         "ok": True,
@@ -434,60 +539,70 @@ def apply_all_approved(dry_run: bool = False) -> Dict[str, Any]:
             "results": results,
         }
 
-    with tempfile.TemporaryDirectory(prefix="aidr-resources-") as tmp:
-        repo_dir = Path(tmp) / "repo"
-        clone_url = f"https://x-access-token:{token}@github.com/{REPO}.git"
-        subprocess.check_call(
-            ["git", "clone", "--depth", "1", clone_url, str(repo_dir)],
-            stdout=subprocess.DEVNULL,
-            stderr=subprocess.DEVNULL,
-        )
+    try:
+        with tempfile.TemporaryDirectory(prefix="aidr-resources-") as tmp:
+            repo_dir = Path(tmp) / "repo"
+            _git_clone_repo(repo_dir, token or "")
 
-        for rel, items in by_file.items():
-            target = repo_dir / rel
-            text = target.read_text(encoding="utf-8")
-            original = text
-            msgs: List[str] = []
-            for item in items:
-                try:
-                    text, msg = _mutate_text_for_item(text, item)
-                    msgs.append(msg)
-                    results.append({"ok": True, "op_id": item.get("op_id"), "file": rel, "msg": msg})
-                except Exception as e:
-                    results.append({"ok": False, "op_id": item.get("op_id"), "error": str(e)})
+            for rel, items in by_file.items():
+                target = repo_dir / rel
+                target.parent.mkdir(parents=True, exist_ok=True)
+                if not target.exists():
+                    target.write_text("# placeholder\n\n", encoding="utf-8")
+                text = target.read_text(encoding="utf-8")
+                original = text
+                msgs: List[str] = []
+                for item in items:
+                    try:
+                        text, msg = _mutate_text_for_item(text, item)
+                        msgs.append(msg)
+                        results.append({"ok": True, "op_id": item.get("op_id"), "file": rel, "msg": msg})
+                    except Exception as e:
+                        results.append(
+                            {"ok": False, "op_id": item.get("op_id"), "error": redact_secrets(str(e))}
+                        )
 
-            if text == original:
+                if text == original:
+                    for item in items:
+                        if any(r.get("op_id") == item.get("op_id") and r.get("ok") for r in results):
+                            item["status"] = "applied"
+                            item["applied_at"] = __import__("datetime").datetime.utcnow().isoformat() + "Z"
+                            item["applied_file"] = rel
+                            item["apply_note"] = "no_github_diff"
+                    continue
+
+                target.write_text(text, encoding="utf-8")
+                subprocess.check_call(["git", "add", rel], cwd=repo_dir)
+                commit_msg = "Apply approved clinic ops (" + "; ".join(msgs[:8]) + ")"
+                if len(msgs) > 8:
+                    commit_msg += f"; +{len(msgs) - 8} more"
+                subprocess.check_call(
+                    ["git", "commit", "-m", commit_msg[:200]],
+                    cwd=repo_dir,
+                    env={
+                        **os.environ,
+                        "GIT_AUTHOR_NAME": "Aidr Clinic Ops",
+                        "GIT_AUTHOR_EMAIL": "aidr-ops@local",
+                        "GIT_COMMITTER_NAME": "Aidr Clinic Ops",
+                        "GIT_COMMITTER_EMAIL": "aidr-ops@local",
+                    },
+                )
                 for item in items:
                     if any(r.get("op_id") == item.get("op_id") and r.get("ok") for r in results):
                         item["status"] = "applied"
                         item["applied_at"] = __import__("datetime").datetime.utcnow().isoformat() + "Z"
                         item["applied_file"] = rel
-                        item["apply_note"] = "no_github_diff"
-                continue
 
-            target.write_text(text, encoding="utf-8")
-            subprocess.check_call(["git", "add", rel], cwd=repo_dir)
-            commit_msg = "Apply approved clinic ops (" + "; ".join(msgs[:8]) + ")"
-            if len(msgs) > 8:
-                commit_msg += f"; +{len(msgs) - 8} more"
-            subprocess.check_call(
-                ["git", "commit", "-m", commit_msg[:200]],
-                cwd=repo_dir,
-                env={
-                    **os.environ,
-                    "GIT_AUTHOR_NAME": "Aidr Clinic Ops",
-                    "GIT_AUTHOR_EMAIL": "aidr-ops@local",
-                    "GIT_COMMITTER_NAME": "Aidr Clinic Ops",
-                    "GIT_COMMITTER_EMAIL": "aidr-ops@local",
-                },
-            )
-            for item in items:
-                if any(r.get("op_id") == item.get("op_id") and r.get("ok") for r in results):
-                    item["status"] = "applied"
-                    item["applied_at"] = __import__("datetime").datetime.utcnow().isoformat() + "Z"
-                    item["applied_file"] = rel
-
-        subprocess.check_call(["git", "push", "origin", "HEAD"], cwd=repo_dir)
+            _git_push(repo_dir, token or "")
+    except Exception as e:
+        return {
+            "ok": False,
+            "error": redact_secrets(str(e)),
+            "total": len(approved),
+            "succeeded": sum(1 for r in results if r.get("ok")),
+            "failed": len(approved) - sum(1 for r in results if r.get("ok")),
+            "results": results,
+        }
 
     _save(pending)
 

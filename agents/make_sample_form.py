@@ -13,7 +13,7 @@ ROWS = [
         "dental, cleanings, extractions",
         "English, Spanish",
         "Mon-Fri 9-5",
-        "Sample row for agent demo — not a real clinic",
+        "Sample row for agent demo  -  not a real clinic",
     ],
     [
         "Alivio Medical Center Dental at 63rd St.",

@@ -25,7 +25,7 @@ st.set_page_config(
     layout="wide"
 )
 
-# Initialize database (soft — page still works offline)
+# Initialize database (soft  -  page still works offline)
 try:
     db.initialize_database()
 except Exception:
@@ -379,7 +379,7 @@ def render_detail_page():
         cleaned = re.sub(r"^(?:⏰\s*)?Hours?:\s*", "", str(hours_text), flags=re.I).strip()
         hours_rows_html = f'<div class="yelp-fact">{esc(cleaned)}</div>'
     else:
-        hours_rows_html = '<div class="yelp-muted">Hours not listed — please call to confirm.</div>'
+        hours_rows_html = '<div class="yelp-muted">Hours not listed  -  please call to confirm.</div>'
 
     next_open_html = ""
     if not is_open:
@@ -504,13 +504,13 @@ a[data-testid="stBaseLinkButton"] {
 
     if is_ryan_white:
         st.info(
-            "**Ryan White HIV/AIDS Program (HRSA HAB)** — This site is listed as a "
+            "**Ryan White HIV/AIDS Program (HRSA HAB)**  -  This site is listed as a "
             "Ryan White HIV/AIDS Program provider. Services may include HIV medical care, "
             "case management, and related supports for people living with HIV. "
             "Confirm eligibility and hours with the clinic."
         )
 
-    # Action pills — Call / Website / Directions / Share
+    # Action pills  -  Call / Website / Directions / Share
     n_actions = 1 + (1 if website else 0) + (1 if address else 0) + 1
     action_cols = st.columns(n_actions, gap="medium")
     i = 0
@@ -623,7 +623,7 @@ a[data-testid="stBaseLinkButton"] {
 <div id="aidr-comments" class="yelp-comments-anchor"></div>
 <div class="yelp-section">
   <p class="yelp-section-title">Comments &amp; discussion</p>
-  <p class="yelp-cap">Reviews from families — tips, wait times, and what to expect.</p>
+  <p class="yelp-cap">Reviews from families  -  tips, wait times, and what to expect.</p>
 </div>
 <style>
 .yelp-comments-anchor { scroll-margin-top: 1.25rem; height: 1px; }

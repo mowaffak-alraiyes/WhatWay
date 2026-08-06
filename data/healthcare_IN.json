@@ -1,0 +1,5832 @@
+[
+  {
+    "id": "item_1",
+    "name": "# IN  -  healthcare.txt",
+    "address": "# Populated by Aidr HRSA Find-a-HC import (Indianapolis + surrounding, 250-mile catchment).",
+    "phone": "",
+    "phone_digits": "",
+    "website": "",
+    "zip_code": "",
+    "services": [],
+    "services_text": "# Format: numbered blocks matching IL listings (name, Address, 📞, 🌐, 🏥, 🗣, ⏰, 📝).",
+    "subcategories": [],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "# in  -  healthcare.txt # populated by aidr hrsa find-a-hc import (indianapolis + surrounding, 250-mile catchment). # format: numbered blocks matching il listings (name, address, 📞, 🌐, 🏥, 🗣, ⏰, 📝).",
+    "state": "IN"
+  },
+  {
+    "id": "1",
+    "name": "Salvation Army Family Shelter Clinic (for women and children)",
+    "address": "",
+    "phone": "(317) 637-5551",
+    "phone_digits": "3176375551",
+    "website": "https://www.usc.salvationarmy.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "salvation army family shelter clinic (for women and children) primary care primary_care primary care (317) 637-5551 https://www.usc.salvationarmy.org",
+    "state": "IN"
+  },
+  {
+    "id": "2",
+    "name": "Raphael Health Center - Salvation Army",
+    "address": "",
+    "phone": "(317) 638-6585",
+    "phone_digits": "3176386585",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "raphael health center - salvation army primary care primary_care primary care (317) 638-6585",
+    "state": "IN"
+  },
+  {
+    "id": "3",
+    "name": "Eskenazi Health Center Pedigo",
+    "address": "",
+    "phone": "(317) 880-1900",
+    "phone_digits": "3178801900",
+    "website": "https://www.eskenazihealth.edu/locations/primary-care-sites",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "english",
+      "spanish"
+    ],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "eskenazi health center pedigo primary care primary_care primary care english spanish (317) 880-1900 https://www.eskenazihealth.edu/locations/primary-care-sites",
+    "state": "IN"
+  },
+  {
+    "id": "4",
+    "name": "Aspire Indiana Health - New Acess Point - MACY",
+    "address": "",
+    "phone": "(888) 736-6138",
+    "phone_digits": "8887366138",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "aspire indiana health - new acess point - macy primary care primary_care primary care (888) 736-6138",
+    "state": "IN"
+  },
+  {
+    "id": "5",
+    "name": "Washington Irving School 14 - Urban Act Academy",
+    "address": "",
+    "phone": "(317) 226-4214",
+    "phone_digits": "3172264214",
+    "website": "https://www.shalomhealthcenter.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "washington irving school 14 - urban act academy primary care primary_care primary care (317) 226-4214 https://www.shalomhealthcenter.org",
+    "state": "IN"
+  },
+  {
+    "id": "6",
+    "name": "Crispus Attucks Clinic",
+    "address": "",
+    "phone": "(317) 957-2070",
+    "phone_digits": "3179572070",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "crispus attucks clinic primary care primary_care primary care (317) 957-2070",
+    "state": "IN"
+  },
+  {
+    "id": "7",
+    "name": "Damien Center - Mosaic",
+    "address": "",
+    "phone": "(317) 632-0123",
+    "phone_digits": "3176320123",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "damien center - mosaic primary care primary_care primary care (317) 632-0123",
+    "state": "IN"
+  },
+  {
+    "id": "8",
+    "name": "HealthNet Homeless Initiative Program",
+    "address": "",
+    "phone": "(317) 957-2275",
+    "phone_digits": "3179572275",
+    "website": "https://www.indyhealthnet.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "english"
+    ],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "healthnet homeless initiative program primary care primary_care primary care english (317) 957-2275 https://www.indyhealthnet.org",
+    "state": "IN"
+  },
+  {
+    "id": "9",
+    "name": "Southeast Health Center",
+    "address": "",
+    "phone": "(317) 957-2400",
+    "phone_digits": "3179572400",
+    "website": "https://www.indyhealthnet.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "southeast health center primary care primary_care primary care (317) 957-2400 https://www.indyhealthnet.org",
+    "state": "IN"
+  },
+  {
+    "id": "10",
+    "name": "Dayspring Center Clinic",
+    "address": "",
+    "phone": "(317) 635-6780",
+    "phone_digits": "3176356780",
+    "website": "https://www.dayspringcenter.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "dayspring center clinic primary care primary_care primary care (317) 635-6780 https://www.dayspringcenter.org",
+    "state": "IN"
+  },
+  {
+    "id": "11",
+    "name": "Tech Teen Clinic",
+    "address": "",
+    "phone": "(317) 693-5420",
+    "phone_digits": "3176935420",
+    "website": "https://www.indyhealthnet.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "tech teen clinic primary care primary_care primary care (317) 693-5420 https://www.indyhealthnet.org",
+    "state": "IN"
+  },
+  {
+    "id": "12",
+    "name": "H.L. Harshman Middle School - SBC",
+    "address": "",
+    "phone": "(317) 226-4101",
+    "phone_digits": "3172264101",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "h.l. harshman middle school - sbc primary care primary_care primary care (317) 226-4101",
+    "state": "IN"
+  },
+  {
+    "id": "13",
+    "name": "IPS 31 School Base Clinic - James A. Garfield",
+    "address": "",
+    "phone": "(317) 226-4231",
+    "phone_digits": "3172264231",
+    "website": "https://www.shalomhealthcenter.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "english"
+    ],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "ips 31 school base clinic - james a. garfield primary care primary_care primary care english (317) 226-4231 https://www.shalomhealthcenter.org",
+    "state": "IN"
+  },
+  {
+    "id": "14",
+    "name": "HealthNet Downtown Health Center",
+    "address": "",
+    "phone": "(317) 957-2229",
+    "phone_digits": "3179572229",
+    "website": "https://www.indyhealthnet.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "english"
+    ],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "healthnet downtown health center primary care primary_care primary care english (317) 957-2229 https://www.indyhealthnet.org",
+    "state": "IN"
+  },
+  {
+    "id": "15",
+    "name": "William McKinley School 39",
+    "address": "",
+    "phone": "(317) 226-4239",
+    "phone_digits": "3172264239",
+    "website": "https://www.shalomhealthcenter.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "william mckinley school 39 primary care primary_care primary care (317) 226-4239 https://www.shalomhealthcenter.org",
+    "state": "IN"
+  },
+  {
+    "id": "16",
+    "name": "Thomas D. Gregg School 15",
+    "address": "",
+    "phone": "(317) 226-4615",
+    "phone_digits": "3172264615",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "thomas d. gregg school 15 primary care primary_care primary care (317) 226-4615",
+    "state": "IN"
+  },
+  {
+    "id": "17",
+    "name": "Outreach, Inc. Clinic",
+    "address": "",
+    "phone": "(317) 951-8886",
+    "phone_digits": "3179518886",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "outreach, inc. clinic primary care primary_care primary care (317) 951-8886",
+    "state": "IN"
+  },
+  {
+    "id": "18",
+    "name": "Interfaith Hospitality Network",
+    "address": "",
+    "phone": "(317) 261-1562",
+    "phone_digits": "3172611562",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "interfaith hospitality network primary care primary_care primary care (317) 261-1562",
+    "state": "IN"
+  },
+  {
+    "id": "19",
+    "name": "Peoples Health Center",
+    "address": "",
+    "phone": "(317) 957-2200",
+    "phone_digits": "3179572200",
+    "website": "https://www.indyhealthnet.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "peoples health center primary care primary_care primary care (317) 957-2200 https://www.indyhealthnet.org",
+    "state": "IN"
+  },
+  {
+    "id": "20",
+    "name": "George Washington High School - SBC",
+    "address": "",
+    "phone": "(317) 693-5555",
+    "phone_digits": "3176935555",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "george washington high school - sbc primary care primary_care primary care (317) 693-5555",
+    "state": "IN"
+  },
+  {
+    "id": "21",
+    "name": "IPS School 46 - Daniel Webster",
+    "address": "",
+    "phone": "(317) 226-4246",
+    "phone_digits": "3172264246",
+    "website": "https://www.shalomhealthcenter.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "english"
+    ],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "ips school 46 - daniel webster primary care primary_care primary care english (317) 226-4246 https://www.shalomhealthcenter.org",
+    "state": "IN"
+  },
+  {
+    "id": "22",
+    "name": "Global Preparatory Academy - Charter School",
+    "address": "",
+    "phone": "(317) 226-4266",
+    "phone_digits": "3172264266",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "global preparatory academy - charter school primary care primary_care primary care (317) 226-4266",
+    "state": "IN"
+  },
+  {
+    "id": "23",
+    "name": "Matchbook Learning at No 63",
+    "address": "",
+    "phone": "(317) 226-4263",
+    "phone_digits": "3172264263",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "matchbook learning at no 63 primary care primary_care primary care (317) 226-4263",
+    "state": "IN"
+  },
+  {
+    "id": "24",
+    "name": "Wheeler Shelter for Women and Children Clinic",
+    "address": "",
+    "phone": "(317) 687-3630",
+    "phone_digits": "3176873630",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "wheeler shelter for women and children clinic primary care primary_care primary care (317) 687-3630",
+    "state": "IN"
+  },
+  {
+    "id": "25",
+    "name": "IPS 54 School Based Clinic - Brookside Academy",
+    "address": "",
+    "phone": "(317) 229-4254",
+    "phone_digits": "3172294254",
+    "website": "https://www.shalomhealthcenter.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "english"
+    ],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "ips 54 school based clinic - brookside academy primary care primary_care primary care english (317) 229-4254 https://www.shalomhealthcenter.org",
+    "state": "IN"
+  },
+  {
+    "id": "26",
+    "name": "IPS School 34 - Eleanor Skillen",
+    "address": "",
+    "phone": "(317) 226-4876",
+    "phone_digits": "3172264876",
+    "website": "https://www.shalomhealthcenter.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "ips school 34 - eleanor skillen primary care primary_care primary care (317) 226-4876 https://www.shalomhealthcenter.org",
+    "state": "IN"
+  },
+  {
+    "id": "27",
+    "name": "Adult and Child Health - Garfield Park",
+    "address": "",
+    "phone": "(317) 882-5122",
+    "phone_digits": "3178825122",
+    "website": "https://www.adultandchild.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {
+      "monday": [],
+      "friday": []
+    },
+    "hours_text": "Monday-Friday 9",
+    "notes": "",
+    "search_blob": "adult and child health - garfield park primary care primary_care primary care monday-friday 9 (317) 882-5122 https://www.adultandchild.org",
+    "state": "IN"
+  },
+  {
+    "id": "28",
+    "name": "Adult and Child at KIPP Indy",
+    "address": "",
+    "phone": "(877) 882-5122",
+    "phone_digits": "8778825122",
+    "website": "https://www.adultandchild.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {
+      "monday": [],
+      "friday": []
+    },
+    "hours_text": "Monday-Friday 9",
+    "notes": "",
+    "search_blob": "adult and child at kipp indy primary care primary_care primary care monday-friday 9 (877) 882-5122 https://www.adultandchild.org",
+    "state": "IN"
+  },
+  {
+    "id": "29",
+    "name": "Barrington Health Center",
+    "address": "",
+    "phone": "(317) 957-2100",
+    "phone_digits": "3179572100",
+    "website": "https://www.indyhealthnet.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "english"
+    ],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "barrington health center primary care primary_care primary care english (317) 957-2100 https://www.indyhealthnet.org",
+    "state": "IN"
+  },
+  {
+    "id": "30",
+    "name": "Path School (67)",
+    "address": "",
+    "phone": "(317) 226-4267",
+    "phone_digits": "3172264267",
+    "website": "https://www.shalom-hcc.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "path school (67) primary care primary_care primary care (317) 226-4267 https://www.shalom-hcc.org",
+    "state": "IN"
+  },
+  {
+    "id": "31",
+    "name": "HealthNet Administration/HealthNet Specialty Care at Barrington",
+    "address": "",
+    "phone": "(317) 957-2000",
+    "phone_digits": "3179572000",
+    "website": "https://www.indyhealthnet.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "english"
+    ],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "healthnet administration/healthnet specialty care at barrington primary care primary_care primary care english (317) 957-2000 https://www.indyhealthnet.org",
+    "state": "IN"
+  },
+  {
+    "id": "32",
+    "name": "Martindale Brightwood Health Center",
+    "address": "",
+    "phone": "(317) 957-2300",
+    "phone_digits": "3179572300",
+    "website": "https://www.indyhealthnet.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "martindale brightwood health center primary care primary_care primary care (317) 957-2300 https://www.indyhealthnet.org",
+    "state": "IN"
+  },
+  {
+    "id": "33",
+    "name": "IPS Short Ridge High School",
+    "address": "",
+    "phone": "(317) 226-2810",
+    "phone_digits": "3172262810",
+    "website": "https://www.shalomhealthcenter.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "english"
+    ],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "ips short ridge high school primary care primary_care primary care english (317) 226-2810 https://www.shalomhealthcenter.org",
+    "state": "IN"
+  },
+  {
+    "id": "34",
+    "name": "Ralph Waldo Emerson IPS School 58",
+    "address": "",
+    "phone": "(317) 226-4258",
+    "phone_digits": "3172264258",
+    "website": "https://www.shalomhealthcenter.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "ralph waldo emerson ips school 58 primary care primary_care primary care (317) 226-4258 https://www.shalomhealthcenter.org",
+    "state": "IN"
+  },
+  {
+    "id": "35",
+    "name": "Salvation Army Harbor Light Center Clinic",
+    "address": "",
+    "phone": "(317) 972-1450",
+    "phone_digits": "3179721450",
+    "website": "https://www.usc.salvationarmy.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "salvation army harbor light center clinic primary care primary_care primary care (317) 972-1450 https://www.usc.salvationarmy.org",
+    "state": "IN"
+  },
+  {
+    "id": "36",
+    "name": "IPS School 43 - James Whitcomb Riley",
+    "address": "",
+    "phone": "(317) 226-4243",
+    "phone_digits": "3172264243",
+    "website": "https://www.shalomhealthcenter.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "english"
+    ],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "ips school 43 - james whitcomb riley primary care primary_care primary care english (317) 226-4243 https://www.shalomhealthcenter.org",
+    "state": "IN"
+  },
+  {
+    "id": "37",
+    "name": "Jane Pauley Community Health Center at 16th Street",
+    "address": "",
+    "phone": "(844) 695-7242",
+    "phone_digits": "8446957242",
+    "website": "https://www.janepauleychc.com",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "jane pauley community health center at 16th street primary care primary_care primary care (844) 695-7242 https://www.janepauleychc.com",
+    "state": "IN"
+  },
+  {
+    "id": "38",
+    "name": "Adult and Child Health Irvington Location",
+    "address": "",
+    "phone": "(317) 882-5122",
+    "phone_digits": "3178825122",
+    "website": "https://www.adultandchild.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {
+      "monday": [],
+      "friday": []
+    },
+    "hours_text": "Monday-Friday 9",
+    "notes": "",
+    "search_blob": "adult and child health irvington location primary care primary_care primary care monday-friday 9 (317) 882-5122 https://www.adultandchild.org",
+    "state": "IN"
+  },
+  {
+    "id": "39",
+    "name": "Fisher Elementary School",
+    "address": "",
+    "phone": "(317) 241-6543",
+    "phone_digits": "3172416543",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "fisher elementary school primary care primary_care primary care (317) 241-6543",
+    "state": "IN"
+  },
+  {
+    "id": "40",
+    "name": "Adult and Child at Center for Inquiry School 70",
+    "address": "",
+    "phone": "(877) 882-5122",
+    "phone_digits": "8778825122",
+    "website": "https://www.adultandchild.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {
+      "monday": [],
+      "friday": []
+    },
+    "hours_text": "Monday-Friday 9",
+    "notes": "",
+    "search_blob": "adult and child at center for inquiry school 70 primary care primary_care primary care monday-friday 9 (877) 882-5122 https://www.adultandchild.org",
+    "state": "IN"
+  },
+  {
+    "id": "41",
+    "name": "IPS School 88 - Anna Brochhausen",
+    "address": "",
+    "phone": "(317) 229-4288",
+    "phone_digits": "3172294288",
+    "website": "https://www.shalomhealthcenter.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "ips school 88 - anna brochhausen primary care primary_care primary care (317) 229-4288 https://www.shalomhealthcenter.org",
+    "state": "IN"
+  },
+  {
+    "id": "42",
+    "name": "FARRINGTON MIDDLE SCHOOL",
+    "address": "",
+    "phone": "(317) 226-4194",
+    "phone_digits": "3172264194",
+    "website": "https://www.shalom-hcc.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "farrington middle school primary care primary_care primary care (317) 226-4194 https://www.shalom-hcc.org",
+    "state": "IN"
+  },
+  {
+    "id": "43",
+    "name": "SHALOM PRIMARY CARE CENTER",
+    "address": "",
+    "phone": "(317) 291-7422",
+    "phone_digits": "3172917422",
+    "website": "https://www.shalomhealthcenter.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "shalom primary care center primary care primary_care primary care (317) 291-7422 https://www.shalomhealthcenter.org",
+    "state": "IN"
+  },
+  {
+    "id": "44",
+    "name": "Sankofa at Arlington Woods#99",
+    "address": "",
+    "phone": "(317) 226-4299",
+    "phone_digits": "3172264299",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "sankofa at arlington woods#99 primary care primary_care primary care (317) 226-4299",
+    "state": "IN"
+  },
+  {
+    "id": "45",
+    "name": "Aspire Indiana Health - Willowbrook",
+    "address": "2506 Willowbrook Pkwy, Indianapolis, IN, 46205-1564",
+    "phone": "(877) 574-1254",
+    "phone_digits": "8775741254",
+    "website": "",
+    "zip_code": "46205",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "aspire indiana health - willowbrook 2506 willowbrook pkwy, indianapolis, in, 46205-1564 primary care primary_care primary care (877) 574-1254",
+    "state": "IN"
+  },
+  {
+    "id": "46",
+    "name": "Indiana Math and Science Academy West",
+    "address": "",
+    "phone": "(317) 298-0025",
+    "phone_digits": "3172980025",
+    "website": "https://www.shalomhealthcenter.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "indiana math and science academy west primary care primary_care primary care (317) 298-0025 https://www.shalomhealthcenter.org",
+    "state": "IN"
+  },
+  {
+    "id": "47",
+    "name": "Meridian Health Services Corp",
+    "address": "",
+    "phone": "(765) 282-1928",
+    "phone_digits": "7652821928",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "meridian health services corp primary care primary_care primary care (765) 282-1928",
+    "state": "IN"
+  },
+  {
+    "id": "48",
+    "name": "IPS School 79 - Carl Wilde",
+    "address": "",
+    "phone": "(317) 226-4279",
+    "phone_digits": "3172264279",
+    "website": "https://www.shalomhealthcenter.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "english"
+    ],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "ips school 79 - carl wilde primary care primary_care primary care english (317) 226-4279 https://www.shalomhealthcenter.org",
+    "state": "IN"
+  },
+  {
+    "id": "49",
+    "name": "HealthNet Healthy Families",
+    "address": "",
+    "phone": "(317) 957-2550",
+    "phone_digits": "3179572550",
+    "website": "https://www.indyhealthnet.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "english"
+    ],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "healthnet healthy families primary care primary_care primary care english (317) 957-2550 https://www.indyhealthnet.org",
+    "state": "IN"
+  },
+  {
+    "id": "50",
+    "name": "Epler Parke BH Services",
+    "address": "",
+    "phone": "(317) 534-4660",
+    "phone_digits": "3175344660",
+    "website": "https://www.windrosehealth.net",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "epler parke bh services primary care primary_care primary care (317) 534-4660 https://www.windrosehealth.net",
+    "state": "IN"
+  },
+  {
+    "id": "51",
+    "name": "Windrose Health Network - Epler Parke",
+    "address": "",
+    "phone": "(317) 534-4660",
+    "phone_digits": "3175344660",
+    "website": "http://www.windrosehealth.net",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "windrose health network - epler parke primary care primary_care primary care (317) 534-4660 http://www.windrosehealth.net",
+    "state": "IN"
+  },
+  {
+    "id": "52",
+    "name": "HealthNet Speedway Health & Dental Center",
+    "address": "6020 Crawfordsville Rd Ste 102, Indianapolis, IN, 46224-3710",
+    "phone": "(317) 957-2070",
+    "phone_digits": "3179572070",
+    "website": "https://www.indyhealthnet.org/locations/speedway-health--dental-center",
+    "zip_code": "46224",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "english",
+      "spanish"
+    ],
+    "hours": {
+      "monday": []
+    },
+    "hours_text": "Mon 7",
+    "notes": "",
+    "search_blob": "healthnet speedway health & dental center 6020 crawfordsville rd ste 102, indianapolis, in, 46224-3710 primary care primary_care primary care english spanish mon 7 (317) 957-2070 https://www.indyhealthnet.org/locations/speedway-health--dental-center",
+    "state": "IN"
+  },
+  {
+    "id": "53",
+    "name": "Northwest Middle School",
+    "address": "",
+    "phone": "(317) 693-5600",
+    "phone_digits": "3176935600",
+    "website": "https://www.shalomhealthcenter.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "northwest middle school primary care primary_care primary care (317) 693-5600 https://www.shalomhealthcenter.org",
+    "state": "IN"
+  },
+  {
+    "id": "54",
+    "name": "Adult and Child at Meredith Nicholson School 96",
+    "address": "",
+    "phone": "(877) 882-5122",
+    "phone_digits": "8778825122",
+    "website": "https://www.adultandchild.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {
+      "monday": [],
+      "friday": []
+    },
+    "hours_text": "Monday-Friday 9",
+    "notes": "",
+    "search_blob": "adult and child at meredith nicholson school 96 primary care primary_care primary care monday-friday 9 (877) 882-5122 https://www.adultandchild.org",
+    "state": "IN"
+  },
+  {
+    "id": "55",
+    "name": "IPS School 107 - Lew Wallace",
+    "address": "",
+    "phone": "(317) 226-4107",
+    "phone_digits": "3172264107",
+    "website": "https://www.shalomhealthcenter.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "english"
+    ],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "ips school 107 - lew wallace primary care primary_care primary care english (317) 226-4107 https://www.shalomhealthcenter.org",
+    "state": "IN"
+  },
+  {
+    "id": "56",
+    "name": "Enlace Academy",
+    "address": "",
+    "phone": "(317) 226-4108",
+    "phone_digits": "3172264108",
+    "website": "https://www.shalomhealthcenter.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "enlace academy primary care primary_care primary care (317) 226-4108 https://www.shalomhealthcenter.org",
+    "state": "IN"
+  },
+  {
+    "id": "57",
+    "name": "Shalom 56th Street - New Access Point",
+    "address": "",
+    "phone": "(317) 291-7422",
+    "phone_digits": "3172917422",
+    "website": "https://www.achn.net",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "shalom 56th street - new access point primary care primary_care primary care (317) 291-7422 https://www.achn.net",
+    "state": "IN"
+  },
+  {
+    "id": "58",
+    "name": "Adult and Child at Circle City Prep",
+    "address": "",
+    "phone": "(877) 882-5122",
+    "phone_digits": "8778825122",
+    "website": "https://www.adultandchild.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {
+      "monday": [],
+      "friday": []
+    },
+    "hours_text": "Monday-Friday 9",
+    "notes": "",
+    "search_blob": "adult and child at circle city prep primary care primary_care primary care monday-friday 9 (877) 882-5122 https://www.adultandchild.org",
+    "state": "IN"
+  },
+  {
+    "id": "59",
+    "name": "Adult and Child at Thompson Crossing Elementary",
+    "address": "",
+    "phone": "(877) 882-5122",
+    "phone_digits": "8778825122",
+    "website": "https://www.adultandchild.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {
+      "monday": [],
+      "friday": []
+    },
+    "hours_text": "Monday-Friday 9",
+    "notes": "",
+    "search_blob": "adult and child at thompson crossing elementary primary care primary_care primary care monday-friday 9 (877) 882-5122 https://www.adultandchild.org",
+    "state": "IN"
+  },
+  {
+    "id": "60",
+    "name": "Charles W. Fairbanks IPS School 105",
+    "address": "",
+    "phone": "(317) 226-4105",
+    "phone_digits": "3172264105",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "charles w. fairbanks ips school 105 primary care primary_care primary care (317) 226-4105",
+    "state": "IN"
+  },
+  {
+    "id": "61",
+    "name": "Adult and Child Health - Greenwood",
+    "address": "",
+    "phone": "(317) 882-5122",
+    "phone_digits": "3178825122",
+    "website": "https://www.adultandchild.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {
+      "monday": [],
+      "friday": []
+    },
+    "hours_text": "Monday-Friday 9",
+    "notes": "",
+    "search_blob": "adult and child health - greenwood primary care primary_care primary care monday-friday 9 (317) 882-5122 https://www.adultandchild.org",
+    "state": "IN"
+  },
+  {
+    "id": "62",
+    "name": "Adult and Child -Siear Terrace",
+    "address": "",
+    "phone": "(877) 882-5122",
+    "phone_digits": "8778825122",
+    "website": "https://www.adultandchild.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {
+      "monday": [],
+      "friday": []
+    },
+    "hours_text": "Monday-Friday 9",
+    "notes": "",
+    "search_blob": "adult and child -siear terrace primary care primary_care primary care monday-friday 9 (877) 882-5122 https://www.adultandchild.org",
+    "state": "IN"
+  },
+  {
+    "id": "63",
+    "name": "Damar Services, Inc- Damar Health Services",
+    "address": "",
+    "phone": "(317) 455-2366",
+    "phone_digits": "3174552366",
+    "website": "https://www.damarhealth.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "sation 21",
+    "notes": "",
+    "search_blob": "damar services, inc- damar health services primary care primary_care primary care sation 21 (317) 455-2366 https://www.damarhealth.org",
+    "state": "IN"
+  },
+  {
+    "id": "64",
+    "name": "Adult and Child at Franklin Central High School",
+    "address": "",
+    "phone": "(877) 882-5122",
+    "phone_digits": "8778825122",
+    "website": "https://www.adultandchild.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {
+      "monday": [],
+      "friday": []
+    },
+    "hours_text": "Monday-Friday 9",
+    "notes": "",
+    "search_blob": "adult and child at franklin central high school primary care primary_care primary care monday-friday 9 (877) 882-5122 https://www.adultandchild.org",
+    "state": "IN"
+  },
+  {
+    "id": "65",
+    "name": "Adult and Child at Kitley Intermediate",
+    "address": "",
+    "phone": "(877) 882-5122",
+    "phone_digits": "8778825122",
+    "website": "https://www.adultandchild.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {
+      "monday": [],
+      "friday": []
+    },
+    "hours_text": "Monday-Friday 9",
+    "notes": "",
+    "search_blob": "adult and child at kitley intermediate primary care primary_care primary care monday-friday 9 (877) 882-5122 https://www.adultandchild.org",
+    "state": "IN"
+  },
+  {
+    "id": "66",
+    "name": "Adult and Child at South Creek Elementary",
+    "address": "",
+    "phone": "(877) 882-5122",
+    "phone_digits": "8778825122",
+    "website": "https://www.adultandchild.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {
+      "monday": [],
+      "friday": []
+    },
+    "hours_text": "Monday-Friday 9",
+    "notes": "",
+    "search_blob": "adult and child at south creek elementary primary care primary_care primary care monday-friday 9 (877) 882-5122 https://www.adultandchild.org",
+    "state": "IN"
+  },
+  {
+    "id": "67",
+    "name": "Shalom Health Care Center 92nd Street Site",
+    "address": "",
+    "phone": "(317) 582-1100",
+    "phone_digits": "3175821100",
+    "website": "https://www.shalomhealthcenter.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "english"
+    ],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "shalom health care center 92nd street site primary care primary_care primary care english (317) 582-1100 https://www.shalomhealthcenter.org",
+    "state": "IN"
+  },
+  {
+    "id": "68",
+    "name": "IHC Mobile Unit",
+    "address": "",
+    "phone": "(812) 393-8070",
+    "phone_digits": "8123938070",
+    "website": "https://indianahealthonline.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "english"
+    ],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "ihc mobile unit primary care primary_care primary care english (812) 393-8070 https://indianahealthonline.org",
+    "state": "IN"
+  },
+  {
+    "id": "69",
+    "name": "Adult and Child at Ray Crowe Elementary",
+    "address": "",
+    "phone": "(877) 882-5122",
+    "phone_digits": "8778825122",
+    "website": "https://www.adultandchild.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {
+      "monday": [],
+      "friday": []
+    },
+    "hours_text": "Monday-Friday 9",
+    "notes": "",
+    "search_blob": "adult and child at ray crowe elementary primary care primary_care primary care monday-friday 9 (877) 882-5122 https://www.adultandchild.org",
+    "state": "IN"
+  },
+  {
+    "id": "70",
+    "name": "Jane Pauley Community Health Center ELC Amy Beverland",
+    "address": "",
+    "phone": "(844) 695-7242",
+    "phone_digits": "8446957242",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "jane pauley community health center elc amy beverland primary care primary_care primary care (844) 695-7242",
+    "state": "IN"
+  },
+  {
+    "id": "71",
+    "name": "Adult and Child Health - Northwood Plaza",
+    "address": "",
+    "phone": "(317) 882-5122",
+    "phone_digits": "3178825122",
+    "website": "https://www.adultandchild.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "adult and child health - northwood plaza primary care primary_care primary care (317) 882-5122 https://www.adultandchild.org",
+    "state": "IN"
+  },
+  {
+    "id": "72",
+    "name": "Windrose Health Network - Franklin",
+    "address": "55 N. Milford Drive, Franklin, IN, 46131-7308",
+    "phone": "(317) 739-4848",
+    "phone_digits": "3177394848",
+    "website": "https://www.windrosehealth.net",
+    "zip_code": "46131",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "windrose health network - franklin 55 n. milford drive, franklin, in, 46131-7308 primary care primary_care primary care (317) 739-4848 https://www.windrosehealth.net",
+    "state": "IN"
+  },
+  {
+    "id": "73",
+    "name": "Aspire Indiana Health - Noblesville",
+    "address": "17840 Cumberland Rd, Noblesville, IN, 46060-5409",
+    "phone": "(877) 574-1254",
+    "phone_digits": "8775741254",
+    "website": "",
+    "zip_code": "17840",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "aspire indiana health - noblesville 17840 cumberland rd, noblesville, in, 46060-5409 primary care primary_care primary care (877) 574-1254",
+    "state": "IN"
+  },
+  {
+    "id": "74",
+    "name": "IHC Hamilton County WIC",
+    "address": "942 N   10th St, Noblesville, IN, 46060-1801",
+    "phone": "(317) 776-3445",
+    "phone_digits": "3177763445",
+    "website": "https://None",
+    "zip_code": "46060",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "ihc hamilton county wic 942 n   10th st, noblesville, in, 46060-1801 primary care primary_care primary care (317) 776-3445 https://none",
+    "state": "IN"
+  },
+  {
+    "id": "75",
+    "name": "Adult and Child at Monrovia Middle School",
+    "address": "",
+    "phone": "(877) 882-5122",
+    "phone_digits": "8778825122",
+    "website": "https://www.adultandchild.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {
+      "monday": [],
+      "friday": []
+    },
+    "hours_text": "Monday-Friday 9",
+    "notes": "",
+    "search_blob": "adult and child at monrovia middle school primary care primary_care primary care monday-friday 9 (877) 882-5122 https://www.adultandchild.org",
+    "state": "IN"
+  },
+  {
+    "id": "76",
+    "name": "Windrose Health Network - Trafalgar",
+    "address": "",
+    "phone": "(317) 412-9190",
+    "phone_digits": "3174129190",
+    "website": "https://www.windrosehealth.net",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "windrose health network - trafalgar primary care primary_care primary care (317) 412-9190 https://www.windrosehealth.net",
+    "state": "IN"
+  },
+  {
+    "id": "77",
+    "name": "Boone County Community Clinic",
+    "address": "",
+    "phone": "(765) 483-4469",
+    "phone_digits": "7654834469",
+    "website": "https://boonecountyclinic.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "boone county community clinic primary care primary_care primary care (765) 483-4469 https://boonecountyclinic.org",
+    "state": "IN"
+  },
+  {
+    "id": "78",
+    "name": "Aspire Indiana Health - Lebanon",
+    "address": "",
+    "phone": "(877) 574-1254",
+    "phone_digits": "8775741254",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "aspire indiana health - lebanon primary care primary_care primary care (877) 574-1254",
+    "state": "IN"
+  },
+  {
+    "id": "79",
+    "name": "Aspire Indiana Health - May House",
+    "address": "",
+    "phone": "(877) 574-1254",
+    "phone_digits": "8775741254",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "aspire indiana health - may house primary care primary_care primary care (877) 574-1254",
+    "state": "IN"
+  },
+  {
+    "id": "80",
+    "name": "Aspire Indiana Health - Mockingbird Hill",
+    "address": "",
+    "phone": "(877) 574-1254",
+    "phone_digits": "8775741254",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "aspire indiana health - mockingbird hill primary care primary_care primary care (877) 574-1254",
+    "state": "IN"
+  },
+  {
+    "id": "81",
+    "name": "Jane Pauley Community Heath Center Ascension",
+    "address": "",
+    "phone": "(844) 266-7242",
+    "phone_digits": "8442667242",
+    "website": "https://www.janepauleychc.com",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "jane pauley community heath center ascension primary care primary_care primary care (844) 266-7242 https://www.janepauleychc.com",
+    "state": "IN"
+  },
+  {
+    "id": "82",
+    "name": "Open Door Health Services - Anderson Primary Care",
+    "address": "",
+    "phone": "(765) 286-7000",
+    "phone_digits": "7652867000",
+    "website": "https://opendoorhs.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "open door health services - anderson primary care primary care primary_care primary care (765) 286-7000 https://opendoorhs.org",
+    "state": "IN"
+  },
+  {
+    "id": "83",
+    "name": "Aspire Indiana Health - Mobile Clinic",
+    "address": "",
+    "phone": "(877) 574-1254",
+    "phone_digits": "8775741254",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "aspire indiana health - mobile clinic primary care primary_care primary care (877) 574-1254",
+    "state": "IN"
+  },
+  {
+    "id": "84",
+    "name": "Grace Clinic - Putnam County",
+    "address": "239 Hillsdale Ave Ste A, Greencastle, IN, 46135-1340",
+    "phone": "(765) 653-1024",
+    "phone_digits": "7656531024",
+    "website": "http://www.hamiltoncenter.org",
+    "zip_code": "46135",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "grace clinic - putnam county 239 hillsdale ave ste a, greencastle, in, 46135-1340 primary care primary_care primary care (765) 653-1024 http://www.hamiltoncenter.org",
+    "state": "IN"
+  },
+  {
+    "id": "85",
+    "name": "IHC Clinton County WIC",
+    "address": "",
+    "phone": "(765) 659-2131",
+    "phone_digits": "7656592131",
+    "website": "https://None",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "ihc clinton county wic primary care primary_care primary care (765) 659-2131 https://none",
+    "state": "IN"
+  },
+  {
+    "id": "86",
+    "name": "Centerstone Health Services - Columbus",
+    "address": "",
+    "phone": "(812) 339-1691",
+    "phone_digits": "8123391691",
+    "website": "https://www.centerstonehealth.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "mond 83",
+    "notes": "",
+    "search_blob": "centerstone health services - columbus primary care primary_care primary care mond 83 (812) 339-1691 https://www.centerstonehealth.org",
+    "state": "IN"
+  },
+  {
+    "id": "87",
+    "name": "VPCHC - Crawfordsville",
+    "address": "1702 Lafayette Rd, Crawfordsville, IN, 47933-1033",
+    "phone": "(765) 362-5100",
+    "phone_digits": "7653625100",
+    "website": "https://www.valleyprohealth.org",
+    "zip_code": "47933",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "vpchc - crawfordsville 1702 lafayette rd, crawfordsville, in, 47933-1033 primary care primary_care primary care (765) 362-5100 https://www.valleyprohealth.org",
+    "state": "IN"
+  },
+  {
+    "id": "88",
+    "name": "Monroe County Public Library Clinic",
+    "address": "",
+    "phone": "(812) 349-3050",
+    "phone_digits": "8123493050",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "monroe county public library clinic primary care primary_care primary care (812) 349-3050",
+    "state": "IN"
+  },
+  {
+    "id": "89",
+    "name": "Middle Way House Clinic",
+    "address": "",
+    "phone": "(812) 829-1660",
+    "phone_digits": "8128291660",
+    "website": "https://middlewayhouse.org/",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "middle way house clinic primary care primary_care primary care (812) 829-1660 https://middlewayhouse.org/",
+    "state": "IN"
+  },
+  {
+    "id": "90",
+    "name": "Bloomington Health and Dental Center",
+    "address": "",
+    "phone": "(812) 333-4001",
+    "phone_digits": "8123334001",
+    "website": "https://www.indyhealthnet.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "english"
+    ],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "bloomington health and dental center primary care primary_care primary care english (812) 333-4001 https://www.indyhealthnet.org",
+    "state": "IN"
+  },
+  {
+    "id": "91",
+    "name": "Wheeler Mission Center for Men Clinic",
+    "address": "",
+    "phone": "(812) 333-1905",
+    "phone_digits": "8123331905",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "wheeler mission center for men clinic primary care primary_care primary care (812) 333-1905",
+    "state": "IN"
+  },
+  {
+    "id": "92",
+    "name": "IHC-Owen County",
+    "address": "",
+    "phone": "(812) 585-3775",
+    "phone_digits": "8125853775",
+    "website": "https://indianahealthonline.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "ihc-owen county primary care primary_care primary care (812) 585-3775 https://indianahealthonline.org",
+    "state": "IN"
+  },
+  {
+    "id": "93",
+    "name": "IHC at Kokomo",
+    "address": "",
+    "phone": "(765) 864-4160",
+    "phone_digits": "7658644160",
+    "website": "https://None",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "ihc at kokomo primary care primary_care primary care (765) 864-4160 https://none",
+    "state": "IN"
+  },
+  {
+    "id": "94",
+    "name": "Bowen Health- Kokomo",
+    "address": "",
+    "phone": "(800) 342-5653",
+    "phone_digits": "8003425653",
+    "website": "https://www.bowencenter.org/fort-wayne",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "bowen health- kokomo primary care primary_care primary care (800) 342-5653 https://www.bowencenter.org/fort-wayne",
+    "state": "IN"
+  },
+  {
+    "id": "95",
+    "name": "Crawford Apartments Clinic",
+    "address": "",
+    "phone": "(812) 822-3748",
+    "phone_digits": "8128223748",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "crawford apartments clinic primary care primary_care primary care (812) 822-3748",
+    "state": "IN"
+  },
+  {
+    "id": "96",
+    "name": "Open Door Pediatrics and Family Medicine",
+    "address": "",
+    "phone": "(765) 286-7000",
+    "phone_digits": "7652867000",
+    "website": "https://opendoorhs.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "open door pediatrics and family medicine primary care primary_care primary care (765) 286-7000 https://opendoorhs.org",
+    "state": "IN"
+  },
+  {
+    "id": "97",
+    "name": "MeridianMD",
+    "address": "100 N Tillotson Ave, Muncie, IN, 47304-3997",
+    "phone": "(765) 288-1928",
+    "phone_digits": "7652881928",
+    "website": "",
+    "zip_code": "47304",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "meridianmd 100 n tillotson ave, muncie, in, 47304-3997 primary care primary_care primary care (765) 288-1928",
+    "state": "IN"
+  },
+  {
+    "id": "98",
+    "name": "IHC Howard County WIC",
+    "address": "1805 E Vaile Street, Kokomo, IN, 46901-5614",
+    "phone": "(765) 252-4249",
+    "phone_digits": "7652524249",
+    "website": "https://indianahealthonline.org",
+    "zip_code": "46901",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "english"
+    ],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "ihc howard county wic 1805 e vaile street, kokomo, in, 46901-5614 primary care primary_care primary care english (765) 252-4249 https://indianahealthonline.org",
+    "state": "IN"
+  },
+  {
+    "id": "99",
+    "name": "Urgent Care",
+    "address": "",
+    "phone": "(765) 286-7000",
+    "phone_digits": "7652867000",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "urgent care primary care primary_care primary care (765) 286-7000",
+    "state": "IN"
+  },
+  {
+    "id": "100",
+    "name": "Open Door Mobile School Health #1",
+    "address": "",
+    "phone": "(765) 286-7000",
+    "phone_digits": "7652867000",
+    "website": "https://www.opendoorhs.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "open door mobile school health #1 primary care primary_care primary care (765) 286-7000 https://www.opendoorhs.org",
+    "state": "IN"
+  },
+  {
+    "id": "101",
+    "name": "Family Heath Clinic of Burlington",
+    "address": "",
+    "phone": "(765) 566-5055",
+    "phone_digits": "7655665055",
+    "website": "https://n/a",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "family heath clinic of burlington primary care primary_care primary care (765) 566-5055 https://n/a",
+    "state": "IN"
+  },
+  {
+    "id": "102",
+    "name": "Fayette County Medical Center",
+    "address": "2025 Virginia Ave, Connersville, IN, 47331-2971",
+    "phone": "(765) 827-8064",
+    "phone_digits": "7658278064",
+    "website": "https://www.neighborhoodhc.org",
+    "zip_code": "47331",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "english",
+      "spanish"
+    ],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "fayette county medical center 2025 virginia ave, connersville, in, 47331-2971 primary care primary_care primary care english spanish (765) 827-8064 https://www.neighborhoodhc.org",
+    "state": "IN"
+  },
+  {
+    "id": "103",
+    "name": "Carroll  Consolidated School Corporation",
+    "address": "",
+    "phone": "(574) 967-4881",
+    "phone_digits": "5749674881",
+    "website": "https://www.familyhconline.com/",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "carroll  consolidated school corporation primary care primary_care primary care (574) 967-4881 https://www.familyhconline.com/",
+    "state": "IN"
+  },
+  {
+    "id": "104",
+    "name": "Carroll Elementary School",
+    "address": "",
+    "phone": "(574) 967-4881",
+    "phone_digits": "5749674881",
+    "website": "https://www.familyhconline.com/",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "spanish"
+    ],
+    "hours": {},
+    "hours_text": "Monon 69",
+    "notes": "",
+    "search_blob": "carroll elementary school primary care primary_care primary care spanish monon 69 (574) 967-4881 https://www.familyhconline.com/",
+    "state": "IN"
+  },
+  {
+    "id": "105",
+    "name": "Carroll Jr-Sr High School",
+    "address": "",
+    "phone": "(574) 967-4157",
+    "phone_digits": "5749674157",
+    "website": "https://www.familyhconline.com/",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "spanish"
+    ],
+    "hours": {},
+    "hours_text": "Monon 69",
+    "notes": "",
+    "search_blob": "carroll jr-sr high school primary care primary_care primary care spanish monon 69 (574) 967-4157 https://www.familyhconline.com/",
+    "state": "IN"
+  },
+  {
+    "id": "106",
+    "name": "VPCHC - Rockville",
+    "address": "727 N Lincoln Rd, Rockville, IN, 47872-1117",
+    "phone": "(765) 569-1123",
+    "phone_digits": "7655691123",
+    "website": "https://www.valleyprohealth.org",
+    "zip_code": "47872",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "vpchc - rockville 727 n lincoln rd, rockville, in, 47872-1117 primary care primary_care primary care (765) 569-1123 https://www.valleyprohealth.org",
+    "state": "IN"
+  },
+  {
+    "id": "107",
+    "name": "IHC Jackson County Annex",
+    "address": "",
+    "phone": "(812) 405-1857",
+    "phone_digits": "8124051857",
+    "website": "https://indianahealthonline.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "english"
+    ],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "ihc jackson county annex primary care primary_care primary care english (812) 405-1857 https://indianahealthonline.org",
+    "state": "IN"
+  },
+  {
+    "id": "108",
+    "name": "IHC Marion",
+    "address": "",
+    "phone": "(765) 664-7492",
+    "phone_digits": "7656647492",
+    "website": "https://indianahealthonline.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "english"
+    ],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "ihc marion primary care primary_care primary care english (765) 664-7492 https://indianahealthonline.org",
+    "state": "IN"
+  },
+  {
+    "id": "109",
+    "name": "VPCHC - Bloomingdale",
+    "address": "",
+    "phone": "(765) 498-9000",
+    "phone_digits": "7654989000",
+    "website": "https://www.valleyprohealth.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "vpchc - bloomingdale primary care primary_care primary care (765) 498-9000 https://www.valleyprohealth.org",
+    "state": "IN"
+  },
+  {
+    "id": "110",
+    "name": "Riggs Community Health Center South Street",
+    "address": "",
+    "phone": "(765) 742-1567",
+    "phone_digits": "7657421567",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "riggs community health center south street primary care primary_care primary care (765) 742-1567",
+    "state": "IN"
+  },
+  {
+    "id": "111",
+    "name": "Ferry",
+    "address": "",
+    "phone": "(866) 682-5539",
+    "phone_digits": "8666825539",
+    "website": "https://valleyoaks.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "ferry primary care primary_care primary care (866) 682-5539 https://valleyoaks.org",
+    "state": "IN"
+  },
+  {
+    "id": "112",
+    "name": "IHC Grant-Blackford",
+    "address": "",
+    "phone": "(765) 662-2039",
+    "phone_digits": "7656622039",
+    "website": "https://indianahealthonline.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "english"
+    ],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "ihc grant-blackford primary care primary_care primary care english (765) 662-2039 https://indianahealthonline.org",
+    "state": "IN"
+  },
+  {
+    "id": "113",
+    "name": "Alliance Health Centers - Marion",
+    "address": "",
+    "phone": "(260) 266-0780",
+    "phone_digits": "2602660780",
+    "website": "https://www.myalliancehealth.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "alliance health centers - marion primary care primary_care primary care (260) 266-0780 https://www.myalliancehealth.org",
+    "state": "IN"
+  },
+  {
+    "id": "114",
+    "name": "IHC Grant County WIC",
+    "address": "",
+    "phone": "(765) 613-0150",
+    "phone_digits": "7656130150",
+    "website": "https://indianahealthonline.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "english"
+    ],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "ihc grant county wic primary care primary_care primary care english (765) 613-0150 https://indianahealthonline.org",
+    "state": "IN"
+  },
+  {
+    "id": "115",
+    "name": "Camden Early Childhood Center",
+    "address": "",
+    "phone": "(574) 686-2362",
+    "phone_digits": "5746862362",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "camden early childhood center primary care primary_care primary care (574) 686-2362",
+    "state": "IN"
+  },
+  {
+    "id": "116",
+    "name": "Delphi Community High School",
+    "address": "",
+    "phone": "(765) 564-3481",
+    "phone_digits": "7655643481",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "delphi community high school primary care primary_care primary care (765) 564-3481",
+    "state": "IN"
+  },
+  {
+    "id": "117",
+    "name": "Well Care Community Health - Dental",
+    "address": "100 Mattie Harris Rd, Centerville, IN, 47330-1335",
+    "phone": "(765) 855-3435",
+    "phone_digits": "7658553435",
+    "website": "",
+    "zip_code": "47330",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "well care community health - dental 100 mattie harris rd, centerville, in, 47330-1335 primary care primary_care primary care (765) 855-3435",
+    "state": "IN"
+  },
+  {
+    "id": "118",
+    "name": "Family Health Clinic of Carroll County",
+    "address": "901 Prince William Rd Ste A, Delphi, IN, 46923-1759",
+    "phone": "(765) 564-3016",
+    "phone_digits": "7655643016",
+    "website": "https://n/a",
+    "zip_code": "46923",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "family health clinic of carroll county 901 prince william rd ste a, delphi, in, 46923-1759 primary care primary_care primary care (765) 564-3016 https://n/a",
+    "state": "IN"
+  },
+  {
+    "id": "119",
+    "name": "SICHC Bedford",
+    "address": "",
+    "phone": "(812) 675-4470",
+    "phone_digits": "8126754470",
+    "website": "https://www.sichc.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "english"
+    ],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "sichc bedford primary care primary_care primary care english (812) 675-4470 https://www.sichc.org",
+    "state": "IN"
+  },
+  {
+    "id": "120",
+    "name": "IHC Lawrence County WIC",
+    "address": "",
+    "phone": "(317) 576-1335",
+    "phone_digits": "3175761335",
+    "website": "https://indianahealthonline.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "english"
+    ],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "ihc lawrence county wic primary care primary_care primary care english (317) 576-1335 https://indianahealthonline.org",
+    "state": "IN"
+  },
+  {
+    "id": "121",
+    "name": "Neighborhood Health Center - Liberty Mobile Unit",
+    "address": "",
+    "phone": "(765) 458-5191",
+    "phone_digits": "7654585191",
+    "website": "https://www.nhci.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "neighborhood health center - liberty mobile unit primary care primary_care primary care (765) 458-5191 https://www.nhci.org",
+    "state": "IN"
+  },
+  {
+    "id": "122",
+    "name": "VPCHC - Clinton",
+    "address": "",
+    "phone": "(765) 828-1003",
+    "phone_digits": "7658281003",
+    "website": "https://www.vallyprohealth.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "vpchc - clinton primary care primary_care primary care (765) 828-1003 https://www.vallyprohealth.org",
+    "state": "IN"
+  },
+  {
+    "id": "123",
+    "name": "VPCHC - Mobile School Based Health Center",
+    "address": "",
+    "phone": "(765) 828-1003",
+    "phone_digits": "7658281003",
+    "website": "https://www.valleyprohealth.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "vpchc - mobile school based health center primary care primary_care primary care (765) 828-1003 https://www.valleyprohealth.org",
+    "state": "IN"
+  },
+  {
+    "id": "124",
+    "name": "Wabash Valley Health Center, Inc.",
+    "address": "",
+    "phone": "(812) 232-7447",
+    "phone_digits": "8122327447",
+    "website": "https://www.wabashvalleyhealthcenter.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "wabash valley health center, inc. primary care primary_care primary care (812) 232-7447 https://www.wabashvalleyhealthcenter.org",
+    "state": "IN"
+  },
+  {
+    "id": "125",
+    "name": "IHC Peru",
+    "address": "",
+    "phone": "(765) 472-3192",
+    "phone_digits": "7654723192",
+    "website": "https://indianahealthonline.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "english"
+    ],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "ihc peru primary care primary_care primary care english (765) 472-3192 https://indianahealthonline.org",
+    "state": "IN"
+  },
+  {
+    "id": "126",
+    "name": "VPCHC - Terre Haute North",
+    "address": "",
+    "phone": "(812) 238-7631",
+    "phone_digits": "8122387631",
+    "website": "https://www.valleyprohealth.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "vpchc - terre haute north primary care primary_care primary care (812) 238-7631 https://www.valleyprohealth.org",
+    "state": "IN"
+  },
+  {
+    "id": "127",
+    "name": "Greene County Health- Shakamak",
+    "address": "326 E Main St, Jasonville, IN, 47438-1510",
+    "phone": "(812) 665-9000",
+    "phone_digits": "8126659000",
+    "website": "",
+    "zip_code": "47438",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "greene county health- shakamak 326 e main st, jasonville, in, 47438-1510 primary care primary_care primary care (812) 665-9000",
+    "state": "IN"
+  },
+  {
+    "id": "128",
+    "name": "Hamilton Center - A Moving Grace",
+    "address": "",
+    "phone": "(812) 231-8377",
+    "phone_digits": "8122318377",
+    "website": "https://None",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "hamilton center - a moving grace primary care primary_care primary care (812) 231-8377 https://none",
+    "state": "IN"
+  },
+  {
+    "id": "129",
+    "name": "IHC Logansport",
+    "address": "",
+    "phone": "(574) 722-7407",
+    "phone_digits": "5747227407",
+    "website": "https://None",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "ihc logansport primary care primary_care primary care (574) 722-7407 https://none",
+    "state": "IN"
+  },
+  {
+    "id": "130",
+    "name": "IHC Cass County WIC",
+    "address": "",
+    "phone": "(514) 753-4961",
+    "phone_digits": "5147534961",
+    "website": "https://indianahealthonline.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "english"
+    ],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "ihc cass county wic primary care primary_care primary care english (514) 753-4961 https://indianahealthonline.org",
+    "state": "IN"
+  },
+  {
+    "id": "131",
+    "name": "VPCHC - Springhill",
+    "address": "1600 E Springhill Dr, Terre Haute, IN, 47802-4363",
+    "phone": "(812) 645-9809",
+    "phone_digits": "8126459809",
+    "website": "https://www.valleyprohealth.org",
+    "zip_code": "47802",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "vpchc - springhill 1600 e springhill dr, terre haute, in, 47802-4363 primary care primary_care primary care (812) 645-9809 https://www.valleyprohealth.org",
+    "state": "IN"
+  },
+  {
+    "id": "132",
+    "name": "VPCHC - Cayuga",
+    "address": "",
+    "phone": "(765) 492-9042",
+    "phone_digits": "7654929042",
+    "website": "https://www.valleyprohealth.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "vpchc - cayuga primary care primary_care primary care (765) 492-9042 https://www.valleyprohealth.org",
+    "state": "IN"
+  },
+  {
+    "id": "133",
+    "name": "VPCHC - Ivy Tech",
+    "address": "",
+    "phone": "(812) 229-1121",
+    "phone_digits": "8122291121",
+    "website": "https://www.valleyprohealth.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "vpchc - ivy tech primary care primary_care primary care (812) 229-1121 https://www.valleyprohealth.org",
+    "state": "IN"
+  },
+  {
+    "id": "134",
+    "name": "Greene County Health Linton",
+    "address": "",
+    "phone": "(812) 847-7005",
+    "phone_digits": "8128477005",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "greene county health linton primary care primary_care primary care (812) 847-7005",
+    "state": "IN"
+  },
+  {
+    "id": "135",
+    "name": "Austin Medical Center",
+    "address": "",
+    "phone": "(813) 413-3117",
+    "phone_digits": "8134133117",
+    "website": "https://www.lifespringhealthsystems.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "english",
+      "spanish"
+    ],
+    "hours": {},
+    "hours_text": "monitored 24",
+    "notes": "",
+    "search_blob": "austin medical center primary care primary_care primary care english spanish monitored 24 (813) 413-3117 https://www.lifespringhealthsystems.org",
+    "state": "IN"
+  },
+  {
+    "id": "136",
+    "name": "LifeSpring Mobile Health Services",
+    "address": "",
+    "phone": "(812) 413-3117",
+    "phone_digits": "8124133117",
+    "website": "https://www.lifespringhealthsystems.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "english",
+      "spanish"
+    ],
+    "hours": {},
+    "hours_text": "monitored 24",
+    "notes": "",
+    "search_blob": "lifespring mobile health services primary care primary_care primary care english spanish monitored 24 (812) 413-3117 https://www.lifespringhealthsystems.org",
+    "state": "IN"
+  },
+  {
+    "id": "137",
+    "name": "Bowen Center- Wabash",
+    "address": "",
+    "phone": "(260) 563-8446",
+    "phone_digits": "2605638446",
+    "website": "https://www.bowencenter.org/fort-wayne",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "bowen center- wabash primary care primary_care primary care (260) 563-8446 https://www.bowencenter.org/fort-wayne",
+    "state": "IN"
+  },
+  {
+    "id": "138",
+    "name": "SICHC Mitchell",
+    "address": "",
+    "phone": "(812) 992-5440",
+    "phone_digits": "8129925440",
+    "website": "https://www.sichc.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "sichc mitchell primary care primary_care primary care (812) 992-5440 https://www.sichc.org",
+    "state": "IN"
+  },
+  {
+    "id": "139",
+    "name": "SICHC Orleans High School",
+    "address": "200 W Wilson St, Orleans, IN, 47452-1007",
+    "phone": "(812) 865-2688",
+    "phone_digits": "8128652688",
+    "website": "https://www.sichc.org",
+    "zip_code": "47452",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "english"
+    ],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "sichc orleans high school 200 w wilson st, orleans, in, 47452-1007 primary care primary_care primary care english (812) 865-2688 https://www.sichc.org",
+    "state": "IN"
+  },
+  {
+    "id": "140",
+    "name": "Orleans Family Health",
+    "address": "",
+    "phone": "(812) 865-3350",
+    "phone_digits": "8128653350",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "orleans family health primary care primary_care primary care (812) 865-3350",
+    "state": "IN"
+  },
+  {
+    "id": "141",
+    "name": "Salem Community Schools Health Center",
+    "address": "",
+    "phone": "(812) 280-2080",
+    "phone_digits": "8122802080",
+    "website": "http://www.lifespringhealthsystems.org/",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "english",
+      "spanish"
+    ],
+    "hours": {},
+    "hours_text": "monitored 24",
+    "notes": "",
+    "search_blob": "salem community schools health center primary care primary_care primary care english spanish monitored 24 (812) 280-2080 http://www.lifespringhealthsystems.org/",
+    "state": "IN"
+  },
+  {
+    "id": "142",
+    "name": "North Daviess Elementary School",
+    "address": "",
+    "phone": "(812) 636-8000",
+    "phone_digits": "8126368000",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "north daviess elementary school primary care primary_care primary care (812) 636-8000",
+    "state": "IN"
+  },
+  {
+    "id": "143",
+    "name": "SALEM COMMUNITY MEDICAL SERVICES",
+    "address": "",
+    "phone": "(812) 280-2080",
+    "phone_digits": "8122802080",
+    "website": "http://www.lifespringhealthsystems.org/",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "salem community medical services primary care primary_care primary care (812) 280-2080 http://www.lifespringhealthsystems.org/",
+    "state": "IN"
+  },
+  {
+    "id": "144",
+    "name": "Family Health Clinic of Wolcott",
+    "address": "",
+    "phone": "(219) 474-2067",
+    "phone_digits": "2194742067",
+    "website": "https://www.fhcenters.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "family health clinic of wolcott primary care primary_care primary care (219) 474-2067 https://www.fhcenters.org",
+    "state": "IN"
+  },
+  {
+    "id": "145",
+    "name": "SICHC Paoli",
+    "address": "",
+    "phone": "(812) 723-3944",
+    "phone_digits": "8127233944",
+    "website": "https://www.sichc.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "sichc paoli primary care primary_care primary care (812) 723-3944 https://www.sichc.org",
+    "state": "IN"
+  },
+  {
+    "id": "146",
+    "name": "North White Middle-High School",
+    "address": "",
+    "phone": "(219) 604-4005",
+    "phone_digits": "2196044005",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "north white middle-high school primary care primary_care primary care (219) 604-4005",
+    "state": "IN"
+  },
+  {
+    "id": "147",
+    "name": "Bowen Center- Huntington",
+    "address": "",
+    "phone": "(888) 470-0082",
+    "phone_digits": "8884700082",
+    "website": "https://www.bowencenter.org/fort-wayne",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "bowen center- huntington primary care primary_care primary care (888) 470-0082 https://www.bowencenter.org/fort-wayne",
+    "state": "IN"
+  },
+  {
+    "id": "148",
+    "name": "Martin County Family Health Center",
+    "address": "",
+    "phone": "(812) 494-7900",
+    "phone_digits": "8124947900",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "martin county family health center primary care primary_care primary care (812) 494-7900",
+    "state": "IN"
+  },
+  {
+    "id": "149",
+    "name": "Loogootee High School",
+    "address": "",
+    "phone": "(812) 295-3254",
+    "phone_digits": "8122953254",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "loogootee high school primary care primary_care primary care (812) 295-3254",
+    "state": "IN"
+  },
+  {
+    "id": "150",
+    "name": "SICHC West Baden",
+    "address": "",
+    "phone": "(812) 723-7125",
+    "phone_digits": "8127237125",
+    "website": "https://www.sichc.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "sichc west baden primary care primary_care primary care (812) 723-7125 https://www.sichc.org",
+    "state": "IN"
+  },
+  {
+    "id": "151",
+    "name": "North Knox Jr/Sr High School",
+    "address": "",
+    "phone": "(812) 735-2990",
+    "phone_digits": "8127352990",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "north knox jr/sr high school primary care primary_care primary care (812) 735-2990",
+    "state": "IN"
+  },
+  {
+    "id": "152",
+    "name": "North Knox Primary",
+    "address": "",
+    "phone": "(812) 735-2547",
+    "phone_digits": "8127352547",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "north knox primary primary care primary_care primary care (812) 735-2547",
+    "state": "IN"
+  },
+  {
+    "id": "153",
+    "name": "Washington Upper Elementary",
+    "address": "",
+    "phone": "(812) 254-8363",
+    "phone_digits": "8122548363",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "washington upper elementary primary care primary_care primary care (812) 254-8363",
+    "state": "IN"
+  },
+  {
+    "id": "154",
+    "name": "Valley Oaks Health Rensselaer",
+    "address": "",
+    "phone": "(866) 682-5539",
+    "phone_digits": "8666825539",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "valley oaks health rensselaer primary care primary_care primary care (866) 682-5539",
+    "state": "IN"
+  },
+  {
+    "id": "155",
+    "name": "North Knox Intermediate",
+    "address": "7820 N Camp Arthur Rd  FL 1, Bruceville, IN, 47516-6225",
+    "phone": "(812) 324-2291",
+    "phone_digits": "8123242291",
+    "website": "",
+    "zip_code": "47516",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "north knox intermediate 7820 n camp arthur rd  fl 1, bruceville, in, 47516-6225 primary care primary_care primary care (812) 324-2291",
+    "state": "IN"
+  },
+  {
+    "id": "156",
+    "name": "SICHC English",
+    "address": "",
+    "phone": "(812) 338-2924",
+    "phone_digits": "8123382924",
+    "website": "https://www.sichc.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "sichc english primary care primary_care primary care (812) 338-2924 https://www.sichc.org",
+    "state": "IN"
+  },
+  {
+    "id": "157",
+    "name": "SICHC Marengo",
+    "address": "",
+    "phone": "(812) 365-3221",
+    "phone_digits": "8123653221",
+    "website": "https://www.sichc.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "sichc marengo primary care primary_care primary care (812) 365-3221 https://www.sichc.org",
+    "state": "IN"
+  },
+  {
+    "id": "158",
+    "name": "Floyd Central Student Health Center",
+    "address": "",
+    "phone": "(812) 981-7452",
+    "phone_digits": "8129817452",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "floyd central student health center primary care primary_care primary care (812) 981-7452",
+    "state": "IN"
+  },
+  {
+    "id": "159",
+    "name": "Family Health Centers of Southern Indiana Clarksville",
+    "address": "1420 Blackiston Mill Road  Unit 1  BLDG 2, Clarksville, IN, 47129-2290",
+    "phone": "(812) 283-2308",
+    "phone_digits": "8122832308",
+    "website": "https://www.fhcenters.org",
+    "zip_code": "47129",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "family health centers of southern indiana clarksville 1420 blackiston mill road  unit 1  bldg 2, clarksville, in, 47129-2290 primary care primary_care primary care (812) 283-2308 https://www.fhcenters.org",
+    "state": "IN"
+  },
+  {
+    "id": "160",
+    "name": "Bowen Center Whitley",
+    "address": "",
+    "phone": "(260) 248-8176",
+    "phone_digits": "2602488176",
+    "website": "https://www.bowencenter.org/fort-wayne",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "bowen center whitley primary care primary_care primary care (260) 248-8176 https://www.bowencenter.org/fort-wayne",
+    "state": "IN"
+  },
+  {
+    "id": "161",
+    "name": "New Albany Student Health Center",
+    "address": "",
+    "phone": "(812) 280-2080",
+    "phone_digits": "8122802080",
+    "website": "https://www.lifespringhealthsystems.org/lifespring-community-medical-services/",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "english",
+      "spanish"
+    ],
+    "hours": {},
+    "hours_text": "monitored 24",
+    "notes": "",
+    "search_blob": "new albany student health center primary care primary_care primary care english spanish monitored 24 (812) 280-2080 https://www.lifespringhealthsystems.org/lifespring-community-medical-services/",
+    "state": "IN"
+  },
+  {
+    "id": "162",
+    "name": "New Albany Senior High School",
+    "address": "",
+    "phone": "(812) 280-6606",
+    "phone_digits": "8122806606",
+    "website": "https://www.lifespringhealthsystems.org/lifespring-community-medical-services/",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "new albany senior high school primary care primary_care primary care (812) 280-6606 https://www.lifespringhealthsystems.org/lifespring-community-medical-services/",
+    "state": "IN"
+  },
+  {
+    "id": "163",
+    "name": "Bowen Center- Fort Wayne",
+    "address": "201 Rudisill Blvd, Fort Wayne, IN, 46806-1738",
+    "phone": "(260) 471-3500",
+    "phone_digits": "2604713500",
+    "website": "https://www.bowencenter.org/fort-wayne",
+    "zip_code": "46806",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "bowen center- fort wayne 201 rudisill blvd, fort wayne, in, 46806-1738 primary care primary_care primary care (260) 471-3500 https://www.bowencenter.org/fort-wayne",
+    "state": "IN"
+  },
+  {
+    "id": "164",
+    "name": "Neighborhood Health - Southeast Clinic",
+    "address": "",
+    "phone": "(260) 458-2641",
+    "phone_digits": "2604582641",
+    "website": "https://www.nhci.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "neighborhood health - southeast clinic primary care primary_care primary care (260) 458-2641 https://www.nhci.org",
+    "state": "IN"
+  },
+  {
+    "id": "165",
+    "name": "Tecumseh Harrison Elementary",
+    "address": "",
+    "phone": "(812) 882-8458",
+    "phone_digits": "8128828458",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "tecumseh harrison elementary primary care primary_care primary care (812) 882-8458",
+    "state": "IN"
+  },
+  {
+    "id": "166",
+    "name": "Washington Learning Academy",
+    "address": "",
+    "phone": "(812) 882-5167",
+    "phone_digits": "8128825167",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "washington learning academy primary care primary_care primary care (812) 882-5167",
+    "state": "IN"
+  },
+  {
+    "id": "167",
+    "name": "Metro Mobile Unit",
+    "address": "",
+    "phone": "(812) 280-2080",
+    "phone_digits": "8122802080",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "metro mobile unit primary care primary_care primary care (812) 280-2080",
+    "state": "IN"
+  },
+  {
+    "id": "168",
+    "name": "Alliance Health Center",
+    "address": "",
+    "phone": "(260) 266-0780",
+    "phone_digits": "2602660780",
+    "website": "https://www.myalliancehealth.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "alliance health center primary care primary_care primary care (260) 266-0780 https://www.myalliancehealth.org",
+    "state": "IN"
+  },
+  {
+    "id": "169",
+    "name": "LifeSpring Comunity Medical Services",
+    "address": "1036 SHARON DR, JEFFERSONVILLE, IN, 47130-4522",
+    "phone": "(812) 280-2080",
+    "phone_digits": "8122802080",
+    "website": "https://www.lifespringhealthsystems.org",
+    "zip_code": "47130",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "lifespring comunity medical services 1036 sharon dr, jeffersonville, in, 47130-4522 primary care primary_care primary care (812) 280-2080 https://www.lifespringhealthsystems.org",
+    "state": "IN"
+  },
+  {
+    "id": "170",
+    "name": "Franklin Elementary",
+    "address": "",
+    "phone": "(812) 882-8176",
+    "phone_digits": "8128828176",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "franklin elementary primary care primary_care primary care (812) 882-8176",
+    "state": "IN"
+  },
+  {
+    "id": "171",
+    "name": "Bowen Health Warsaw",
+    "address": "",
+    "phone": "(800) 342-5653",
+    "phone_digits": "8003425653",
+    "website": "https://www.bowencenter.org/fort-wayne",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "bowen health warsaw primary care primary_care primary care (800) 342-5653 https://www.bowencenter.org/fort-wayne",
+    "state": "IN"
+  },
+  {
+    "id": "172",
+    "name": "Neighborhood Health - Calhoun Site",
+    "address": "",
+    "phone": "(260) 458-2641",
+    "phone_digits": "2604582641",
+    "website": "https://www.nhci.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "neighborhood health - calhoun site primary care primary_care primary care (260) 458-2641 https://www.nhci.org",
+    "state": "IN"
+  },
+  {
+    "id": "173",
+    "name": "Mobile Dental Unit",
+    "address": "1319 Duncan Ave, Jeffersonville, IN, 47130-3759",
+    "phone": "(812) 283-2308",
+    "phone_digits": "8122832308",
+    "website": "https://www.fhcenters.org",
+    "zip_code": "47130",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "mobile dental unit 1319 duncan ave, jeffersonville, in, 47130-3759 primary care primary_care primary care (812) 283-2308 https://www.fhcenters.org",
+    "state": "IN"
+  },
+  {
+    "id": "174",
+    "name": "Neighborhood Health Family Medicine Center",
+    "address": "",
+    "phone": "(206) 423-2675",
+    "phone_digits": "2064232675",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "neighborhood health family medicine center primary care primary_care primary care (206) 423-2675",
+    "state": "IN"
+  },
+  {
+    "id": "175",
+    "name": "Clark Middle School",
+    "address": "",
+    "phone": "(812) 882-5172",
+    "phone_digits": "8128825172",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "clark middle school primary care primary_care primary care (812) 882-5172",
+    "state": "IN"
+  },
+  {
+    "id": "176",
+    "name": "Green Door Center",
+    "address": "",
+    "phone": "(833) 644-3575",
+    "phone_digits": "8336443575",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "green door center primary care primary_care primary care (833) 644-3575",
+    "state": "IN"
+  },
+  {
+    "id": "177",
+    "name": "Bowen Center- Goshen Road",
+    "address": "",
+    "phone": "(800) 342-5653",
+    "phone_digits": "8003425653",
+    "website": "https://www.bowencenter.org/fort-wayne",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "bowen center- goshen road primary care primary_care primary care (800) 342-5653 https://www.bowencenter.org/fort-wayne",
+    "state": "IN"
+  },
+  {
+    "id": "178",
+    "name": "HealthLinc Newton",
+    "address": "",
+    "phone": "(888) 580-1060",
+    "phone_digits": "8885801060",
+    "website": "https://www.healthlincchc.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "healthlinc newton primary care primary_care primary care (888) 580-1060 https://www.healthlincchc.org",
+    "state": "IN"
+  },
+  {
+    "id": "179",
+    "name": "Willows Family Health Center",
+    "address": "1901 Willow St, Vincennes, IN, 47591-4277",
+    "phone": "(812) 494-7500",
+    "phone_digits": "8124947500",
+    "website": "",
+    "zip_code": "47591",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "willows family health center 1901 willow st, vincennes, in, 47591-4277 primary care primary_care primary care (812) 494-7500",
+    "state": "IN"
+  },
+  {
+    "id": "180",
+    "name": "Bowen Health- Washington Center Road",
+    "address": "",
+    "phone": "(800) 342-5653",
+    "phone_digits": "8003425653",
+    "website": "https://www.bowencenter.org/fort-wayne",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "bowen health- washington center road primary care primary_care primary care (800) 342-5653 https://www.bowencenter.org/fort-wayne",
+    "state": "IN"
+  },
+  {
+    "id": "181",
+    "name": "Bowen Center Auburn",
+    "address": "",
+    "phone": "(800) 342-5653",
+    "phone_digits": "8003425653",
+    "website": "https://www.bowencenter.org/fort-wayne",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "bowen center auburn primary care primary_care primary care (800) 342-5653 https://www.bowencenter.org/fort-wayne",
+    "state": "IN"
+  },
+  {
+    "id": "182",
+    "name": "Bowen Center Albion",
+    "address": "",
+    "phone": "(800) 342-5653",
+    "phone_digits": "8003425653",
+    "website": "https://www.bowencenter.org/fort-wayne",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "bowen center albion primary care primary_care primary care (800) 342-5653 https://www.bowencenter.org/fort-wayne",
+    "state": "IN"
+  },
+  {
+    "id": "183",
+    "name": "Bowen Center Syracuse",
+    "address": "",
+    "phone": "(800) 342-5653",
+    "phone_digits": "8003425653",
+    "website": "https://www.bowencenter.org/fort-wayne",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "bowen center syracuse primary care primary_care primary care (800) 342-5653 https://www.bowencenter.org/fort-wayne",
+    "state": "IN"
+  },
+  {
+    "id": "184",
+    "name": "Bowen Center Angola",
+    "address": "",
+    "phone": "(800) 342-5653",
+    "phone_digits": "8003425653",
+    "website": "https://www.bowencenter.org/fort-wayne",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "bowen center angola primary care primary_care primary care (800) 342-5653 https://www.bowencenter.org/fort-wayne",
+    "state": "IN"
+  },
+  {
+    "id": "185",
+    "name": "Bowen Center LaGrange",
+    "address": "",
+    "phone": "(800) 342-5653",
+    "phone_digits": "8003425653",
+    "website": "https://www.bowencenter.org/fort-wayne",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "bowen center lagrange primary care primary_care primary care (800) 342-5653 https://www.bowencenter.org/fort-wayne",
+    "state": "IN"
+  },
+  {
+    "id": "186",
+    "name": "Maple City Health Care Center  -  215 Middlebury St",
+    "address": "",
+    "phone": "(574) 534-3300",
+    "phone_digits": "5745343300",
+    "website": "https://www.mchcc.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "maple city health care center  -  215 middlebury st primary care primary_care primary care (574) 534-3300 https://www.mchcc.org",
+    "state": "IN"
+  },
+  {
+    "id": "187",
+    "name": "Northside Community Health Center",
+    "address": "",
+    "phone": "(574) 534-3300",
+    "phone_digits": "5745343300",
+    "website": "https://www.mchcc.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "northside community health center primary care primary_care primary care (574) 534-3300 https://www.mchcc.org",
+    "state": "IN"
+  },
+  {
+    "id": "188",
+    "name": "Maple City Mobile",
+    "address": "",
+    "phone": "(574) 534-0088",
+    "phone_digits": "5745340088",
+    "website": "https://www.mchcc.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "maple city mobile primary care primary_care primary care (574) 534-0088 https://www.mchcc.org",
+    "state": "IN"
+  },
+  {
+    "id": "189",
+    "name": "Maple City Dental",
+    "address": "",
+    "phone": "(574) 534-0088",
+    "phone_digits": "5745340088",
+    "website": "https://www.mchcc.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "maple city dental primary care primary_care primary care (574) 534-0088 https://www.mchcc.org",
+    "state": "IN"
+  },
+  {
+    "id": "190",
+    "name": "Bowen Health- Bremen",
+    "address": "",
+    "phone": "(800) 342-5653",
+    "phone_digits": "8003425653",
+    "website": "https://www.bowencenter.org/fort-wayne",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "bowen health- bremen primary care primary_care primary care (800) 342-5653 https://www.bowencenter.org/fort-wayne",
+    "state": "IN"
+  },
+  {
+    "id": "191",
+    "name": "Heart City Health Center SCENIC HEALTH",
+    "address": "",
+    "phone": "(574) 293-0052",
+    "phone_digits": "5742930052",
+    "website": "https://www.heartcityhealth.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "english"
+    ],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "heart city health center scenic health primary care primary_care primary care english (574) 293-0052 https://www.heartcityhealth.org",
+    "state": "IN"
+  },
+  {
+    "id": "192",
+    "name": "Heart City Health Dental",
+    "address": "",
+    "phone": "(574) 293-0052",
+    "phone_digits": "5742930052",
+    "website": "https://www.heartcityhealth.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "english"
+    ],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "heart city health dental primary care primary_care primary care english (574) 293-0052 https://www.heartcityhealth.org",
+    "state": "IN"
+  },
+  {
+    "id": "193",
+    "name": "Heart City Womens Health",
+    "address": "",
+    "phone": "(574) 293-0052",
+    "phone_digits": "5742930052",
+    "website": "https://www.heartcityhealth.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "english"
+    ],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "heart city womens health primary care primary_care primary care english (574) 293-0052 https://www.heartcityhealth.org",
+    "state": "IN"
+  },
+  {
+    "id": "194",
+    "name": "Bowen Center Marshall",
+    "address": "2904 Miller Dr, Plymouth, IN, 46563-8083",
+    "phone": "(800) 342-5653",
+    "phone_digits": "8003425653",
+    "website": "https://www.bowencenter.org/fort-wayne",
+    "zip_code": "46563",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "bowen center marshall 2904 miller dr, plymouth, in, 46563-8083 primary care primary_care primary care (800) 342-5653 https://www.bowencenter.org/fort-wayne",
+    "state": "IN"
+  },
+  {
+    "id": "195",
+    "name": "HealthLinc Mishawaka",
+    "address": "",
+    "phone": "(219) 462-7173",
+    "phone_digits": "2194627173",
+    "website": "https://www.healthlincchc.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "healthlinc mishawaka primary care primary_care primary care (219) 462-7173 https://www.healthlincchc.org",
+    "state": "IN"
+  },
+  {
+    "id": "196",
+    "name": "HealthLinc IUSB Medical",
+    "address": "",
+    "phone": "(888) 580-1060",
+    "phone_digits": "8885801060",
+    "website": "https://www.healthlincchc.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "healthlinc iusb medical primary care primary_care primary care (888) 580-1060 https://www.healthlincchc.org",
+    "state": "IN"
+  },
+  {
+    "id": "197",
+    "name": "HealthLinc Southeast",
+    "address": "",
+    "phone": "(219) 462-7173",
+    "phone_digits": "2194627173",
+    "website": "https://www.healthlincchc.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "healthlinc southeast primary care primary_care primary care (219) 462-7173 https://www.healthlincchc.org",
+    "state": "IN"
+  },
+  {
+    "id": "198",
+    "name": "Bowen Health South Bend",
+    "address": "405 E Dubail Ave, South Bend, IN, 46613-2434",
+    "phone": "(800) 342-5653",
+    "phone_digits": "8003425653",
+    "website": "https://www.bowencenter.org/fort-wayne",
+    "zip_code": "46613",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "bowen health south bend 405 e dubail ave, south bend, in, 46613-2434 primary care primary_care primary care (800) 342-5653 https://www.bowencenter.org/fort-wayne",
+    "state": "IN"
+  },
+  {
+    "id": "199",
+    "name": "IHC at the Centers for the Homeless",
+    "address": "",
+    "phone": "(574) 235-7990",
+    "phone_digits": "5742357990",
+    "website": "https://indianahealthonline.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "english"
+    ],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "ihc at the centers for the homeless primary care primary_care primary care english (574) 235-7990 https://indianahealthonline.org",
+    "state": "IN"
+  },
+  {
+    "id": "200",
+    "name": "IHC Michigan Street",
+    "address": "",
+    "phone": "(574) 234-9033",
+    "phone_digits": "5742349033",
+    "website": "https://www.indianahealthonline.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "ihc michigan street primary care primary_care primary care (574) 234-9033 https://www.indianahealthonline.org",
+    "state": "IN"
+  },
+  {
+    "id": "201",
+    "name": "IHC at Oaklawn",
+    "address": "",
+    "phone": "(574) 234-9033",
+    "phone_digits": "5742349033",
+    "website": "https://indianahealthonline.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "english"
+    ],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "ihc at oaklawn primary care primary_care primary care english (574) 234-9033 https://indianahealthonline.org",
+    "state": "IN"
+  },
+  {
+    "id": "202",
+    "name": "HealthLinc Centennial",
+    "address": "",
+    "phone": "(888) 580-1060",
+    "phone_digits": "8885801060",
+    "website": "https://www.healthlincchc.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "healthlinc centennial primary care primary_care primary care (888) 580-1060 https://www.healthlincchc.org",
+    "state": "IN"
+  },
+  {
+    "id": "203",
+    "name": "IHC at South Bend",
+    "address": "",
+    "phone": "(574) 234-9033",
+    "phone_digits": "5742349033",
+    "website": "https://None",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "ihc at south bend primary care primary_care primary care (574) 234-9033 https://none",
+    "state": "IN"
+  },
+  {
+    "id": "204",
+    "name": "IHC Bendix Community Health Center",
+    "address": "",
+    "phone": "(574) 245-4980",
+    "phone_digits": "5742454980",
+    "website": "https://www.indianahealthonline.com",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "english"
+    ],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "ihc bendix community health center primary care primary_care primary care english (574) 245-4980 https://www.indianahealthonline.com",
+    "state": "IN"
+  },
+  {
+    "id": "205",
+    "name": "Knox/Winamac Community Health Centers",
+    "address": "",
+    "phone": "(574) 772-6030",
+    "phone_digits": "5747726030",
+    "website": "https://www.healthlincchc.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "knox/winamac community health centers primary care primary_care primary care (574) 772-6030 https://www.healthlincchc.org",
+    "state": "IN"
+  },
+  {
+    "id": "206",
+    "name": "HealthLinc Knox",
+    "address": "",
+    "phone": "(574) 772-7400",
+    "phone_digits": "5747727400",
+    "website": "https://www.healthlincchc.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "healthlinc knox primary care primary_care primary care (574) 772-7400 https://www.healthlincchc.org",
+    "state": "IN"
+  },
+  {
+    "id": "207",
+    "name": "NorthShore LaPorte Health Center",
+    "address": "",
+    "phone": "(219) 763-8112",
+    "phone_digits": "2197638112",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "northshore laporte health center primary care primary_care primary care (219) 763-8112",
+    "state": "IN"
+  },
+  {
+    "id": "208",
+    "name": "HealthLinc La Porte Pediatrics",
+    "address": "",
+    "phone": "(888) 580-1060",
+    "phone_digits": "8885801060",
+    "website": "https://www.healthlincchc.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "healthlinc la porte pediatrics primary care primary_care primary care (888) 580-1060 https://www.healthlincchc.org",
+    "state": "IN"
+  },
+  {
+    "id": "209",
+    "name": "HealthLinc Michigan City",
+    "address": "",
+    "phone": "(888) 580-1060",
+    "phone_digits": "8885801060",
+    "website": "https://www.healthlincchc.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "healthlinc michigan city primary care primary_care primary care (888) 580-1060 https://www.healthlincchc.org",
+    "state": "IN"
+  },
+  {
+    "id": "210",
+    "name": "NorthShore Michigan City",
+    "address": "",
+    "phone": "(219) 763-8112",
+    "phone_digits": "2197638112",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "northshore michigan city primary care primary_care primary care (219) 763-8112",
+    "state": "IN"
+  },
+  {
+    "id": "211",
+    "name": "219 Health Network  -  3800 Saint Mary Rd.  STE 203",
+    "address": "",
+    "phone": "(219) 947-6713",
+    "phone_digits": "2199476713",
+    "website": "https://www.219health.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "219 health network  -  3800 saint mary rd.  ste 203 primary care primary_care primary care (219) 947-6713 https://www.219health.org",
+    "state": "IN"
+  },
+  {
+    "id": "212",
+    "name": "HealthLinc Valparaiso",
+    "address": "",
+    "phone": "(219) 462-7173",
+    "phone_digits": "2194627173",
+    "website": "https://www.healthlincchc.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "healthlinc valparaiso primary care primary_care primary care (219) 462-7173 https://www.healthlincchc.org",
+    "state": "IN"
+  },
+  {
+    "id": "213",
+    "name": "Marram Health Center Valparaiso",
+    "address": "",
+    "phone": "(219) 476-4646",
+    "phone_digits": "2194764646",
+    "website": "http://www.marramhealth.org/",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "marram health center valparaiso primary care primary_care primary care (219) 476-4646 http://www.marramhealth.org/",
+    "state": "IN"
+  },
+  {
+    "id": "214",
+    "name": "HealthLinc Corporate",
+    "address": "",
+    "phone": "(219) 413-5100",
+    "phone_digits": "2194135100",
+    "website": "https://healthlincchc.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "healthlinc corporate primary care primary_care primary care (219) 413-5100 https://healthlincchc.org",
+    "state": "IN"
+  },
+  {
+    "id": "215",
+    "name": "Stacy McKay Health & Education Center",
+    "address": "",
+    "phone": "(219) 763-8112",
+    "phone_digits": "2197638112",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "stacy mckay health & education center primary care primary_care primary care (219) 763-8112",
+    "state": "IN"
+  },
+  {
+    "id": "216",
+    "name": "NorthShore Mobile Clinic",
+    "address": "",
+    "phone": "(219) 763-8112",
+    "phone_digits": "2197638112",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "northshore mobile clinic primary care primary_care primary care (219) 763-8112",
+    "state": "IN"
+  },
+  {
+    "id": "217",
+    "name": "ECHO Community Health Care, Inc. Mulberry Street Clinic",
+    "address": "315 Mulberry St, Evansville, IN, 47713",
+    "phone": "(812) 421-7489",
+    "phone_digits": "8124217489",
+    "website": "https://www.echochc.org",
+    "zip_code": "47713",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "echo community health care, inc. mulberry street clinic 315 mulberry st, evansville, in, 47713 primary care primary_care primary care (812) 421-7489 https://www.echochc.org",
+    "state": "IN"
+  },
+  {
+    "id": "218",
+    "name": "ECHO Pediatric and Prenatal Clinic",
+    "address": "316 CHANDLER AVE, EVANSVILLE, IN, 47713-1147",
+    "phone": "(812) 436-4501",
+    "phone_digits": "8124364501",
+    "website": "https://www.echochc.org",
+    "zip_code": "47713",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "echo pediatric and prenatal clinic 316 chandler ave, evansville, in, 47713-1147 primary care primary_care primary care (812) 436-4501 https://www.echochc.org",
+    "state": "IN"
+  },
+  {
+    "id": "219",
+    "name": "ECHO Division Street Family Clinic",
+    "address": "25 West Division Street, Evansville, IN, 47710",
+    "phone": "(812) 436-4501",
+    "phone_digits": "8124364501",
+    "website": "https://www.echochc.org",
+    "zip_code": "47710",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "echo division street family clinic 25 west division street, evansville, in, 47710 primary care primary_care primary care (812) 436-4501 https://www.echochc.org",
+    "state": "IN"
+  },
+  {
+    "id": "220",
+    "name": "ECHO John Street Woodson Homeless Health Clinic",
+    "address": "401 John St, Evansville, IN, 47713-2733",
+    "phone": "(812) 436-0224",
+    "phone_digits": "8124360224",
+    "website": "https://www.echochc.org",
+    "zip_code": "47713",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "echo john street woodson homeless health clinic 401 john st, evansville, in, 47713-2733 primary care primary_care primary care (812) 436-0224 https://www.echochc.org",
+    "state": "IN"
+  },
+  {
+    "id": "221",
+    "name": "Tulip Tree Family Health Care Princeton",
+    "address": "",
+    "phone": "(812) 753-1039",
+    "phone_digits": "8127531039",
+    "website": "https://www.tuliptreehealth.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "tulip tree family health care princeton primary care primary_care primary care (812) 753-1039 https://www.tuliptreehealth.org",
+    "state": "IN"
+  },
+  {
+    "id": "222",
+    "name": "Pike Central Middle School",
+    "address": "",
+    "phone": "(812) 354-8478",
+    "phone_digits": "8123548478",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "pike central middle school primary care primary_care primary care (812) 354-8478",
+    "state": "IN"
+  },
+  {
+    "id": "223",
+    "name": "Marram Health Center Portage",
+    "address": "",
+    "phone": "(219) 762-9557",
+    "phone_digits": "2197629557",
+    "website": "http://www.marramhealth.org/",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "marram health center portage primary care primary_care primary care (219) 762-9557 http://www.marramhealth.org/",
+    "state": "IN"
+  },
+  {
+    "id": "224",
+    "name": "Community HealthNet Miller",
+    "address": "",
+    "phone": "(219) 880-1190",
+    "phone_digits": "2198801190",
+    "website": "https://www.chn-indiana.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "english",
+      "spanish"
+    ],
+    "hours": {
+      "monday": [
+        [
+          [
+            8,
+            30
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ],
+      "friday": [
+        [
+          [
+            8,
+            30
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ]
+    },
+    "hours_text": "Monday  -  Friday: 8:30 am  -  5pm",
+    "notes": "",
+    "search_blob": "community healthnet miller primary care primary_care primary care english spanish monday  -  friday: 8:30 am  -  5pm (219) 880-1190 https://www.chn-indiana.org",
+    "state": "IN"
+  },
+  {
+    "id": "225",
+    "name": "NorthShore Dr. Fernando Rivera Dental Center",
+    "address": "",
+    "phone": "(219) 962-1418",
+    "phone_digits": "2199621418",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "northshore dr. fernando rivera dental center primary care primary_care primary care (219) 962-1418",
+    "state": "IN"
+  },
+  {
+    "id": "226",
+    "name": "Regional Mobile Health Unit1",
+    "address": "3379 East 84th Place, Merrillville, IN, 46410",
+    "phone": "(219) 769-4005",
+    "phone_digits": "2197694005",
+    "website": "https://www.regionalhealthclinic.org",
+    "zip_code": "46410",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "regional mobile health unit1 3379 east 84th place, merrillville, in, 46410 primary care primary_care primary care (219) 769-4005 https://www.regionalhealthclinic.org",
+    "state": "IN"
+  },
+  {
+    "id": "227",
+    "name": "Marram Health Center Suite 104",
+    "address": "",
+    "phone": "(219) 806-3000",
+    "phone_digits": "2198063000",
+    "website": "http://www.marramhealth.org/",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "marram health center suite 104 primary care primary_care primary care (219) 806-3000 http://www.marramhealth.org/",
+    "state": "IN"
+  },
+  {
+    "id": "228",
+    "name": "Edgewater Health",
+    "address": "",
+    "phone": "(219) 885-4264",
+    "phone_digits": "2198854264",
+    "website": "https://www.edgewaterhealth.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "edgewater health primary care primary_care primary care (219) 885-4264 https://www.edgewaterhealth.org",
+    "state": "IN"
+  },
+  {
+    "id": "229",
+    "name": "Turning Point",
+    "address": "",
+    "phone": "(219) 239-2944",
+    "phone_digits": "2192392944",
+    "website": "https://www.edgewaterhealth.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "turning point primary care primary_care primary care (219) 239-2944 https://www.edgewaterhealth.org",
+    "state": "IN"
+  },
+  {
+    "id": "230",
+    "name": "Regional Mental Health - Strawhun Center",
+    "address": "8555 Taft St, Merrillville, IN, 46410-6123",
+    "phone": "(219) 937-3300",
+    "phone_digits": "2199373300",
+    "website": "https://www.regionalhealthclinic.org",
+    "zip_code": "46410",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "regional mental health - strawhun center 8555 taft st, merrillville, in, 46410-6123 primary care primary_care primary care (219) 937-3300 https://www.regionalhealthclinic.org",
+    "state": "IN"
+  },
+  {
+    "id": "231",
+    "name": "West Side Leadership Academy",
+    "address": "",
+    "phone": "(844) 433-4392",
+    "phone_digits": "8444334392",
+    "website": "https://edgewaterhealth.org/",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "west side leadership academy primary care primary_care primary care (844) 433-4392 https://edgewaterhealth.org/",
+    "state": "IN"
+  },
+  {
+    "id": "232",
+    "name": "Primary Care - Griffith",
+    "address": "",
+    "phone": "(219) 838-1270",
+    "phone_digits": "2198381270",
+    "website": "https://www.edgewaterhealth.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "primary care - griffith primary care primary_care primary care (219) 838-1270 https://www.edgewaterhealth.org",
+    "state": "IN"
+  },
+  {
+    "id": "233",
+    "name": "HealthLinc East Chicago Harbor",
+    "address": "2323 Broadway St, East Chicago, IN, 46312-2264",
+    "phone": "(888) 580-1060",
+    "phone_digits": "8885801060",
+    "website": "https://www.healthlincchc.org",
+    "zip_code": "46312",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "healthlinc east chicago harbor 2323 broadway st, east chicago, in, 46312-2264 primary care primary_care primary care (888) 580-1060 https://www.healthlincchc.org",
+    "state": "IN"
+  },
+  {
+    "id": "234",
+    "name": "Community HealthNet at Hammond Morton",
+    "address": "",
+    "phone": "(219) 880-1190",
+    "phone_digits": "2198801190",
+    "website": "https://www.chn-indiana.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "english",
+      "spanish"
+    ],
+    "hours": {
+      "monday": [
+        [
+          [
+            8,
+            30
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ],
+      "friday": [
+        [
+          [
+            8,
+            30
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ]
+    },
+    "hours_text": "Monday  -  Friday: 8:30 am  -  5pm",
+    "notes": "",
+    "search_blob": "community healthnet at hammond morton primary care primary_care primary care english spanish monday  -  friday: 8:30 am  -  5pm (219) 880-1190 https://www.chn-indiana.org",
+    "state": "IN"
+  },
+  {
+    "id": "235",
+    "name": "NorthShore East Chicago",
+    "address": "2121 E Columbus Dr., East Chicago, IN, 46312",
+    "phone": "(219) 763-8112",
+    "phone_digits": "2197638112",
+    "website": "",
+    "zip_code": "46312",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "northshore east chicago 2121 e columbus dr., east chicago, in, 46312 primary care primary_care primary care (219) 763-8112",
+    "state": "IN"
+  },
+  {
+    "id": "236",
+    "name": "Community HealthNet at E.C. Central",
+    "address": "1100 W Columbus Dr, East Chicago, IN, 46312-2582",
+    "phone": "(219) 880-1190",
+    "phone_digits": "2198801190",
+    "website": "https://www.chn-indiana.org",
+    "zip_code": "46312",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "english",
+      "spanish"
+    ],
+    "hours": {
+      "monday": [
+        [
+          [
+            8,
+            30
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ],
+      "friday": [
+        [
+          [
+            8,
+            30
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ]
+    },
+    "hours_text": "Monday  -  Friday: 8:30 am  -  5pm",
+    "notes": "",
+    "search_blob": "community healthnet at e.c. central 1100 w columbus dr, east chicago, in, 46312-2582 primary care primary_care primary care english spanish monday  -  friday: 8:30 am  -  5pm (219) 880-1190 https://www.chn-indiana.org",
+    "state": "IN"
+  },
+  {
+    "id": "237",
+    "name": "Community HealthNet at Ophelia Steen",
+    "address": "",
+    "phone": "(219) 880-1190",
+    "phone_digits": "2198801190",
+    "website": "https://www.chn-indiana.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {
+      "monday": [
+        [
+          [
+            8,
+            30
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ],
+      "friday": [
+        [
+          [
+            8,
+            30
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ]
+    },
+    "hours_text": "Monday  -  Friday: 8:30 am  -  5pm",
+    "notes": "",
+    "search_blob": "community healthnet at ophelia steen primary care primary_care primary care monday  -  friday: 8:30 am  -  5pm (219) 880-1190 https://www.chn-indiana.org",
+    "state": "IN"
+  },
+  {
+    "id": "238",
+    "name": "CHN at Hammond Central High",
+    "address": "",
+    "phone": "(219) 880-1190",
+    "phone_digits": "2198801190",
+    "website": "https://www.chn-indiana.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "english",
+      "spanish"
+    ],
+    "hours": {
+      "monday": [
+        [
+          [
+            8,
+            30
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ],
+      "friday": [
+        [
+          [
+            8,
+            30
+          ],
+          [
+            17,
+            0
+          ]
+        ]
+      ]
+    },
+    "hours_text": "Monday  -  Friday: 8:30 am  -  5pm",
+    "notes": "",
+    "search_blob": "chn at hammond central high primary care primary_care primary care english spanish monday  -  friday: 8:30 am  -  5pm (219) 880-1190 https://www.chn-indiana.org",
+    "state": "IN"
+  },
+  {
+    "id": "239",
+    "name": "219 Health Network  -  1545 W US Highway 30  STE 1A",
+    "address": "1545 W US Highway 30  STE 1A, Schererville, IN, 46375-1562",
+    "phone": "(219) 595-0410",
+    "phone_digits": "2195950410",
+    "website": "https://219health.org/",
+    "zip_code": "46375",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "219 health network  -  1545 w us highway 30  ste 1a 1545 w us highway 30  ste 1a, schererville, in, 46375-1562 primary care primary_care primary care (219) 595-0410 https://219health.org/",
+    "state": "IN"
+  },
+  {
+    "id": "240",
+    "name": "Regional Health Clinic",
+    "address": "",
+    "phone": "(219) 937-3300",
+    "phone_digits": "2199373300",
+    "website": "https://regionalhealthclinic.org",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "regional health clinic primary care primary_care primary care (219) 937-3300 https://regionalhealthclinic.org",
+    "state": "IN"
+  },
+  {
+    "id": "241",
+    "name": "TCA Health Hammond",
+    "address": "",
+    "phone": "(773) 995-6300",
+    "phone_digits": "7739956300",
+    "website": "",
+    "zip_code": "",
+    "services": [
+      "primary_care"
+    ],
+    "services_text": "Primary Care",
+    "subcategories": [
+      "Primary Care"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "tca health hammond primary care primary_care primary care (773) 995-6300",
+    "state": "IN"
+  }
+]

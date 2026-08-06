@@ -1,0 +1,80 @@
+[
+  {
+    "id": "item_1",
+    "name": "# IN  -  education.txt",
+    "address": "# Populated by Aidr HRSA Find-a-HC import (Indianapolis + surrounding, 250-mile catchment).",
+    "phone": "",
+    "phone_digits": "",
+    "website": "",
+    "zip_code": "",
+    "services": [],
+    "services_text": "# Format: numbered blocks matching IL listings (name, Address, 📞, 🌐, 🏥, 🗣, ⏰, 📝).",
+    "subcategories": [],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "# in  -  education.txt # populated by aidr hrsa find-a-hc import (indianapolis + surrounding, 250-mile catchment). # format: numbered blocks matching il listings (name, address, 📞, 🌐, 🏥, 🗣, ⏰, 📝).",
+    "state": "IN"
+  },
+  {
+    "id": "1",
+    "name": "Immigrant Welcome Center",
+    "address": "",
+    "phone": "(317) 808-2326",
+    "phone_digits": "3178082326",
+    "website": "https://www.immigrantwelcomecenter.org",
+    "zip_code": "",
+    "services": [
+      "citizenship",
+      "workforce",
+      "esl"
+    ],
+    "services_text": "ESL, Citizenship, Workforce, Immigrant Navigation",
+    "subcategories": [
+      "Workforce Development",
+      "Citizenship Preparation",
+      "ESL Classes"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "english"
+    ],
+    "hours": {
+      "monday": []
+    },
+    "hours_text": "Monday: 9",
+    "notes": "",
+    "search_blob": "immigrant welcome center esl, citizenship, workforce, immigrant navigation citizenship workforce esl workforce development citizenship preparation esl classes english monday: 9 (317) 808-2326 https://www.immigrantwelcomecenter.org",
+    "state": "IN"
+  },
+  {
+    "id": "2",
+    "name": "Exodus Refugee Immigration  -  Education Supports",
+    "address": "",
+    "phone": "(317) 921-0836",
+    "phone_digits": "3179210836",
+    "website": "https://www.exodusrefugee.org",
+    "zip_code": "",
+    "services": [
+      "employment_assistance",
+      "workforce",
+      "esl"
+    ],
+    "services_text": "ESL, Orientation, Employment, Refugee Education",
+    "subcategories": [
+      "Workforce Development",
+      "ESL Classes"
+    ],
+    "availability_badges": [],
+    "languages": [
+      "english"
+    ],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "exodus refugee immigration  -  education supports esl, orientation, employment, refugee education employment_assistance workforce esl workforce development esl classes english (317) 921-0836 https://www.exodusrefugee.org",
+    "state": "IN"
+  }
+]

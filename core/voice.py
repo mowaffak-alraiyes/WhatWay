@@ -1,9 +1,9 @@
 """
-Pip voice helpers — patterned after Vera (drdavidl/pad Vera.py).
+Pip voice helpers  -  patterned after Vera (drdavidl/pad Vera.py).
 
 TTS (Pip speaks replies):
-1. ElevenLabs / OpenAI TTS — if keys present
-2. Browser Web Speech API — free default (uses UI language when set)
+1. ElevenLabs / OpenAI TTS  -  if keys present
+2. Browser Web Speech API  -  free default (uses UI language when set)
 """
 
 from __future__ import annotations
@@ -44,7 +44,7 @@ def _secret(key: str) -> Optional[str]:
 
 
 def strip_markdown_for_speech(text: str) -> str:
-    """Keep TTS natural — drop markdown chrome."""
+    """Keep TTS natural  -  drop markdown chrome."""
     if not text:
         return ""
     t = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", text)
@@ -117,7 +117,7 @@ def speak_browser(text: str, lang: str = "en") -> None:
         noteEl.textContent = fallbackNote;
       }}
       if (!pick) {{
-        if (status) status.textContent = "No voices installed — you can still read Pip’s reply.";
+        if (status) status.textContent = "No voices installed  -  you can still read Pip’s reply.";
         return;
       }}
 
@@ -128,7 +128,7 @@ def speak_browser(text: str, lang: str = "en") -> None:
       u.pitch = 1.05;
       window.speechSynthesis.speak(u);
     }} catch (e) {{
-      if (status) status.textContent = "Couldn’t play voice — you can still read the reply.";
+      if (status) status.textContent = "Couldn’t play voice  -  you can still read the reply.";
     }}
   }}
 

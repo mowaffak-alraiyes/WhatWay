@@ -1,7 +1,7 @@
 """
 Controlled tools for clinic ops (David local-ai-agents pattern).
 
-Side effects are NEVER automatic — tools only stage or report.
+Side effects are NEVER automatic  -  tools only stage or report.
 Push/apply happens only after explicit Telegram (or CLI) approval.
 """
 
@@ -75,7 +75,7 @@ def draft_github_block(
     hours: str = "",
     next_id: int = 999,
 ) -> str:
-    """Match healthcare.txt style — plain address (no 📍)."""
+    """Match healthcare.txt style  -  plain address (no 📍)."""
     lines = [f"{next_id}. {name}"]
     if address:
         lines.append(address)
@@ -84,7 +84,9 @@ def draft_github_block(
     if languages:
         lines.append(f"🗣 Languages: {languages}")
     if services:
-        lines.append(f"🏥 Services: {services}")
+        from core.labels import humanize_services
+
+        lines.append(f"🏥 Services: {humanize_services(services)}")
     if hours:
         lines.append(f"⏰ Hours: {hours}")
     if phone:

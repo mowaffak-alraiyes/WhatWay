@@ -129,7 +129,7 @@ def stage_sams() -> Dict[str, Any]:
         SAMS_OFFICIAL["field_updates"],
         source=SAMS_OFFICIAL["source"],
         category=SAMS_OFFICIAL["category"],
-        notes="Official SAMS Community Clinic site — address moved from Kingery Hwy to 91st St school location.",
+        notes="Official SAMS Community Clinic site  -  address moved from Kingery Hwy to 91st St school location.",
     )
 
 

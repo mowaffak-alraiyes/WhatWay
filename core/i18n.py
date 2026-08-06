@@ -1,5 +1,5 @@
 """
-Static UI translations — Aidr site-wide labels (no LLM).
+Static UI translations  -  Aidr site-wide labels (no LLM).
 """
 
 from __future__ import annotations
@@ -39,7 +39,7 @@ CODE_TO_NAME = {v: k for k, v in NAME_TO_CODE.items() if k not in ("Auto-detect"
 
 _EN = {
     "brand": "Aidr",
-    "tagline": "Care & community help — Chicago first.",
+    "tagline": "Care & community help  -  Chicago first.",
     "bot_name": "Pip",
     "bot_hello": "Hey! I'm Pip.",
     "ask_prefix": "Ask about ",
@@ -50,13 +50,13 @@ _EN = {
     "resettlement": "Legal & Shelter",
     "language_label": "Language",
     "ai_online": "AI online",
-    "ai_offline": "AI offline — start Ollama (`ollama serve`)",
+    "ai_offline": "AI offline  -  start Ollama (`ollama serve`)",
     "ollama_hint": "Start Ollama: `ollama serve`",
     "pinned": "Saved",
     "pinned_empty": "Nothing saved yet",
     "filters": "Filters",
     "reset": "Reset chat",
-    "scroll_latest": "Latest",
+    "scroll_latest": "Scroll to latest",
     "whatsapp_hint": "Prefer texting? WhatsApp is in beta.",
     "no_results": "I couldn't find a match. Try another ZIP, neighborhood, or service.",
     "found_n": "Here are {n} options for you:",
@@ -68,13 +68,16 @@ _EN = {
     "forms_users_btn": "Report incorrect info",
     "forms_clinics_btn": "Request a listing update",
     "forms_users_cap": "Anyone can report wrong hours, phones, languages, or closures.",
-    "forms_clinics_cap": "Clinic staff — update hours, services, eligibility, or contact info.",
+    "forms_clinics_cap": "Clinic staff  -  update hours, services, eligibility, or contact info.",
     "forms_section": "Improve listings",
     "filter_zip": "ZIP",
     "filter_lang": "Language spoken",
     "filter_service": "Service",
     "filter_day": "Day",
     "filter_all": "All",
+    "filter_state": "State",
+    "filter_state_placeholder": "Select a state",
+    "filter_zip_locked": "Choose a state to unlock ZIP codes",
     "view_details": "Details & comments",
     "details_short": "Details",
     "comments_short": "Comments",
@@ -112,7 +115,7 @@ _EN = {
     "results_intro": "Here are a few **{category}** options for **{q}**{where}. Tap a site or map when you’re ready.",
     "results_near": " near **{z}**",
     "results_for_svc": " for **{svc}**",
-    "voice_fallback_note": "No voice for this language on your device yet — Pip will speak in English for now.",
+    "voice_fallback_note": "No voice for this language on your device yet  -  Pip will speak in English for now.",
 }
 
 ASK_PHRASES: Dict[str, List[str]] = {
@@ -131,7 +134,7 @@ ASK_PHRASES: Dict[str, List[str]] = {
 
 _ES = {
     **_EN,
-    "tagline": "Cuidado y ayuda comunitaria — primero Chicago.",
+    "tagline": "Cuidado y ayuda comunitaria  -  primero Chicago.",
     "bot_hello": "¡Hola! Soy Pip.",
     "ask_prefix": "Pregunta por ",
     "ask_placeholder": "Escribe tu mensaje aquí…",
@@ -141,13 +144,13 @@ _ES = {
     "resettlement": "Legal y Refugio",
     "language_label": "Idioma",
     "ai_online": "IA activa",
-    "ai_offline": "IA desactivada — inicia Ollama",
+    "ai_offline": "IA desactivada  -  inicia Ollama",
     "ollama_hint": "Inicia Ollama: `ollama serve`",
     "pinned": "Guardados",
     "pinned_empty": "Nada guardado aún",
     "filters": "Filtros",
     "reset": "Reiniciar chat",
-    "scroll_latest": "Último",
+    "scroll_latest": "Ir al final",
     "whatsapp_hint": "¿Prefieres WhatsApp? Está en prueba.",
     "no_results": "No encontré resultados. Prueba otro ZIP o servicio.",
     "found_n": "Aquí tienes {n} opciones:",
@@ -159,13 +162,16 @@ _ES = {
     "forms_users_btn": "Reportar info incorrecta",
     "forms_clinics_btn": "Solicitar actualización",
     "forms_users_cap": "Cualquiera puede reportar horarios, teléfonos o idiomas incorrectos.",
-    "forms_clinics_cap": "Personal de la clínica — actualizar horarios, servicios o contacto.",
+    "forms_clinics_cap": "Personal de la clínica  -  actualizar horarios, servicios o contacto.",
     "forms_section": "Mejorar listados",
     "filter_zip": "ZIP",
     "filter_lang": "Idioma hablado",
     "filter_service": "Servicio",
     "filter_day": "Día",
     "filter_all": "Todos",
+    "filter_state": "Estado",
+    "filter_state_placeholder": "Elige un estado",
+    "filter_zip_locked": "Elige un estado para ver códigos ZIP",
     "view_details": "Detalles y comentarios",
     "details_short": "Detalles",
     "comments_short": "Comentarios",
@@ -202,7 +208,7 @@ _ES = {
 
 _AR = {
     **_EN,
-    "tagline": "رعاية وموارد — شيكاغو أولاً.",
+    "tagline": "رعاية وموارد  -  شيكاغو أولاً.",
     "bot_hello": "مرحباً! أنا بيب.",
     "ask_prefix": "اسأل عن ",
     "ask_placeholder": "اكتب رسالتك هنا…",
@@ -212,7 +218,7 @@ _AR = {
     "resettlement": "قانوني ومأوى",
     "language_label": "اللغة",
     "ai_online": "متصل",
-    "ai_offline": "غير متصل — شغّل Ollama",
+    "ai_offline": "غير متصل  -  شغّل Ollama",
     "ollama_hint": "شغّل Ollama: `ollama serve`",
     "pinned": "المحفوظات",
     "pinned_empty": "لا شيء محفوظ",
@@ -245,7 +251,7 @@ _AR = {
 
 _FR = {
     **_EN,
-    "tagline": "Soins et aide — Chicago d'abord.",
+    "tagline": "Soins et aide  -  Chicago d'abord.",
     "bot_hello": "Salut ! Je suis Pip.",
     "ask_prefix": "Demandez ",
     "ask_placeholder": "Écrivez votre message ici…",
@@ -255,7 +261,7 @@ _FR = {
     "resettlement": "Juridique & Hébergement",
     "language_label": "Langue",
     "ai_online": "IA en ligne",
-    "ai_offline": "IA hors ligne — démarrez Ollama",
+    "ai_offline": "IA hors ligne  -  démarrez Ollama",
     "ollama_hint": "Démarrez Ollama : `ollama serve`",
     "pinned": "Enregistrés",
     "pinned_empty": "Rien d'enregistré",
@@ -288,7 +294,7 @@ _FR = {
 
 _PL = {
     **_EN,
-    "tagline": "Opieka i pomoc — najpierw Chicago.",
+    "tagline": "Opieka i pomoc  -  najpierw Chicago.",
     "bot_hello": "Cześć! Jestem Pip.",
     "ask_prefix": "Zapytaj o ",
     "ask_placeholder": "Napisz wiadomość…",
@@ -298,7 +304,7 @@ _PL = {
     "resettlement": "Prawo i schronienie",
     "language_label": "Język",
     "ai_online": "AI online",
-    "ai_offline": "AI offline — uruchom Ollama",
+    "ai_offline": "AI offline  -  uruchom Ollama",
     "pinned": "Zapisane",
     "pinned_empty": "Nic jeszcze nie zapisano",
     "filters": "Filtry",
@@ -312,7 +318,7 @@ _PL = {
     "forms_users_btn": "Zgłoś błąd",
     "forms_clinics_btn": "Poproś o aktualizację",
     "forms_users_cap": "Zgłoś złe godziny, telefony lub języki.",
-    "forms_clinics_cap": "Personel klinik — aktualizuj dane.",
+    "forms_clinics_cap": "Personel klinik  -  aktualizuj dane.",
     "view_details": "Szczegóły i komentarze",
     "details_short": "Szczegóły",
     "pin": "Zapisz",
@@ -343,7 +349,7 @@ _PL = {
 
 _ZH = {
     **_EN,
-    "tagline": "关怀与社区帮助 — 芝加哥优先。",
+    "tagline": "关怀与社区帮助  -  芝加哥优先。",
     "bot_hello": "你好！我是 Pip。",
     "ask_prefix": "询问 ",
     "ask_placeholder": "在此输入消息…",
@@ -353,7 +359,7 @@ _ZH = {
     "resettlement": "法律与收容",
     "language_label": "语言",
     "ai_online": "AI 在线",
-    "ai_offline": "AI 离线 — 请启动 Ollama",
+    "ai_offline": "AI 离线  -  请启动 Ollama",
     "pinned": "已保存",
     "pinned_empty": "暂无保存",
     "filters": "筛选",
@@ -394,7 +400,7 @@ _ZH = {
 
 _UR = {
     **_EN,
-    "tagline": "نگہداشت اور مدد — پہلے شکاگو۔",
+    "tagline": "نگہداشت اور مدد  -  پہلے شکاگو۔",
     "bot_hello": "ہیلو! میں پِپ ہوں۔",
     "ask_prefix": "پوچھیں ",
     "ask_placeholder": "اپنا پیغام لکھیں…",
@@ -404,7 +410,7 @@ _UR = {
     "resettlement": "قانونی و پناہ",
     "language_label": "زبان",
     "ai_online": "AI آن لائن",
-    "ai_offline": "AI آف لائن — Ollama چلائیں",
+    "ai_offline": "AI آف لائن  -  Ollama چلائیں",
     "pinned": "محفوظ",
     "pinned_empty": "ابھی کچھ محفوظ نہیں",
     "filters": "فلٹر",
@@ -443,7 +449,7 @@ _UR = {
 
 _HI = {
     **_EN,
-    "tagline": "देखभाल और सहायता — पहले शिकागो।",
+    "tagline": "देखभाल और सहायता  -  पहले शिकागो।",
     "bot_hello": "नमस्ते! मैं Pip हूँ।",
     "ask_prefix": "पूछें ",
     "ask_placeholder": "यहाँ संदेश लिखें…",
@@ -453,7 +459,7 @@ _HI = {
     "resettlement": "कानूनी और आश्रय",
     "language_label": "भाषा",
     "ai_online": "AI ऑनलाइन",
-    "ai_offline": "AI ऑफ़लाइन — Ollama शुरू करें",
+    "ai_offline": "AI ऑफ़लाइन  -  Ollama शुरू करें",
     "pinned": "सहेजे गए",
     "pinned_empty": "अभी कुछ नहीं बचाया",
     "filters": "फ़िल्टर",
@@ -492,7 +498,7 @@ _HI = {
 
 _UK = {
     **_EN,
-    "tagline": "Допомога громаді — спочатку Чикаго.",
+    "tagline": "Допомога громаді  -  спочатку Чикаго.",
     "bot_hello": "Привіт! Я Pip.",
     "ask_prefix": "Запитайте про ",
     "ask_placeholder": "Напишіть повідомлення…",
@@ -502,7 +508,7 @@ _UK = {
     "resettlement": "Право і притулок",
     "language_label": "Мова",
     "ai_online": "ШІ онлайн",
-    "ai_offline": "ШІ офлайн — запустіть Ollama",
+    "ai_offline": "ШІ офлайн  -  запустіть Ollama",
     "pinned": "Збережене",
     "pinned_empty": "Ще нічого не збережено",
     "filters": "Фільтри",
@@ -541,7 +547,7 @@ _UK = {
 
 _SW = {
     **_EN,
-    "tagline": "Huduma na msaada — Chicago kwanza.",
+    "tagline": "Huduma na msaada  -  Chicago kwanza.",
     "bot_hello": "Habari! Mimi ni Pip.",
     "ask_prefix": "Uliza kuhusu ",
     "ask_placeholder": "Andika ujumbe hapa…",
@@ -551,7 +557,7 @@ _SW = {
     "resettlement": "Sheria na makazi",
     "language_label": "Lugha",
     "ai_online": "AI online",
-    "ai_offline": "AI offline — anzisha Ollama",
+    "ai_offline": "AI offline  -  anzisha Ollama",
     "pinned": "Imehifadhiwa",
     "pinned_empty": "Bado hakuna kilichohifadhiwa",
     "filters": "Vichujio",
@@ -667,13 +673,13 @@ _NEAR = {
 _FOR_SVC = {
     "es": " de **{svc}**",
     "ar": " لـ **{svc}**",
-    "fr": " — **{svc}**",
-    "pl": " — **{svc}**",
+    "fr": "  -  **{svc}**",
+    "pl": "  -  **{svc}**",
     "zh": "（**{svc}**）",
-    "ur": " — **{svc}**",
-    "hi": " — **{svc}**",
-    "uk": " — **{svc}**",
-    "sw": " — **{svc}**",
+    "ur": "  -  **{svc}**",
+    "hi": "  -  **{svc}**",
+    "uk": "  -  **{svc}**",
+    "sw": "  -  **{svc}**",
 }
 _MAP = {
     "es": "Mapa",
@@ -685,6 +691,50 @@ _MAP = {
     "hi": "मानचित्र",
     "uk": "Карта",
     "sw": "Ramani",
+}
+_COMMENTS = {
+    "es": "Comentarios",
+    "ar": "التعليقات",
+    "fr": "Commentaires",
+    "pl": "Komentarze",
+    "zh": "评论",
+    "ur": "تبصرے",
+    "hi": "टिप्पणियाँ",
+    "uk": "Коментарі",
+    "sw": "Maoni",
+}
+_FILTER_STATE = {
+    "es": "Estado",
+    "ar": "الولاية",
+    "fr": "État",
+    "pl": "Stan",
+    "zh": "州",
+    "ur": "ریاست",
+    "hi": "राज्य",
+    "uk": "Штат",
+    "sw": "Jimbo",
+}
+_FILTER_STATE_PLACEHOLDER = {
+    "es": "Elige un estado",
+    "ar": "اختر ولاية",
+    "fr": "Choisir un État",
+    "pl": "Wybierz stan",
+    "zh": "选择州",
+    "ur": "ریاست منتخب کریں",
+    "hi": "राज्य चुनें",
+    "uk": "Оберіть штат",
+    "sw": "Chagua jimbo",
+}
+_FILTER_ZIP_LOCKED = {
+    "es": "Elige un estado para ver códigos ZIP",
+    "ar": "اختر ولاية لفتح الرموز البريدية",
+    "fr": "Choisissez un État pour débloquer les ZIP",
+    "pl": "Wybierz stan, aby odblokować kody ZIP",
+    "zh": "先选择州以解锁邮政编码",
+    "ur": "ZIP کے لیے ریاست منتخب کریں",
+    "hi": "ZIP अनलॉक करने के लिए राज्य चुनें",
+    "uk": "Оберіть штат, щоб відкрити ZIP",
+    "sw": "Chagua jimbo ili kufungua ZIP",
 }
 _OPEN_NOW = {
     "es": "Abierto ahora",
@@ -699,15 +749,15 @@ _OPEN_NOW = {
 }
 
 _VOICE_FALLBACK = {
-    "es": "Aún no hay voz en este idioma en tu dispositivo — Pip hablará en inglés por ahora.",
-    "ar": "لا يتوفر صوت لهذه اللغة على جهازك بعد — سيتحدث بيب بالإنجليزية مؤقتًا.",
-    "fr": "Pas encore de voix pour cette langue sur votre appareil — Pip parlera en anglais pour l’instant.",
-    "pl": "Brak głosu w tym języku na Twoim urządzeniu — Pip na razie mówi po angielsku.",
-    "zh": "此设备暂无该语言的语音 — Pip 暂时用英语朗读。",
-    "ur": "آپ کے آلے پر ابھی اس زبان کی آواز نہیں — پپ فی الحال انگریزی میں بات کرے گا۔",
-    "hi": "इस भाषा की आवाज़ आपके डिवाइस पर अभी नहीं है — Pip अभी अंग्रेज़ी में बोलेगा।",
-    "uk": "Голосу цією мовою на пристрої ще немає — Pip поки говоритиме англійською.",
-    "sw": "Sauti ya lugha hii haipo kwenye kifaa chako bado — Pip atasema Kiingereza kwa sasa.",
+    "es": "Aún no hay voz en este idioma en tu dispositivo  -  Pip hablará en inglés por ahora.",
+    "ar": "لا يتوفر صوت لهذه اللغة على جهازك بعد  -  سيتحدث بيب بالإنجليزية مؤقتًا.",
+    "fr": "Pas encore de voix pour cette langue sur votre appareil  -  Pip parlera en anglais pour l’instant.",
+    "pl": "Brak głosu w tym języku na Twoim urządzeniu  -  Pip na razie mówi po angielsku.",
+    "zh": "此设备暂无该语言的语音  -  Pip 暂时用英语朗读。",
+    "ur": "آپ کے آلے پر ابھی اس زبان کی آواز نہیں  -  پپ فی الحال انگریزی میں بات کرے گا۔",
+    "hi": "इस भाषा की आवाज़ आपके डिवाइस पर अभी नहीं है  -  Pip अभी अंग्रेज़ी में बोलेगा।",
+    "uk": "Голосу цією мовою на пристрої ще немає  -  Pip поки говоритиме англійською.",
+    "sw": "Sauti ya lugha hii haipo kwenye kifaa chako bado  -  Pip atasema Kiingereza kwa sasa.",
 }
 
 for _code in STRINGS:
@@ -721,6 +771,14 @@ for _code in STRINGS:
         STRINGS[_code]["results_for_svc"] = _FOR_SVC[_code]
     if _code in _MAP:
         STRINGS[_code]["map_short"] = _MAP[_code]
+    if _code in _COMMENTS:
+        STRINGS[_code]["comments_short"] = _COMMENTS[_code]
+    if _code in _FILTER_STATE:
+        STRINGS[_code]["filter_state"] = _FILTER_STATE[_code]
+    if _code in _FILTER_STATE_PLACEHOLDER:
+        STRINGS[_code]["filter_state_placeholder"] = _FILTER_STATE_PLACEHOLDER[_code]
+    if _code in _FILTER_ZIP_LOCKED:
+        STRINGS[_code]["filter_zip_locked"] = _FILTER_ZIP_LOCKED[_code]
     if _code in _OPEN_NOW:
         STRINGS[_code]["open_now_chip"] = _OPEN_NOW[_code]
     if _code in _VOICE_FALLBACK:

@@ -1,7 +1,7 @@
 """
 Shared search + reply pipeline for Streamlit chat and WhatsApp.
 
-No Streamlit UI side-effects — safe to import from FastAPI.
+No Streamlit UI side-effects  -  safe to import from FastAPI.
 Loads local JSON first (fast/offline), then optionally refreshes from GitHub.
 """
 

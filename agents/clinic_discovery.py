@@ -33,7 +33,7 @@ OUT_PATH = ROOT / "data" / "proposed_clinics.json"
 
 # Expected form column aliases (case-insensitive)
 COLUMN_ALIASES = {
-    "name": ["clinic name", "name", "organization", "org", "facility"],
+    "name": ["clinic name", "name", "organization", "org", "facility", "program", "agency"],
     "address": ["address", "street", "location"],
     "zip": ["zip", "zip code", "zipcode", "postal"],
     "phone": ["phone", "telephone", "tel", "contact number"],
@@ -42,7 +42,31 @@ COLUMN_ALIASES = {
     "languages": ["languages", "language", "languages spoken"],
     "hours": ["hours", "hours of operation", "schedule"],
     "notes": ["notes", "comments", "additional info", "description"],
+    "category": ["category", "resource type", "type", "sector", "resource category"],
 }
+
+_CATEGORY_ALIASES = {
+    "healthcare": {"healthcare", "health", "clinic", "medical"},
+    "education": {"education", "edu", "esl", "school", "literacy"},
+    "resettlement": {
+        "resettlement",
+        "legal",
+        "shelter",
+        "housing",
+        "resettlement / legal / shelter",
+        "basic needs",
+    },
+}
+
+
+def _normalize_category(raw: str) -> str:
+    key = (raw or "").strip().lower()
+    if not key:
+        return "healthcare"
+    for canon, aliases in _CATEGORY_ALIASES.items():
+        if key == canon or key in aliases:
+            return canon
+    return "healthcare"
 
 
 def _norm_header(h: str) -> str:
@@ -79,9 +103,12 @@ def fetch_csv(url: str) -> List[Dict[str, str]]:
 
 
 def load_existing_names() -> set:
-    path = ROOT / "data" / "healthcare.json"
+    """Names from all local category JSON files (not healthcare-only)."""
     names = set()
-    if path.exists():
+    for fname in ("healthcare.json", "education.json", "resettlement_legal_shelter.json"):
+        path = ROOT / "data" / fname
+        if not path.exists():
+            continue
         try:
             items = json.loads(path.read_text(encoding="utf-8"))
             for item in items:
@@ -89,7 +116,7 @@ def load_existing_names() -> set:
                 if n:
                     names.add(n)
         except Exception:
-            pass
+            continue
     return names
 
 
@@ -118,6 +145,7 @@ def propose_new_clinics(rows: List[Dict[str, str]]) -> List[Dict[str, Any]]:
                 "languages": [s.strip() for s in re.split(r"[;,]", row.get("languages", "")) if s.strip()],
                 "hours": row.get("hours", ""),
                 "notes": row.get("notes", ""),
+                "category": _normalize_category(row.get("category") or ""),
                 "status": "proposed",
                 "source": "google_forms_csv",
                 "discovered_at": datetime.now(timezone.utc).isoformat(),

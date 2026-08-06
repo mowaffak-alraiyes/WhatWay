@@ -54,13 +54,18 @@ except Exception:
 
 PENDING_PATH = DATA / "pending_ops.json"
 
-GITHUB_FILES = {
-    "healthcare": "https://raw.githubusercontent.com/mowaffak-alraiyes/refugee-resources/main/resources/healthcare.txt",
-    "education": "https://raw.githubusercontent.com/mowaffak-alraiyes/refugee-resources/main/resources/education.txt",
-    "resettlement": "https://raw.githubusercontent.com/mowaffak-alraiyes/refugee-resources/main/resources/ResettlementLegalShelterBasicNeeds.txt",
-}
+
+def _github_files(state: Optional[str] = None) -> Dict[str, str]:
+    from agents.geo_scope import category_files_for_state, raw_github_url
+
+    return {k: raw_github_url(v) for k, v in category_files_for_state(state).items()}
+
+
+GITHUB_FILES = _github_files()
 
 CITY_SCOPE = os.environ.get("CITY_SCOPE", "chicago").lower()
+# Optional USPS filter for enrich (e.g. IN) — set via scan(state=...) or --state
+ENRICH_STATE = (os.environ.get("RESOURCES_STATE") or "").strip().upper() or None
 CHICAGO_ZIP = re.compile(r"\b60\d{3}\b")
 PHONE_RE = re.compile(
     r"(?:\+?1[\s\-.]*)?(?:\(?\d{3}\)?[\s\-.]*)\d{3}[\s\-.]*\d{4}"
@@ -109,19 +114,29 @@ def _fmt_phone(phone: str) -> str:
     return (phone or "").strip()
 
 
-def _in_scope(address: str, zip_code: str = "") -> bool:
+def _in_scope(address: str, zip_code: str = "", *, state: Optional[str] = None) -> bool:
     text = f"{zip_code} {address}"
+    st = (state or ENRICH_STATE or "").upper()
+    if st:
+        from agents.geo_scope import infer_state
+
+        return infer_state(address, zip_code=zip_code) == st or f" {st} " in f" {text.upper()} "
     if CITY_SCOPE == "national":
         return True
     return bool(CHICAGO_ZIP.search(text)) or "chicago" in text.lower() or "il" in text.lower()
 
 
-def parse_github_listings(categories: Optional[List[str]] = None) -> List[Dict[str, str]]:
+def parse_github_listings(
+    categories: Optional[List[str]] = None,
+    *,
+    state: Optional[str] = None,
+) -> List[Dict[str, str]]:
     """Parse name, address, phone, website from GitHub .txt files."""
-    cats = categories or list(GITHUB_FILES.keys())
+    files = _github_files(state)
+    cats = categories or list(files.keys())
     out: List[Dict[str, str]] = []
     for key in cats:
-        url = GITHUB_FILES.get(key)
+        url = files.get(key)
         if not url:
             continue
         try:
@@ -144,8 +159,12 @@ def parse_github_listings(categories: Optional[List[str]] = None) -> List[Dict[s
                     "address": "",
                     "phone": "",
                     "website": "",
+                    "languages": "",
+                    "services": "",
+                    "hours": "",
                     "category": key,
                     "zip": "",
+                    "state": (state or "").upper(),
                 }
                 continue
             if not current:
@@ -157,15 +176,21 @@ def parse_github_listings(categories: Optional[List[str]] = None) -> List[Dict[s
                 current["phone"] = re.sub(r"^(📞|phone)\s*:?\s*", "", s, flags=re.I).strip()
             elif s.startswith("🌐") or s.startswith("http"):
                 current["website"] = re.sub(r"^🌐\s*", "", s).strip()
-            elif s.startswith(("📝", "🗣", "🏥", "⏰", "📧", "#")):
+            elif s.startswith("🗣") or s.lower().startswith("language"):
+                current["languages"] = re.sub(r"^(🗣|languages?)\s*:?\s*", "", s, flags=re.I).strip()
+            elif s.startswith("🏥") or s.lower().startswith("service"):
+                current["services"] = re.sub(r"^(🏥|services?)\s*:?\s*", "", s, flags=re.I).strip()
+            elif s.startswith("⏰") or s.lower().startswith("hours"):
+                current["hours"] = re.sub(r"^(⏰|hours?)\s*:?\s*", "", s, flags=re.I).strip()
+            elif s.startswith(("📝", "📧", "#")):
                 continue
             elif not current["address"] and (
-                "," in s or CHICAGO_ZIP.search(s) or re.search(r"\bIL\b", s)
+                "," in s or re.search(r"\b[A-Z]{2}\b", s) or re.search(r"\b\d{5}\b", s)
             ):
                 current["address"] = s
-                zm = CHICAGO_ZIP.search(s) or re.search(r"\b(\d{5})\b", s)
+                zm = re.search(r"\b(\d{5})\b", s)
                 if zm:
-                    current["zip"] = zm.group(1) if zm.lastindex else zm.group(0)
+                    current["zip"] = zm.group(1)
         if current and current.get("name"):
             out.append(current)
     return out
@@ -176,68 +201,272 @@ def list_gaps(
     *,
     websites_only: bool = False,
     phones_only: bool = False,
+    fields_only: bool = False,
+    state: Optional[str] = None,
 ) -> List[Dict[str, str]]:
     gaps = []
     for it in listings:
-        if not _in_scope(it.get("address") or "", it.get("zip") or ""):
+        if not _in_scope(it.get("address") or "", it.get("zip") or "", state=state):
             continue
         missing_phone = not _digits(it.get("phone") or "")
         missing_web = not (it.get("website") or "").strip()
+        missing_lang = not (it.get("languages") or "").strip()
+        missing_svc = not (it.get("services") or "").strip()
+        missing_hours = not (it.get("hours") or "").strip()
         if websites_only and not missing_web:
             continue
         if phones_only and not missing_phone:
             continue
-        if missing_phone or missing_web:
-            gaps.append({**it, "missing_phone": missing_phone, "missing_web": missing_web})
+        if fields_only and not (missing_lang or missing_svc or missing_hours):
+            continue
+        if missing_phone or missing_web or missing_lang or missing_svc or missing_hours:
+            gaps.append(
+                {
+                    **it,
+                    "missing_phone": missing_phone,
+                    "missing_web": missing_web,
+                    "missing_lang": missing_lang,
+                    "missing_svc": missing_svc,
+                    "missing_hours": missing_hours,
+                }
+            )
     return gaps
 
 
-# ---------- Free sources ----------
+_LANG_HINTS = (
+    "spanish",
+    "arabic",
+    "mandarin",
+    "cantonese",
+    "polish",
+    "urdu",
+    "hindi",
+    "french",
+    "ukrainian",
+    "swahili",
+    "korean",
+    "vietnamese",
+    "tagalog",
+    "portuguese",
+    "russian",
+    "bosnian",
+    "somali",
+    "burmese",
+    "english",
+    "amharic",
+    "tigrinya",
+    "farsi",
+    "persian",
+    "pashto",
+    "dari",
+    "hmong",
+    "lao",
+    "thai",
+    "khmer",
+    "nepali",
+    "bengali",
+    "punjabi",
+    "gujarati",
+    "haitian creole",
+    "creole",
+    "asl",
+    "sign language",
+)
+_SVC_HINTS = (
+    "esl",
+    "ged",
+    "citizenship",
+    "primary care",
+    "dental",
+    "mental health",
+    "behavioral health",
+    "immigration",
+    "legal aid",
+    "housing",
+    "shelter",
+    "workforce",
+    "job training",
+    "youth",
+    "food pantry",
+    "case management",
+    "interpretation",
+    "interpreter",
+    "translation",
+    "asylum",
+    "pediatrics",
+    "prenatal",
+    "obgyn",
+    "ob/gyn",
+    "women's health",
+    "pharmacy",
+    "vision",
+    "optometry",
+    "substance use",
+    "hiv",
+    "std",
+    "sti",
+    "family planning",
+    "sliding fee",
+    "sliding scale",
+    "medicaid",
+    "uninsured",
+)
+_LANG_PHRASE_RE = re.compile(
+    r"(?i)(?:languages?\s*(?:spoken|offered|available)?|we\s+speak|interpretation\s+(?:available|services?)"
+    r"|bilingual\s+(?:staff|services?)|interpreters?\s+(?:available|on\s+site))"
+    r"\s*[:\-–]?\s*([A-Za-z][A-Za-z\s,/;&()]{2,120})"
+)
+_HOURS_RE = re.compile(
+    r"(?i)((?:mon|tue|wed|thu|fri|sat|sun)[a-z]*\.?(?:\s*[-–]\s*(?:mon|tue|wed|thu|fri|sat|sun)[a-z]*\.?)?"
+    r"\s*[:\-]?\s*\d{1,2}(?::\d{2})?\s*(?:am|pm)?(?:\s*[-–]\s*\d{1,2}(?::\d{2})?\s*(?:am|pm))?)"
+)
 
-def load_hrsa_index(path: Path) -> List[Dict[str, str]]:
-    """Load HRSA (or similar) CSV; flexible column names."""
+
+def extract_fields_from_text(text: str) -> Dict[str, str]:
+    """Best-effort languages / services / hours from free org-site text."""
+    low = (text or "").lower()
+    out: Dict[str, str] = {}
+    langs = []
+    phrase = _LANG_PHRASE_RE.search(text or "")
+    if phrase:
+        chunk = phrase.group(1)
+        # stop at sentence break / boilerplate
+        chunk = re.split(r"[.!?]|click |learn more|read more", chunk, maxsplit=1, flags=re.I)[0]
+        for part in re.split(r"[,;/&]| and ", chunk):
+            p = part.strip(" .:-–()").strip()
+            if 2 <= len(p) <= 40 and re.search(r"[A-Za-z]", p):
+                langs.append(p.title() if p.lower() != "asl" else "ASL")
+    for h in _LANG_HINTS:
+        if re.search(rf"\b{re.escape(h)}\b", low):
+            label = "ASL" if h in ("asl", "sign language") else ("Haitian Creole" if h == "haitian creole" else h.title())
+            langs.append(label)
+    # ESL/GED are services, not languages
+    langs = [x for x in langs if x.lower() not in ("esl", "ged")]
+    if langs:
+        out["languages"] = ", ".join(list(dict.fromkeys(langs))[:10])
+    svcs = []
+    for h in _SVC_HINTS:
+        if re.search(rf"\b{re.escape(h)}\b", low):
+            if h in ("esl", "ged", "hiv", "std", "sti", "obgyn", "ob/gyn"):
+                svcs.append(h.upper().replace("OB/GYN", "OB/GYN"))
+            else:
+                svcs.append(h.title())
+    if svcs:
+        out["services"] = ", ".join(list(dict.fromkeys(svcs))[:12])
+    hm = _HOURS_RE.search(text or "")
+    if hm:
+        out["hours"] = re.sub(r"\s+", " ", hm.group(1)).strip()[:120]
+    return out
+
+
+def fields_from_site(website: str) -> Tuple[Dict[str, str], str]:
+    if not website:
+        return {}, ""
+    base = website if website.startswith("http") else f"https://{website}"
+    merged: Dict[str, str] = {}
+    for path in ("", "/about", "/services", "/programs", "/contact", "/languages", "/patients"):
+        url = urljoin(base.rstrip("/") + "/", path.lstrip("/")) if path else base
+        try:
+            text = fetch_page_text(url)
+            got = extract_fields_from_text(text)
+            for k, v in got.items():
+                if v and k not in merged:
+                    merged[k] = v
+        except Exception:
+            continue
+        if len(merged) >= 3:
+            break
+        time.sleep(0.35)
+    return merged, base
+
+def _directory_row_from_keys(
+    lower: Dict[str, str],
+    *,
+    source: str,
+    allow_state: Optional[str] = None,
+) -> Optional[Dict[str, str]]:
+    def pick(*keys: str) -> str:
+        for key in keys:
+            for k, v in lower.items():
+                if key in k and v:
+                    return v
+        return ""
+
+    name = pick("site name", "site_name", "health center name", "organization", "name", "facility")
+    phone = pick("phone", "telephone", "site telephone", "site phone", "telephone number")
+    website = pick("website", "web site", "url", "site url")
+    address = pick("address", "site address", "street", "street address", "location")
+    city = pick("city", "site city")
+    state = pick("state", "site state")
+    zip_code = pick("zip", "postal", "zip code", "site zip")
+    st = (state or "").upper().strip()
+    allow = (allow_state or "").upper().strip() or None
+    if allow:
+        if st and st != allow and allow not in f"{city} {address} {zip_code}".upper():
+            return None
+    elif CITY_SCOPE != "national":
+        if st and st not in ("IL", "ILLINOIS", ""):
+            return None
+        if zip_code and not CHICAGO_ZIP.search(zip_code):
+            if "chicago" not in f"{city} {address}".lower():
+                return None
+    if not name:
+        return None
+    return {
+        "name": name,
+        "phone": phone,
+        "website": website,
+        "address": ", ".join(x for x in [address, city, state, zip_code] if x),
+        "zip": zip_code,
+        "source": source,
+    }
+
+
+def load_hrsa_index(path: Path, *, state: Optional[str] = None) -> List[Dict[str, str]]:
+    """Load HRSA CSV or Find-a-HC XLSX; flexible column names."""
     if not path.exists():
         raise FileNotFoundError(path)
     rows: List[Dict[str, str]] = []
+    suffix = path.suffix.lower()
+    if suffix in (".xlsx", ".xlsm"):
+        from openpyxl import load_workbook
+
+        wb = load_workbook(path, read_only=True, data_only=True)
+        ws = wb.active
+        it = ws.iter_rows(values_only=True)
+        try:
+            hdr = next(it)
+        except StopIteration:
+            wb.close()
+            return []
+        keys = [re.sub(r"\s+", " ", str(h or "").strip().lower()) for h in hdr]
+        for raw in it:
+            lower = {
+                keys[i]: str(raw[i]).strip() if raw[i] is not None else ""
+                for i in range(min(len(keys), len(raw)))
+            }
+            row = _directory_row_from_keys(lower, source=f"hrsa_xlsx:{path.name}", allow_state=state)
+            if row:
+                rows.append(row)
+        wb.close()
+        return rows
+
     with path.open(encoding="utf-8-sig", newline="") as f:
         reader = csv.DictReader(f)
         for row in reader:
             lower = {re.sub(r"\s+", " ", (k or "").strip().lower()): (v or "").strip() for k, v in row.items()}
-
-            def pick(*keys: str) -> str:
-                for key in keys:
-                    for k, v in lower.items():
-                        if key in k and v:
-                            return v
-                return ""
-
-            name = pick("site name", "site_name", "health center name", "organization", "name", "facility")
-            phone = pick("phone", "telephone", "site telephone", "site phone")
-            website = pick("website", "web site", "url", "site url")
-            address = pick("address", "site address", "street", "location")
-            city = pick("city", "site city")
-            state = pick("state", "site state")
-            zip_code = pick("zip", "postal", "zip code", "site zip")
-            if state and state.upper() not in ("IL", "ILLINOIS", ""):
-                # Chicago-first default: keep IL only unless national
-                if CITY_SCOPE != "national":
-                    continue
-            if CITY_SCOPE != "national" and zip_code and not CHICAGO_ZIP.search(zip_code):
-                if "chicago" not in f"{city} {address}".lower():
-                    continue
-            if not name:
-                continue
-            rows.append(
-                {
-                    "name": name,
-                    "phone": phone,
-                    "website": website,
-                    "address": ", ".join(x for x in [address, city, state, zip_code] if x),
-                    "zip": zip_code,
-                    "source": f"hrsa_csv:{path.name}",
-                }
-            )
+            got = _directory_row_from_keys(lower, source=f"hrsa_csv:{path.name}", allow_state=state)
+            if got:
+                rows.append(got)
     return rows
+
+
+def default_hrsa_sheet_for_state(state: Optional[str]) -> Optional[Path]:
+    st = (state or "").upper().strip()
+    if not st:
+        return None
+    p = DATA / "hrsa_finder" / f"health_centers_{st}.xlsx"
+    return p if p.exists() else None
 
 
 def match_directory(
@@ -405,6 +634,7 @@ def ollama_verify_match(
     candidate_phone: str = "",
     candidate_website: str = "",
     evidence: str = "",
+    candidate_updates: Optional[Dict[str, str]] = None,
 ) -> Dict[str, Any]:
     """
     Local Ollama: does this contact likely belong to this clinic?
@@ -412,14 +642,18 @@ def ollama_verify_match(
     """
     base = (os.environ.get("OLLAMA_BASE_URL") or "http://localhost:11434/v1").rstrip("/")
     model = os.environ.get("OLLAMA_MODEL") or "llama3"
+    extras = candidate_updates or {}
     prompt = (
         "You verify clinic contact enrichment. Reply with ONLY JSON: "
         '{"match": true|false, "confidence": "high"|"medium"|"low", "reason": "..."}\n'
+        "Accept language/service/hours fills scraped from the clinic's own site if plausible.\n"
         "Reject if the phone/website clearly belongs to a different org.\n"
         f"Clinic name: {listing.get('name')}\n"
         f"Address: {listing.get('address')}\n"
+        f"Existing website: {(listing.get('website') or '')[:120]}\n"
         f"Candidate phone: {candidate_phone}\n"
         f"Candidate website: {candidate_website}\n"
+        f"Other proposed fields: {json.dumps({k: extras.get(k) for k in ('languages','services','hours') if extras.get(k)}, ensure_ascii=False)}\n"
         f"Evidence snippet: {evidence[:500]}\n"
     )
     try:
@@ -495,6 +729,7 @@ def stage_update(
         "notes": notes,
         "verification": verification,
         "city_scope": CITY_SCOPE,
+        "state": __import__("agents.geo_scope", fromlist=["infer_state"]).infer_state(address),
         "created_at": _now(),
     }
     pending.setdefault("items", []).append(item)
@@ -576,6 +811,27 @@ def enrich_one(
             sources.append(used)
             evidence_bits.append(f"phones on site: {phones[:3]}")
 
+    # 5) Org site scrape for languages / services / hours when blank
+    need_meta = (
+        not (listing.get("languages") or "").strip()
+        or not (listing.get("services") or "").strip()
+        or not (listing.get("hours") or "").strip()
+    )
+    if need_meta and fetch_sites and website:
+        fields, used = fields_from_site(website)
+        if fields.get("languages") and not (listing.get("languages") or "").strip():
+            updates["languages"] = fields["languages"]
+            sources.append(used + "#lang")
+            evidence_bits.append(f"languages≈{fields['languages']}")
+        if fields.get("services") and not (listing.get("services") or "").strip():
+            updates["services"] = fields["services"]
+            sources.append(used + "#svc")
+            evidence_bits.append(f"services≈{fields['services']}")
+        if fields.get("hours") and not (listing.get("hours") or "").strip():
+            updates["hours"] = fields["hours"]
+            sources.append(used + "#hours")
+            evidence_bits.append(f"hours≈{fields['hours']}")
+
     if not updates:
         return None
 
@@ -586,6 +842,7 @@ def enrich_one(
             candidate_phone=updates.get("phone", ""),
             candidate_website=updates.get("website", ""),
             evidence="; ".join(evidence_bits),
+            candidate_updates=updates,
         )
         if verification.get("confidence") != "unchecked" and not verification.get("ok"):
             return {
@@ -607,6 +864,17 @@ def enrich_one(
     return item
 
 
+def _gap_priority(g: Dict[str, str]) -> Tuple[int, int, str]:
+    """Prefer directory-fillable web/phone, then lang/svc scrape when a site exists."""
+    has_web = 1 if (g.get("website") or "").strip() else 0
+    # lower tuple sorts first
+    if g.get("missing_web") or g.get("missing_phone"):
+        return (0, 0 if has_web else 1, g.get("name") or "")
+    if g.get("missing_lang") or g.get("missing_svc") or g.get("missing_hours"):
+        return (1, 0 if has_web else 1, g.get("name") or "")
+    return (2, 1, g.get("name") or "")
+
+
 def scan(
     *,
     categories: Optional[List[str]] = None,
@@ -618,11 +886,23 @@ def scan(
     fetch_sites: bool = True,
     websites_only: bool = False,
     phones_only: bool = False,
+    fields_only: bool = False,
+    state: Optional[str] = None,
 ) -> Dict[str, Any]:
-    listings = parse_github_listings(categories)
-    gaps = list_gaps(listings, websites_only=websites_only, phones_only=phones_only)
-    hrsa = load_hrsa_index(hrsa_path) if hrsa_path else []
-    sheet = load_hrsa_index(sheet_path) if sheet_path else []  # same flexible CSV loader
+    st = (state or ENRICH_STATE or "").upper() or None
+    listings = parse_github_listings(categories, state=st)
+    gaps = list_gaps(
+        listings,
+        websites_only=websites_only,
+        phones_only=phones_only,
+        fields_only=fields_only,
+        state=st,
+    )
+    gaps = sorted(gaps, key=_gap_priority)
+    if sheet_path is None and not hrsa_path:
+        sheet_path = default_hrsa_sheet_for_state(st)
+    hrsa = load_hrsa_index(hrsa_path, state=st) if hrsa_path else []
+    sheet = load_hrsa_index(sheet_path, state=st) if sheet_path else []
 
     staged = []
     skipped = []
@@ -641,10 +921,22 @@ def scan(
         if result.get("skipped"):
             skipped.append(result)
         else:
+            if st and not result.get("state"):
+                result["state"] = st
+                # persist state on pending item
+                try:
+                    pending = _load_pending()
+                    for it in pending.get("items") or []:
+                        if it.get("op_id") == result.get("op_id"):
+                            it["state"] = st
+                    _save_pending(pending)
+                except Exception:
+                    pass
             staged.append(
                 {
                     "op_id": result.get("op_id"),
                     "name": result.get("name"),
+                    "state": st,
                     "field_updates": result.get("field_updates"),
                     "source": result.get("source"),
                     "verification": result.get("verification"),
@@ -652,13 +944,25 @@ def scan(
             )
         time.sleep(0.35)
 
+    # High+known enrich fills → push immediately
+    auto_info = {"auto_apply": 0}
+    if staged:
+        try:
+            from agents.confidence import drain_auto_apply
+
+            auto_info = drain_auto_apply(staged)
+        except Exception as e:
+            auto_info = {"error": str(e)}
+
     return {
         "ok": True,
         "scope": CITY_SCOPE,
+        "state": st,
         "listings": len(listings),
         "gaps": len(gaps),
         "staged": len(staged),
         "skipped_by_ollama": len(skipped),
+        "auto_apply_high": auto_info,
         "items": staged,
         "skipped": skipped,
         "hint": "Review with: python -m agents.clinic_ops --list  then --approve / --apply",
@@ -686,9 +990,15 @@ def main() -> None:
     )
     ap.add_argument("--websites-only", action="store_true", help="Only fill missing websites")
     ap.add_argument("--phones-only", action="store_true", help="Only fill missing phones")
+    ap.add_argument(
+        "--fields-only",
+        action="store_true",
+        help="Only fill missing languages / services / hours",
+    )
     ap.add_argument("--no-fetch-sites", action="store_true", help="Do not fetch org pages for phones")
     ap.add_argument("--no-ollama", action="store_true", help="Skip Ollama verify (still stage for human)")
     ap.add_argument("--scope", default=None, help="chicago | national")
+    ap.add_argument("--state", default=None, help="USPS state filter + resources/{ST}/ paths (e.g. IN)")
     args = ap.parse_args()
 
     if args.scope:
@@ -698,9 +1008,11 @@ def main() -> None:
 
     if args.list_gaps:
         gaps = list_gaps(
-            parse_github_listings(cats),
+            parse_github_listings(cats, state=args.state),
             websites_only=args.websites_only,
             phones_only=args.phones_only,
+            fields_only=args.fields_only,
+            state=args.state,
         )
         slim = [
             {
@@ -726,6 +1038,8 @@ def main() -> None:
             fetch_sites=not args.no_fetch_sites,
             websites_only=args.websites_only,
             phones_only=args.phones_only,
+            fields_only=args.fields_only,
+            state=args.state,
         )
         print(json.dumps(result, indent=2, ensure_ascii=False))
         return

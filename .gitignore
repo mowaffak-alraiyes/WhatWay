@@ -163,6 +163,8 @@ cython_debug/
 data/proposed_clinics.json
 data/pending_ops.json
 data/telegram_offset.txt
+data/telegram_msg_map.json
+data/hrsa_finder/
 # data/healthcare.json, education.json, resettlement_legal_shelter.json — tracked for demos
 
 # Cursor

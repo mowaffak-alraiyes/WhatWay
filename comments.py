@@ -413,7 +413,7 @@ def render_comment(comment: Dict, resource_id: str, resource_category: str,
 
 
 def render_discussion_section(resource_id: str, resource_category: str, resource_name: str = ""):
-    """Yelp-style reviews section — matches main listing cards."""
+    """Yelp-style reviews section  -  matches main listing cards."""
     try:
         db_ok = bool(db.get_db_instance().get_connection())
     except Exception:
@@ -444,7 +444,7 @@ def render_discussion_section(resource_id: str, resource_category: str, resource
 <div class="yelp-reviews-banner">
   <div class="yelp-reviews-count">{comment_count} review{"s" if comment_count != 1 else ""}</div>
   {avg_html}
-  <div class="yelp-reviews-hint">Share tips for other families — what helped, wait times, languages spoken.</div>
+  <div class="yelp-reviews-hint">Share tips for other families  -  what helped, wait times, languages spoken.</div>
 </div>
 <style>
 .yelp-reviews-banner {{
@@ -503,7 +503,7 @@ def render_discussion_section(resource_id: str, resource_category: str, resource
         st.markdown(
             """
 <div class="yelp-login-nudge">
-  <strong>Log in to write a review.</strong> You can still read comments without an account — use Account in the sidebar.
+  <strong>Log in to write a review.</strong> You can still read comments without an account  -  use Account in the sidebar.
 </div>
 <style>
 .yelp-login-nudge {

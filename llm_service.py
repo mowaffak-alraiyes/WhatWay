@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-LLM Service — local Ollama only (free).
+LLM Service - local Ollama only (free).
 Intent detection, replies, summarization, and translation.
 """
 
@@ -235,7 +235,7 @@ def generate_response(
         if results:
             return f"I found {len(results)} {category.lower()} options that look helpful!"
         else:
-            return "Hmm, nothing exact — try another ZIP or service and I’ll dig again."
+            return "Hmm, nothing exact - try another ZIP or service and I’ll dig again."
     
     user_message = f"""User searched for: "{query}"
 Category: {category}
@@ -268,7 +268,7 @@ Write ONE short Pip sentence introducing these results (warm, friendly)."""
         if results:
             return f"Here are {len(results)} {category.lower()} options for you."
         else:
-            return "No exact matches — try another ZIP or service."
+            return "No exact matches - try another ZIP or service."
 
 
 # ===========================

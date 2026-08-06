@@ -1,0 +1,46 @@
+[
+  {
+    "id": "item_1",
+    "name": "# IN  -  ResettlementLegalShelterBasicNeeds.txt",
+    "address": "# Populated by Aidr HRSA Find-a-HC import (Indianapolis + surrounding, 250-mile catchment).",
+    "phone": "",
+    "phone_digits": "",
+    "website": "",
+    "zip_code": "",
+    "services": [],
+    "services_text": "# Format: numbered blocks matching IL listings (name, Address, 📞, 🌐, 🏥, 🗣, ⏰, 📝).",
+    "subcategories": [],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "# in  -  resettlementlegalshelterbasicneeds.txt # populated by aidr hrsa find-a-hc import (indianapolis + surrounding, 250-mile catchment). # format: numbered blocks matching il listings (name, address, 📞, 🌐, 🏥, 🗣, ⏰, 📝).",
+    "state": "IN"
+  },
+  {
+    "id": "1",
+    "name": "Catholic Charities Indianapolis  -  Refugee & Immigrant Services",
+    "address": "",
+    "phone": "",
+    "phone_digits": "",
+    "website": "https://www.archindy.org/cc",
+    "zip_code": "",
+    "services": [
+      "legal",
+      "refugee_resettlement"
+    ],
+    "services_text": "Refugee Resettlement, Immigration, Basic Needs",
+    "subcategories": [
+      "Legal Services",
+      "Refugee Resettlement"
+    ],
+    "availability_badges": [],
+    "languages": [],
+    "hours": {},
+    "hours_text": "",
+    "notes": "",
+    "search_blob": "catholic charities indianapolis  -  refugee & immigrant services refugee resettlement, immigration, basic needs legal refugee_resettlement legal services refugee resettlement https://www.archindy.org/cc",
+    "state": "IN"
+  }
+]

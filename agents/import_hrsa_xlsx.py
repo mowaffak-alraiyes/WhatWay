@@ -5,7 +5,7 @@ Rules:
   - Never remove existing listing fields (languages, hours, services, etc.)
   - Add new clinics that aren't already listed
   - If a clinic already exists (name + ZIP match), only fill blank phone/website
-    and/or add Ryan White context — do not wipe other lines
+    and/or add Ryan White context  -  do not wipe other lines
   - HAB rows always get clear Ryan White HIV/AIDS Program labeling
 
 Examples:
@@ -39,13 +39,13 @@ HEALTHCARE_REL = "resources/healthcare.txt"
 RAW_URL = f"https://raw.githubusercontent.com/{REPO}/main/{HEALTHCARE_REL}"
 
 REVIEWED = "07/2026"
-HC_NOTE = f"HRSA Health Center Program — Last reviewed {REVIEWED}"
-HAB_NOTE = f"Ryan White HIV/AIDS Program (HRSA HAB) provider — Last reviewed {REVIEWED}"
+HC_NOTE = f"HRSA Health Center Program  -  Last reviewed {REVIEWED}"
+HAB_NOTE = f"Ryan White HIV/AIDS Program (HRSA HAB) provider  -  Last reviewed {REVIEWED}"
 HAB_SERVICES = (
     "Ryan White HIV/AIDS Program care and support services "
     "(HIV medical care, case management, and related HAB-funded supports)"
 )
-HC_SERVICES = "HRSA-supported health center (primary and preventive care)"
+HC_SERVICES = "Primary Care"
 
 
 @dataclass
@@ -192,7 +192,7 @@ def _set_or_fill_line(lines: List[str], prefix_check, new_line: str, *, only_if_
             idx = i
             break
     if idx is None:
-        # Insert after address / notes cluster — before languages/services if present
+        # Insert after address / notes cluster  -  before languages/services if present
         insert_at = len(lines)
         for i, line in enumerate(lines):
             s = line.strip()
@@ -311,7 +311,9 @@ def new_block(
     if phone:
         lines.append(f"📞 {_fmt_phone(phone)}")
     if services:
-        lines.append(f"🏥 Services: {services}")
+        from core.labels import humanize_services
+
+        lines.append(f"🏥 Services: {humanize_services(services)}")
     return Block(number=number, name=name, lines=lines)
 
 

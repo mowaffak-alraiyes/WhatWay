@@ -60,7 +60,7 @@ st.markdown(f"""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
 
-/* App text — do NOT override Material Icons (fixes keyboard_double_arrow text) */
+/* App text  -  do NOT override Material Icons (fixes keyboard_double_arrow text) */
 .stApp, .stMarkdown, .stButton > button, .stSelectbox, .stTextInput,
 div[data-testid="stChatMessage"], section[data-testid="stSidebar"] .stMarkdown,
 section[data-testid="stSidebar"] label, section[data-testid="stSidebar"] p,
@@ -85,7 +85,7 @@ span[data-testid="stIconMaterial"],
     radial-gradient(700px 360px at 100% 0%, #e8f5ef 0%, transparent 50%),
     #F4F7F5;
 }}
-/* Wider main column — Streamlit default feels too narrow for listings */
+/* Wider main column  -  Streamlit default feels too narrow for listings */
 .main .block-container {{
   max-width: 1180px !important;
   padding-top: 1.25rem !important;
@@ -205,7 +205,7 @@ div[data-testid="stChatMessage"]:has(.yelp-card) {{
   box-shadow: none !important;
   padding-left: 0 !important;
 }}
-/* Sticky category bar — only the keyed container (NOT :has(), which
+/* Sticky category bar  -  only the keyed container (NOT :has(), which
    matched parent blocks and covered the page, eating the first click). */
 div.st-key-aidr_cat_bar {{
   position: sticky !important;
@@ -219,7 +219,7 @@ div.st-key-aidr_cat_bar {{
   border-bottom: 1px solid rgba(78,176,134,0.22);
   box-shadow: 0 6px 16px rgba(26,46,40,0.06);
 }}
-/* Yelp card action row — equal-height pills */
+/* Yelp card action row  -  equal-height pills */
 div[data-testid="stHorizontalBlock"] .stButton > button {{
   white-space: nowrap !important;
 }}
@@ -256,7 +256,28 @@ TOP_N = 3  # show first N; user can type "more" to fetch next batch
 
 # QR Code functionality removed - not necessary
 
+import importlib
 import core.spellcheck as spellcheck
+
+# Streamlit keeps sys.modules across reruns — pick up new helpers after edits
+if not hasattr(spellcheck, "is_paginate_command") or not hasattr(spellcheck, "is_ui_command"):
+    spellcheck = importlib.reload(spellcheck)
+
+
+def _is_paginate_command(text: str) -> bool:
+    """Paginate ('more') — resilient if Streamlit holds a stale spellcheck module."""
+    fn = getattr(spellcheck, "is_paginate_command", None)
+    if callable(fn):
+        return bool(fn(text))
+    q = (text or "").strip().lower()
+    return q in {"more", "next", "again", "show more", "more results", "show more results"}
+
+
+def _is_ui_command(text: str) -> bool:
+    fn = getattr(spellcheck, "is_ui_command", None)
+    if callable(fn):
+        return bool(fn(text))
+    return _is_paginate_command(text) or (text or "").strip().lower() in {"yes", "no", "ok", "okay"}
 
 DATA_SOURCES = {
     "Healthcare": [
@@ -414,7 +435,7 @@ def detect_zip_from_query(query: str, known_zips: List[str] = None) -> str:
             return resolved or raw
         return raw
 
-    # Any 4–5 digit run — resolve via similarity to known ZIPs (handles typos)
+    # Any 4–5 digit run  -  resolve via similarity to known ZIPs (handles typos)
     digit_match = re.search(r"\b(\d{4,5})\b", query or "")
     if digit_match and known:
         resolved, score = neighborhood_mapping.resolve_zip_against_known(digit_match.group(1), known)
@@ -628,7 +649,7 @@ def expand_terms(query: str, category: str) -> List[str]:
 
 
 def must_have_patterns(terms: List[str], category: str) -> List[re.Pattern]:
-    """Preferred service cues — used as soft boosts, not hard gates."""
+    """Preferred service cues  -  used as soft boosts, not hard gates."""
     pats = []
     t = set(terms)
     if category == "Healthcare":
@@ -684,7 +705,7 @@ def _item_matches_service(item: Dict, service_filter: str) -> bool:
 
 
 def _term_hit(term: str, blob: str) -> bool:
-    """Substring or prefix hit — leeway for short / partial words."""
+    """Substring or prefix hit  -  leeway for short / partial words."""
     if not term or not blob:
         return False
     if term in blob:
@@ -707,7 +728,7 @@ def rank_items(
 ) -> List[Tuple[float, Dict]]:
     """
     Lenient ranking: ZIP/lang/service/day/must-have are boosts (or soft penalties),
-    not hard gates — so near-misses still surface. Fuzzy score adds typo leeway.
+    not hard gates  -  so near-misses still surface. Fuzzy score adds typo leeway.
     ZIP: exact > neighborhood/numeric nearby cluster > others.
     """
     from rapidfuzz import fuzz
@@ -793,7 +814,7 @@ def rank_items(
                 available_days = parse_day_ranges(hours)
                 day_ok = day_filter in available_days
             else:
-                day_ok = False  # missing hours — still keep in soft mode
+                day_ok = False  # missing hours  -  still keep in soft mode
             if not day_ok and not soft_filters and hours:
                 continue
 
@@ -817,7 +838,7 @@ def rank_items(
         elif q_raw and q_raw in name_l:
             score += 8.0
 
-        # Fuzzy leeway — for short queries, score against NAME only (avoid junk hits)
+        # Fuzzy leeway  -  for short queries, score against NAME only (avoid junk hits)
         fuzzy = 0.0
         if q_raw:
             try:
@@ -923,14 +944,29 @@ def _prompt_preview(text: str, n: int = 48) -> str:
 def render_prompt_rail(prompts: List[Tuple[int, str]]) -> None:
     """
     ChatGPT-style vertical tick rail on the RIGHT.
-    One mark per user prompt; click jumps back to that turn.
-    Active mark uses brand green (#4EB086).
+    Hidden until 2+ user prompts; one mark per turn; grows as the chat grows.
+    Always clears a stale rail left in the parent DOM from earlier runs.
     """
-    if len(prompts) < 2:
-        return
-
     import json
     import streamlit.components.v1 as components
+
+    # Always remove a leftover rail when we don't want one (0–1 prompts).
+    if len(prompts) < 2:
+        components.html(
+            """
+<!DOCTYPE html><html><body><script>
+(function () {
+  try {
+    const doc = window.parent.document;
+    doc.querySelectorAll(".aidr-prompt-rail").forEach((el) => el.remove());
+  } catch (e) {}
+})();
+</script></body></html>
+""",
+            height=0,
+            width=0,
+        )
+        return
 
     items = [
         {"id": f"aidr-prompt-{idx}", "title": _prompt_preview(txt), "n": i + 1}
@@ -1102,7 +1138,9 @@ def _specialty_tags(item: Dict, cat_key: str) -> List[str]:
         return re.sub(r"[^a-z0-9]+", "", (t or "").lower())
 
     def add(t: str) -> None:
-        t = (t or "").strip()
+        from core.labels import humanize_service_label
+
+        t = humanize_service_label(t or "")
         if not t:
             return
         key = norm(t)
@@ -1137,7 +1175,7 @@ def _specialty_tags(item: Dict, cat_key: str) -> List[str]:
     stxt = item.get("services_text") or ""
     stxt = re.sub(r"^.*?Services:\s*", "", str(stxt), flags=re.I)
     stxt = stxt.replace("🏥", "").strip()
-    parsed = [p.strip(" .") for p in re.split(r"[;|•·]", stxt) if p.strip(" .")]
+    parsed = [p.strip(" .") for p in re.split(r"[,;|•·]", stxt) if p.strip(" .")]
     for part in parsed:
         add(part)
 
@@ -1145,7 +1183,7 @@ def _specialty_tags(item: Dict, cat_key: str) -> List[str]:
         services = item.get("services") or []
         if isinstance(services, list):
             for s in services:
-                add(str(s).replace("_", " ").title())
+                add(str(s))
         elif services:
             add(str(services))
 
@@ -1156,7 +1194,7 @@ def _specialty_tags(item: Dict, cat_key: str) -> List[str]:
 
 
 def render_card(idx: int, item: Dict, cat_key: str, user_need: str = "", key_suffix: str = ""):
-    """Yelp-style listing — ≤4 specialty chips (+▾); Details / Pin / Map / Comments."""
+    """Yelp-style listing  -  ≤4 specialty chips (+▾); Details / Pin / Map / Comments."""
     import map_utils
     from data_loader import normalize_address
 
@@ -1209,7 +1247,7 @@ def render_card(idx: int, item: Dict, cat_key: str, user_need: str = "", key_suf
             f"</details>"
         )
 
-    # Phone / website — always show (Yelp-style contact lines)
+    # Phone / website  -  always show (Yelp-style contact lines)
     phone = (item.get("phone") or "").strip()
     phone = re.sub(r"^📞\s*", "", phone).strip()
     phone_digits = (item.get("phone_digits") or "").strip()
@@ -1339,7 +1377,7 @@ def render_card(idx: int, item: Dict, cat_key: str, user_need: str = "", key_suf
             unsafe_allow_html=True,
         )
 
-        # Details | Pin | Map | Comments — equal pills, no robot / no chevron panel
+        # Details | Pin | Map | Comments  -  equal pills, no robot / no chevron panel
         c_details, c_pin, c_map, c_comments = st.columns(4, gap="medium")
 
         with c_details:
@@ -1425,7 +1463,7 @@ if st.session_state.pop("_nav_detail", False):
 
 
 # ===========================
-# Sidebar — Language → Account → Forms → Saved → Filters
+# Sidebar  -  Language → Account → Forms → Saved → Filters
 # ===========================
 ui_lang = _ui_lang0
 
@@ -1441,7 +1479,7 @@ with st.sidebar:
             st.caption(i18n.t("ollama_hint", ui_lang))
         st.caption(i18n.t("whatsapp_hint", ui_lang))
 
-    # Voice — Pip speaks replies (free browser TTS)
+    # Voice  -  Pip speaks replies (free browser TTS)
     import core.voice as voice
 
     st.markdown('<hr class="aidr-side-rule"/>', unsafe_allow_html=True)
@@ -1449,7 +1487,7 @@ with st.sidebar:
     st.toggle(
         "Smarter answers (slower)",
         key="aidr_smart_llm",
-        help="Uses local Ollama for understanding — slower. Off = fast search.",
+        help="Uses local Ollama for understanding  -  slower. Off = fast search.",
     )
     st.markdown('<hr class="aidr-side-rule"/>', unsafe_allow_html=True)
 
@@ -1473,7 +1511,7 @@ with st.sidebar:
             use_container_width=True,
         )
 
-    # 4) Saved — always open the place website (external), never a chat page
+    # 4) Saved  -  always open the place website (external), never a chat page
     with st.expander(i18n.t("pinned", ui_lang), expanded=False):
         if st.session_state["pinned"]:
             for i, p in enumerate(st.session_state["pinned"], 1):
@@ -1482,7 +1520,7 @@ with st.sidebar:
                 if website:
                     st.link_button(f"{i}. {name}", website, use_container_width=True)
                 else:
-                    st.caption(f"{i}. {name} — no website listed")
+                    st.caption(f"{i}. {name}  -  no website listed")
         else:
             st.caption(i18n.t("pinned_empty", ui_lang))
 
@@ -1491,7 +1529,7 @@ with st.sidebar:
         try:
             search_helpers.render_recent_searches(st.session_state["category"])
         except Exception:
-            st.caption("—")
+            st.caption(" - ")
 
     st.markdown('<hr class="aidr-side-rule"/>', unsafe_allow_html=True)
     st.markdown(
@@ -1500,7 +1538,7 @@ with st.sidebar:
     )
 
 # ===========================
-# Category — sticky “What do you need?” bar
+# Category  -  sticky “What do you need?” bar
 # ===========================
 _ui_lang = st.session_state.get("ui_lang_code", "en")
 with st.container(key="aidr_cat_bar"):
@@ -1539,27 +1577,31 @@ cat_choice = st.session_state["category"]
 # ===========================
 # Load dataset - NOW USING data_loader.py for structured JSON!
 # ===========================
-def get_dataset(cat_key: str) -> Tuple[List[Dict], str]:
-    """Load dataset using data_loader.py for structured JSON data."""
-    # Use data_loader for fast, structured JSON loading
+# Midwest states available in the expanded resource set (State filter → ZIP unlock)
+UI_FILTER_STATES = ("IL", "IN")
+STATE_LABELS = {"IL": "Illinois (IL)", "IN": "Indiana (IN)"}
+
+def get_dataset(cat_key: str, state: Optional[str] = None) -> Tuple[List[Dict], str]:
+    """Load dataset using data_loader.py for structured JSON data (per state)."""
+    st_code = (state or st.session_state.get("filter_state") or "IL").strip().upper() or "IL"
     try:
-        items = data_loader.load_category_data(cat_key)
-        
-        # For backward compatibility, we still need raw_text for filter building
-        # But we can build it from the structured data if needed
-        if cat_key not in st.session_state.get("raw_text_cache", {}):
-            # Build raw text representation from structured data for filter options
+        items = data_loader.load_category_data(cat_key, state=st_code)
+
+        cache_key = f"{cat_key}::{st_code}"
+        if cache_key not in st.session_state.get("raw_text_cache", {}):
             raw_text_parts = []
-            for item in items[:100]:  # Sample for performance
-                raw_text_parts.append(f"{item.get('name', '')} {item.get('address', '')} {item.get('services_text', '')}")
+            for item in items[:200]:
+                raw_text_parts.append(
+                    f"{item.get('name', '')} {item.get('address', '')} "
+                    f"{item.get('services_text', '')} {item.get('languages', '')}"
+                )
             raw_text = "\n".join(raw_text_parts)
-            st.session_state.setdefault("raw_text_cache", {})[cat_key] = raw_text
+            st.session_state.setdefault("raw_text_cache", {})[cache_key] = raw_text
         else:
-            raw_text = st.session_state["raw_text_cache"][cat_key]
-        
+            raw_text = st.session_state["raw_text_cache"][cache_key]
+
         return items, raw_text
     except Exception as e:
-        # Fallback to old parsing if data_loader fails
         st.warning(f"⚠️ Using fallback parsing (data_loader failed: {e})")
         if cat_key in st.session_state.get("datasets_cache", {}):
             return st.session_state["datasets_cache"][cat_key]
@@ -1568,14 +1610,32 @@ def get_dataset(cat_key: str) -> Tuple[List[Dict], str]:
         st.session_state.setdefault("datasets_cache", {})[cat_key] = (items, text)
         return items, text
 
+st.session_state.setdefault("filter_state", "")
+
+_boot_state = st.session_state.get("filter_state") or "IL"
 try:
-    items, raw_text = get_dataset(st.session_state["category"])
+    items, raw_text = get_dataset(st.session_state["category"], _boot_state)
 except Exception as e:
     st.error(f"⚠️ Could not load the **{st.session_state['category']}** dataset. Check the GitHub/raw path or local fallback.\n\n{e}")
     st.stop()
 
-# Build filter options from the loaded dataset
-all_zips = sorted(set(re.findall(r"\b60\d{3}\b", raw_text)))
+# Build filter options from the loaded dataset (any US ZIP in this state's listings)
+def _item_zips(dataset: List[Dict]) -> List[str]:
+    found = set()
+    for it in dataset or []:
+        z = str(it.get("zip_code") or it.get("zip") or "").strip()
+        m = re.search(r"\b(\d{5})\b", z)
+        if m:
+            found.add(m.group(1))
+            continue
+        addr = it.get("address") or ""
+        for zm in re.finditer(r"\b(\d{5})\b", addr):
+            found.add(zm.group(1))
+    return sorted(found)
+
+all_zips = _item_zips(items)
+if not all_zips and raw_text:
+    all_zips = sorted(set(re.findall(r"\b\d{5}\b", raw_text)))
 lang_lines = re.findall(r"🗣\s*Languages:\s*(.+)", raw_text)
 langs = set()
 for line in lang_lines:
@@ -1583,6 +1643,16 @@ for line in lang_lines:
         lang = lang.strip()
         if lang and not lang.lower().startswith("and"):
             langs.add(lang)
+# Prefer structured language fields when present
+for it in items or []:
+    for lang in it.get("languages") or []:
+        if isinstance(lang, str) and lang.strip():
+            langs.add(lang.strip())
+    lt = it.get("languages_text") or ""
+    for part in re.split(r"[;,]", lt):
+        part = part.strip()
+        if part:
+            langs.add(part)
 all_langs = sorted(langs)
 
 # Build service filter options based on category
@@ -1633,15 +1703,55 @@ else:
 
 with st.sidebar:
     _all = i18n.t("filter_all", _ui_lang)
-    # Keep internal "All" key for filter logic; show translated label via format if needed
-    zip_opts = ["All"] + all_zips
-    lang_opts = ["All"] + all_langs
-    zip_filter = st.selectbox(
-        i18n.t("filter_zip", _ui_lang),
-        zip_opts,
-        format_func=lambda x: _all if x == "All" else x,
-        key=f"zip_{cat_choice}",
+    _state_placeholder = i18n.t("filter_state_placeholder", _ui_lang)
+
+    prev_state = st.session_state.get("filter_state") or ""
+    state_options = [""] + list(UI_FILTER_STATES)
+    state_filter = st.selectbox(
+        i18n.t("filter_state", _ui_lang),
+        state_options,
+        index=state_options.index(prev_state) if prev_state in state_options else 0,
+        format_func=lambda x: _state_placeholder if not x else STATE_LABELS.get(x, x),
+        key="filter_state_select",
     )
+    if state_filter != prev_state:
+        st.session_state["filter_state"] = state_filter
+        # Drop stale ZIP when the state changes
+        for zip_key in (f"zip_{cat_choice}", f"zip_{cat_choice}_locked"):
+            if zip_key in st.session_state:
+                del st.session_state[zip_key]
+        st.rerun()
+
+    st.session_state["filter_state"] = state_filter
+
+    # ZIP unlocked only after a state is chosen
+    zip_enabled = bool(state_filter)
+    if zip_enabled:
+        # Reload items for the selected state so ZIP list matches
+        try:
+            items, raw_text = get_dataset(st.session_state["category"], state_filter)
+            all_zips = _item_zips(items)
+        except Exception:
+            pass
+        zip_opts = ["All"] + all_zips
+        zip_filter = st.selectbox(
+            i18n.t("filter_zip", _ui_lang),
+            zip_opts,
+            format_func=lambda x: _all if x == "All" else x,
+            key=f"zip_{cat_choice}",
+        )
+    else:
+        st.selectbox(
+            i18n.t("filter_zip", _ui_lang),
+            ["All"],
+            format_func=lambda x: _all if x == "All" else x,
+            key=f"zip_{cat_choice}_locked",
+            disabled=True,
+        )
+        st.caption(i18n.t("filter_zip_locked", _ui_lang))
+        zip_filter = "All"
+
+    lang_opts = ["All"] + all_langs
     lang_filter = st.selectbox(
         i18n.t("filter_lang", _ui_lang),
         lang_opts,
@@ -1667,15 +1777,54 @@ with st.sidebar:
     
     st.caption(tip_text)
     
-    neighborhoods = neighborhood_mapping.get_all_neighborhoods()
+    neighborhoods = neighborhood_mapping.get_all_neighborhoods() if state_filter == "IL" else []
     if neighborhoods:
         st.caption(i18n.t("tip_neighborhood", _ui_lang))
     
     # QR Code section removed - not necessary
-    st.markdown("---")
+    st.markdown(
+        """
+<style>
+/* Matching Reset / Scroll pills — full width, centered label */
+section[data-testid="stSidebar"] div[data-testid="stHorizontalBlock"] .stButton {
+  width: 100% !important;
+}
+section[data-testid="stSidebar"] div[data-testid="stHorizontalBlock"] .stButton > button {
+  width: 100% !important;
+  min-height: 2.5rem !important;
+  white-space: nowrap !important;
+  border: 2px solid #4EB086 !important;
+  border-radius: 999px !important;
+  background: #ffffff !important;
+  color: #1a2e28 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  padding: 0.4rem 0.75rem !important;
+}
+section[data-testid="stSidebar"] div[data-testid="stHorizontalBlock"] .stButton > button > div,
+section[data-testid="stSidebar"] div[data-testid="stHorizontalBlock"] .stButton > button > div > p,
+section[data-testid="stSidebar"] div[data-testid="stHorizontalBlock"] .stButton > button p {
+  width: 100% !important;
+  margin: 0 !important;
+  text-align: center !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+section[data-testid="stSidebar"] div[data-testid="stHorizontalBlock"] .stButton > button:hover {
+  background: #eef7f2 !important;
+  border-color: #4EB086 !important;
+  color: #1a2e28 !important;
+}
+</style>
+""",
+        unsafe_allow_html=True,
+    )
     c1, c2 = st.columns(2)
     with c1:
-        if st.button(i18n.t("reset", _ui_lang), key="reset_chat"):
+        if st.button(i18n.t("reset", _ui_lang), key="reset_chat", use_container_width=True):
             st.session_state["messages"] = []
             st.session_state["pinned"] = []
             st.session_state["shown_ids_by_cat"] = {}
@@ -1694,30 +1843,24 @@ with st.sidebar:
                 pass
             st.rerun()
     with c2:
-        # Use a link to an anchor instead of a button for reliable scrolling
-        # Styled to match Streamlit's native button appearance
-        st.markdown(
-            '''<a href="#bottom" style="
-                display:inline-flex;
-                align-items:center;
-                justify-content:center;
-                padding:0.25rem 0.75rem;
-                background-color:white;
-                border:1px solid rgba(49,51,63,0.2);
-                border-radius:0.5rem;
-                text-decoration:none;
-                color:rgb(49,51,63);
-                font-family:Source Sans Pro,sans-serif;
-                font-size:1rem;
-                font-weight:400;
-                line-height:1.6;
-                cursor:pointer;
-                min-height:38.4px;
-                width:100%;
-                box-sizing:border-box;
-            " onmouseover="this.style.borderColor=\'rgb(255,75,75)\';this.style.color=\'rgb(255,75,75)\'" onmouseout="this.style.borderColor=\'rgba(49,51,63,0.2)\';this.style.color=\'rgb(49,51,63)\'">⏬ Scroll to Latest</a>''',
-            unsafe_allow_html=True
-        )
+        if st.button(i18n.t("scroll_latest", _ui_lang), key="scroll_latest_btn", use_container_width=True):
+            import streamlit.components.v1 as components
+
+            components.html(
+                """
+<!DOCTYPE html><html><body><script>
+(function () {
+  try {
+    const doc = window.parent.document;
+    const el = doc.getElementById("bottom");
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "end" });
+  } catch (e) {}
+})();
+</script></body></html>
+""",
+                height=0,
+                width=0,
+            )
 
 
 
@@ -1725,14 +1868,14 @@ with st.sidebar:
 # Response function definition
 # ===========================
 def respond_to_query(user_text: str, category: str):
-    is_more = user_text.strip().lower() == "more"
+    is_more = _is_paginate_command(user_text)
     
     # Get conversation context for follow-up handling
     context = llm_service.get_conversation_context()
     context.add_user_message(user_text)
 
     # 1) Load dataset first (required before using items)
-    items, _ = get_dataset(category)  # get_dataset returns (items, category_str)
+    items, _ = get_dataset(category, st.session_state.get("filter_state") or "IL")
     if not items:
         with st.chat_message("assistant", avatar=mascot.PIP_AVATAR):
             st.error(f"❌ Could not load {category} data. Please try again.")
@@ -1762,7 +1905,7 @@ def respond_to_query(user_text: str, category: str):
                         context.last_all_results,
                     )
                     if filtered_results:
-                        # No st.chat_message — avoids Streamlit’s orange robot avatar
+                        # No st.chat_message  -  avoids Streamlit’s orange robot avatar
                         mascot.pip_say(explanation or "Here you go!")
                         for i, c in enumerate(filtered_results, 1):
                             render_card(i, c, category, user_text)
@@ -1862,7 +2005,7 @@ def respond_to_query(user_text: str, category: str):
     # Store results in context for follow-up handling
     context.set_results(to_show, [c for _, c in ranked], category)
 
-    # 5) Assistant reply — Pip via pip_say only (no chat_message = no orange robot)
+    # 5) Assistant reply  -  Pip via pip_say only (no chat_message = no orange robot)
     if not is_more:
         with st.spinner("Pip is looking…"):
             pass
@@ -1896,7 +2039,7 @@ def respond_to_query(user_text: str, category: str):
         tiers = [c.get("_zip_tier") for c in to_show]
         if zf and zf != "All" and "nearby" in tiers and "exact" not in tiers:
             timing_note += (
-                f"\n\n📍 No exact listings in **{zf}** — showing nearby ZIP areas instead."
+                f"\n\n📍 No exact listings in **{zf}**  -  showing nearby ZIP areas instead."
             )
         elif zf and zf != "All" and "nearby" in tiers:
             timing_note += "\n\n📍 Including nearby ZIP areas as well."
@@ -1948,7 +2091,7 @@ def respond_to_query(user_text: str, category: str):
     else:
         if is_more:
             mascot.pip_say(
-                "That’s everything I found for this search. Try a different ZIP, service, or neighborhood — or tap a suggestion below."
+                "That’s everything I found for this search. Try a different ZIP, service, or neighborhood  -  or tap a suggestion below."
             )
         else:
             mascot.pip_say(
@@ -1996,7 +2139,7 @@ def respond_to_query(user_text: str, category: str):
         )
  
 # ===========================
-# Chat input + spell check (single input — chat bar only)
+# Chat input + spell check (single input  -  chat bar only)
 # ===========================
 _chip_lang = st.session_state.get("ui_lang_code", "en")
 placeholder_text = i18n.t("ask_placeholder", _chip_lang)
@@ -2019,7 +2162,7 @@ _user_prompts: List[Tuple[int, str]] = []
 for mi, msg in enumerate(st.session_state["messages"]):
     is_cards = msg["role"] == "assistant" and msg.get("render") == "cards"
     if is_cards:
-        # No chat_message wrapper — Pip comes from pip_say only (no orange robot)
+        # No chat_message wrapper  -  Pip comes from pip_say only (no orange robot)
         render_results_block(
             msg.get("results") or [],
             msg.get("category") or st.session_state.get("category", "Healthcare"),
@@ -2033,7 +2176,7 @@ for mi, msg in enumerate(st.session_state["messages"]):
                 f'<div id="aidr-prompt-{mi}" class="aidr-prompt-anchor"></div>',
                 unsafe_allow_html=True,
             )
-        avatar = mascot.PIP_AVATAR if msg["role"] == "assistant" else None
+        avatar = mascot.PIP_AVATAR if msg["role"] == "assistant" else mascot.USER_AVATAR
         with st.chat_message(msg["role"], avatar=avatar):
             st.markdown(msg.get("text", ""))
 
@@ -2043,8 +2186,33 @@ if _pending_spell and isinstance(_pending_spell, dict):
     with st.chat_message("assistant", avatar=mascot.PIP_AVATAR):
         fixes = _pending_spell.get("fixes") or []
         bits = ", ".join(f"**{b}** → **{g}**" for b, g in fixes)
-        st.info(f"✏️ Before I search — spelling check: {bits}")
+        st.info(f"✏️ Before I search - spelling check: {bits}")
         st.markdown(f"Corrected search: **{_pending_spell.get('corrected')}**")
+        st.markdown(
+            """
+<style>
+div[data-testid="stChatMessage"] div[data-testid="stHorizontalBlock"] .stButton > button {
+  white-space: nowrap !important;
+  border: 2px solid #4EB086 !important;
+  border-radius: 999px !important;
+  background: #ffffff !important;
+  color: #1a2e28 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+div[data-testid="stChatMessage"] div[data-testid="stHorizontalBlock"] .stButton > button p,
+div[data-testid="stChatMessage"] div[data-testid="stHorizontalBlock"] .stButton > button > div {
+  width: 100% !important;
+  margin: 0 !important;
+  text-align: center !important;
+  justify-content: center !important;
+}
+</style>
+""",
+            unsafe_allow_html=True,
+        )
         pc1, pc2 = st.columns(2)
         with pc1:
             if st.button("Use corrected", key="pending_spell_yes", use_container_width=True):
@@ -2087,9 +2255,14 @@ if not prompt and st.session_state.get("voice_prompt_pending"):
     prompt = st.session_state.pop("voice_prompt_pending")
 
 if prompt and not st.session_state.get("pending_spell_check"):
-    spell = spellcheck.check_query(prompt)
+    # "Type more" / pagination commands must never hit the spelling gate
+    spell = (
+        {"flagged": False}
+        if _is_ui_command(prompt)
+        else spellcheck.check_query(prompt)
+    )
     if spell.get("flagged") and not st.session_state.get("_spell_bypass"):
-        # Flag before searching — wait for Use corrected / Keep my spelling
+        # Flag before searching - wait for Use corrected / Keep my spelling
         st.session_state["pending_spell_check"] = {
             "original": spell["original"],
             "corrected": spell["corrected"],
@@ -2103,7 +2276,7 @@ if prompt and not st.session_state.get("pending_spell_check"):
             f'<div id="aidr-prompt-{_new_mi}" class="aidr-prompt-anchor"></div>',
             unsafe_allow_html=True,
         )
-        with st.chat_message("user"):
+        with st.chat_message("user", avatar=mascot.USER_AVATAR):
             st.markdown(prompt)
 
         st.session_state["messages"].append({"role": "user", "text": prompt})
