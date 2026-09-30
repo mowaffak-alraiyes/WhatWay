@@ -1,5 +1,5 @@
 """
-Overnight Aidr ops worker — free sources only.
+Overnight WhatWay ops worker — free sources only.
 
 Cycles:
   1) enrich missing phone/website/languages/services/hours (org sites + DDG)
@@ -135,7 +135,7 @@ def run_cycle(
             by_st = group_by_state(ask_items)
             state_lines = "\n".join(f"  {st}: {len(g)}" for st, g in sorted(by_st.items()))
             _notify(
-                f"🌙 Aidr overnight @ {_now()[:16]}Z\n"
+                f"🌙 WhatWay overnight @ {_now()[:16]}Z\n"
                 f"Auto-applied (high+known): {n_auto}\n"
                 f"Needs ❤ by state:\n{state_lines}\n"
                 f"Skipped low: {len(skipped)}\n"
@@ -145,7 +145,7 @@ def run_cycle(
             summary["steps"]["notify"] = {"messages_sent": 0}
             if n_auto:
                 _notify(
-                    f"🌙 Aidr overnight @ {_now()[:16]}Z\n"
+                    f"🌙 WhatWay overnight @ {_now()[:16]}Z\n"
                     f"Auto-applied {n_auto} high+known updates. No cards needing ❤."
                 )
     except Exception as e:

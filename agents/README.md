@@ -1,4 +1,4 @@
-# Aidr Clinic Ops (Telegram approval → GitHub)
+# WhatWay Clinic Ops (Telegram approval → GitHub)
 
 Borrow David’s [local-ai-agents](https://github.com/DrDavidL/local-ai-agents) patterns:
 controlled tools, local Ollama summaries, Telegram **polling** (no open ports),
@@ -194,14 +194,14 @@ python -m agents.overnight_ops --interval-min 60
 ```
 
 Approve with ❤ / reject with 👎 on each card (text commands still work).
-❤ also **applies to GitHub** immediately (`AIDR_AUTO_APPLY_ON_HEART=1`).
+❤ also **applies to GitHub** immediately (`WHATWAY_AUTO_APPLY_ON_HEART=1`).
 
 ### Confidence tiers
 | Tier | Behavior |
 |------|----------|
-| **high** + known source (org site / HRSA / curated seed) | Auto-apply overnight (`AIDR_AUTO_APPLY_HIGH=1`) |
+| **high** + known source (org site / HRSA / curated seed) | Auto-apply overnight (`WHATWAY_AUTO_APPLY_HIGH=1`) |
 | **medium** | Telegram asks for ❤ → approve+apply |
-| **low** / Reddit-only | Ask for ❤ (or skip if `AIDR_SKIP_LOW_CONFIDENCE=1`) |
+| **low** / Reddit-only | Ask for ❤ (or skip if `WHATWAY_SKIP_LOW_CONFIDENCE=1`) |
 
 ## Safety
 

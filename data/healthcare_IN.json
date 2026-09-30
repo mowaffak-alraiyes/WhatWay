@@ -2,7 +2,7 @@
   {
     "id": "item_1",
     "name": "# IN  -  healthcare.txt",
-    "address": "# Populated by Aidr HRSA Find-a-HC import (Indianapolis + surrounding, 250-mile catchment).",
+    "address": "# Populated by WhatWay HRSA Find-a-HC import (Indianapolis + surrounding, 250-mile catchment).",
     "phone": "",
     "phone_digits": "",
     "website": "",
@@ -15,7 +15,7 @@
     "hours": {},
     "hours_text": "",
     "notes": "",
-    "search_blob": "# in  -  healthcare.txt # populated by aidr hrsa find-a-hc import (indianapolis + surrounding, 250-mile catchment). # format: numbered blocks matching il listings (name, address, 📞, 🌐, 🏥, 🗣, ⏰, 📝).",
+    "search_blob": "# in  -  healthcare.txt # populated by whatway hrsa find-a-hc import (indianapolis + surrounding, 250-mile catchment). # format: numbered blocks matching il listings (name, address, 📞, 🌐, 🏥, 🗣, ⏰, 📝).",
     "state": "IN"
   },
   {

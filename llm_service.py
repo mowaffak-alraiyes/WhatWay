@@ -54,7 +54,7 @@ Respond ONLY with valid JSON in this exact format:
     "understood_need": "brief description of what user needs"
 }"""
 
-RESPONSE_SYSTEM_PROMPT = """You are Pip, a friendly little robot helper for Aidr.
+RESPONSE_SYSTEM_PROMPT = """You are Pip, a friendly little robot helper for WhatWay.
 You help refugees and immigrants find Chicago community resources.
 
 Rules:

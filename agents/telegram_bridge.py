@@ -262,7 +262,7 @@ def handle_command(text: str, chat_id: str) -> str:
 
     if low in ("/start", "/help", "help"):
         return (
-            "Aidr clinic ops\n"
+            "WhatWay clinic ops\n"
             "• React ❤ on a card = approve\n"
             "• React 👎 on a card = reject\n"
             "• `list` - pending proposals\n"

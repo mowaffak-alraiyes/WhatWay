@@ -189,7 +189,7 @@ def geocode_address(address: str, _ver: int = _GEOCODE_CACHE_VER) -> Optional[Tu
             resp = requests.get(
                 "https://nominatim.openstreetmap.org/search",
                 params={"q": q, "format": "json", "limit": 1, "countrycodes": "us"},
-                headers={"User-Agent": "AidrRefugeeResources/1.0 (demo; contact@localhost)"},
+                headers={"User-Agent": "WhatWayRefugeeResources/1.0 (demo; contact@localhost)"},
                 timeout=8,
             )
             if resp.status_code == 200:

@@ -1,5 +1,5 @@
 """
-Aidr API — WhatsApp webhooks + health/search endpoints.
+WhatWay API — WhatsApp webhooks + health/search endpoints.
 
 Deploy on Railway / Render / Fly (not Streamlit Cloud).
 Streamlit UI stays separate; both share core.pipeline.
@@ -8,6 +8,7 @@ Streamlit UI stays separate; both share core.pipeline.
 from __future__ import annotations
 
 import os
+import core.env  # noqa: F401 — maps legacy AIDR_* vars onto WHATWAY_*
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -24,16 +25,16 @@ from core.pipeline import search_resources
 from core.privacy import hash_identifier, truncate_user_text
 
 app = FastAPI(
-    title="Aidr API",
+    title="WhatWay API",
     description="Refugee resource search + WhatsApp webhooks",
     version="0.1.0",
 )
 
 
 def _cors_origins() -> list:
-    raw = (os.environ.get("AIDR_CORS_ORIGINS") or "").strip()
+    raw = (os.environ.get("WHATWAY_CORS_ORIGINS") or "").strip()
     if not raw:
-        # Safe local defaults (Streamlit). Override via AIDR_CORS_ORIGINS for deploy.
+        # Safe local defaults (Streamlit). Override via WHATWAY_CORS_ORIGINS for deploy.
         return [
             "http://localhost:8501",
             "http://127.0.0.1:8501",
@@ -60,7 +61,7 @@ app.include_router(whatsapp_router)
 @app.get("/")
 def root():
     return {
-        "service": "Aidr API",
+        "service": "WhatWay API",
         "docs": "/docs",
         "whatsapp": {
             "twilio": "/webhooks/whatsapp/twilio",
@@ -92,7 +93,7 @@ def search(payload: dict, request: Request):
     client = request.client.host if request.client else "unknown"
     ok, retry = rate_allow(
         hash_identifier(client),
-        per_minute=per_minute_limit("AIDR_RATE_LIMIT_SEARCH_PER_MIN", 30),
+        per_minute=per_minute_limit("WHATWAY_RATE_LIMIT_SEARCH_PER_MIN", 30),
         scope="search",
     )
     if not ok:

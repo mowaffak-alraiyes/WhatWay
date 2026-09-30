@@ -1,15 +1,16 @@
 """
-Simple in-memory rate limiter for the Aidr pilot.
+Simple in-memory rate limiter for the WhatWay pilot.
 
 Fine for a single uvicorn worker. For multi-instance deploy, swap to Redis later.
 Configure via env:
-  AIDR_RATE_LIMIT_PER_MIN=20      # per key (phone hash or IP)
-  AIDR_RATE_LIMIT_SEARCH_PER_MIN=30
+  WHATWAY_RATE_LIMIT_PER_MIN=20      # per key (phone hash or IP)
+  WHATWAY_RATE_LIMIT_SEARCH_PER_MIN=30
 """
 
 from __future__ import annotations
 
 import os
+import core.env  # noqa: F401 — maps legacy AIDR_* vars onto WHATWAY_*
 import time
 from collections import defaultdict, deque
 from threading import Lock
@@ -39,7 +40,7 @@ def allow(key: str, *, per_minute: Optional[int] = None, scope: str = "default")
     Return (allowed, retry_after_seconds).
     key should already be hashed / non-PII when possible.
     """
-    limit = per_minute if per_minute is not None else _limit("AIDR_RATE_LIMIT_PER_MIN", 20)
+    limit = per_minute if per_minute is not None else _limit("WHATWAY_RATE_LIMIT_PER_MIN", 20)
     now = time.time()
     window = 60.0
     bucket_key = f"{scope}:{key}"

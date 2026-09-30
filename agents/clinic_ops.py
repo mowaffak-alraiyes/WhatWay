@@ -1,5 +1,5 @@
 """
-Clinic Ops agent — David local-ai-agents patterns, Aidr-shaped.
+Clinic Ops agent — David local-ai-agents patterns, WhatWay-shaped.
 
 - Controlled tools only (agents/tools.py)
 - Local Ollama for short proposal summaries (optional)
@@ -364,7 +364,7 @@ def approve(op_or_name: str) -> Dict[str, Any]:
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Clinic Ops + Telegram approval (Aidr)")
+    parser = argparse.ArgumentParser(description="Clinic Ops + Telegram approval (WhatWay)")
     parser.add_argument("--run", action="store_true", help="Fetch CSV, verify, stage pending")
     parser.add_argument(
         "--discover-new",

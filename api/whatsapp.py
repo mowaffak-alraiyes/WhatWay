@@ -20,6 +20,7 @@ import base64
 import hashlib
 import hmac
 import os
+import core.env  # noqa: F401 — maps legacy AIDR_* vars onto WHATWAY_*
 from typing import Any, Dict, Optional
 import requests
 from fastapi import APIRouter, Form, Header, HTTPException, Query, Request, Response
@@ -169,7 +170,7 @@ async def twilio_webhook(
 ):
     """Twilio WhatsApp webhook (form-urlencoded)."""
     auth_token = _env("TWILIO_AUTH_TOKEN")
-    skip_sig = os.environ.get("AIDR_SKIP_TWILIO_SIGNATURE", "").strip() in ("1", "true", "yes")
+    skip_sig = os.environ.get("WHATWAY_SKIP_TWILIO_SIGNATURE", "").strip() in ("1", "true", "yes")
     # When credentials are configured, require a valid Twilio signature.
     # Local dry-run (no token) skips validation so simulate/dev still works.
     if auth_token and not skip_sig:
@@ -241,8 +242,8 @@ async def meta_webhook(request: Request):
 
 @router.post("/simulate")
 async def simulate(payload: Dict[str, Any]):
-    """Local smoke test — disabled unless AIDR_ENABLE_SIMULATE=1."""
-    if os.environ.get("AIDR_ENABLE_SIMULATE", "").strip() not in ("1", "true", "yes"):
+    """Local smoke test — disabled unless WHATWAY_ENABLE_SIMULATE=1."""
+    if os.environ.get("WHATWAY_ENABLE_SIMULATE", "").strip() not in ("1", "true", "yes"):
         raise HTTPException(status_code=404, detail="Not found")
     phone = str(payload.get("from", "test"))[:64]
     body = truncate_user_text(str(payload.get("body", "")), _MAX_BODY)

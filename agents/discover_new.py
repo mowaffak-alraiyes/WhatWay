@@ -35,7 +35,7 @@ except Exception:
 
 CITY_SCOPE = os.environ.get("CITY_SCOPE", "chicago").lower()
 UA = {
-    "User-Agent": "AidrResourceBot/1.0 (+local; research directory enrichment)",
+    "User-Agent": "WhatWayResourceBot/1.0 (+local; research directory enrichment)",
 }
 
 # Curated Chicago seeds (public community orgs). Filtered against GitHub before staging.

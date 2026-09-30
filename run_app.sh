@@ -1,5 +1,5 @@
 #!/bin/bash
-# BridgeCare local runner — loads .env then starts Streamlit
+# WhatWay local runner — loads .env then starts Streamlit
 set -e
 cd "$(dirname "$0")"
 
@@ -36,4 +36,4 @@ if ! curl -sf http://localhost:11434/api/tags >/dev/null 2>&1; then
 fi
 
 source .venv/bin/activate 2>/dev/null || true
-exec streamlit run Aidr.py
+exec streamlit run WhatWay.py

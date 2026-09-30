@@ -335,22 +335,22 @@ def render_comment(comment: Dict, resource_id: str, resource_category: str,
 <style>
 .yelp-review {{
   background: #fff;
-  border: 1px solid rgba(26,46,40,0.12);
+  border: 1px solid rgba(16, 34, 27,0.12);
   border-radius: 12px;
   padding: 0.85rem 1rem 0.55rem 1rem;
   margin: 0.55rem 0 0.35rem 0;
-  box-shadow: 0 1px 3px rgba(26,46,40,0.06);
+  box-shadow: 0 1px 3px rgba(16, 34, 27,0.06);
   font-family: 'DM Sans', system-ui, sans-serif;
 }}
 .yelp-review-head {{ display: flex; gap: 0.65rem; align-items: center; margin-bottom: 0.45rem; }}
 .yelp-review-avatar {{
   width: 2rem; height: 2rem; border-radius: 8px; flex-shrink: 0;
-  background: #4EB086; color: #fff; font-weight: 700; font-size: 0.95rem;
+  background: #0E6B54; color: #fff; font-weight: 700; font-size: 0.95rem;
   display: flex; align-items: center; justify-content: center;
 }}
-.yelp-review-author {{ font-weight: 700; color: #1a2e28; font-size: 0.95rem; }}
-.yelp-stars {{ color: #4EB086; font-size: 0.95rem; letter-spacing: 0.05em; margin: 0.1rem 0; }}
-.yelp-review-sub {{ font-size: 0.78rem; color: #6b8178; }}
+.yelp-review-author {{ font-weight: 700; color: #10221B; font-size: 0.95rem; }}
+.yelp-stars {{ color: #0E6B54; font-size: 0.95rem; letter-spacing: 0.05em; margin: 0.1rem 0; }}
+.yelp-review-sub {{ font-size: 0.78rem; color: #4A5F55; }}
 .yelp-review-body {{ color: #2a3d36; font-size: 0.92rem; line-height: 1.45; margin-bottom: 0.35rem; }}
 </style>
 """,
@@ -449,14 +449,14 @@ def render_discussion_section(resource_id: str, resource_category: str, resource
 <style>
 .yelp-reviews-banner {{
   background: #f7fbf9;
-  border: 1px solid rgba(78,176,134,0.28);
+  border: 1px solid rgba(14, 107, 84,0.28);
   border-radius: 12px;
   padding: 0.85rem 1rem;
   margin: 0.35rem 0 0.75rem 0;
   font-family: 'DM Sans', system-ui, sans-serif;
 }}
-.yelp-reviews-count {{ font-weight: 700; color: #1a2e28; font-size: 1.05rem; }}
-.yelp-reviews-avg {{ color: #4EB086; font-size: 1rem; margin-top: 0.15rem; letter-spacing: 0.04em; }}
+.yelp-reviews-count {{ font-weight: 700; color: #10221B; font-size: 1.05rem; }}
+.yelp-reviews-avg {{ color: #0E6B54; font-size: 1rem; margin-top: 0.15rem; letter-spacing: 0.04em; }}
 .yelp-reviews-hint {{ color: #4a5f56; font-size: 0.88rem; margin-top: 0.2rem; }}
 </style>
 """,
@@ -508,10 +508,10 @@ def render_discussion_section(resource_id: str, resource_category: str, resource
 <style>
 .yelp-login-nudge {
   background: #eef7f2;
-  border: 1.5px solid #4EB086;
+  border: 1.5px solid #0E6B54;
   border-radius: 12px;
   padding: 0.75rem 1rem;
-  color: #1a2e28;
+  color: #10221B;
   font-family: 'DM Sans', system-ui, sans-serif;
   font-size: 0.92rem;
   margin-bottom: 0.75rem;
@@ -530,7 +530,7 @@ def render_discussion_section(resource_id: str, resource_category: str, resource
 <div class="yelp-empty-reviews">No reviews yet. Be the first to share your experience.</div>
 <style>
 .yelp-empty-reviews {
-  color: #6b8178; font-style: italic; font-size: 0.92rem;
+  color: #4A5F55; font-style: italic; font-size: 0.92rem;
   padding: 0.5rem 0.15rem 1rem 0.15rem;
   font-family: 'DM Sans', system-ui, sans-serif;
 }

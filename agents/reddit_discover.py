@@ -32,7 +32,7 @@ try:
 except Exception:
     pass
 
-UA = {"User-Agent": "AidrResourceBot/1.0 (local research; contact: local)"}
+UA = {"User-Agent": "WhatWayResourceBot/1.0 (local research; contact: local)"}
 CITY_SCOPE = os.environ.get("CITY_SCOPE", "chicago").lower()
 
 # Free public search targets (no OAuth)

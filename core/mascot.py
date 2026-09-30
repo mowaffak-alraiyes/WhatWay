@@ -1,5 +1,5 @@
 """
-Aidr mascot "Pip" — 8-bit teal square with eyes.
+WhatWay mascot "Pip" — 8-bit teal square with eyes.
 """
 
 from __future__ import annotations
@@ -20,26 +20,26 @@ PIP_AVATAR = str(_PIP_PNG) if _PIP_PNG.exists() else "🟩"
 # User messages: teal ⋯ (message / conversation), not Streamlit’s red person or a map pin
 USER_AVATAR = str(_USER_PNG) if _USER_PNG.exists() else "⋯"
 
-# Pixel square face (32×32), Aidr teal
+# Pixel square face (32×32), WhatWay teal
 PIP_BALL_SVG = """
 <svg class="pip-sprite" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-label="Pip" shape-rendering="crispEdges">
   <!-- body -->
-  <rect x="4" y="4" width="24" height="24" fill="#4EB086"/>
+  <rect x="4" y="4" width="24" height="24" fill="#0E6B54"/>
   <!-- highlight edge -->
   <rect x="4" y="4" width="24" height="2" fill="#8FD4B8"/>
   <rect x="4" y="4" width="2" height="24" fill="#8FD4B8"/>
   <!-- shadow edge -->
-  <rect x="4" y="26" width="24" height="2" fill="#3d9a72"/>
-  <rect x="26" y="4" width="2" height="24" fill="#3d9a72"/>
+  <rect x="4" y="26" width="24" height="2" fill="#0A4B3A"/>
+  <rect x="26" y="4" width="2" height="24" fill="#0A4B3A"/>
   <!-- eyes -->
-  <rect class="eye" x="10" y="12" width="4" height="4" fill="#1a2e28"/>
-  <rect class="eye" x="18" y="12" width="4" height="4" fill="#1a2e28"/>
+  <rect class="eye" x="10" y="12" width="4" height="4" fill="#10221B"/>
+  <rect class="eye" x="18" y="12" width="4" height="4" fill="#10221B"/>
   <rect class="eye" x="11" y="13" width="1" height="1" fill="#E8FFF5"/>
   <rect class="eye" x="19" y="13" width="1" height="1" fill="#E8FFF5"/>
   <!-- smile -->
-  <rect x="12" y="20" width="2" height="2" fill="#1a2e28"/>
-  <rect x="14" y="21" width="4" height="2" fill="#1a2e28"/>
-  <rect x="18" y="20" width="2" height="2" fill="#1a2e28"/>
+  <rect x="12" y="20" width="2" height="2" fill="#10221B"/>
+  <rect x="14" y="21" width="4" height="2" fill="#10221B"/>
+  <rect x="18" y="20" width="2" height="2" fill="#10221B"/>
 </svg>
 """
 
@@ -88,18 +88,18 @@ div[data-testid="stChatMessage"]:has(.pip-chat) {{
 }}
 .pip-chat-bubble {{
   background: #fff;
-  border: 2px solid #4EB086;
+  border: 2px solid #0E6B54;
   border-radius: 16px 16px 16px 4px;
   padding: 0.7rem 1rem;
-  box-shadow: 0 4px 14px rgba(78,176,134,0.16);
+  box-shadow: 0 4px 14px rgba(14, 107, 84,0.16);
   max-width: min(48rem, 100%);
 }}
 .pip-chat-name {{
   font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em;
-  text-transform: uppercase; color: #3d9a72; margin-bottom: 0.25rem;
+  text-transform: uppercase; color: #0A4B3A; margin-bottom: 0.25rem;
 }}
 .pip-chat-text {{
-  color: #1a2e28; font-size: 0.98rem; line-height: 1.45; font-weight: 500;
+  color: #10221B; font-size: 0.98rem; line-height: 1.45; font-weight: 500;
 }}
 </style>
 <div class="pip-chat">
@@ -162,10 +162,10 @@ def render_pip(
 }}
 .pip-bubble {{
   background: #fff;
-  border: 2px solid #4EB086;
+  border: 2px solid #0E6B54;
   border-radius: 20px;
   padding: 0.85rem 1.1rem;
-  box-shadow: 0 6px 18px rgba(78, 176, 134, 0.18);
+  box-shadow: 0 6px 18px rgba(14, 107, 84, 0.18);
   max-width: min(48rem, 100%);
   min-width: min(100%, 18rem);
   position: relative;
@@ -180,8 +180,8 @@ def render_pip(
   width: 12px;
   height: 12px;
   background: #fff;
-  border-left: 2px solid #4EB086;
-  border-bottom: 2px solid #4EB086;
+  border-left: 2px solid #0E6B54;
+  border-bottom: 2px solid #0E6B54;
   transform: rotate(45deg);
 }}
 .pip-hi {{
@@ -196,7 +196,7 @@ def render_pip(
   font-weight: 500;
   min-height: 1.4em;
 }}
-.pip-ask .prefix {{ color: #5a7368; font-weight: 500; }}
+.pip-ask .prefix {{ color: #4A5F55; font-weight: 500; }}
 .pip-ask .typed {{ color: #8FD4B8; font-weight: 600; }}
 .pip-ask .cursor {{
   display: inline-block;
@@ -213,8 +213,8 @@ def render_pip(
   {PIP_BALL_SVG}
   <div class="pip-bubble">
     <p class="pip-hi">{greeting_esc}</p>
-    <p class="pip-ask" id="aidr-ask-line">
-      <span class="prefix">{prefix_esc}</span><span class="typed" id="aidr-typed"></span><span class="cursor"></span>
+    <p class="pip-ask" id="ww-ask-line">
+      <span class="prefix">{prefix_esc}</span><span class="typed" id="ww-typed"></span><span class="cursor"></span>
     </p>
   </div>
 </div>
@@ -230,7 +230,7 @@ def render_pip(
   function findEl() {{
     try {{
       for (const d of [document, window.parent.document]) {{
-        const el = d.getElementById('aidr-typed');
+        const el = d.getElementById('ww-typed');
         if (el) return el;
       }}
     }} catch (e) {{}}

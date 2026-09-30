@@ -1,6 +1,6 @@
-# BridgeCare — 1-week revitalization plan
+# WhatWay — 1-week revitalization plan
 
-Product rename internally: **BridgeCare** (refugee resource finder for Chicago).
+Product rename internally: **WhatWay** (refugee resource finder for Chicago).
 
 ## Architecture (keep costs low, ship this week)
 

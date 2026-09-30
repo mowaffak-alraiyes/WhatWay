@@ -14,6 +14,7 @@ import csv
 import io
 import json
 import os
+import core.env  # noqa: F401 — maps legacy AIDR_* vars onto WHATWAY_*
 import re
 import secrets
 from datetime import datetime, timezone
@@ -29,7 +30,7 @@ PENDING_PATH = DATA / "pending_ops.json"
 
 # User-provided Chicago sheet (must be shared as "Anyone with the link can view")
 DEFAULT_SHEET_ID = os.environ.get(
-    "AIDR_CONTACTS_SHEET_ID",
+    "WHATWAY_CONTACTS_SHEET_ID",
     "1VwLC6tBZIIIw6ePhR90_C8cT_frZDq8uythPjhLkoP0",
 )
 SHEET_CSV_TMPL = (

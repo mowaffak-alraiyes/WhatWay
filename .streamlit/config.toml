@@ -10,9 +10,9 @@ gatherUsageStats = false
 showSidebarNavigation = false
 
 [theme]
-# HappyAir-inspired muted emerald
-primaryColor = "#4EB086"
-backgroundColor = "#F4F7F5"
+# WhatWay "Warm wayfinding" — one hue, five steps. See the design canvas.
+primaryColor = "#0E6B54"          # Spruce  — primary action, links
+backgroundColor = "#F1F7F3"       # Mist    — page ground, a green-tinted white
 secondaryBackgroundColor = "#FFFFFF"
-textColor = "#1A2E28"
+textColor = "#10221B"             # Ink
 font = "sans serif"

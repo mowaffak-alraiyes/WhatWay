@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import json
 import os
+import core.env  # noqa: F401 — maps legacy AIDR_* vars onto WHATWAY_*
 import re
 import subprocess
 import tempfile
@@ -81,9 +82,9 @@ def _git_clone_repo(dest: Path, token: str) -> None:
     (Embedding leaks into CalledProcessError → Telegram.)
     Auth via GIT_ASKPASS + username x-access-token.
     """
-    askpass = tempfile.NamedTemporaryFile("w", prefix="aidr-askpass-", suffix=".sh", delete=False)
+    askpass = tempfile.NamedTemporaryFile("w", prefix="ww-askpass-", suffix=".sh", delete=False)
     try:
-        askpass.write('#!/bin/sh\ncase "$1" in *Username*) echo x-access-token;; *) echo "$AIDR_GIT_PASSWORD";; esac\n')
+        askpass.write('#!/bin/sh\ncase "$1" in *Username*) echo x-access-token;; *) echo "$WHATWAY_GIT_PASSWORD";; esac\n')
         askpass.close()
         os.chmod(askpass.name, 0o700)
         env = {
@@ -91,7 +92,7 @@ def _git_clone_repo(dest: Path, token: str) -> None:
             "GIT_ASKPASS": askpass.name,
             "SSH_ASKPASS": askpass.name,
             "GIT_TERMINAL_PROMPT": "0",
-            "AIDR_GIT_PASSWORD": token,
+            "WHATWAY_GIT_PASSWORD": token,
         }
         # No token in URL / argv
         url = f"https://github.com/{REPO}.git"
@@ -116,9 +117,9 @@ def _git_clone_repo(dest: Path, token: str) -> None:
 
 
 def _git_push(repo_dir: Path, token: str) -> None:
-    askpass = tempfile.NamedTemporaryFile("w", prefix="aidr-askpass-", suffix=".sh", delete=False)
+    askpass = tempfile.NamedTemporaryFile("w", prefix="ww-askpass-", suffix=".sh", delete=False)
     try:
-        askpass.write('#!/bin/sh\ncase "$1" in *Username*) echo x-access-token;; *) echo "$AIDR_GIT_PASSWORD";; esac\n')
+        askpass.write('#!/bin/sh\ncase "$1" in *Username*) echo x-access-token;; *) echo "$WHATWAY_GIT_PASSWORD";; esac\n')
         askpass.close()
         os.chmod(askpass.name, 0o700)
         env = {
@@ -126,7 +127,7 @@ def _git_push(repo_dir: Path, token: str) -> None:
             "GIT_ASKPASS": askpass.name,
             "SSH_ASKPASS": askpass.name,
             "GIT_TERMINAL_PROMPT": "0",
-            "AIDR_GIT_PASSWORD": token,
+            "WHATWAY_GIT_PASSWORD": token,
         }
         proc = subprocess.run(
             ["git", "push", "origin", "HEAD"],
@@ -379,7 +380,7 @@ def apply_approved(op_id: str, dry_run: bool = False) -> Dict[str, Any]:
 
     # Clone = source of truth (avoids stale raw.githubusercontent.com)
     try:
-        with tempfile.TemporaryDirectory(prefix="aidr-resources-") as tmp:
+        with tempfile.TemporaryDirectory(prefix="ww-resources-") as tmp:
             repo_dir = Path(tmp) / "repo"
             _git_clone_repo(repo_dir, token or "")
             target = repo_dir / rel
@@ -424,10 +425,10 @@ def apply_approved(op_id: str, dry_run: bool = False) -> Dict[str, Any]:
                 cwd=repo_dir,
                 env={
                     **os.environ,
-                    "GIT_AUTHOR_NAME": "Aidr Clinic Ops",
-                    "GIT_AUTHOR_EMAIL": "aidr-ops@local",
-                    "GIT_COMMITTER_NAME": "Aidr Clinic Ops",
-                    "GIT_COMMITTER_EMAIL": "aidr-ops@local",
+                    "GIT_AUTHOR_NAME": "WhatWay Clinic Ops",
+                    "GIT_AUTHOR_EMAIL": "ww-ops@local",
+                    "GIT_COMMITTER_NAME": "WhatWay Clinic Ops",
+                    "GIT_COMMITTER_EMAIL": "ww-ops@local",
                 },
             )
             _git_push(repo_dir, token or "")
@@ -540,7 +541,7 @@ def apply_all_approved(dry_run: bool = False) -> Dict[str, Any]:
         }
 
     try:
-        with tempfile.TemporaryDirectory(prefix="aidr-resources-") as tmp:
+        with tempfile.TemporaryDirectory(prefix="ww-resources-") as tmp:
             repo_dir = Path(tmp) / "repo"
             _git_clone_repo(repo_dir, token or "")
 
@@ -581,10 +582,10 @@ def apply_all_approved(dry_run: bool = False) -> Dict[str, Any]:
                     cwd=repo_dir,
                     env={
                         **os.environ,
-                        "GIT_AUTHOR_NAME": "Aidr Clinic Ops",
-                        "GIT_AUTHOR_EMAIL": "aidr-ops@local",
-                        "GIT_COMMITTER_NAME": "Aidr Clinic Ops",
-                        "GIT_COMMITTER_EMAIL": "aidr-ops@local",
+                        "GIT_AUTHOR_NAME": "WhatWay Clinic Ops",
+                        "GIT_AUTHOR_EMAIL": "ww-ops@local",
+                        "GIT_COMMITTER_NAME": "WhatWay Clinic Ops",
+                        "GIT_COMMITTER_EMAIL": "ww-ops@local",
                     },
                 )
                 for item in items:
@@ -629,7 +630,7 @@ def apply_all_approved(dry_run: bool = False) -> Dict[str, Any]:
 
 def refresh_local_json(category_or_file: str) -> Dict[str, Any]:
     """
-    Rebuild data/*.json from GitHub .txt so Aidr search sees applied edits.
+    Rebuild data/*.json from GitHub .txt so WhatWay search sees applied edits.
     Works from CLI (no Streamlit cache required).
     """
     import sys

@@ -15,7 +15,7 @@ import llm_service
 # Page & Styles
 # ===========================
 st.set_page_config(
-    page_title="Aidr",
+    page_title="WhatWay",
     page_icon="🟩",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -42,7 +42,7 @@ if st.session_state["ui_lang_code"] not in _LANG_CODES:
 with st.sidebar:
     _label_lang = st.session_state["ui_lang_code"]
     st.markdown(
-        f'<p class="aidr-side-title">{i18n.t("language_label", _label_lang)}</p>',
+        f'<p class="ww-side-title">{i18n.t("language_label", _label_lang)}</p>',
         unsafe_allow_html=True,
     )
     _ui_lang0 = st.selectbox(
@@ -54,7 +54,7 @@ with st.sidebar:
     )
     st.session_state["preferred_language"] = i18n.CODE_TO_NAME.get(_ui_lang0, "English")
     st.session_state["response_language"] = st.session_state["preferred_language"]
-    st.markdown('<hr class="aidr-side-rule"/>', unsafe_allow_html=True)
+    st.markdown('<hr class="ww-side-rule"/>', unsafe_allow_html=True)
 
 st.markdown(f"""
 <style>
@@ -64,7 +64,7 @@ st.markdown(f"""
 .stApp, .stMarkdown, .stButton > button, .stSelectbox, .stTextInput,
 div[data-testid="stChatMessage"], section[data-testid="stSidebar"] .stMarkdown,
 section[data-testid="stSidebar"] label, section[data-testid="stSidebar"] p,
-.bc-hero, .bc-brand, .bc-tag, .pip-wrap, .pip-bubble {{
+.ww-hero, .ww-brand, .ww-tag, .pip-wrap, .pip-bubble {{
   font-family: 'DM Sans', system-ui, -apple-system, sans-serif !important;
 }}
 /* Keep Streamlit / Material icon font intact */
@@ -83,7 +83,7 @@ span[data-testid="stIconMaterial"],
   background:
     radial-gradient(900px 420px at 0% -5%, #d4efe4 0%, transparent 55%),
     radial-gradient(700px 360px at 100% 0%, #e8f5ef 0%, transparent 50%),
-    #F4F7F5;
+    #F1F7F3;
 }}
 /* Wider main column  -  Streamlit default feels too narrow for listings */
 .main .block-container {{
@@ -95,15 +95,14 @@ span[data-testid="stIconMaterial"],
 section[data-testid="stMain"] > div {{
   max-width: none;
 }}
-.bc-hero {{
-  background: linear-gradient(135deg, #4EB086 0%, #3d9a72 100%);
-  border-radius: 18px;
-  padding: 1.1rem 1.35rem;
-  margin-bottom: 0.75rem;
-  box-shadow: 0 8px 24px rgba(78, 176, 134, 0.28);
-  color: white;
+.ww-hero {{
+  background: #0E6B54;
+  border-radius: 22px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 0.9rem;
+  color: #fff;
 }}
-.bc-brand {{
+.ww-brand {{
   font-size: 2rem;
   font-weight: 700;
   margin: 0;
@@ -111,7 +110,7 @@ section[data-testid="stMain"] > div {{
   color: #fff !important;
   letter-spacing: -0.03em;
 }}
-.bc-tag {{
+.ww-tag {{
   margin: 0.4rem 0 0 0;
   color: rgba(255,255,255,0.92);
   font-size: 0.98rem;
@@ -120,74 +119,78 @@ section[data-testid="stMain"] > div {{
 }}
 section[data-testid="stSidebar"] {{
   background: #ffffff;
-  border-right: 1px solid rgba(78,176,134,0.18);
+  border-right: 1px solid #D3E3DA;
 }}
 section[data-testid="stSidebar"] > div {{
   padding-top: 0.75rem;
 }}
 /* Even sidebar rhythm */
-.aidr-side-block {{
+.ww-side-block {{
   margin: 0 0 1.15rem 0;
   padding: 0;
 }}
-.aidr-side-block h3, .aidr-side-title {{
+.ww-side-block h3, .ww-side-title {{
   font-size: 0.78rem !important;
   font-weight: 700 !important;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #5a7368 !important;
+  color: #4A5F55 !important;
   margin: 0 0 0.45rem 0 !important;
 }}
-.aidr-side-block .stCaption, .aidr-side-cap {{
+.ww-side-block .stCaption, .ww-side-cap {{
   margin-top: 0 !important;
   margin-bottom: 0.55rem !important;
-  color: #6b8178 !important;
+  color: #4A5F55 !important;
   font-size: 0.82rem !important;
   line-height: 1.35;
 }}
-.aidr-side-rule {{
+.ww-side-rule {{
   border: none;
-  border-top: 1px solid rgba(78,176,134,0.18);
+  border-top: 1px solid #D3E3DA;
   margin: 0.15rem 0 1.15rem 0;
 }}
 div[data-testid="stChatMessage"] {{
   background: #fff;
-  border-radius: 16px;
-  border: 1px solid rgba(78,176,134,0.15);
-  padding: 0.35rem 0.5rem;
-  box-shadow: 0 2px 8px rgba(26,46,40,0.04);
+  border-radius: 18px;
+  border: 1px solid #DCE9E1;
+  padding: 0.45rem 0.6rem;
+  box-shadow: none;
 }}
 .stButton > button {{
-  border-radius: 999px !important;
+  border-radius: 14px !important;
   font-weight: 600 !important;
+  min-height: 44px !important;
+}}
+div.st-key-ww_cat_bar .stButton > button {{
+  border-radius: 999px !important;
 }}
 .stButton > button[kind="secondary"] {{
-  border: 1.5px solid #4EB086 !important;
-  color: #1a2e28 !important;
+  border: 1.5px solid #B9CFC3 !important;
+  color: #10221B !important;
   background: #fff !important;
 }}
 .stButton > button[kind="primary"] {{
-  background: #4EB086 !important;
+  background: #0E6B54 !important;
 }}
 section[data-testid="stSidebar"] .stLinkButton > a,
 section[data-testid="stSidebar"] a[data-testid="stBaseLinkButton"] {{
   border-radius: 10px !important;
 }}
-.aidr-card {{
+.ww-card {{
   margin: 0.55rem 0 0.2rem 0;
-  padding: 0.55rem 0.7rem 0.15rem 0.7rem;
-  border-left: 3px solid #4EB086;
-  background: rgba(255,255,255,0.72);
-  border-radius: 0 10px 10px 0;
+  padding: 0.85rem 1rem 0.5rem 1rem;
+  border: 1px solid #DCE9E1;
+  background: #FFFFFF;
+  border-radius: 18px;
 }}
-.aidr-card-title {{
+.ww-card-title {{
   margin: 0 0 0.25rem 0 !important;
   font-size: 1.02rem;
-  color: #1a2e28;
+  color: #10221B;
   line-height: 1.3;
 }}
 div[data-testid="stChatMessage"] {{
-  border-radius: 14px !important;
+  border-radius: 18px !important;
 }}
 /* Hide Streamlit default robot when Pip bubble / Yelp cards are present */
 div[data-testid="stChatMessage"]:has(.pip-chat) [data-testid="stChatMessageAvatar"],
@@ -207,17 +210,17 @@ div[data-testid="stChatMessage"]:has(.yelp-card) {{
 }}
 /* Sticky category bar  -  only the keyed container (NOT :has(), which
    matched parent blocks and covered the page, eating the first click). */
-div.st-key-aidr_cat_bar {{
+div.st-key-ww_cat_bar {{
   position: sticky !important;
   top: 0 !important;
   z-index: 120 !important;
-  background: rgba(244, 247, 245, 0.96) !important;
+  background: rgba(241, 247, 243, 0.96) !important;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   padding: 0.55rem 0.35rem 0.65rem 0.35rem !important;
   margin: 0 0 0.35rem 0 !important;
-  border-bottom: 1px solid rgba(78,176,134,0.22);
-  box-shadow: 0 6px 16px rgba(26,46,40,0.06);
+  border-bottom: 1px solid #D3E3DA;
+  box-shadow: 0 4px 12px rgba(16, 34, 27, 0.05);
 }}
 /* Yelp card action row  -  equal-height pills */
 div[data-testid="stHorizontalBlock"] .stButton > button {{
@@ -227,16 +230,16 @@ div[data-testid="stHorizontalBlock"] .stButton > button {{
 .main .block-container {{
   padding-right: 3.25rem !important;
 }}
-.aidr-prompt-anchor {{
+.ww-prompt-anchor {{
   height: 0;
   width: 0;
   overflow: hidden;
   scroll-margin-top: 96px;
 }}
 </style>
-<div class="bc-hero">
-  <p class="bc-brand">{i18n.t("brand", _ui_lang0)}</p>
-  <p class="bc-tag">{i18n.t("tagline", _ui_lang0)}</p>
+<div class="ww-hero">
+  <p class="ww-brand">{i18n.t("brand", _ui_lang0)}</p>
+  <p class="ww-tag">{i18n.t("tagline", _ui_lang0)}</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -958,7 +961,7 @@ def render_prompt_rail(prompts: List[Tuple[int, str]]) -> None:
 (function () {
   try {
     const doc = window.parent.document;
-    doc.querySelectorAll(".aidr-prompt-rail").forEach((el) => el.remove());
+    doc.querySelectorAll(".ww-prompt-rail").forEach((el) => el.remove());
   } catch (e) {}
 })();
 </script></body></html>
@@ -969,7 +972,7 @@ def render_prompt_rail(prompts: List[Tuple[int, str]]) -> None:
         return
 
     items = [
-        {"id": f"aidr-prompt-{idx}", "title": _prompt_preview(txt), "n": i + 1}
+        {"id": f"ww-prompt-{idx}", "title": _prompt_preview(txt), "n": i + 1}
         for i, (idx, txt) in enumerate(prompts)
     ]
     payload = json.dumps(items)
@@ -983,16 +986,16 @@ def render_prompt_rail(prompts: List[Tuple[int, str]]) -> None:
   const items = {payload};
   const doc = window.parent.document;
 
-  doc.querySelectorAll(".aidr-prompt-rail").forEach((el) => el.remove());
+  doc.querySelectorAll(".ww-prompt-rail").forEach((el) => el.remove());
 
-  let style = doc.getElementById("aidr-prompt-rail-css");
+  let style = doc.getElementById("ww-prompt-rail-css");
   if (!style) {{
     style = doc.createElement("style");
-    style.id = "aidr-prompt-rail-css";
+    style.id = "ww-prompt-rail-css";
     doc.head.appendChild(style);
   }}
   style.textContent = `
-      .aidr-prompt-rail {{
+      .ww-prompt-rail {{
         position: fixed;
         right: 14px;
         top: 50%;
@@ -1007,10 +1010,10 @@ def render_prompt_rail(prompts: List[Tuple[int, str]]) -> None:
         background: rgba(255, 255, 255, 0.82);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
-        box-shadow: 0 4px 18px rgba(26, 46, 40, 0.08);
-        border: 1px solid rgba(78, 176, 134, 0.28);
+        box-shadow: 0 4px 18px rgba(16, 34, 27, 0.08);
+        border: 1px solid #DCE9E1;
       }}
-      .aidr-prompt-rail button.aidr-tick {{
+      .ww-prompt-rail button.ww-tick {{
         width: 20px;
         height: 3.5px;
         border: none;
@@ -1021,28 +1024,28 @@ def render_prompt_rail(prompts: List[Tuple[int, str]]) -> None:
         background: rgba(90, 115, 104, 0.35);
         transition: background 0.15s ease, width 0.15s ease, box-shadow 0.15s ease;
       }}
-      .aidr-prompt-rail button.aidr-tick:hover {{
-        background: rgba(78, 176, 134, 0.55);
+      .ww-prompt-rail button.ww-tick:hover {{
+        background: rgba(14, 107, 84, 0.55);
         width: 24px;
       }}
-      .aidr-prompt-rail button.aidr-tick.active {{
-        background: #4EB086;
+      .ww-prompt-rail button.ww-tick.active {{
+        background: #0E6B54;
         width: 26px;
-        box-shadow: 0 0 0 3px rgba(78, 176, 134, 0.22);
+        box-shadow: 0 0 0 3px rgba(14, 107, 84, 0.22);
       }}
       @media (max-width: 768px) {{
-        .aidr-prompt-rail {{ right: 6px; padding: 10px 6px; gap: 8px; }}
-        .aidr-prompt-rail button.aidr-tick {{ width: 14px; }}
-        .aidr-prompt-rail button.aidr-tick.active {{ width: 20px; }}
+        .ww-prompt-rail {{ right: 6px; padding: 10px 6px; gap: 8px; }}
+        .ww-prompt-rail button.ww-tick {{ width: 14px; }}
+        .ww-prompt-rail button.ww-tick.active {{ width: 20px; }}
       }}
     `;
 
   const rail = doc.createElement("nav");
-  rail.className = "aidr-prompt-rail";
+  rail.className = "ww-prompt-rail";
   rail.setAttribute("aria-label", "Jump to earlier prompts");
 
   function setActive(id) {{
-    rail.querySelectorAll("button.aidr-tick").forEach((btn) => {{
+    rail.querySelectorAll("button.ww-tick").forEach((btn) => {{
       btn.classList.toggle("active", btn.dataset.target === id);
     }});
   }}
@@ -1050,7 +1053,7 @@ def render_prompt_rail(prompts: List[Tuple[int, str]]) -> None:
   items.forEach((item, i) => {{
     const btn = doc.createElement("button");
     btn.type = "button";
-    btn.className = "aidr-tick" + (i === items.length - 1 ? " active" : "");
+    btn.className = "ww-tick" + (i === items.length - 1 ? " active" : "");
     btn.dataset.target = item.id;
     btn.title = "Prompt " + item.n + ": " + item.title;
     btn.setAttribute("aria-label", btn.title);
@@ -1193,6 +1196,28 @@ def _specialty_tags(item: Dict, cat_key: str) -> List[str]:
     return tags
 
 
+
+# Inline stroke icons for result-card facts. The design system retires emoji as
+# UI glyphs: they render inconsistently across platforms, are announced as their
+# CLDR name by screen readers ("round pushpin"), and cannot inherit text colour.
+_ICON = {
+    "pin": '<path d="M10 17.5s5.5-4.8 5.5-9a5.5 5.5 0 1 0-11 0c0 4.2 5.5 9 5.5 9Z"/><circle cx="10" cy="8.5" r="2"/>',
+    "phone": '<path d="M6.2 3.5h2.1l1.1 3-1.5 1.1a9 9 0 0 0 4.5 4.5l1.1-1.5 3 1.1v2.1c0 .8-.7 1.4-1.5 1.3C8.4 14.5 5.5 11.6 4.9 5A1.4 1.4 0 0 1 6.2 3.5Z"/>',
+    "link": '<path d="M8.5 11.5a3 3 0 0 0 4.2 0l2.1-2.1a3 3 0 0 0-4.2-4.2l-1 1"/><path d="M11.5 8.5a3 3 0 0 0-4.2 0l-2.1 2.1a3 3 0 0 0 4.2 4.2l1-1"/>',
+    "speech": '<path d="M16.5 11.5a2 2 0 0 1-2 2H8l-3.5 3v-3a2 2 0 0 1-1-1.7V5.5a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2Z"/>',
+    "clock": '<circle cx="10" cy="10" r="6.5"/><path d="M10 6.3V10l2.5 1.6"/>',
+}
+
+
+def _icon(name: str) -> str:
+    """A 16px stroke icon that inherits the surrounding text colour."""
+    return (
+        '<svg class="yelp-ico" width="16" height="16" viewBox="0 0 20 20" fill="none" '
+        'stroke="currentColor" stroke-width="1.5" stroke-linecap="round" '
+        'stroke-linejoin="round" aria-hidden="true">' + _ICON[name] + "</svg>"
+    )
+
+
 def render_card(idx: int, item: Dict, cat_key: str, user_need: str = "", key_suffix: str = ""):
     """Yelp-style listing  -  ≤4 specialty chips (+▾); Details / Pin / Map / Comments."""
     import map_utils
@@ -1268,28 +1293,28 @@ def render_card(idx: int, item: Dict, cat_key: str, user_need: str = "", key_suf
 
     facts = []
     if addr:
-        facts.append(f'<div class="yelp-fact">📍 {html_escape(addr)}</div>')
+        facts.append(f'<div class="yelp-fact">{_icon("pin")}<span>{html_escape(addr)}</span></div>')
     if phone:
         tel = re.sub(r"\D", "", phone)
         if len(tel) >= 10:
             facts.append(
-                f'<div class="yelp-fact">📞 <a href="tel:{html_escape(tel)}">{html_escape(phone)}</a></div>'
+                f'<div class="yelp-fact">{_icon("phone")}<a href="tel:{html_escape(tel)}">{html_escape(phone)}</a></div>'
             )
         else:
-            facts.append(f'<div class="yelp-fact">📞 {html_escape(phone)}</div>')
+            facts.append(f'<div class="yelp-fact">{_icon("phone")}<span>{html_escape(phone)}</span></div>')
     else:
-        facts.append('<div class="yelp-fact yelp-fact-muted">📞 Phone not listed</div>')
+        facts.append(f'<div class="yelp-fact yelp-fact-muted">{_icon("phone")}<span>Phone not listed</span></div>')
     if website:
         facts.append(
-            f'<div class="yelp-fact">🔗 <a href="{html_escape(website)}" target="_blank" '
+            f'<div class="yelp-fact">{_icon("link")}<a href="{html_escape(website)}" target="_blank" '
             f'rel="noopener noreferrer">{html_escape(website)}</a></div>'
         )
     else:
-        facts.append('<div class="yelp-fact yelp-fact-muted">🔗 Website not listed</div>')
+        facts.append(f'<div class="yelp-fact yelp-fact-muted">{_icon("link")}<span>Website not listed</span></div>')
     if lang_str:
-        facts.append(f'<div class="yelp-fact">🗣 {html_escape(lang_str)}</div>')
+        facts.append(f'<div class="yelp-fact">{_icon("speech")}<span>{html_escape(lang_str)}</span></div>')
     if hours_str:
-        facts.append(f'<div class="yelp-fact">⏰ {html_escape(hours_str)}</div>')
+        facts.append(f'<div class="yelp-fact">{_icon("clock")}<span>{html_escape(hours_str)}</span></div>')
     facts_html = "".join(facts)
 
     # on_click + early switch_page (see session init) = one click navigation.
@@ -1327,30 +1352,30 @@ def render_card(idx: int, item: Dict, cat_key: str, user_need: str = "", key_suf
 <style>
 .yelp-card {{
   background: #fff;
-  border: 1px solid rgba(26,46,40,0.12);
+  border: 1px solid #DCE9E1;
   border-radius: 12px;
   padding: 0.9rem 1rem 0.35rem 1rem;
   margin: 0.65rem 0 0.25rem 0;
-  box-shadow: 0 1px 3px rgba(26,46,40,0.06);
+  box-shadow: none;
   font-family: 'DM Sans', system-ui, sans-serif;
 }}
 .yelp-card-head {{ display: flex; gap: 0.75rem; align-items: flex-start; }}
 .yelp-idx {{
   flex-shrink: 0; width: 1.6rem; height: 1.6rem;
-  border-radius: 6px; background: #4EB086; color: #fff;
+  border-radius: 6px; background: #0E6B54; color: #fff;
   font-weight: 700; font-size: 0.85rem;
   display: flex; align-items: center; justify-content: center;
   margin-top: 0.1rem;
 }}
 .yelp-name {{
-  margin: 0 0 0.4rem 0; font-size: 1.08rem; font-weight: 700; color: #1a2e28; line-height: 1.3;
+  margin: 0 0 0.4rem 0; font-size: 1.08rem; font-weight: 700; color: #10221B; line-height: 1.3;
 }}
 .yelp-chips {{ display: flex; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 0.45rem; align-items: center; }}
 .yelp-chip {{
   display: inline-flex; align-items: center; justify-content: center;
   font-size: 0.72rem; font-weight: 600;
   padding: 0.15rem 0.5rem; border-radius: 4px;
-  background: #eef7f2; color: #2d6b54; border: 1px solid rgba(78,176,134,0.25);
+  background: #D6EBE0; color: #08432F; border: 1px solid #CFE6DA;
   line-height: 1.2; box-sizing: border-box;
 }}
 .yelp-chip.yelp-open {{ background: #10b981; color: #fff; border-color: #10b981; }}
@@ -1367,10 +1392,14 @@ def render_card(idx: int, item: Dict, cat_key: str, user_need: str = "", key_suf
 .yelp-chip-more[open] > summary {{ order: 999; }}
 .yelp-facts {{ margin: 0.15rem 0 0.35rem 0; }}
 .yelp-fact {{
+  display: flex;
+  align-items: flex-start;
+  gap: 0.45rem;
   font-size: 0.86rem; color: #4a5f56; line-height: 1.45; margin: 0.12rem 0;
 }}
-.yelp-fact-muted {{ color: #8a9e95; font-style: italic; }}
-.yelp-fact a {{ color: #3d9a72; font-weight: 600; text-decoration: none; }}
+.yelp-fact-muted {{ color: #4A5F55; font-style: italic; }}
+.yelp-ico {{ flex: 0 0 auto; margin-top: 0.15rem; color: #4A5F55; }}
+.yelp-fact a {{ color: #0A4B3A; font-weight: 600; text-decoration: none; }}
 .yelp-fact a:hover {{ text-decoration: underline; }}
 </style>
 """,
@@ -1443,7 +1472,7 @@ st.session_state.setdefault("last_query_by_cat", {})
 st.session_state.setdefault("shown_ids_by_cat", {})
 st.session_state.setdefault("misspelling_suggestion", None)
 st.session_state.setdefault("pending_spell_check", None)  # {original, corrected, fixes}
-st.session_state.setdefault("aidr_smart_llm", False)
+st.session_state.setdefault("ww_smart_llm", False)
 
 # Initialize conversation ID for database logging
 if "convo_id" not in st.session_state:
@@ -1482,29 +1511,29 @@ with st.sidebar:
     # Voice  -  Pip speaks replies (free browser TTS)
     import core.voice as voice
 
-    st.markdown('<hr class="aidr-side-rule"/>', unsafe_allow_html=True)
+    st.markdown('<hr class="ww-side-rule"/>', unsafe_allow_html=True)
     voice.render_voice_toggle(ui_lang)
     st.toggle(
         "Smarter answers (slower)",
-        key="aidr_smart_llm",
+        key="ww_smart_llm",
         help="Uses local Ollama for understanding  -  slower. Off = fast search.",
     )
-    st.markdown('<hr class="aidr-side-rule"/>', unsafe_allow_html=True)
+    st.markdown('<hr class="ww-side-rule"/>', unsafe_allow_html=True)
 
     # Forms
     import core.forms as forms
 
     with st.expander(i18n.t("forms_section", ui_lang), expanded=True):
-        st.markdown(f'<p class="aidr-side-title">{i18n.t("forms_users", ui_lang)}</p>', unsafe_allow_html=True)
-        st.markdown(f'<p class="aidr-side-cap">{i18n.t("forms_users_cap", ui_lang)}</p>', unsafe_allow_html=True)
+        st.markdown(f'<p class="ww-side-title">{i18n.t("forms_users", ui_lang)}</p>', unsafe_allow_html=True)
+        st.markdown(f'<p class="ww-side-cap">{i18n.t("forms_users_cap", ui_lang)}</p>', unsafe_allow_html=True)
         st.link_button(
             i18n.t("forms_users_btn", ui_lang),
             forms.community_report_url(),
             use_container_width=True,
         )
         st.markdown("")
-        st.markdown(f'<p class="aidr-side-title">{i18n.t("forms_clinics", ui_lang)}</p>', unsafe_allow_html=True)
-        st.markdown(f'<p class="aidr-side-cap">{i18n.t("forms_clinics_cap", ui_lang)}</p>', unsafe_allow_html=True)
+        st.markdown(f'<p class="ww-side-title">{i18n.t("forms_clinics", ui_lang)}</p>', unsafe_allow_html=True)
+        st.markdown(f'<p class="ww-side-cap">{i18n.t("forms_clinics_cap", ui_lang)}</p>', unsafe_allow_html=True)
         st.link_button(
             i18n.t("forms_clinics_btn", ui_lang),
             forms.clinic_update_url(),
@@ -1531,9 +1560,9 @@ with st.sidebar:
         except Exception:
             st.caption(" - ")
 
-    st.markdown('<hr class="aidr-side-rule"/>', unsafe_allow_html=True)
+    st.markdown('<hr class="ww-side-rule"/>', unsafe_allow_html=True)
     st.markdown(
-        f'<p class="aidr-side-title">{i18n.t("filters", ui_lang)}</p>',
+        f'<p class="ww-side-title">{i18n.t("filters", ui_lang)}</p>',
         unsafe_allow_html=True,
     )
 
@@ -1541,17 +1570,17 @@ with st.sidebar:
 # Category  -  sticky “What do you need?” bar
 # ===========================
 _ui_lang = st.session_state.get("ui_lang_code", "en")
-with st.container(key="aidr_cat_bar"):
+with st.container(key="ww_cat_bar"):
     st.markdown(
-        f"<p class='aidr-cat-label'>{i18n.t('category_label', _ui_lang)}</p>",
+        f"<p class='ww-cat-label'>{i18n.t('category_label', _ui_lang)}</p>",
         unsafe_allow_html=True,
     )
     st.markdown(
         """
 <style>
-.aidr-cat-label {
+.ww-cat-label {
   font-family: 'DM Sans', system-ui, sans-serif;
-  font-size: 1.05rem; font-weight: 700; color: #1a2e28;
+  font-size: 1.05rem; font-weight: 700; color: #10221B;
   margin: 0 0 0.45rem 0 !important;
 }
 </style>
@@ -1793,10 +1822,10 @@ section[data-testid="stSidebar"] div[data-testid="stHorizontalBlock"] .stButton 
   width: 100% !important;
   min-height: 2.5rem !important;
   white-space: nowrap !important;
-  border: 2px solid #4EB086 !important;
+  border: 2px solid #0E6B54 !important;
   border-radius: 999px !important;
   background: #ffffff !important;
-  color: #1a2e28 !important;
+  color: #10221B !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -1815,8 +1844,8 @@ section[data-testid="stSidebar"] div[data-testid="stHorizontalBlock"] .stButton 
 }
 section[data-testid="stSidebar"] div[data-testid="stHorizontalBlock"] .stButton > button:hover {
   background: #eef7f2 !important;
-  border-color: #4EB086 !important;
-  color: #1a2e28 !important;
+  border-color: #0E6B54 !important;
+  color: #10221B !important;
 }
 </style>
 """,
@@ -1890,7 +1919,7 @@ def respond_to_query(user_text: str, category: str):
     understood_need = user_text
     
     # Fast path: regex detectors (skip slow Ollama intent unless toggled on)
-    use_smart = st.session_state.get("aidr_smart_llm", False)
+    use_smart = st.session_state.get("ww_smart_llm", False)
 
     if not is_more:
         if use_smart:
@@ -2173,7 +2202,7 @@ for mi, msg in enumerate(st.session_state["messages"]):
         if msg["role"] == "user":
             _user_prompts.append((mi, msg.get("text") or ""))
             st.markdown(
-                f'<div id="aidr-prompt-{mi}" class="aidr-prompt-anchor"></div>',
+                f'<div id="ww-prompt-{mi}" class="ww-prompt-anchor"></div>',
                 unsafe_allow_html=True,
             )
         avatar = mascot.PIP_AVATAR if msg["role"] == "assistant" else mascot.USER_AVATAR
@@ -2193,10 +2222,10 @@ if _pending_spell and isinstance(_pending_spell, dict):
 <style>
 div[data-testid="stChatMessage"] div[data-testid="stHorizontalBlock"] .stButton > button {
   white-space: nowrap !important;
-  border: 2px solid #4EB086 !important;
+  border: 2px solid #0E6B54 !important;
   border-radius: 999px !important;
   background: #ffffff !important;
-  color: #1a2e28 !important;
+  color: #10221B !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -2273,7 +2302,7 @@ if prompt and not st.session_state.get("pending_spell_check"):
         st.session_state.pop("_spell_bypass", None)
         _new_mi = len(st.session_state["messages"])
         st.markdown(
-            f'<div id="aidr-prompt-{_new_mi}" class="aidr-prompt-anchor"></div>',
+            f'<div id="ww-prompt-{_new_mi}" class="ww-prompt-anchor"></div>',
             unsafe_allow_html=True,
         )
         with st.chat_message("user", avatar=mascot.USER_AVATAR):

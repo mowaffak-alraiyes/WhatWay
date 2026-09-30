@@ -505,7 +505,7 @@ def push_healthcare(new_text: str, commit_msg: str, dry_run: bool = False) -> Di
     token = _github_token()
     if not token:
         return {"ok": False, "error": "No GitHub token"}
-    with tempfile.TemporaryDirectory(prefix="aidr-hrsa-") as tmp:
+    with tempfile.TemporaryDirectory(prefix="ww-hrsa-") as tmp:
         repo_dir = Path(tmp) / "repo"
         clone_url = f"https://x-access-token:{token}@github.com/{REPO}.git"
         subprocess.check_call(
@@ -525,10 +525,10 @@ def push_healthcare(new_text: str, commit_msg: str, dry_run: bool = False) -> Di
             cwd=repo_dir,
             env={
                 **os.environ,
-                "GIT_AUTHOR_NAME": "Aidr HRSA Import",
-                "GIT_AUTHOR_EMAIL": "aidr-ops@local",
-                "GIT_COMMITTER_NAME": "Aidr HRSA Import",
-                "GIT_COMMITTER_EMAIL": "aidr-ops@local",
+                "GIT_AUTHOR_NAME": "WhatWay HRSA Import",
+                "GIT_AUTHOR_EMAIL": "ww-ops@local",
+                "GIT_COMMITTER_NAME": "WhatWay HRSA Import",
+                "GIT_COMMITTER_EMAIL": "ww-ops@local",
             },
         )
         subprocess.check_call(["git", "push", "origin", "HEAD"], cwd=repo_dir)

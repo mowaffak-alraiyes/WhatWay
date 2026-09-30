@@ -1,5 +1,5 @@
 """
-Fuzzy spelling helpers for Aidr search prompts.
+Fuzzy spelling helpers for WhatWay search prompts.
 
 Replaces a hard-coded misspelling map: corrections come from RapidFuzz
 against a domain vocabulary (services, neighborhoods, common ask words).

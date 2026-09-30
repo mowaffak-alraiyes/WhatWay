@@ -280,7 +280,7 @@ def render_detail_page():
         
         # Link back to main page
         if st.button("← Back to Search"):
-            st.switch_page("Aidr.py")
+            st.switch_page("WhatWay.py")
         return
     
     # Load the resource
@@ -296,7 +296,7 @@ def render_detail_page():
         with st.expander("🔍 Error Details"):
             st.code(traceback.format_exc())
         if st.button("← Back to Search"):
-            st.switch_page("Aidr.py")
+            st.switch_page("WhatWay.py")
         return
     
     if not resource:
@@ -312,7 +312,7 @@ def render_detail_page():
         # Show available categories
         st.info("💡 Try selecting a resource from the search results on the main page.")
         if st.button("← Back to Search"):
-            st.switch_page("Aidr.py")
+            st.switch_page("WhatWay.py")
         return
     
     # ===========================
@@ -417,7 +417,7 @@ def render_detail_page():
   background:
     radial-gradient(900px 420px at 0% -5%, #d4efe4 0%, transparent 55%),
     radial-gradient(700px 360px at 100% 0%, #e8f5ef 0%, transparent 50%),
-    #F4F7F5;
+    #F1F7F3;
 }
 .stApp, .stMarkdown, .stButton > button, .stLinkButton > a,
 a[data-testid="stBaseLinkButton"] {
@@ -430,35 +430,35 @@ a[data-testid="stBaseLinkButton"] {
 .stButton > button[kind="secondary"],
 .stLinkButton > a,
 a[data-testid="stBaseLinkButton"] {
-  border: 1.5px solid #4EB086 !important;
-  color: #1a2e28 !important;
+  border: 1.5px solid #0E6B54 !important;
+  color: #10221B !important;
   background: #fff !important;
 }
 .stButton > button[kind="primary"] {
-  background: #4EB086 !important;
-  border-color: #4EB086 !important;
+  background: #0E6B54 !important;
+  border-color: #0E6B54 !important;
 }
 .yelp-card, .yelp-section {
   background: #fff;
-  border: 1px solid rgba(26,46,40,0.12);
+  border: 1px solid rgba(16, 34, 27,0.12);
   border-radius: 12px;
   padding: 1rem 1.1rem;
   margin: 0.65rem 0 0.85rem 0;
-  box-shadow: 0 1px 3px rgba(26,46,40,0.06);
+  box-shadow: 0 1px 3px rgba(16, 34, 27,0.06);
   font-family: 'DM Sans', system-ui, sans-serif;
 }
 .yelp-name {
   margin: 0 0 0.45rem 0;
   font-size: 1.45rem;
   font-weight: 700;
-  color: #1a2e28;
+  color: #10221B;
   line-height: 1.25;
 }
 .yelp-section-title {
   margin: 0 0 0.55rem 0;
   font-size: 1.05rem;
   font-weight: 700;
-  color: #1a2e28;
+  color: #10221B;
 }
 .yelp-chips { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 0.55rem; }
 .yelp-chip {
@@ -466,29 +466,29 @@ a[data-testid="stBaseLinkButton"] {
   font-size: 0.72rem; font-weight: 600;
   padding: 0.15rem 0.5rem; border-radius: 4px;
   background: #eef7f2; color: #2d6b54;
-  border: 1px solid rgba(78,176,134,0.25);
+  border: 1px solid rgba(14, 107, 84,0.25);
 }
 .yelp-chip.yelp-open { background: #10b981; color: #fff; border-color: #10b981; }
 .yelp-fact { font-size: 0.9rem; color: #4a5f56; margin: 0.2rem 0; line-height: 1.45; }
-.yelp-fact a { color: #3d9a72; font-weight: 600; text-decoration: none; }
+.yelp-fact a { color: #0A4B3A; font-weight: 600; text-decoration: none; }
 .yelp-fact a:hover { text-decoration: underline; }
 .yelp-muted { color: #8a9e95; font-style: italic; font-size: 0.88rem; }
 .yelp-hours-row {
   display: flex; justify-content: space-between; gap: 1rem;
   font-size: 0.9rem; color: #4a5f56;
   padding: 0.28rem 0;
-  border-bottom: 1px solid rgba(26,46,40,0.06);
+  border-bottom: 1px solid rgba(16, 34, 27,0.06);
 }
 .yelp-hours-row:last-child { border-bottom: none; }
-.yelp-hours-row span:first-child { font-weight: 600; color: #1a2e28; min-width: 6.5rem; }
-.yelp-cap { font-size: 0.84rem; color: #6b8178; margin: 0.35rem 0 0 0; }
+.yelp-hours-row span:first-child { font-weight: 600; color: #10221B; min-width: 6.5rem; }
+.yelp-cap { font-size: 0.84rem; color: #4A5F55; margin: 0.35rem 0 0 0; }
 </style>
 """,
         unsafe_allow_html=True,
     )
 
     if st.button("← Back to search", key="yelp_back"):
-        st.switch_page("Aidr.py")
+        st.switch_page("WhatWay.py")
 
     # Hero listing card
     st.markdown(
@@ -620,7 +620,7 @@ a[data-testid="stBaseLinkButton"] {
 
     st.markdown(
         """
-<div id="aidr-comments" class="yelp-comments-anchor"></div>
+<div id="ww-comments" class="yelp-comments-anchor"></div>
 <div class="yelp-section">
   <p class="yelp-section-title">Comments &amp; discussion</p>
   <p class="yelp-cap">Reviews from families  -  tips, wait times, and what to expect.</p>
@@ -647,7 +647,7 @@ a[data-testid="stBaseLinkButton"] {
 <script>
 (function () {
   function findTarget(doc) {
-    return doc.getElementById("aidr-comments")
+    return doc.getElementById("ww-comments")
       || Array.from(doc.querySelectorAll(".yelp-section-title")).find(function (h) {
            return /Comments/i.test(h.textContent || "");
          });

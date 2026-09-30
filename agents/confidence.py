@@ -1,19 +1,20 @@
 """
-Confidence tiers for Aidr ops auto-apply / Telegram ask.
+Confidence tiers for WhatWay ops auto-apply / Telegram ask.
 
   high  + known source → auto-apply to GitHub (no ❤ needed)
   medium              → ask for ❤ (then auto-apply on heart)
-  low / reddit-only   → ask for ❤, or skip if AIDR_SKIP_LOW_CONFIDENCE=1
+  low / reddit-only   → ask for ❤, or skip if WHATWAY_SKIP_LOW_CONFIDENCE=1
 
 Env:
-  AIDR_AUTO_APPLY_HIGH=1          # default on — auto-apply high+known
-  AIDR_AUTO_APPLY_ON_HEART=1      # default on — ❤ → approve + apply
-  AIDR_SKIP_LOW_CONFIDENCE=0      # set 1 to never notify low/reddit
+  WHATWAY_AUTO_APPLY_HIGH=1          # default on — auto-apply high+known
+  WHATWAY_AUTO_APPLY_ON_HEART=1      # default on — ❤ → approve + apply
+  WHATWAY_SKIP_LOW_CONFIDENCE=0      # set 1 to never notify low/reddit
 """
 
 from __future__ import annotations
 
 import os
+import core.env  # noqa: F401 — maps legacy AIDR_* vars onto WHATWAY_*
 from typing import Any, Dict, List, Optional, Tuple
 
 
@@ -89,10 +90,10 @@ def tier_action(item: Dict[str, Any]) -> str:
     src = (item.get("source") or "").lower()
     reddit = "reddit" in src
 
-    if conf == "high" and known and _env_flag("AIDR_AUTO_APPLY_HIGH", True):
+    if conf == "high" and known and _env_flag("WHATWAY_AUTO_APPLY_HIGH", True):
         return "auto_apply"
     if conf == "low" or reddit:
-        if _env_flag("AIDR_SKIP_LOW_CONFIDENCE", False):
+        if _env_flag("WHATWAY_SKIP_LOW_CONFIDENCE", False):
             return "skip"
         return "ask"
     # medium / unchecked / high-but-unknown
@@ -100,7 +101,7 @@ def tier_action(item: Dict[str, Any]) -> str:
 
 
 def should_auto_apply_on_heart() -> bool:
-    return _env_flag("AIDR_AUTO_APPLY_ON_HEART", True)
+    return _env_flag("WHATWAY_AUTO_APPLY_ON_HEART", True)
 
 
 def tier_label(item: Dict[str, Any]) -> str:

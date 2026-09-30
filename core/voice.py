@@ -86,9 +86,9 @@ def speak_browser(text: str, lang: str = "en") -> None:
     note = i18n.t("voice_fallback_note", code) if want_lang else ""
     components.html(
         f"""
-<div id="aidr-voice-wrap" style="font-family:system-ui,sans-serif;margin:0;">
-  <p id="aidr-voice-status" style="font-size:0.8rem;color:#5a7368;margin:0;">🔊 Pip speaking…</p>
-  <p id="aidr-voice-note" style="display:none;font-size:0.75rem;color:#7a8f86;margin:0.2rem 0 0 0;"></p>
+<div id="ww-voice-wrap" style="font-family:system-ui,sans-serif;margin:0;">
+  <p id="ww-voice-status" style="font-size:0.8rem;color:#4A5F55;margin:0;">🔊 Pip speaking…</p>
+  <p id="ww-voice-note" style="display:none;font-size:0.75rem;color:#4A5F55;margin:0.2rem 0 0 0;"></p>
 </div>
 <script>
 (function () {{
@@ -96,8 +96,8 @@ def speak_browser(text: str, lang: str = "en") -> None:
   const lang = {repr(bcp)};
   const wantLang = {str(want_lang).lower()};
   const fallbackNote = {repr(note)};
-  const status = document.getElementById("aidr-voice-status");
-  const noteEl = document.getElementById("aidr-voice-note");
+  const status = document.getElementById("ww-voice-status");
+  const noteEl = document.getElementById("ww-voice-note");
 
   function run(voices) {{
     try {{
@@ -176,7 +176,7 @@ def text_to_speech_elevenlabs(text: str) -> Optional[str]:
                 use_speaker_boost=True,
             ),
         )
-        path = Path(tempfile.gettempdir()) / "aidr_pip_last.mp3"
+        path = Path(tempfile.gettempdir()) / "ww_pip_last.mp3"
         with open(path, "wb") as f:
             for chunk in response:
                 if chunk:
@@ -195,7 +195,7 @@ def text_to_speech_openai(text: str) -> Optional[str]:
         from openai import OpenAI
 
         client = OpenAI(api_key=api_key)
-        path = Path(tempfile.gettempdir()) / "aidr_pip_last.mp3"
+        path = Path(tempfile.gettempdir()) / "ww_pip_last.mp3"
         response = client.audio.speech.create(
             model=_secret("OPENAI_TTS_MODEL") or "tts-1",
             voice=_secret("OPENAI_TTS_VOICE") or "nova",
@@ -224,7 +224,7 @@ def speak_pip(text: str, force: bool = False, lang: str = "en") -> None:
 def render_voice_toggle(lang: str = "en") -> None:
     """Pip reads answers aloud (free browser TTS by default)."""
     st.session_state.setdefault("pip_voice_enabled", False)
-    st.markdown('<p class="aidr-side-title">Voice</p>', unsafe_allow_html=True)
+    st.markdown('<p class="ww-side-title">Voice</p>', unsafe_allow_html=True)
     st.toggle(
         "Pip speaks replies",
         key="pip_voice_enabled",

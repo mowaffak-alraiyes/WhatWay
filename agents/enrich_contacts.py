@@ -10,7 +10,7 @@ Flow:
   3. Optional Ollama check: “does this phone/site match this clinic?”
   4. Stage proposed_update → data/pending_ops.json (never auto-push)
   5. You approve (Telegram or CLI) → apply → GitHub .txt
-  6. Apply also refreshes local data/*.json so Aidr search sees it
+  6. Apply also refreshes local data/*.json so WhatWay search sees it
 
 Cost: $0 on Ollama + public pages + existing GitHub token.
 
@@ -72,7 +72,7 @@ PHONE_RE = re.compile(
 )
 URL_RE = re.compile(r"https?://[^\s<>\"']+", re.I)
 UA = {
-    "User-Agent": "AidrContactEnrich/1.0 (+local; free-clinic directory; respectful fetch)"
+    "User-Agent": "WhatWayContactEnrich/1.0 (+local; free-clinic directory; respectful fetch)"
 }
 
 

@@ -1,5 +1,5 @@
 """
-Static UI translations  -  Aidr site-wide labels (no LLM).
+Static UI translations  -  WhatWay site-wide labels (no LLM).
 """
 
 from __future__ import annotations
@@ -38,7 +38,7 @@ NAME_TO_CODE = {
 CODE_TO_NAME = {v: k for k, v in NAME_TO_CODE.items() if k not in ("Auto-detect", "Chinese")}
 
 _EN = {
-    "brand": "Aidr",
+    "brand": "WhatWay",
     "tagline": "Care & community help  -  Chicago first.",
     "bot_name": "Pip",
     "bot_hello": "Hey! I'm Pip.",

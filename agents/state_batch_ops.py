@@ -1,5 +1,5 @@
 """
-State-by-state Aidr batch:
+State-by-state WhatWay batch:
   1) Find-a-HC fetch (250mi hubs+surrounding) → stage healthcare ops
   2) Ollama-backed enrich of missing phone/web/languages on that state's GitHub files
   3) Discover education + resettlement seeds for that state (Ollama verify)

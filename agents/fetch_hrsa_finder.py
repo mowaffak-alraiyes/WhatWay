@@ -33,7 +33,7 @@ FINDER_API = os.environ.get(
     "https://data.hrsa.gov/HDWLocatorApi/healthcenters/find",
 )
 UA = {
-    "User-Agent": "AidrHRSAFinder/1.0 (+local; refugee resource directory)",
+    "User-Agent": "WhatWayHRSAFinder/1.0 (+local; refugee resource directory)",
     "Accept": "application/json",
 }
 

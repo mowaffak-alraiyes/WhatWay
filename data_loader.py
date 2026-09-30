@@ -590,7 +590,7 @@ def load_category_data(
     st_code = (state or (_rs() if _rs else None) or "IL").strip().upper() or "IL"
     category_key = category.lower().replace(" / ", "_").replace(" ", "_")
     json_path = data_dir / f"{category_key}_{st_code}.json"
-    # Legacy single-state cache (older Aidr installs wrote healthcare.json for IL)
+    # Legacy single-state cache (older WhatWay installs wrote healthcare.json for IL)
     legacy_path = data_dir / f"{category_key}.json"
 
     if not force_refresh:
