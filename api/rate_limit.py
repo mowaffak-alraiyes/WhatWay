@@ -10,7 +10,7 @@ Configure via env:
 from __future__ import annotations
 
 import os
-import core.env  # noqa: F401 — maps legacy AIDR_* vars onto WHATWAY_*
+import core.env  # noqa: F401, maps legacy AIDR_* vars onto WHATWAY_*
 import time
 from collections import defaultdict, deque
 from threading import Lock

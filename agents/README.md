@@ -64,7 +64,7 @@ python -m agents.import_hrsa_xlsx \
   --push --refresh-local
 ```
 
-- **Adds** new clinics; **updates** blank phone/website only — never strips languages/hours/services  
+- **Adds** new clinics; **updates** blank phone/website only: never strips languages/hours/services  
 - HAB rows get **Ryan White HIV/AIDS Program (HRSA HAB)** notes + service context  
 - Telegram sends one **📍 STATE** digest, then individual cards (`❤` approve+apply / `👎` reject)  
 - Apply writes to `resources/{state}/healthcare.txt` using each op’s `state` field
@@ -129,7 +129,7 @@ python -m agents.clinic_ops --poll --poll-seconds 0
 # reply: approve op_… / reject op_… / apply op_…
 ```
 
-**Limits:** not every clinic publishes a phone; blanks stay blank. Auto-fill without review invents/wrong-matches — keep human approve.
+**Limits:** not every clinic publishes a phone; blanks stay blank. Auto-fill without review invents/wrong-matches, keep human approve.
 
 ## Form ingest / new clinics
 
@@ -205,8 +205,8 @@ Approve with ❤ / reject with 👎 on each card (text commands still work).
 
 ## Safety
 
-- LLM never pushes on its own for medium/low — you ❤ or overnight high-tier does.
+- LLM never pushes on its own for medium/low: you ❤ or overnight high-tier does.
 - Only chats in `TELEGRAM_ALLOWED_CHAT_IDS` can command the bot.
 - Empty allowlist = **fail closed** (no chat can approve/apply).
 - Drafts omit map-pin emoji so Maps geocoding stays clean.
-- Enrichment sources: org site, HRSA-style CSV, your sheet, Reddit public JSON — not paid Places.
+- Enrichment sources: org site, HRSA-style CSV, your sheet, Reddit public JSON, not paid Places.

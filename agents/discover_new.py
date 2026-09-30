@@ -2,7 +2,7 @@
 Discover NEW Chicago education / resettlement (and related) orgs for Telegram approval.
 
 Uses curated seed candidates + DuckDuckGo (optional site fill) + local Ollama verify.
-Never auto-pushes — stages to data/pending_ops.json like clinic_ops.
+Never auto-pushes: stages to data/pending_ops.json like clinic_ops.
 
   CITY_SCOPE=chicago python -m agents.discover_new --category education --category resettlement
   python -m agents.clinic_ops --notify
@@ -56,7 +56,7 @@ SEED_CANDIDATES: Dict[str, List[Dict[str, Any]]] = {
             "zip": "60600",
             "website": "https://mytrellus.org",
             "services": ["ESL", "GED", "computer classes", "adult education"],
-            "notes": "Immigrant & underserved families — adult ESL/GED/computer classes.",
+            "notes": "Immigrant & underserved families, adult ESL/GED/computer classes.",
         },
         {
             "name": "Pui Tak Center",
@@ -65,7 +65,7 @@ SEED_CANDIDATES: Dict[str, List[Dict[str, Any]]] = {
             "website": "https://www.puitak.org",
             "phone": "(312) 328-1188",
             "services": ["Adult ESL", "citizenship", "job readiness"],
-            "notes": "Chinatown community center — free Adult ESL (6 levels).",
+            "notes": "Chinatown community center, free Adult ESL (6 levels).",
         },
         {
             "name": "Instituto del Progreso Latino",
@@ -89,7 +89,7 @@ SEED_CANDIDATES: Dict[str, List[Dict[str, Any]]] = {
             "zip": "60651",
             "website": "https://www.associationhouse.org",
             "services": ["ESL", "adult education", "youth", "workforce"],
-            "notes": "Settlement house — education and family support.",
+            "notes": "Settlement house, education and family support.",
         },
         {
             "name": "Howard Area Community Center",
@@ -116,7 +116,7 @@ SEED_CANDIDATES: Dict[str, List[Dict[str, Any]]] = {
             "zip": "60604",
             "website": "https://immigrantjustice.org",
             "services": ["immigration legal services", "asylum", "detention"],
-            "notes": "Heartland Alliance NIJC — immigrant legal defense.",
+            "notes": "Heartland Alliance NIJC, immigrant legal defense.",
         },
         {
             "name": "Illinois Coalition for Immigrant and Refugee Rights (ICIRR)",
@@ -132,7 +132,7 @@ SEED_CANDIDATES: Dict[str, List[Dict[str, Any]]] = {
             "zip": "60660",
             "website": "https://centroromero.org",
             "services": ["legal services", "ESL", "youth", "immigrant support"],
-            "notes": "Immigrant community organization — legal and education support.",
+            "notes": "Immigrant community organization, legal and education support.",
         },
         {
             "name": "The Resurrection Project",
@@ -179,7 +179,7 @@ MULTI_STATE_SEEDS: Dict[str, List[Dict[str, Any]]] = {
             "state": "IN",
             "website": "https://www.exodusrefugee.org",
             "services": ["ESL", "orientation", "employment", "refugee education"],
-            "notes": "Indiana refugee resettlement — ESL and orientation supports.",
+            "notes": "Indiana refugee resettlement, ESL and orientation supports.",
         },
         {
             "name": "Immigrant Welcome Center",
@@ -253,7 +253,7 @@ MULTI_STATE_SEEDS: Dict[str, List[Dict[str, Any]]] = {
             "state": "CO",
             "website": "https://cdhs.colorado.gov/crsp",
             "services": ["refugee resettlement", "benefits", "case management"],
-            "notes": "State refugee office — Colorado Department of Human Services.",
+            "notes": "State refugee office, Colorado Department of Human Services.",
         },
         {
             "name": "Lutheran Family Services Rocky Mountains",

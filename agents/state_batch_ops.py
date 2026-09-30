@@ -197,7 +197,7 @@ def run_state(
         summary["steps"]["auto_apply_high"] = auto
         print(json.dumps({"auto_apply_high": auto}, indent=2), flush=True)
         ask_ops = [i for i in unique_ops if tier_action(i) == "ask"]
-        # refresh statuses — auto-applied ones are no longer proposed
+        # refresh statuses, auto-applied ones are no longer proposed
         from agents.enrich_contacts import _load_pending
 
         pending = _load_pending()
@@ -254,7 +254,7 @@ def main() -> None:
         if st in skip:
             print(f"Skipping {st}", flush=True)
             continue
-        # IN healthcare already fetched earlier — still allow enrich/discover; fetch optional
+        # IN healthcare already fetched earlier: still allow enrich/discover; fetch optional
         skip_fetch = args.skip_fetch or st == "IN"
         summary = run_state(
             st,
@@ -274,7 +274,7 @@ def main() -> None:
     _notify(
         "✅ State batches finished\n"
         + "\n".join(
-            f"• {r.get('state')}: {r.get('staged_ops', 0)} ops — `approve all {r.get('state')}`"
+            f"• {r.get('state')}: {r.get('staged_ops', 0)} ops, `approve all {r.get('state')}`"
             for r in results
         )
     )

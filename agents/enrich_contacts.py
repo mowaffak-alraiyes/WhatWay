@@ -1,5 +1,5 @@
 """
-Enrich missing 📞 / 🌐 on GitHub listings — free sources only, human approve.
+Enrich missing 📞 / 🌐 on GitHub listings: free sources only, human approve.
 
 Flow:
   1. Read each listing from refugee-resources (name + address + existing phone/web)
@@ -64,7 +64,7 @@ def _github_files(state: Optional[str] = None) -> Dict[str, str]:
 GITHUB_FILES = _github_files()
 
 CITY_SCOPE = os.environ.get("CITY_SCOPE", "chicago").lower()
-# Optional USPS filter for enrich (e.g. IN) — set via scan(state=...) or --state
+# Optional USPS filter for enrich (e.g. IN), set via scan(state=...) or --state
 ENRICH_STATE = (os.environ.get("RESOURCES_STATE") or "").strip().upper() or None
 CHICAGO_ZIP = re.compile(r"\b60\d{3}\b")
 PHONE_RE = re.compile(
@@ -553,7 +553,7 @@ def phones_from_site(website: str) -> Tuple[List[str], str]:
 def discover_website_ddg(name: str, address: str = "") -> Optional[str]:
     """
     Optional free discovery via DuckDuckGo HTML (not Google/Yelp).
-    Often blocked (HTTP 202); returns None when empty — callers should
+    Often blocked (HTTP 202); returns None when empty: callers should
     fall back to sibling / parent-org inference.
     """
     q = f"{name} {address} official site".strip()
@@ -578,7 +578,7 @@ def discover_website_ddg(name: str, address: str = "") -> Optional[str]:
     return None
 
 
-# Common Chicago FQHC / free-clinic parent sites (free, curated — not Places API)
+# Common Chicago FQHC / free-clinic parent sites (free, curated: not Places API)
 _PARENT_SITE_RULES = [
     (re.compile(r"\blchc\b|lawndale christian", re.I), "https://www.lawndale.org"),
     (re.compile(r"\berie\b", re.I), "https://www.eriefamilyhealth.org"),
@@ -682,7 +682,7 @@ def ollama_verify_match(
             "provider": "ollama",
         }
     except Exception as e:
-        # Fail open to human review — still stage, mark unchecked
+        # Fail open to human review: still stage, mark unchecked
         return {
             "ok": True,
             "confidence": "unchecked",
@@ -792,7 +792,7 @@ def enrich_one(
                 need_web = False
                 evidence_bits.append(f"sibling site {sib}")
 
-    # 3) Discover website (optional; DDG often blocked — best-effort)
+    # 3) Discover website (optional; DDG often blocked, best-effort)
     if need_web and discover_sites:
         found = discover_website_ddg(listing.get("name") or "", listing.get("address") or "")
         if found:

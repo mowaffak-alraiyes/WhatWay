@@ -1,5 +1,5 @@
 """
-WhatWay API — WhatsApp webhooks + health/search endpoints.
+WhatWay API: WhatsApp webhooks + health/search endpoints.
 
 Deploy on Railway / Render / Fly (not Streamlit Cloud).
 Streamlit UI stays separate; both share core.pipeline.
@@ -8,7 +8,7 @@ Streamlit UI stays separate; both share core.pipeline.
 from __future__ import annotations
 
 import os
-import core.env  # noqa: F401 — maps legacy AIDR_* vars onto WHATWAY_*
+import core.env  # noqa: F401, maps legacy AIDR_* vars onto WHATWAY_*
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -89,7 +89,7 @@ def health():
 
 @app.post("/search")
 def search(payload: dict, request: Request):
-    """Same path as chat/WhatsApp — useful for demos and future Vercel frontend."""
+    """Same path as chat/WhatsApp: useful for demos and future Vercel frontend."""
     client = request.client.host if request.client else "unknown"
     ok, retry = rate_allow(
         hash_identifier(client),

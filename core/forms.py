@@ -6,7 +6,7 @@ Fillable form URLs (public):
 - Clinic staff update request
 
 The discovery agent still needs a published CSV of *responses*
-(GOOGLE_FORMS_CSV_URL) — Forms view links cannot be scraped for answers.
+(GOOGLE_FORMS_CSV_URL), Forms view links cannot be scraped for answers.
 """
 
 from __future__ import annotations

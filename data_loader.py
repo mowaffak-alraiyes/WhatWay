@@ -48,7 +48,7 @@ SERVICE_PATTERNS = {
     "dental": re.compile(r'\b(dental|dentist|oral|teeth|tooth|dental care|exams|cleanings|x.?rays|extractions)\b', re.I),
     "pediatric": re.compile(r'\b(pediatric|pediatrician|child|children|kids|baby|infant|adolescent|adolescent medicine|youth.?focused)\b', re.I),
     "mental_health": re.compile(r'\b(mental|therapy|therapist|counseling|counselor|psychology|psychiatric|psychiatry|behavioral health|behavioral)\b', re.I),
-    # Avoid bare family/adult/general/internal — they false-positive ESL, legal, etc.
+    # Avoid bare family/adult/general/internal: they false-positive ESL, legal, etc.
     "primary_care": re.compile(
         r'\b(primary care|family medicine|general medicine|internal medicine|primary medical|physician|doctor)\b',
         re.I,
@@ -505,7 +505,7 @@ def parse_blocks(text: str, category: str = "") -> List[Dict[str, Any]]:
                 record["hours"] = parse_hours(hours_text)
                 record["hours_text"] = hours_text
 
-            # Website BEFORE languages — 🌐 is the website marker (languages use 🗣)
+            # Website BEFORE languages: 🌐 is the website marker (languages use 🗣)
             elif any(keyword in line_lower for keyword in ['website:', 'web:']) or (
                 line.strip().startswith('🌐') or ('http://' in line_lower or 'https://' in line_lower)
             ):

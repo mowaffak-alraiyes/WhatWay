@@ -67,7 +67,7 @@ def get_search_suggestions(query: str, category: str, items: List[Dict]) -> List
 
 
 def get_no_result_suggestions(query: str, category: str, items: List[Dict]) -> List[str]:
-    """Buttons to offer when search returns nothing — dataset-aware + category defaults."""
+    """Buttons to offer when search returns nothing: dataset-aware + category defaults."""
     base = get_search_suggestions(query or "", category, items)
     related = get_related_searches(query or "", category)
     defaults = {

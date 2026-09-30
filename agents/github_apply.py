@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import json
 import os
-import core.env  # noqa: F401 — maps legacy AIDR_* vars onto WHATWAY_*
+import core.env  # noqa: F401, maps legacy AIDR_* vars onto WHATWAY_*
 import re
 import subprocess
 import tempfile
@@ -387,7 +387,7 @@ def apply_approved(op_id: str, dry_run: bool = False) -> Dict[str, Any]:
             target.parent.mkdir(parents=True, exist_ok=True)
             if not target.exists():
                 target.write_text(
-                    f"# {(item.get('state') or 'IL')} — placeholder\n\n",
+                    f"# {(item.get('state') or 'IL')}, placeholder\n\n",
                     encoding="utf-8",
                 )
             text = target.read_text(encoding="utf-8")

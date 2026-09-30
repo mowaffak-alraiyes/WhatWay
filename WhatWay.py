@@ -262,13 +262,13 @@ TOP_N = 3  # show first N; user can type "more" to fetch next batch
 import importlib
 import core.spellcheck as spellcheck
 
-# Streamlit keeps sys.modules across reruns — pick up new helpers after edits
+# Streamlit keeps sys.modules across reruns: pick up new helpers after edits
 if not hasattr(spellcheck, "is_paginate_command") or not hasattr(spellcheck, "is_ui_command"):
     spellcheck = importlib.reload(spellcheck)
 
 
 def _is_paginate_command(text: str) -> bool:
-    """Paginate ('more') — resilient if Streamlit holds a stale spellcheck module."""
+    """Paginate ('more'), resilient if Streamlit holds a stale spellcheck module."""
     fn = getattr(spellcheck, "is_paginate_command", None)
     if callable(fn):
         return bool(fn(text))
@@ -1814,7 +1814,7 @@ with st.sidebar:
     st.markdown(
         """
 <style>
-/* Matching Reset / Scroll pills — full width, centered label */
+/* Matching Reset / Scroll pills, full width, centered label */
 section[data-testid="stSidebar"] div[data-testid="stHorizontalBlock"] .stButton {
   width: 100% !important;
 }

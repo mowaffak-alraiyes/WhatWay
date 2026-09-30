@@ -1,5 +1,5 @@
 #!/bin/bash
-# WhatWay local runner — loads .env then starts Streamlit
+# WhatWay local runner: loads .env then starts Streamlit
 set -e
 cd "$(dirname "$0")"
 
@@ -10,7 +10,7 @@ if [ -f .env ]; then
   set +a
   echo "Loaded .env"
 else
-  echo "No .env yet — copy .env.example → .env"
+  echo "No .env yet, copy .env.example → .env"
 fi
 
 # Mirror Neon/Twilio into Streamlit secrets if missing
@@ -32,7 +32,7 @@ EOF
 fi
 
 if ! curl -sf http://localhost:11434/api/tags >/dev/null 2>&1; then
-  echo "Warning: Ollama not reachable at :11434 — run: ollama serve"
+  echo "Warning: Ollama not reachable at :11434, run: ollama serve"
 fi
 
 source .venv/bin/activate 2>/dev/null || true

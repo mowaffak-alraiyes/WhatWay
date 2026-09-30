@@ -1,9 +1,9 @@
 """
-Clinic Ops agent — David local-ai-agents patterns, WhatWay-shaped.
+Clinic Ops agent: David local-ai-agents patterns, WhatWay-shaped.
 
 - Controlled tools only (agents/tools.py)
 - Local Ollama for short proposal summaries (optional)
-- Stage to data/pending_ops.json — never auto-push
+- Stage to data/pending_ops.json: never auto-push
 - Telegram poll for your approve/reject/apply
 - After approve + apply → commit to refugee-resources GitHub
 
@@ -163,7 +163,7 @@ def ollama_summarize(item: Dict[str, Any]) -> str:
 
 
 def verify_proposal(item: Dict[str, Any], github_index: Dict[str, Dict[str, str]]) -> Dict[str, Any]:
-    """New clinics or field updates — human still approves via Telegram."""
+    """New clinics or field updates: human still approves via Telegram."""
     checks = []
     name = (item.get("name") or "").strip()
     address = item.get("address") or ""

@@ -1,5 +1,5 @@
 """
-Telegram approval bridge — borrow local-ai-agents polling pattern.
+Telegram approval bridge: borrow local-ai-agents polling pattern.
 
 - Bot polls Telegram (no open inbound ports)
 - Only TELEGRAM_ALLOWED_CHAT_IDS can approve/reject
@@ -300,7 +300,7 @@ def handle_command(text: str, chat_id: str) -> str:
     )
     if m_all:
         st = (m_all.group(1) or "").upper() or None
-        # Preview count if they typed "approve all?" — treat ? as dry hint via trailing ?
+        # Preview count if they typed "approve all?": treat ? as dry hint via trailing ?
         try:
             result = approve_apply_all(state=st, dry_run=False)
         except Exception as e:
@@ -366,7 +366,7 @@ def _reaction_emojis(reactions: Any) -> set:
         if isinstance(r, dict):
             if r.get("type") == "emoji" and r.get("emoji"):
                 out.add(r["emoji"])
-            # custom emoji / paid — ignore
+            # custom emoji / paid, ignore
     return out
 
 
@@ -439,7 +439,7 @@ def handle_reaction(upd: Dict[str, Any]) -> Optional[str]:
 
 
 def poll_once(timeout: int = 25) -> Dict[str, Any]:
-    """One long-poll cycle — messages + reactions."""
+    """One long-poll cycle: messages + reactions."""
     offset = _load_offset()
     params: Dict[str, Any] = {
         "timeout": timeout,

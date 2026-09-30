@@ -1,5 +1,5 @@
 """
-Overnight WhatWay ops worker — free sources only.
+Overnight WhatWay ops worker: free sources only.
 
 Cycles:
   1) enrich missing phone/website/languages/services/hours (org sites + DDG)
@@ -8,7 +8,7 @@ Cycles:
   4) Telegram notify open proposals (❤ / 👎)
   5) Optional: auto-apply already-approved ops
 
-Does NOT replace Telegram poll — run poll separately.
+Does NOT replace Telegram poll: run poll separately.
 
   python -m agents.overnight_ops --interval-min 60
   python -m agents.overnight_ops --once

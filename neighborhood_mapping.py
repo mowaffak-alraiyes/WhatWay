@@ -143,7 +143,7 @@ def zip_neighbors(zip_code: str) -> List[str]:
 def resolve_zip_against_known(raw: str, known_zips: List[str]) -> Tuple[str, float]:
     """
     Map a typed ZIP (possibly mistyped) to the closest known ZIP in the dataset.
-    Uses digit-string similarity — no assumed typo list.
+    Uses digit-string similarity: no assumed typo list.
     Returns (best_zip, score_0_to_100). Empty raw → ("", 0).
     """
     from rapidfuzz import fuzz
@@ -180,7 +180,7 @@ def resolve_zip_against_known(raw: str, known_zips: List[str]) -> Tuple[str, flo
 def nearby_zip_cluster(zip_code: str, known_zips: List[str], *, max_numeric_gap: int = 5) -> List[str]:
     """
     Nearby ZIPs for ranking:
-    1) Neighborhood siblings (primary — real local cluster)
+    1) Neighborhood siblings (primary, real local cluster)
     2) Only if that set is thin, pad with numerically close same-prefix ZIPs in the dataset
     """
     z = str(zip_code or "").strip()

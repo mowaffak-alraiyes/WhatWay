@@ -13,7 +13,7 @@ st.set_page_config(page_title="Admin - Data Management", layout="wide")
 
 st.title("🔧 Admin - Data Management")
 
-# Password protection — require ADMIN_PASSWORD in secrets or env (no default).
+# Password protection: require ADMIN_PASSWORD in secrets or env (no default).
 import os
 
 _expected = ""

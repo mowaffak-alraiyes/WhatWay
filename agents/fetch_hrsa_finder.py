@@ -1,5 +1,5 @@
 """
-Fetch Health Centers the same way Find a Health Center does — no browser scrape.
+Fetch Health Centers the same way Find a Health Center does: no browser scrape.
 
 Calls the public locator API behind https://findahealthcenter.hrsa.gov/ :
   GET {HDWLocatorApi}/healthcenters/find?lon=&lat=&radius=
@@ -72,7 +72,7 @@ def fetch_around(
     timeout: float = 90.0,
 ) -> List[Dict[str, Any]]:
     sess = session or requests.Session()
-    # API returns nearest N (often 500) within radius — int radius matches the site UI.
+    # API returns nearest N (often 500) within radius: int radius matches the site UI.
     r = sess.get(
         FINDER_API,
         params={"lat": float(lat), "lon": float(lon), "radius": int(round(radius_miles))},

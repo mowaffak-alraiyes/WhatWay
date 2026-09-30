@@ -259,7 +259,7 @@ def scan(*, limit: int = 8, use_ollama: bool = True) -> Dict[str, Any]:
             if len(staged) >= limit:
                 break
             posts = reddit_search(sub, q, limit=10)
-            time.sleep(1.1)  # be gentle — free public endpoint
+            time.sleep(1.1)  # be gentle, free public endpoint
             for post in posts:
                 for cand in extract_candidates(post):
                     if len(staged) >= limit:

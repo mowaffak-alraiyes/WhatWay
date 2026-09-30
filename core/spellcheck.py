@@ -50,7 +50,7 @@ _COMMAND_TOKENS = frozenset({
     "more", "next", "again", "yes", "no", "ok", "okay", "please",
 })
 _PAGINATE_CANONICAL = frozenset({"more", "next", "again"})
-# Real words 1 edit from more/next — never treat as pagination
+# Real words 1 edit from more/next: never treat as pagination
 _NEAR_PAGINATE_DENY = frozenset({
     "mode", "move", "made", "mole", "mire", "mere", "mare", "mote", "moore",
     "home", "some", "none", "note", "fore", "wore", "core", "lore", "pore",

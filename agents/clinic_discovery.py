@@ -1,5 +1,5 @@
 """
-Clinic discovery agent — finds / ingests new clinics from Google Forms/Sheets.
+Clinic discovery agent: finds / ingests new clinics from Google Forms/Sheets.
 
 Fillable forms (linked in clinic detail UI):
   - Community report: https://docs.google.com/forms/d/e/1FAIpQLScZUiy0MirYBsbjPC50_AyZ2I6BdnjmnYKCQOcUUGximAmNVw/viewform
@@ -11,7 +11,7 @@ To ingest *responses* into proposed_clinics.json:
   3. Set GOOGLE_FORMS_CSV_URL to that CSV URL (or pass --url)
   4. Run: python -m agents.clinic_discovery --fetch
 
-No scraping of private sheets — public CSV export only.
+No scraping of private sheets: public CSV export only.
 """
 
 from __future__ import annotations

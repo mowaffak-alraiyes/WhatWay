@@ -12,7 +12,7 @@ import os
 import re
 from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
 
-# (name, lat, lon) — approximate city centers for 250-mile catchments
+# (name, lat, lon), approximate city centers for 250-mile catchments
 HUBS: Dict[str, List[Tuple[str, float, float]]] = {
     "IL": [("Chicago", 41.8781, -87.6298)],
     "IN": [("Indianapolis", 39.7684, -86.1581)],
@@ -25,7 +25,7 @@ HUBS: Dict[str, List[Tuple[str, float, float]]] = {
 }
 
 # Broader search seeds for Find-a-Health-Center API (hubs + surrounding cities).
-# Overlaps are expected — callers dedupe by HRSA site Id / name+ZIP.
+# Overlaps are expected: callers dedupe by HRSA site Id / name+ZIP.
 SEARCH_CITIES: Dict[str, List[Tuple[str, float, float]]] = {
     "IL": [
         ("Chicago", 41.8781, -87.6298),

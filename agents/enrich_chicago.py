@@ -14,7 +14,7 @@ import csv
 import io
 import json
 import os
-import core.env  # noqa: F401 — maps legacy AIDR_* vars onto WHATWAY_*
+import core.env  # noqa: F401, maps legacy AIDR_* vars onto WHATWAY_*
 import re
 import secrets
 from datetime import datetime, timezone

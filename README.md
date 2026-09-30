@@ -1,8 +1,8 @@
-# WhatWay — Refugee Resource Assistant
+# WhatWay: Refugee Resource Assistant
 
-Find healthcare, education, and legal/shelter resources for refugee families in Illinois and Indiana — via web chat, and on WhatsApp once Meta Business verification clears.
+Find healthcare, education, and legal/shelter resources for refugee families in Illinois and Indiana, via web chat, and on WhatsApp once Meta Business verification clears.
 
-> **Renamed from Aidr.** Environment variables moved from `AIDR_*` to `WHATWAY_*`. Existing deployments keep working: `core/env.py` copies any `AIDR_*` variable onto its `WHATWAY_*` twin at import time, and the new name always wins if both are set. Rename them in your host's settings when convenient — the shim is a transition aid, not a permanent contract.
+> **Renamed from Aidr.** Environment variables moved from `AIDR_*` to `WHATWAY_*`. Existing deployments keep working: `core/env.py` copies any `AIDR_*` variable onto its `WHATWAY_*` twin at import time, and the new name always wins if both are set. Rename them in your host's settings when convenient, the shim is a transition aid, not a permanent contract.
 
 ## Design
 
@@ -18,7 +18,7 @@ The design system lives on a canvas: palette, type, logo, the browser assistant,
 | Pine | `#08432F` | giving, dark bands |
 | Fern | `#2E9E6B` | graphics only, never text |
 
-One hue, five steps — nothing is distinguished by colour alone. Badges differ by fill / outline / solid so they survive greyscale and colour-blindness. Controls are 44px minimum, radius 14; cards radius 18.
+One hue, five steps: nothing is distinguished by colour alone. Badges differ by fill / outline / solid so they survive greyscale and colour-blindness. Controls are 44px minimum, radius 14; cards radius 18.
 
 ## Quick start
 
@@ -30,11 +30,11 @@ cp .env.example .env
 ./run_app.sh
 ```
 
-Open http://localhost:8501 — try **Healthcare → dental 60629**.
+Open http://localhost:8501: try **Healthcare → dental 60629**.
 
 ## Setup and security checklist
 
-1. Put secrets only in `.env` / `.streamlit/secrets.toml` — never commit them (both are gitignored).
+1. Put secrets only in `.env` / `.streamlit/secrets.toml`, never commit them (both are gitignored).
 2. Set `ADMIN_PASSWORD` before using the Streamlit admin page (no default password).
 3. Set `TELEGRAM_ALLOWED_CHAT_IDS` for clinic ops; an empty allowlist rejects all Telegram commands.
 4. WhatsApp dry-run logs mask phone numbers; conversation sessions key on hashed IDs.
@@ -69,9 +69,9 @@ Telegram approval flow: see [agents/README.md](agents/README.md).
 
 ## Deploy (demo week)
 
-- **Streamlit UI** → [Streamlit Community Cloud](https://streamlit.io/cloud) (free) — add secrets there
+- **Streamlit UI** → [Streamlit Community Cloud](https://streamlit.io/cloud) (free), add secrets there
 - **FastAPI / WhatsApp** → Railway or Render (free tier)
-- **Vercel** — optional landing page only; do **not** rewrite the app onto Vercel this week
+- **Vercel**, optional landing page only; do **not** rewrite the app onto Vercel this week
 
 ## Week plan & David demo
 

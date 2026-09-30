@@ -1,5 +1,5 @@
 """
-WhatsApp webhook spike — Twilio AND Meta Cloud API.
+WhatsApp webhook spike: Twilio AND Meta Cloud API.
 
 Same search/LLM path as the Streamlit chat via core.pipeline.search_resources.
 
@@ -20,7 +20,7 @@ import base64
 import hashlib
 import hmac
 import os
-import core.env  # noqa: F401 — maps legacy AIDR_* vars onto WHATWAY_*
+import core.env  # noqa: F401, maps legacy AIDR_* vars onto WHATWAY_*
 from typing import Any, Dict, Optional
 import requests
 from fastapi import APIRouter, Form, Header, HTTPException, Query, Request, Response
@@ -59,7 +59,7 @@ def _handle_message(phone: str, body: str) -> str:
     if not text:
         return "Send a message like: dental 60629"
 
-    # Per-sender cap (hashed) — keeps pilot cheap + stops spam loops
+    # Per-sender cap (hashed), keeps pilot cheap + stops spam loops
     ok, retry = rate_allow(hash_identifier(phone), scope="whatsapp")
     if not ok:
         return f"You're sending messages too quickly. Try again in ~{retry}s."
@@ -113,7 +113,7 @@ def _send_twilio(to: str, body: str) -> None:
     token = _env("TWILIO_AUTH_TOKEN")
     from_num = _env("TWILIO_WHATSAPP_FROM", default="whatsapp:+14155238886")
     if not sid or not token:
-        # Echo-only mode for local spike without credentials — never log raw phone
+        # Echo-only mode for local spike without credentials: never log raw phone
         print(f"[twilio-dry-run] to={mask_phone(to)} body_len={len(body or '')}")
         return
     url = f"https://api.twilio.com/2010-04-01/Accounts/{sid}/Messages.json"
@@ -242,7 +242,7 @@ async def meta_webhook(request: Request):
 
 @router.post("/simulate")
 async def simulate(payload: Dict[str, Any]):
-    """Local smoke test — disabled unless WHATWAY_ENABLE_SIMULATE=1."""
+    """Local smoke test: disabled unless WHATWAY_ENABLE_SIMULATE=1."""
     if os.environ.get("WHATWAY_ENABLE_SIMULATE", "").strip() not in ("1", "true", "yes"):
         raise HTTPException(status_code=404, detail="Not found")
     phone = str(payload.get("from", "test"))[:64]

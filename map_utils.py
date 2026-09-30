@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Map utilities — Google Maps links + optional Streamlit pin map.
+Map utilities: Google Maps links + optional Streamlit pin map.
 """
 
 from __future__ import annotations
@@ -112,7 +112,7 @@ def maps_action_button(
     place_name: str = "",
     use_container_width: bool = True,
 ) -> None:
-    """Map / Get Directions — same chooser (Apple, Google, or dismiss).
+    """Map / Get Directions: same chooser (Apple, Google, or dismiss).
 
     Opens the dialog only on the Map button press (one-shot). A sticky
     session flag used to reopen "Open in Maps" whenever any sidebar

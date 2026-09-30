@@ -1,5 +1,5 @@
 """
-WhatWay mascot "Pip" — 8-bit teal square with eyes.
+WhatWay mascot "Pip": 8-bit teal square with eyes.
 """
 
 from __future__ import annotations
@@ -45,7 +45,7 @@ PIP_BALL_SVG = """
 
 
 def pip_say(text: str, *, name: str = "Pip") -> None:
-    """Render a Pip speech bubble (single Pip face — hides Streamlit’s duplicate avatar)."""
+    """Render a Pip speech bubble (single Pip face: hides Streamlit’s duplicate avatar)."""
     if not text:
         return
     import re

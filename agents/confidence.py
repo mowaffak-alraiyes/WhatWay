@@ -6,15 +6,15 @@ Confidence tiers for WhatWay ops auto-apply / Telegram ask.
   low / reddit-only   → ask for ❤, or skip if WHATWAY_SKIP_LOW_CONFIDENCE=1
 
 Env:
-  WHATWAY_AUTO_APPLY_HIGH=1          # default on — auto-apply high+known
-  WHATWAY_AUTO_APPLY_ON_HEART=1      # default on — ❤ → approve + apply
+  WHATWAY_AUTO_APPLY_HIGH=1          # default on: auto-apply high+known
+  WHATWAY_AUTO_APPLY_ON_HEART=1      # default on: ❤ → approve + apply
   WHATWAY_SKIP_LOW_CONFIDENCE=0      # set 1 to never notify low/reddit
 """
 
 from __future__ import annotations
 
 import os
-import core.env  # noqa: F401 — maps legacy AIDR_* vars onto WHATWAY_*
+import core.env  # noqa: F401, maps legacy AIDR_* vars onto WHATWAY_*
 from typing import Any, Dict, List, Optional, Tuple
 
 
