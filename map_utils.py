@@ -111,6 +111,7 @@ def maps_action_button(
     key: str,
     place_name: str = "",
     use_container_width: bool = True,
+    icon: str = ":material/map:",
 ) -> None:
     """Map / Get Directions: same chooser (Apple, Google, or dismiss).
 
@@ -136,7 +137,13 @@ def maps_action_button(
             "button_key": key,
         }
 
-    st.button(label, key=key, use_container_width=use_container_width, on_click=_open_maps)
+    st.button(
+        label,
+        key=key,
+        use_container_width=use_container_width,
+        on_click=_open_maps,
+        icon=icon,
+    )
 
     # Pop so this runs once for the clicked Map button only
     pending = st.session_state.get(trigger)
@@ -244,7 +251,7 @@ def render_map_view(
     user_location: Optional[Tuple[float, float]] = None,
     sort_by_dist: bool = False,
 ) -> None:
-    """Show an embedded Google Map + per-place Maps links (always works)."""
+    """Show one pin map with a directions list and a no-coordinate fallback."""
     if not items:
         st.caption("No places to map.")
         return
@@ -259,29 +266,8 @@ def render_map_view(
         st.caption("These listings don’t have street addresses for a map.")
         return
 
-    # Always-working embed for the first result (and nearby area)
-    primary = cleaned[0]["address"]
-    embed = (
-        "https://maps.google.com/maps"
-        f"?q={quote_plus(primary)}&z=12&output=embed"
-    )
-    components.html(
-        f"""
-        <iframe
-          title="Map"
-          width="100%"
-          height="320"
-          style="border:0;border-radius:12px;"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          src="{embed}">
-        </iframe>
-        """,
-        height=330,
-    )
-
-    # Optional pin map if geocoding succeeds quickly
-    with st.spinner("Pinning locations…"):
+    # Geocoding runs only after the user explicitly chooses Map view.
+    with st.spinner("Placing results on the map…"):
         items_with_coords = batch_geocode_addresses([dict(i) for i in cleaned])
     if sort_by_dist:
         items_with_coords = sort_by_distance(items_with_coords, user_location)
@@ -292,7 +278,37 @@ def render_map_view(
         if i.get("latitude") and i.get("longitude")
     ]
     if len(pin_rows) >= 1:
-        st.map(pd.DataFrame(pin_rows), latitude="lat", longitude="lon", zoom=11, size=40)
+        st.map(
+            pd.DataFrame(pin_rows),
+            latitude="lat",
+            longitude="lon",
+            zoom=10 if len(pin_rows) > 1 else 12,
+            size=52,
+            color="#0E6B54",
+            height=420,
+        )
+    else:
+        # Keep the map useful if the public geocoder is unavailable.
+        primary = cleaned[0]["address"]
+        embed = (
+            "https://maps.google.com/maps"
+            f"?q={quote_plus(primary)}&z=12&output=embed"
+        )
+        components.html(
+            f"""
+            <iframe
+              title="Map showing the first search result"
+              width="100%"
+              height="420"
+              style="border:0;border-radius:18px;"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              src="{embed}">
+            </iframe>
+            """,
+            height=430,
+        )
+        st.caption("Pins are temporarily unavailable, so the map is centered on the first result.")
 
     st.markdown("**Open directions**")
     for i, item in enumerate(items_with_coords, 1):

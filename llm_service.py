@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """
-LLM Service - local Ollama only (free).
-Intent detection, replies, summarization, and translation.
+Optional LLM service for intent, short replies, summarization, and translation.
+
+Search remains deterministic. The LLM never chooses or invents resources; it
+only works with the query and records already retrieved by WhatWay.
 """
 
 import os as _os
@@ -26,6 +28,9 @@ from openai import OpenAI
 
 OLLAMA_MODEL = _os.environ.get("OLLAMA_MODEL", "llama3")
 OLLAMA_BASE_URL = _os.environ.get("OLLAMA_BASE_URL", "http://localhost:11434/v1")
+WORKERS_AI_MODEL = _os.environ.get(
+    "CLOUDFLARE_AI_MODEL", "@cf/meta/llama-3.1-8b-instruct"
+)
 
 _ACTIVE_PROVIDER: Optional[str] = None
 _ACTIVE_MODEL: Optional[str] = None
@@ -104,8 +109,38 @@ def _ollama_reachable() -> bool:
 
 
 def get_llm_client() -> Optional[OpenAI]:
-    """OpenAI-compatible client pointed at local Ollama only."""
+    """Return the configured OpenAI-compatible client.
+
+    Ollama is the default for local development. Workers AI is the production
+    option and uses Cloudflare's OpenAI-compatible endpoint. Setting the
+    provider to ``none`` keeps every user-facing search path fully functional.
+    """
     global _ACTIVE_PROVIDER, _ACTIVE_MODEL
+
+    provider = (_secret("WHATWAY_LLM_PROVIDER") or "ollama").strip().lower()
+
+    if provider in {"none", "off", "disabled"}:
+        _ACTIVE_PROVIDER = None
+        _ACTIVE_MODEL = None
+        return None
+
+    if provider in {"workers_ai", "cloudflare", "cloudflare_workers_ai"}:
+        account_id = _secret("CLOUDFLARE_ACCOUNT_ID")
+        api_token = _secret("CLOUDFLARE_AI_TOKEN")
+        model = _secret("CLOUDFLARE_AI_MODEL") or WORKERS_AI_MODEL
+        if not account_id or not api_token:
+            _ACTIVE_PROVIDER = None
+            _ACTIVE_MODEL = None
+            return None
+        _ACTIVE_PROVIDER = "workers_ai"
+        _ACTIVE_MODEL = model
+        return OpenAI(
+            base_url=(
+                "https://api.cloudflare.com/client/v4/accounts/"
+                f"{account_id}/ai/v1"
+            ),
+            api_key=api_token,
+        )
 
     ollama_model = _secret("OLLAMA_MODEL") or OLLAMA_MODEL
     ollama_base = _secret("OLLAMA_BASE_URL") or OLLAMA_BASE_URL
@@ -121,14 +156,23 @@ def get_llm_client() -> Optional[OpenAI]:
 
 
 def get_active_model(fast: bool = True) -> str:
+    if _ACTIVE_MODEL:
+        return _ACTIVE_MODEL
+    provider = (_secret("WHATWAY_LLM_PROVIDER") or "ollama").strip().lower()
+    if provider in {"workers_ai", "cloudflare", "cloudflare_workers_ai"}:
+        return _secret("CLOUDFLARE_AI_MODEL") or WORKERS_AI_MODEL
     return _secret("OLLAMA_MODEL") or OLLAMA_MODEL
 
 
 def llm_status() -> dict:
     client = get_llm_client()
+    configured_provider = (
+        _secret("WHATWAY_LLM_PROVIDER") or "ollama"
+    ).strip().lower()
     return {
         "available": client is not None,
         "provider": _ACTIVE_PROVIDER,
+        "configured_provider": configured_provider,
         "model": (_ACTIVE_MODEL or get_active_model()) if client else None,
     }
 

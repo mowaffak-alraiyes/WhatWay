@@ -16,7 +16,7 @@ import llm_service
 # ===========================
 st.set_page_config(
     page_title="WhatWay",
-    page_icon="🟩",
+    page_icon=":material/route:",
     layout="wide",
     initial_sidebar_state="expanded",
 )
@@ -64,7 +64,7 @@ st.markdown(f"""
 .stApp, .stMarkdown, .stButton > button, .stSelectbox, .stTextInput,
 div[data-testid="stChatMessage"], section[data-testid="stSidebar"] .stMarkdown,
 section[data-testid="stSidebar"] label, section[data-testid="stSidebar"] p,
-.ww-hero, .ww-brand, .ww-tag, .pip-wrap, .pip-bubble {{
+.ww-hero, .ww-brand, .ww-tag, .ww-brand-lockup, .pip-wrap, .pip-bubble {{
   font-family: 'DM Sans', system-ui, -apple-system, sans-serif !important;
 }}
 /* Keep Streamlit / Material icon font intact */
@@ -80,10 +80,7 @@ span[data-testid="stIconMaterial"],
 }}
 
 .stApp {{
-  background:
-    radial-gradient(900px 420px at 0% -5%, #d4efe4 0%, transparent 55%),
-    radial-gradient(700px 360px at 100% 0%, #e8f5ef 0%, transparent 50%),
-    #F1F7F3;
+  background: #F1F7F3;
 }}
 /* Wider main column  -  Streamlit default feels too narrow for listings */
 .main .block-container {{
@@ -101,6 +98,16 @@ section[data-testid="stMain"] > div {{
   padding: 1.25rem 1.5rem;
   margin-bottom: 0.9rem;
   color: #fff;
+}}
+.ww-brand-lockup {{
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}}
+.ww-route-mark {{
+  width: 2.35rem;
+  height: 2.35rem;
+  flex: 0 0 auto;
 }}
 .ww-brand {{
   font-size: 2rem;
@@ -160,6 +167,11 @@ div[data-testid="stChatMessage"] {{
   border-radius: 14px !important;
   font-weight: 600 !important;
   min-height: 44px !important;
+  transition: transform 160ms cubic-bezier(.32,.72,0,1),
+              box-shadow 160ms cubic-bezier(.32,.72,0,1) !important;
+}}
+.stButton > button:active {{
+  transform: scale(0.98);
 }}
 div.st-key-ww_cat_bar .stButton > button {{
   border-radius: 999px !important;
@@ -236,9 +248,63 @@ div[data-testid="stHorizontalBlock"] .stButton > button {{
   overflow: hidden;
   scroll-margin-top: 96px;
 }}
+div[class*="st-key-ww_masonry_"] > div[data-testid="stVerticalBlock"] > div[data-testid="stHorizontalBlock"] {{
+  align-items: flex-start;
+  gap: 1rem;
+}}
+div[class*="st-key-ww_result_view_"] [data-testid="stSegmentedControl"] {{
+  margin-bottom: 0.35rem;
+}}
+@media (max-width: 760px) {{
+  .main .block-container {{
+    padding-left: 0.85rem !important;
+    padding-right: 0.85rem !important;
+  }}
+  .ww-hero {{
+    border-radius: 18px;
+    padding: 1rem 1.1rem;
+  }}
+  div[class*="st-key-ww_masonry_"] > div[data-testid="stVerticalBlock"] > div[data-testid="stHorizontalBlock"] {{
+    flex-direction: column;
+  }}
+  div[class*="st-key-ww_masonry_"] > div[data-testid="stVerticalBlock"] > div[data-testid="stHorizontalBlock"] > div[data-testid="stColumn"] {{
+    width: 100% !important;
+    flex: 1 1 100% !important;
+  }}
+  div[class*="st-key-ww_card_actions_"] div[data-testid="stHorizontalBlock"] {{
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    gap: 0.4rem !important;
+  }}
+  div[class*="st-key-ww_card_actions_"] div[data-testid="stColumn"] {{
+    width: calc(33.333% - 0.3rem) !important;
+    min-width: 0 !important;
+    max-width: calc(33.333% - 0.3rem) !important;
+    flex: 1 1 calc(33.333% - 0.3rem) !important;
+  }}
+  div[class*="st-key-ww_card_actions_"] .stButton > button {{
+    min-height: 42px !important;
+    padding-left: 0.35rem !important;
+    padding-right: 0.35rem !important;
+  }}
+}}
+@media (prefers-reduced-motion: reduce) {{
+  *, *::before, *::after {{
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }}
+}}
 </style>
 <div class="ww-hero">
-  <p class="ww-brand">{i18n.t("brand", _ui_lang0)}</p>
+  <div class="ww-brand-lockup">
+    <svg class="ww-route-mark" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+      <path d="M6 11 L14 33 L22 17 L30 33 L38 11" stroke="#F1F7F3" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+      <circle cx="38" cy="11" r="4.5" fill="#7FD3A8"></circle>
+    </svg>
+    <p class="ww-brand">{i18n.t("brand", _ui_lang0)}</p>
+  </div>
   <p class="ww-tag">{i18n.t("tagline", _ui_lang0)}</p>
 </div>
 """, unsafe_allow_html=True)
@@ -1257,20 +1323,11 @@ def render_card(idx: int, item: Dict, cat_key: str, user_need: str = "", key_suf
         else ""
     )
 
-    visible = tags[:4]
-    extra = tags[4:]
+    visible = tags[:2]
+    extra = tags[2:]
     chips = "".join(f'<span class="yelp-chip">{html_escape(t)}</span>' for t in visible)
     if extra:
-        extra_html = "".join(
-            f'<span class="yelp-chip">{html_escape(t)}</span>' for t in extra
-        )
-        # summary stays in the same flex row as the first 4; extras wrap below when open
-        chips += (
-            f'<details class="yelp-chip-more">'
-            f'<summary class="yelp-chip yelp-chip-drop" title="More specialties">▾</summary>'
-            f'<span class="yelp-chip-extra">{extra_html}</span>'
-            f"</details>"
-        )
+        chips += f'<span class="yelp-chip yelp-chip-count">+{len(extra)}</span>'
 
     # Phone / website  -  always show (Yelp-style contact lines)
     phone = (item.get("phone") or "").strip()
@@ -1307,7 +1364,7 @@ def render_card(idx: int, item: Dict, cat_key: str, user_need: str = "", key_suf
     if website:
         facts.append(
             f'<div class="yelp-fact">{_icon("link")}<a href="{html_escape(website)}" target="_blank" '
-            f'rel="noopener noreferrer">{html_escape(website)}</a></div>'
+            f'rel="noopener noreferrer">{html_escape(i18n.t("website_label", _cl))}</a></div>'
         )
     else:
         facts.append(f'<div class="yelp-fact yelp-fact-muted">{_icon("link")}<span>Website not listed</span></div>')
@@ -1325,12 +1382,6 @@ def render_card(idx: int, item: Dict, cat_key: str, user_need: str = "", key_suf
         st.session_state["current_resource_id"] = _rid
         st.session_state["current_category"] = cat_key
         st.session_state["scroll_to_comments"] = False
-        st.session_state["_nav_detail"] = True
-
-    def _go_comments():
-        st.session_state["current_resource_id"] = _rid
-        st.session_state["current_category"] = cat_key
-        st.session_state["scroll_to_comments"] = True
         st.session_state["_nav_detail"] = True
 
     def _do_pin():
@@ -1352,11 +1403,10 @@ def render_card(idx: int, item: Dict, cat_key: str, user_need: str = "", key_suf
 <style>
 .yelp-card {{
   background: #fff;
-  border: 1px solid #DCE9E1;
-  border-radius: 12px;
-  padding: 0.9rem 1rem 0.35rem 1rem;
-  margin: 0.65rem 0 0.25rem 0;
-  box-shadow: none;
+  border-radius: 18px;
+  padding: 1rem 1rem 0.4rem 1rem;
+  margin: 0 0 0.35rem 0;
+  box-shadow: 0 0 0 1px rgba(16,34,27,.07), 0 2px 8px rgba(16,34,27,.05);
   font-family: 'DM Sans', system-ui, sans-serif;
 }}
 .yelp-card-head {{ display: flex; gap: 0.75rem; align-items: flex-start; }}
@@ -1374,22 +1424,12 @@ def render_card(idx: int, item: Dict, cat_key: str, user_need: str = "", key_suf
 .yelp-chip {{
   display: inline-flex; align-items: center; justify-content: center;
   font-size: 0.72rem; font-weight: 600;
-  padding: 0.15rem 0.5rem; border-radius: 4px;
+  padding: 0.2rem 0.55rem; border-radius: 999px;
   background: #D6EBE0; color: #08432F; border: 1px solid #CFE6DA;
   line-height: 1.2; box-sizing: border-box;
 }}
 .yelp-chip.yelp-open {{ background: #10b981; color: #fff; border-color: #10b981; }}
-/* Keep ▾ in the same flex row as the first 4 chips */
-.yelp-chip-more {{ display: contents; }}
-.yelp-chip-more > summary {{
-  list-style: none; cursor: pointer; user-select: none;
-  min-width: 1.55rem; padding-left: 0.35rem; padding-right: 0.35rem;
-}}
-.yelp-chip-more > summary::-webkit-details-marker {{ display: none; }}
-.yelp-chip-drop:hover {{ background: #dff3ea; }}
-.yelp-chip-extra {{ display: contents; }}
-.yelp-chip-more:not([open]) > .yelp-chip-extra {{ display: none; }}
-.yelp-chip-more[open] > summary {{ order: 999; }}
+.yelp-chip-count {{ background: transparent; border-color: #B9CFC3; color: #4A5F55; }}
 .yelp-facts {{ margin: 0.15rem 0 0.35rem 0; }}
 .yelp-fact {{
   display: flex;
@@ -1406,8 +1446,9 @@ def render_card(idx: int, item: Dict, cat_key: str, user_need: str = "", key_suf
             unsafe_allow_html=True,
         )
 
-        # Details | Pin | Map | Comments  -  equal pills, no robot / no chevron panel
-        c_details, c_pin, c_map, c_comments = st.columns(4, gap="medium")
+        # Three compact actions. Comments live on the Details page.
+        actions = st.container(key=f"ww_card_actions_{uid}")
+        c_details, c_pin, c_map = actions.columns(3, gap="small")
 
         with c_details:
             st.button(
@@ -1415,6 +1456,7 @@ def render_card(idx: int, item: Dict, cat_key: str, user_need: str = "", key_suf
                 key=f"detail_{uid}",
                 use_container_width=True,
                 on_click=_go_detail,
+                icon=":material/info:",
             )
 
         with c_pin:
@@ -1424,6 +1466,7 @@ def render_card(idx: int, item: Dict, cat_key: str, user_need: str = "", key_suf
                 key=f"pin_{uid}",
                 use_container_width=True,
                 on_click=_do_pin,
+                icon=":material/bookmark:" if pinned_now else ":material/bookmark_add:",
             )
 
         with c_map:
@@ -1440,25 +1483,52 @@ def render_card(idx: int, item: Dict, cat_key: str, user_need: str = "", key_suf
                     key=f"map_disabled_{uid}",
                     disabled=True,
                     use_container_width=True,
+                    icon=":material/map:",
                 )
-
-        with c_comments:
-            st.button(
-                i18n.t("comments_short", _cl),
-                key=f"comments_{uid}",
-                use_container_width=True,
-                on_click=_go_comments,
-            )
 
 
 
 def render_results_block(results: List[Dict], category: str, intro: str = "", block_id: str = "main"):
-    """List results with Pip intro. Per-card Map opens Apple/Google chooser."""
+    """Render a balanced card grid or one map for the current result set."""
+    import map_utils
+
     if intro:
         mascot.pip_say(intro)
 
-    for i, c in enumerate(results, 1):
-        render_card(i, c, category, key_suffix=f"_{block_id}")
+    with st.container(key=f"ww_result_view_{block_id}"):
+        view = st.segmented_control(
+            "View results",
+            options=("cards", "map"),
+            default="cards",
+            format_func=lambda option: (
+                i18n.t("view_cards", st.session_state.get("ui_lang_code", "en"))
+                if option == "cards"
+                else i18n.t("map_short", st.session_state.get("ui_lang_code", "en"))
+            ),
+            key=f"result_view_{block_id}",
+            label_visibility="collapsed",
+            width="stretch",
+        )
+
+    if view == "map":
+        map_utils.render_map_view(results, category=category)
+    else:
+        # Two columns preserve usable action targets; estimated content weight
+        # keeps longer cards from collecting in a single column.
+        with st.container(key=f"ww_masonry_{block_id}"):
+            columns = st.columns(2, gap="medium")
+            weights = [0, 0]
+            for i, card in enumerate(results, 1):
+                tags = _specialty_tags(card, category)
+                weight = 4 + min(len(tags), 3)
+                if card.get("languages"):
+                    weight += 1
+                if card.get("hours_text") or card.get("hours"):
+                    weight += 1
+                column_index = weights.index(min(weights))
+                weights[column_index] += weight
+                with columns[column_index]:
+                    render_card(i, card, category, key_suffix=f"_{block_id}")
     st.caption(i18n.t("more_caption", st.session_state.get("ui_lang_code", "en")))
 
 # ===========================
@@ -1503,6 +1573,15 @@ with st.sidebar:
         status = llm_service.llm_status()
         if status["available"]:
             st.success(f"{i18n.t('ai_online', ui_lang)} · {status['provider']}")
+        elif status.get("configured_provider") in {
+            "workers_ai",
+            "cloudflare",
+            "cloudflare_workers_ai",
+        }:
+            st.warning(i18n.t("ai_offline", ui_lang).split("  -  ")[0])
+            st.caption("Add the Cloudflare Workers AI account ID and token.")
+        elif status.get("configured_provider") in {"none", "off", "disabled"}:
+            st.caption("Smart answers are disabled. Search remains available.")
         else:
             st.warning(i18n.t("ai_offline", ui_lang))
             st.caption(i18n.t("ollama_hint", ui_lang))

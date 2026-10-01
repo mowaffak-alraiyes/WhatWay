@@ -32,6 +32,19 @@ cp .env.example .env
 
 Open http://localhost:8501: try **Healthcare → dental 60629**.
 
+## Search, RAG, and Ollama
+
+WhatWay does not use an LLM as its database. Category, ZIP, language, hours,
+and service matching stay deterministic so a model cannot invent a clinic or
+silently ignore an eligibility constraint. Ollama is an optional local layer
+for understanding conversational queries, translation, and one-sentence result
+introductions.
+
+For production, set `WHATWAY_LLM_PROVIDER=workers_ai` and configure the three
+`CLOUDFLARE_*` values shown in `.env.example`. Search still works when the model
+is unavailable. The planned RAG boundary and migration stages are documented in
+[`docs/AI_ARCHITECTURE.md`](docs/AI_ARCHITECTURE.md).
+
 ## Setup and security checklist
 
 1. Put secrets only in `.env` / `.streamlit/secrets.toml`, never commit them (both are gitignored).

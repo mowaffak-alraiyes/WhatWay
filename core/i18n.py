@@ -111,6 +111,7 @@ _EN = {
     "nav_section": "Navigate",
     "recent": "Recent",
     "map_short": "Map",
+    "view_cards": "Cards",
     "open_now_chip": "Open now",
     "results_intro": "Here are a few **{category}** options for **{q}**{where}. Tap a site or map when you’re ready.",
     "results_near": " near **{z}**",
