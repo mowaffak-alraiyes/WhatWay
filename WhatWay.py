@@ -10,6 +10,7 @@ import data_loader
 import neighborhood_mapping
 import auth
 import llm_service
+from core.retrieval import retrieve as retrieve_resources
 
 # ===========================
 # Page & Styles
@@ -2098,6 +2099,28 @@ def respond_to_query(user_text: str, category: str):
         ranked = rank_items(
             items, query, category, "All", lf, "All", "All", soft_filters=True
         )
+
+    # Grounded hybrid retrieval is the final ordering layer. The legacy ranker
+    # above still computes UI annotations such as open-now and nearby-ZIP tiers;
+    # Ollama embeddings improve recall without becoming a source of records.
+    if ranked:
+        hybrid = retrieve_resources(
+            [item for _, item in ranked],
+            query,
+            limit=len(ranked),
+            state=st.session_state.get("filter_state") or "IL",
+            language=None if lf == "All" else lf,
+            zip_code=None if zf == "All" else zf,
+            service=None if sf == "All" else sf,
+            use_semantic=True,
+        )
+        if hybrid.items:
+            ranked = [
+                (float(len(hybrid.items) - index), item)
+                for index, item in enumerate(hybrid.items)
+            ]
+        st.session_state["last_retrieval_mode"] = hybrid.mode
+        st.session_state["last_retrieval_source_ids"] = hybrid.source_ids
 
     # "more" skips clinics already shown; a new query resets that list
     shown_map = st.session_state["shown_ids_by_cat"]

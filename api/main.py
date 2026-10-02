@@ -111,4 +111,7 @@ def search(payload: dict, request: Request):
         language=str(payload.get("language", "en"))[:16],
         limit=limit,
         use_llm=bool(payload.get("use_llm", True)),
+        state=str(payload.get("state", ""))[:2] or None,
+        language_filter=str(payload.get("language_filter", ""))[:32] or None,
+        use_semantic=bool(payload.get("use_semantic", True)),
     )

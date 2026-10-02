@@ -13,6 +13,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
 from core import i18n
+from core.retrieval import retrieve
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "data"
@@ -46,18 +47,40 @@ SERVICE_HINTS = {
 
 
 def load_items(category: str) -> List[Dict[str, Any]]:
-    """Load category items from local JSON (preferred for API / WhatsApp)."""
+    """Load and de-duplicate all local state datasets for a category."""
     fname = CATEGORY_FILES.get(category)
     if not fname:
         return []
-    path = DATA_DIR / fname
-    if path.exists():
+
+    stem = Path(fname).stem
+    paths = [DATA_DIR / fname, *sorted(DATA_DIR.glob(f"{stem}_[A-Z][A-Z].json"))]
+    records: List[Dict[str, Any]] = []
+    seen = set()
+    for path in paths:
+        if not path.exists():
+            continue
         try:
             data = json.loads(path.read_text(encoding="utf-8"))
             if isinstance(data, list):
-                return data
+                for item in data:
+                    if not isinstance(item, dict):
+                        continue
+                    name = str(item.get("name") or "").strip()
+                    if not name or name.startswith("#"):
+                        continue
+                    key = (
+                        str(item.get("state") or "").upper(),
+                        str(item.get("id") or ""),
+                        name.lower(),
+                        str(item.get("address") or "").lower(),
+                    )
+                    if key not in seen:
+                        seen.add(key)
+                        records.append(item)
         except Exception:
             pass
+    if records:
+        return records
 
     # Fallback: data_loader (may hit GitHub; Streamlit cache if available)
     try:
@@ -100,6 +123,39 @@ def detect_category(query: str, default: str = "Healthcare") -> str:
     if any(w in q for w in ["dental", "clinic", "doctor", "health", "pediatric", "mental"]):
         return "Healthcare"
     return default
+
+
+def detect_state(query: str) -> Optional[str]:
+    q = f" {(query or '').lower()} "
+    if " illinois " in q or re.search(r"\bIL\b", query or ""):
+        return "IL"
+    if " indiana " in q or re.search(r"\bIN\b", query or ""):
+        return "IN"
+    zip_code = detect_zip(query)
+    if zip_code and zip_code.startswith("60"):
+        return "IL"
+    if re.search(r"\b(?:46|47)\d{3}\b", query or ""):
+        return "IN"
+    return None
+
+
+def detect_language_filter(query: str) -> Optional[str]:
+    q = (query or "").lower()
+    aliases = {
+        "arabic": ("arabic", "العربية"),
+        "spanish": ("spanish", "español"),
+        "french": ("french", "français"),
+        "polish": ("polish", "polski"),
+        "mandarin": ("mandarin", "chinese", "中文"),
+        "urdu": ("urdu", "اردو"),
+        "hindi": ("hindi", "हिन्दी"),
+        "ukrainian": ("ukrainian", "українська"),
+        "swahili": ("swahili", "kiswahili"),
+    }
+    for canonical, names in aliases.items():
+        if any(name in q for name in names):
+            return canonical
+    return None
 
 
 def _blob(item: Dict[str, Any]) -> str:
@@ -223,6 +279,9 @@ def search_resources(
     language: str = "en",
     limit: int = 3,
     use_llm: bool = True,
+    state: Optional[str] = None,
+    language_filter: Optional[str] = None,
+    use_semantic: bool = True,
 ) -> Dict[str, Any]:
     """
     End-to-end search used by chat + WhatsApp.
@@ -240,6 +299,8 @@ def search_resources(
     category = category or detect_category(query)
     zip_code = detect_zip(query)
     service = detect_service(query, category)
+    state = state or detect_state(query)
+    language_filter = language_filter or detect_language_filter(query)
 
     llm_used = False
     intro = None
@@ -258,6 +319,8 @@ def search_resources(
                     zip_code = intent["zip_code"]
                 if intent.get("service_type"):
                     service = intent["service_type"]
+                if intent.get("language_filter"):
+                    language_filter = str(intent["language_filter"]).lower()
                 if language in (None, "", "auto", "Auto-detect") and intent.get("user_language"):
                     lang = i18n.normalize_lang(intent["user_language"])
                 understood = intent.get("understood_need") or query
@@ -265,7 +328,17 @@ def search_resources(
             llm_used = False
 
     items = load_items(category)
-    results = rank_items(items, query, zip_code=zip_code, service=service, limit=limit)
+    retrieval = retrieve(
+        items,
+        query,
+        limit=limit,
+        state=state,
+        language=language_filter,
+        zip_code=zip_code,
+        service=service,
+        use_semantic=use_semantic,
+    )
+    results = retrieval.items
 
     # Prefer LLM intro when available
     if use_llm and results:
@@ -296,4 +369,9 @@ def search_resources(
         "intro": intro,
         "text": text,
         "llm_used": llm_used,
+        "retrieval": {
+            "mode": retrieval.mode,
+            "semantic_available": retrieval.semantic_available,
+            "source_ids": retrieval.source_ids,
+        },
     }

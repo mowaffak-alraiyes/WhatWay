@@ -38,11 +38,20 @@ WhatWay does not use an LLM as its database. Category, ZIP, language, hours,
 and service matching stay deterministic so a model cannot invent a clinic or
 silently ignore an eligibility constraint. Ollama is an optional local layer
 for understanding conversational queries, translation, and one-sentence result
-introductions.
+introductions. The shared API/WhatsApp path also uses Ollama embeddings for
+hybrid retrieval when `nomic-embed-text` is installed; otherwise it falls back
+to grounded lexical retrieval automatically.
 
-For production, set `WHATWAY_LLM_PROVIDER=workers_ai` and configure the three
-`CLOUDFLARE_*` values shown in `.env.example`. Search still works when the model
-is unavailable. The planned RAG boundary and migration stages are documented in
+```bash
+ollama pull llama3
+ollama pull nomic-embed-text
+ollama serve
+```
+
+For production, keep Ollama behind an authenticated private service; do not
+expose port 11434 publicly. Search still works when the model is unavailable.
+Cloudflare remains a good fit for the website, DNS, donations-facing pages, and
+the public API edge. The RAG boundary and migration stages are documented in
 [`docs/AI_ARCHITECTURE.md`](docs/AI_ARCHITECTURE.md).
 
 ## Setup and security checklist
