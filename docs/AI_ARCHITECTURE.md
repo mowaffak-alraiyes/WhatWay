@@ -82,6 +82,9 @@ python evals/run_retrieval_eval.py --semantic
 
 Both modes must preserve expected source-ID recall plus state and language
 constraints. Add cases when a real user query exposes a retrieval miss.
+The lexical gate runs in GitHub Actions on every push and pull request. The
+semantic gate requires the local `nomic-embed-text` model and remains a required
+manual pre-deploy check until CI has a private Ollama runner.
 
 ## Cloudflare target
 

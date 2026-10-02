@@ -27,10 +27,13 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.10"
-      - name: Install smoke deps
-        # Keep smoke fast/reliable: privacy tests need no Streamlit stack
+      - name: Install application and test dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pytest
-      - name: Unit smoke
+          pip install -r requirements.txt pytest
+      - name: Compile application modules
+        run: python -m compileall -q api core evals llm_service.py WhatWay.py
+      - name: Unit and retrieval tests
         run: PYTHONPATH=. pytest tests/ -q --disable-warnings
+      - name: Grounded lexical retrieval quality gate
+        run: PYTHONPATH=. python evals/run_retrieval_eval.py
