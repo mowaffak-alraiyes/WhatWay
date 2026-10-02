@@ -1,0 +1,31 @@
+[
+  {
+    "name": "conversational dental by ZIP",
+    "query": "my tooth hurts near 60629",
+    "category": "Healthcare",
+    "expected_source_ids": ["IL:7", "IL:194"],
+    "expected_state": "IL"
+  },
+  {
+    "name": "Arabic asylum support",
+    "query": "I need asylum help in Arabic",
+    "category": "Resettlement / Legal / Shelter",
+    "expected_source_ids": ["IL:14", "IL:2", "IL:5"],
+    "expected_state": "IL",
+    "expected_language": "arabic"
+  },
+  {
+    "name": "ESL by ZIP",
+    "query": "English classes near 60640",
+    "category": "Education",
+    "expected_source_ids": ["IL:23", "IL:20", "IL:22", "IL:1"],
+    "expected_state": "IL"
+  },
+  {
+    "name": "Indiana family care",
+    "query": "family doctor in Indiana",
+    "category": "Healthcare",
+    "expected_source_ids": ["IN:159", "IN:45", "IN:73"],
+    "expected_state": "IN"
+  }
+]

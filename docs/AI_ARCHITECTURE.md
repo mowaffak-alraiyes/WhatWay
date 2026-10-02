@@ -65,6 +65,17 @@ the safe fallback was used. Resource embeddings persist in the ignored
 the public service text. Set `WHATWAY_EMBEDDING_CACHE` to move that cache. It
 contains neither queries nor chat history.
 
+Run the committed quality gate before changing retrieval weights, embedding
+models, or source data:
+
+```bash
+python evals/run_retrieval_eval.py
+python evals/run_retrieval_eval.py --semantic
+```
+
+Both modes must preserve expected source-ID recall plus state and language
+constraints. Add cases when a real user query exposes a retrieval miss.
+
 ## Cloudflare target
 
 - D1 or another relational store: canonical resource records and verification
