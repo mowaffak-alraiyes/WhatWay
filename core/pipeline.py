@@ -254,6 +254,12 @@ def format_resource_line(item: Dict[str, Any], idx: int, lang: str = "en") -> st
         lines.append(f"📞 {call_label}: {phone}")
     if website:
         lines.append(f"🔗 {website}")
+    source_id = item.get("source_id")
+    verified = item.get("last_verified")
+    if source_id and verified:
+        lines.append(f"✓ {verified} · {source_id}")
+    elif source_id:
+        lines.append(f"Source: {source_id}")
     return "\n".join(lines)
 
 

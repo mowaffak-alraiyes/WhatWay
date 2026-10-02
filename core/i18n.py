@@ -113,6 +113,7 @@ _EN = {
     "map_short": "Map",
     "view_cards": "Cards",
     "open_now_chip": "Open now",
+    "verified": "Verified {when}",
     "results_intro": "Here are a few **{category}** options for **{q}**{where}. Tap a site or map when you’re ready.",
     "results_near": " near **{z}**",
     "results_for_svc": " for **{svc}**",

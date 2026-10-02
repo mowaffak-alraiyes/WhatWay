@@ -19,7 +19,9 @@ filters.
    is blended into lexical scores. If either is unavailable, retrieval falls
    back to lexical mode without breaking search.
 6. Every response includes retrieval mode and stable `STATE:id` source IDs.
-   Displayed phone, address, website, and name always come from the record.
+   Every result also carries its own `source_id` and extracted `last_verified`
+   label. Displayed phone, address, website, name, and verification date always
+   come from the record.
 7. The optional chat model extracts intent and writes a short introduction for
    already-selected records. Templates cover model outages.
 

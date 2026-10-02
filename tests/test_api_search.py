@@ -20,6 +20,7 @@ def test_search_endpoint_returns_grounded_retrieval_metadata():
     payload = response.json()
     assert payload["retrieval"]["mode"] == "lexical"
     assert len(payload["results"]) == len(payload["retrieval"]["source_ids"]) == 2
+    assert [item["source_id"] for item in payload["results"]] == payload["retrieval"]["source_ids"]
 
 
 def test_search_endpoint_rejects_string_boolean():

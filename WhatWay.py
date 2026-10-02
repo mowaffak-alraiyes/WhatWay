@@ -1196,9 +1196,12 @@ def toggle_pin(cat_key: str, item: Dict):
 def friendly_intro(category: str, query: str, zip_filter: str, lang_filter: str, service_filter: str = "All", day_filter: str = "All", detected_zip: str = None, detected_service: str = None, detected_day: str = None) -> str:
     """Pip intro in the active UI language."""
     _cl = st.session_state.get("ui_lang_code", "en")
-    q = (query or "").strip() or "…"
     z = detected_zip or (zip_filter if zip_filter != "All" else None)
     svc = detected_service or (service_filter if service_filter != "All" else None)
+    q = (query or "").strip()
+    if not q:
+        q = svc or i18n.category_display(category, _cl)
+        svc = None
     return i18n.results_intro(category, q, _cl, zip_code=z, service=svc)
 
 
@@ -1276,6 +1279,7 @@ _ICON = {
     "link": '<path d="M8.5 11.5a3 3 0 0 0 4.2 0l2.1-2.1a3 3 0 0 0-4.2-4.2l-1 1"/><path d="M11.5 8.5a3 3 0 0 0-4.2 0l-2.1 2.1a3 3 0 0 0 4.2 4.2l1-1"/>',
     "speech": '<path d="M16.5 11.5a2 2 0 0 1-2 2H8l-3.5 3v-3a2 2 0 0 1-1-1.7V5.5a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2Z"/>',
     "clock": '<circle cx="10" cy="10" r="6.5"/><path d="M10 6.3V10l2.5 1.6"/>',
+    "verified": '<circle cx="10" cy="10" r="6.5"/><path d="m7 10 2 2 4-4"/>',
 }
 
 
@@ -1376,6 +1380,15 @@ def render_card(idx: int, item: Dict, cat_key: str, user_need: str = "", key_suf
         facts.append(f'<div class="yelp-fact">{_icon("speech")}<span>{html_escape(lang_str)}</span></div>')
     if hours_str:
         facts.append(f'<div class="yelp-fact">{_icon("clock")}<span>{html_escape(hours_str)}</span></div>')
+    verified = item.get("last_verified")
+    source_id = item.get("source_id")
+    if verified:
+        verified_text = i18n.t("verified", _cl, when=verified)
+        source_suffix = f" · {source_id}" if source_id else ""
+        facts.append(
+            f'<div class="yelp-fact yelp-source">{_icon("verified")}<span>'
+            f'{html_escape(verified_text + source_suffix)}</span></div>'
+        )
     facts_html = "".join(facts)
 
     # on_click + early switch_page (see session init) = one click navigation.
@@ -1442,6 +1455,7 @@ def render_card(idx: int, item: Dict, cat_key: str, user_need: str = "", key_suf
   font-size: 0.86rem; color: #4a5f56; line-height: 1.45; margin: 0.12rem 0;
 }}
 .yelp-fact-muted {{ color: #4A5F55; font-style: italic; }}
+.yelp-source {{ color: #60756A; font-size: 0.76rem; }}
 .yelp-ico {{ flex: 0 0 auto; margin-top: 0.15rem; color: #4A5F55; }}
 .yelp-fact a {{ color: #0A4B3A; font-weight: 600; text-decoration: none; }}
 .yelp-fact a:hover {{ text-decoration: underline; }}

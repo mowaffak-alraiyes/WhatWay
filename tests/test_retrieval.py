@@ -54,6 +54,14 @@ def test_zip_and_service_rank_the_matching_record_first():
     )
     assert result.items[0]["id"] == "dental-in"
     assert result.source_ids[0] == "IN:dental-in"
+    assert result.items[0]["source_id"] == "IN:dental-in"
+
+
+def test_source_verification_date_is_grounded_in_record_notes():
+    item = dict(ITEMS[0], notes="HRSA source - Last reviewed April 2025")
+    result = retrieval.retrieve([item], "dental", use_semantic=False)
+    assert result.items[0]["last_verified"] == "April 2025"
+    assert result.items[0]["source_id"] == result.source_ids[0]
 
 
 def test_semantic_failure_falls_back_to_lexical(monkeypatch):

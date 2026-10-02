@@ -23,6 +23,11 @@ from core import ollama
 
 
 _TOKEN_RE = re.compile(r"[a-z0-9]+", re.IGNORECASE)
+_VERIFICATION_RE = re.compile(
+    r"\blast\s+(?:verified|reviewed)(?:\s+on)?\s*[:\-]?\s*"
+    r"([A-Za-z]+\s+\d{4}|\d{1,2}/\d{1,2}/\d{2,4}|\d{1,2}/\d{4})",
+    re.IGNORECASE,
+)
 _EMBEDDING_CACHE: Dict[Tuple[str, str], List[float]] = {}
 _CACHE_LOCK = threading.Lock()
 _LOADED_CACHE_MODELS = set()
@@ -64,7 +69,14 @@ def _resource_id(item: Dict[str, Any], index: int) -> str:
         state = str(item.get("state") or "XX").strip().upper()
         return f"{state}:{value}"
     stable = f"{item.get('name', '')}|{item.get('address', '')}|{index}"
-    return hashlib.sha256(stable.encode("utf-8")).hexdigest()[:16]
+    state = str(item.get("state") or "XX").strip().upper()
+    return f"{state}:{hashlib.sha256(stable.encode('utf-8')).hexdigest()[:16]}"
+
+
+def verification_date(item: Dict[str, Any]) -> Optional[str]:
+    """Extract the source record's date label without interpreting its age."""
+    match = _VERIFICATION_RE.search(str(item.get("notes") or ""))
+    return match.group(1).strip() if match else None
 
 
 def hard_filter(
@@ -284,9 +296,19 @@ def retrieve(
 
     ranked.sort(key=lambda value: (-value[0], value[1]))
     selected = [item for _, _, item in ranked[: max(1, limit)]]
-    source_ids = [_resource_id(item, index) for index, item in enumerate(selected)]
+    grounded_items: List[Dict[str, Any]] = []
+    source_ids: List[str] = []
+    for index, item in enumerate(selected):
+        source_id = _resource_id(item, index)
+        grounded = dict(item)
+        grounded["source_id"] = source_id
+        verified = verification_date(item)
+        if verified:
+            grounded["last_verified"] = verified
+        grounded_items.append(grounded)
+        source_ids.append(source_id)
     return RetrievalResult(
-        items=selected,
+        items=grounded_items,
         mode="hybrid" if semantic is not None else "lexical",
         source_ids=source_ids,
         semantic_available=semantic is not None,
