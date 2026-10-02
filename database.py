@@ -10,49 +10,81 @@ import streamlit as st
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+_DATABASE_KEYS = (
+    "NEON_DB_HOST",
+    "NEON_DB_NAME",
+    "NEON_DB_USER",
+    "NEON_PASSWORDLESS_TOKEN",
+)
+
+
+def _usable_setting(value: Any) -> bool:
+    """Return whether a setting contains a real value rather than a template."""
+    text = str(value or "").strip()
+    return bool(text) and not text.upper().startswith("YOUR_")
+
+
+def _database_config() -> Optional[Dict[str, str]]:
+    """Load a complete database config without requiring Streamlit secrets.
+
+    Environment variables are preferred for containers and local development.
+    Streamlit secrets remain supported for existing hosted deployments. Missing
+    configuration is a valid browser-only mode, not a connection error.
+    """
+    environment = {key: os.getenv(key, "") for key in _DATABASE_KEYS}
+    if all(_usable_setting(value) for value in environment.values()):
+        return {
+            **environment,
+            "NEON_SSLMODE": os.getenv("NEON_SSLMODE", "require"),
+        }
+
+    try:
+        secrets_config = {key: st.secrets.get(key, "") for key in _DATABASE_KEYS}
+        sslmode = st.secrets.get("NEON_SSLMODE", "require")
+    except Exception:
+        return None
+
+    if not all(_usable_setting(value) for value in secrets_config.values()):
+        return None
+    return {**secrets_config, "NEON_SSLMODE": sslmode or "require"}
+
 class NeonDatabase:
     def __init__(self):
         self.connection = None
         self.pool = None
+        self._connection_attempted = False
+        self.unavailable_reason = None
         
     def get_connection(self):
         """Get database connection using passwordless token"""
-        try:
-            if self.connection is None or self.connection.closed:
-                # Try to get credentials from Streamlit secrets first, then environment variables, then fallback
-                try:
-                    # Use Streamlit secrets
-                    host = st.secrets["NEON_DB_HOST"]
-                    dbname = st.secrets["NEON_DB_NAME"]
-                    user = st.secrets["NEON_DB_USER"]
-                    token = st.secrets["NEON_PASSWORDLESS_TOKEN"]
-                    sslmode = st.secrets["NEON_SSLMODE"]
-                    logger.info("Using Streamlit secrets for database connection")
-                except (KeyError, AttributeError):
-                    # Fallback to environment variables
-                    host = os.getenv("NEON_DB_HOST", "YOUR_NEON_DB_HOST")
-                    dbname = os.getenv("NEON_DB_NAME", "YOUR_NEON_DB_NAME")
-                    user = os.getenv("NEON_DB_USER", "YOUR_NEON_DB_USER")
-                    token = os.getenv("NEON_PASSWORDLESS_TOKEN", "YOUR_NEON_PASSWORDLESS_TOKEN")
-                    sslmode = os.getenv("NEON_SSLMODE", "require")
-                    logger.info("Using environment variables for database connection")
-                
-                if not token:
-                    logger.error("NEON_PASSWORDLESS_TOKEN not found in secrets or environment")
-                    return None
-                
-                logger.info(f"Connecting to database: {host}/{dbname} as {user}")
-                
-                # Use passwordless token as password
-                conn_str = f"postgresql://{user}:{token}@{host}/{dbname}?sslmode={sslmode}"
-                
-                self.connection = psycopg.connect(conn_str, row_factory=dict_row)
-                logger.info("Connected to Neon database")
-            
+        if self.connection is not None and not self.connection.closed:
             return self.connection
-            
+        if self._connection_attempted:
+            return None
+
+        config = _database_config()
+        if config is None:
+            self._connection_attempted = True
+            self.unavailable_reason = "not_configured"
+            logger.info("Database not configured; continuing in browser-only mode")
+            return None
+
+        self._connection_attempted = True
+        try:
+            self.connection = psycopg.connect(
+                host=config["NEON_DB_HOST"],
+                dbname=config["NEON_DB_NAME"],
+                user=config["NEON_DB_USER"],
+                password=config["NEON_PASSWORDLESS_TOKEN"],
+                sslmode=config["NEON_SSLMODE"],
+                row_factory=dict_row,
+            )
+            self.unavailable_reason = None
+            logger.info("Connected to configured database")
+            return self.connection
         except Exception as e:
-            logger.error(f"Failed to connect to database: {e}")
+            self.unavailable_reason = "connection_failed"
+            logger.warning("Configured database is currently unavailable: %s", e)
             return None
     
     def initialize_database(self):
@@ -309,4 +341,3 @@ def close_database():
     """Close the database connection"""
     if db is not None:
         db.close()
-
