@@ -13,10 +13,11 @@ import math
 import os
 import re
 import threading
-import urllib.request
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
+
+import requests
 
 from core import ollama
 
@@ -139,20 +140,19 @@ def _ollama_embed(texts: Sequence[str]) -> Optional[List[List[float]]]:
     if not texts:
         return []
     model = os.environ.get("OLLAMA_EMBEDDING_MODEL", "nomic-embed-text")
-    payload = json.dumps({"model": model, "input": list(texts)}).encode("utf-8")
-    request = urllib.request.Request(
-        f"{ollama.native_base_url()}/api/embed",
-        data=payload,
-        headers=ollama.native_headers(json_content=True),
-        method="POST",
-    )
     try:
-        with urllib.request.urlopen(request, timeout=8.0) as response:
-            body = json.loads(response.read().decode("utf-8"))
+        response = requests.post(
+            f"{ollama.native_base_url()}/api/embed",
+            json={"model": model, "input": list(texts)},
+            headers=ollama.native_headers(),
+            timeout=8.0,
+        )
+        response.raise_for_status()
+        body = response.json()
         embeddings = body.get("embeddings")
         if isinstance(embeddings, list) and len(embeddings) == len(texts):
             return embeddings
-    except Exception:
+    except (requests.RequestException, ValueError, TypeError):
         return None
     return None
 

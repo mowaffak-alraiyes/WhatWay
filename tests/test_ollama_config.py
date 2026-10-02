@@ -7,6 +7,16 @@ def test_native_url_strips_only_openai_suffix(monkeypatch):
     assert ollama.native_base_url() == "https://ollama.example.org"
 
 
+def test_non_http_ollama_url_is_rejected(monkeypatch):
+    monkeypatch.setenv("OLLAMA_BASE_URL", "file:///tmp/not-an-origin")
+    try:
+        ollama.native_base_url()
+    except ValueError as error:
+        assert "http(s)" in str(error)
+    else:
+        raise AssertionError("unsafe Ollama URL was accepted")
+
+
 def test_private_origin_headers(monkeypatch):
     monkeypatch.setenv("OLLAMA_AUTH_TOKEN", "bearer-secret")
     monkeypatch.setenv("OLLAMA_CF_ACCESS_CLIENT_ID", "access-id")

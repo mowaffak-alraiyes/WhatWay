@@ -8,14 +8,19 @@ from __future__ import annotations
 
 import os
 from typing import Dict
+from urllib.parse import urlparse
 
 
-def openai_base_url() -> str:
-    return os.environ.get("OLLAMA_BASE_URL", "http://localhost:11434/v1").rstrip("/")
+def openai_base_url(value: str = "") -> str:
+    raw = (value or os.environ.get("OLLAMA_BASE_URL") or "http://localhost:11434/v1").rstrip("/")
+    parsed = urlparse(raw)
+    if parsed.scheme not in {"http", "https"} or not parsed.netloc:
+        raise ValueError("OLLAMA_BASE_URL must be an http(s) URL with a host")
+    return raw
 
 
-def native_base_url() -> str:
-    base = openai_base_url()
+def native_base_url(value: str = "") -> str:
+    base = openai_base_url(value)
     return base[:-3] if base.endswith("/v1") else base
 
 

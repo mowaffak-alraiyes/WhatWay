@@ -20,6 +20,7 @@ except Exception:
     pass
 
 import streamlit as st
+import requests
 from openai import OpenAI
 from core import ollama
 
@@ -99,13 +100,14 @@ def _secret(key: str) -> Optional[str]:
 @st.cache_data(ttl=30, show_spinner=False)
 def _ollama_reachable() -> bool:
     try:
-        import urllib.request
-
-        base = (_secret("OLLAMA_BASE_URL") or OLLAMA_BASE_URL).rstrip("/")
-        native = base.replace("/v1", "") + "/api/tags"
-        with urllib.request.urlopen(native, timeout=1.0) as resp:
-            return resp.status == 200
-    except Exception:
+        native = ollama.native_base_url(_secret("OLLAMA_BASE_URL") or OLLAMA_BASE_URL)
+        response = requests.get(
+            f"{native}/api/tags",
+            headers=ollama.native_headers(),
+            timeout=1.0,
+        )
+        return response.status_code == 200
+    except (requests.RequestException, ValueError):
         return False
 
 
@@ -144,7 +146,12 @@ def get_llm_client() -> Optional[OpenAI]:
         )
 
     ollama_model = _secret("OLLAMA_MODEL") or OLLAMA_MODEL
-    ollama_base = _secret("OLLAMA_BASE_URL") or ollama.openai_base_url()
+    try:
+        ollama_base = ollama.openai_base_url(_secret("OLLAMA_BASE_URL") or OLLAMA_BASE_URL)
+    except ValueError:
+        _ACTIVE_PROVIDER = None
+        _ACTIVE_MODEL = None
+        return None
 
     if not _ollama_reachable():
         _ACTIVE_PROVIDER = None
