@@ -69,6 +69,11 @@ the public API edge. The RAG boundary and migration stages are documented in
 
 ## WhatsApp API (spike)
 
+The browser and WhatsApp channel share the validated `POST /search` contract.
+It rejects unknown categories, invalid states, empty queries, and out-of-range
+limits. Every successful response includes `retrieval.mode`,
+`retrieval.semantic_available`, and grounded `retrieval.source_ids`.
+
 ```bash
 export WHATWAY_ENABLE_SIMULATE=1   # local smoke test only
 uvicorn api.main:app --reload --port 8000

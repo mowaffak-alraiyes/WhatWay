@@ -20,6 +20,7 @@ import requests
 load_dotenv(Path(__file__).resolve().parent.parent / ".env")
 
 from api.rate_limit import allow as rate_allow, per_minute_limit
+from api.schemas import SearchRequest, SearchResponse
 from api.whatsapp import router as whatsapp_router
 from core.pipeline import search_resources
 from core import ollama
@@ -112,8 +113,8 @@ def health():
     }
 
 
-@app.post("/search")
-def search(payload: dict, request: Request):
+@app.post("/search", response_model=SearchResponse)
+def search(payload: SearchRequest, request: Request):
     """Same path as chat/WhatsApp: useful for demos and future Vercel frontend."""
     client = request.client.host if request.client else "unknown"
     ok, retry = rate_allow(
@@ -124,19 +125,14 @@ def search(payload: dict, request: Request):
     if not ok:
         raise HTTPException(status_code=429, detail=f"Rate limit exceeded. Retry in {retry}s.")
 
-    query = truncate_user_text(str(payload.get("query", "")), 2000)
-    try:
-        limit = int(payload.get("limit", 3))
-    except (TypeError, ValueError):
-        raise HTTPException(status_code=400, detail="limit must be an integer")
-    limit = max(1, min(limit, 10))
+    query = truncate_user_text(payload.query, 2000)
     return search_resources(
         query=query,
-        category=payload.get("category"),
-        language=str(payload.get("language", "en"))[:16],
-        limit=limit,
-        use_llm=bool(payload.get("use_llm", True)),
-        state=str(payload.get("state", ""))[:2] or None,
-        language_filter=str(payload.get("language_filter", ""))[:32] or None,
-        use_semantic=bool(payload.get("use_semantic", True)),
+        category=payload.category,
+        language=payload.language,
+        limit=payload.limit,
+        use_llm=payload.use_llm,
+        state=payload.state,
+        language_filter=payload.language_filter,
+        use_semantic=payload.use_semantic,
     )
