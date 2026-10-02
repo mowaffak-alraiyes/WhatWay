@@ -528,6 +528,9 @@ def clean_query_of_zip(query: str) -> str:
     """Remove ZIP-like digit tokens from query text to avoid double-counting."""
     cleaned = re.sub(r"\b(60\d{3})\b", "", query or "")
     cleaned = re.sub(r"\b(\d{4,5})\b", "", cleaned)
+    # If the ZIP ended a location phrase, remove its stranded connector so
+    # the result intro does not say "near near 60629".
+    cleaned = re.sub(r"\b(?:near|around|in|by|close\s+to)\s*$", "", cleaned, flags=re.I)
     cleaned = re.sub(r"\s+", " ", cleaned).strip()
     return cleaned
 
