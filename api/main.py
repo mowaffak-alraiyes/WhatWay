@@ -22,6 +22,7 @@ load_dotenv(Path(__file__).resolve().parent.parent / ".env")
 from api.rate_limit import allow as rate_allow, per_minute_limit
 from api.whatsapp import router as whatsapp_router
 from core.pipeline import search_resources
+from core import ollama
 from core.privacy import hash_identifier, truncate_user_text
 
 app = FastAPI(
@@ -77,10 +78,11 @@ def health():
     ollama_ok = False
     ollama_models = []
     try:
-        ollama_base = os.environ.get("OLLAMA_BASE_URL", "http://localhost:11434/v1").rstrip("/")
-        if ollama_base.endswith("/v1"):
-            ollama_base = ollama_base[:-3]
-        r = requests.get(f"{ollama_base}/api/tags", timeout=1.5)
+        r = requests.get(
+            f"{ollama.native_base_url()}/api/tags",
+            headers=ollama.native_headers(),
+            timeout=1.5,
+        )
         ollama_ok = r.status_code == 200
         if ollama_ok:
             ollama_models = [

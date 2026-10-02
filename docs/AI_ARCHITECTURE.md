@@ -28,6 +28,13 @@ embedding model is `nomic-embed-text`; install it separately from the chat
 model. Cloudflare can host the website and edge API without exposing local
 port 11434 publicly.
 
+For a remote Ollama host, publish only an HTTPS hostname through Cloudflare
+Tunnel and protect it with Access. The server-side client supports Access
+service-token headers through `OLLAMA_CF_ACCESS_CLIENT_ID` and
+`OLLAMA_CF_ACCESS_CLIENT_SECRET`; an additional origin bearer token can be set
+with `OLLAMA_AUTH_TOKEN`. These values belong only in the API host's secret
+store, never in the browser or public Worker bundle.
+
 ## National-data next steps
 
 Do not embed every field and call that RAG. Keep extending hybrid retrieval in

@@ -18,6 +18,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
 
+from core import ollama
+
 
 _TOKEN_RE = re.compile(r"[a-z0-9]+", re.IGNORECASE)
 _EMBEDDING_CACHE: Dict[Tuple[str, str], List[float]] = {}
@@ -136,15 +138,12 @@ def _cosine(left: Sequence[float], right: Sequence[float]) -> float:
 def _ollama_embed(texts: Sequence[str]) -> Optional[List[List[float]]]:
     if not texts:
         return []
-    base = os.environ.get("OLLAMA_BASE_URL", "http://localhost:11434/v1").rstrip("/")
-    if base.endswith("/v1"):
-        base = base[:-3]
     model = os.environ.get("OLLAMA_EMBEDDING_MODEL", "nomic-embed-text")
     payload = json.dumps({"model": model, "input": list(texts)}).encode("utf-8")
     request = urllib.request.Request(
-        f"{base}/api/embed",
+        f"{ollama.native_base_url()}/api/embed",
         data=payload,
-        headers={"Content-Type": "application/json"},
+        headers=ollama.native_headers(json_content=True),
         method="POST",
     )
     try:

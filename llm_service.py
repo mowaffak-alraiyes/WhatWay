@@ -21,6 +21,7 @@ except Exception:
 
 import streamlit as st
 from openai import OpenAI
+from core import ollama
 
 # ===========================
 # Configuration
@@ -143,7 +144,7 @@ def get_llm_client() -> Optional[OpenAI]:
         )
 
     ollama_model = _secret("OLLAMA_MODEL") or OLLAMA_MODEL
-    ollama_base = _secret("OLLAMA_BASE_URL") or OLLAMA_BASE_URL
+    ollama_base = _secret("OLLAMA_BASE_URL") or ollama.openai_base_url()
 
     if not _ollama_reachable():
         _ACTIVE_PROVIDER = None
@@ -152,7 +153,11 @@ def get_llm_client() -> Optional[OpenAI]:
 
     _ACTIVE_PROVIDER = "ollama"
     _ACTIVE_MODEL = ollama_model
-    return OpenAI(base_url=ollama_base, api_key="ollama")
+    return OpenAI(
+        base_url=ollama_base,
+        api_key=_secret("OLLAMA_AUTH_TOKEN") or "ollama",
+        default_headers=ollama.access_headers(),
+    )
 
 
 def get_active_model(fast: bool = True) -> str:
