@@ -60,7 +60,10 @@ ollama serve
 
 Set `OLLAMA_MODEL` for chat and `OLLAMA_EMBEDDING_MODEL` for retrieval. The
 `retrieval.mode` API field is `hybrid` when embeddings ran and `lexical` when
-the safe fallback was used.
+the safe fallback was used. Resource embeddings persist in the ignored
+`.cache/ollama_embeddings.json` file by default, keyed by model and a hash of
+the public service text. Set `WHATWAY_EMBEDDING_CACHE` to move that cache. It
+contains neither queries nor chat history.
 
 ## Cloudflare target
 

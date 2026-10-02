@@ -75,14 +75,37 @@ def root():
 @app.get("/health")
 def health():
     ollama_ok = False
+    ollama_models = []
     try:
-        r = requests.get("http://localhost:11434/api/tags", timeout=1.5)
+        ollama_base = os.environ.get("OLLAMA_BASE_URL", "http://localhost:11434/v1").rstrip("/")
+        if ollama_base.endswith("/v1"):
+            ollama_base = ollama_base[:-3]
+        r = requests.get(f"{ollama_base}/api/tags", timeout=1.5)
         ollama_ok = r.status_code == 200
+        if ollama_ok:
+            ollama_models = [
+                str(model.get("name") or "")
+                for model in (r.json().get("models") or [])
+                if model.get("name")
+            ]
     except Exception:
         pass
+    chat_model = os.environ.get("OLLAMA_MODEL", "llama3")
+    embedding_model = os.environ.get("OLLAMA_EMBEDDING_MODEL", "nomic-embed-text")
+
+    def installed(name: str) -> bool:
+        wanted = name.split(":", 1)[0]
+        return any(model.split(":", 1)[0] == wanted for model in ollama_models)
+
     return {
         "ok": True,
         "ollama": ollama_ok,
+        "rag": {
+            "chat_model": chat_model,
+            "chat_model_ready": ollama_ok and installed(chat_model),
+            "embedding_model": embedding_model,
+            "embedding_model_ready": ollama_ok and installed(embedding_model),
+        },
         "neon": bool(os.environ.get("NEON_PASSWORDLESS_TOKEN") or os.environ.get("DATABASE_URL")),
     }
 

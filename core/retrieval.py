@@ -15,12 +15,14 @@ import re
 import threading
 import urllib.request
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
 
 
 _TOKEN_RE = re.compile(r"[a-z0-9]+", re.IGNORECASE)
 _EMBEDDING_CACHE: Dict[Tuple[str, str], List[float]] = {}
 _CACHE_LOCK = threading.Lock()
+_LOADED_CACHE_MODELS = set()
 
 
 @dataclass(frozen=True)
@@ -156,13 +158,70 @@ def _ollama_embed(texts: Sequence[str]) -> Optional[List[List[float]]]:
     return None
 
 
+def _embedding_cache_path() -> Path:
+    configured = os.environ.get("WHATWAY_EMBEDDING_CACHE", "").strip()
+    if configured:
+        return Path(configured).expanduser()
+    return Path(__file__).resolve().parent.parent / ".cache" / "ollama_embeddings.json"
+
+
+def _load_disk_cache(model: str) -> None:
+    """Load public resource embeddings once per model and process."""
+    with _CACHE_LOCK:
+        if model in _LOADED_CACHE_MODELS:
+            return
+        _LOADED_CACHE_MODELS.add(model)
+
+    path = _embedding_cache_path()
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        if payload.get("version") != 1 or payload.get("model") != model:
+            return
+        vectors = payload.get("vectors") or {}
+        with _CACHE_LOCK:
+            for digest, vector in vectors.items():
+                if isinstance(vector, list) and vector:
+                    _EMBEDDING_CACHE[(model, digest)] = [float(value) for value in vector]
+    except (OSError, TypeError, ValueError, json.JSONDecodeError):
+        return
+
+
+def _save_disk_cache(model: str) -> None:
+    """Atomically persist embeddings; query text and chat history are absent."""
+    path = _embedding_cache_path()
+    with _CACHE_LOCK:
+        vectors = {
+            digest: vector
+            for (cached_model, digest), vector in _EMBEDDING_CACHE.items()
+            if cached_model == model
+        }
+    if not vectors:
+        return
+    payload = {"version": 1, "model": model, "vectors": vectors}
+    temporary = path.with_suffix(path.suffix + ".tmp")
+    try:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        temporary.write_text(
+            json.dumps(payload, separators=(",", ":")),
+            encoding="utf-8",
+        )
+        os.replace(temporary, path)
+    except OSError:
+        try:
+            temporary.unlink(missing_ok=True)
+        except OSError:
+            pass
+
+
 def _semantic_scores(items: Sequence[Dict[str, Any]], query: str) -> Optional[List[float]]:
     model = os.environ.get("OLLAMA_EMBEDDING_MODEL", "nomic-embed-text")
+    _load_disk_cache(model)
     documents = [resource_text(item) for item in items]
     keys = [(model, hashlib.sha256(text.encode("utf-8")).hexdigest()) for text in documents]
     with _CACHE_LOCK:
         missing_indexes = [i for i, key in enumerate(keys) if key not in _EMBEDDING_CACHE]
 
+    added_vectors = False
     for start in range(0, len(missing_indexes), 64):
         indexes = missing_indexes[start : start + 64]
         vectors = _ollama_embed([documents[i] for i in indexes])
@@ -171,6 +230,10 @@ def _semantic_scores(items: Sequence[Dict[str, Any]], query: str) -> Optional[Li
         with _CACHE_LOCK:
             for index, vector in zip(indexes, vectors):
                 _EMBEDDING_CACHE[keys[index]] = vector
+                added_vectors = True
+
+    if added_vectors:
+        _save_disk_cache(model)
 
     query_vectors = _ollama_embed([query])
     if not query_vectors:
